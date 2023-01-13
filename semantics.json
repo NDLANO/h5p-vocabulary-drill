@@ -2,13 +2,15 @@
   {
     "label": "Task description",
     "name": "description",
-    "type": "text"
+    "type": "text",
+    "optional": true
   },
   {
     "label": "Import CSV",
     "name": "csvImport",
     "type": "text",
-    "widget": "csvImport",
+    "optional": true,
+
     "description": "water:w___r,vann:v__n\nfire:f_r_,ild\n",
     "csvImport": {
       "insertInto": "./words",
@@ -152,7 +154,8 @@
           { "label": "Fill in", "value": "fillIn" },
           { "label": "Drag text", "value": "dragText" }
         ],
-        "default": "fillIn"
+        "default": "fillIn",
+        "optional": false
       },
       {
         "name": "enableSwitchAnswerModeButton",
