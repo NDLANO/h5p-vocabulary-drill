@@ -104,16 +104,14 @@
         "importance": "low",
         "name": "enableRetry",
         "type": "boolean",
-        "default": true,
-        "optional": true
+        "default": true
       },
       {
         "label": "Enable \"Show solution\" button",
         "importance": "low",
         "name": "enableSolutionsButton",
         "type": "boolean",
-        "default": true,
-        "optional": true
+        "default": true
       },
       {
         "label": "Automatically check answers after input",
@@ -135,8 +133,7 @@
         "importance": "low",
         "name": "showSolutionsRequiresInput",
         "type": "boolean",
-        "default": true,
-        "optional": true
+        "default": true
       },
       {
         "name": "acceptSpellingErrors",
@@ -144,22 +141,19 @@
         "label": "Accept minor spelling errors",
         "importance": "low",
         "description": "If activated, an answer will also count as correct with minor spelling errors (3-9 characters: 1 spelling error, more than 9 characters: 2 spelling errors). This option is only valid if the answer mode is set to Fill in",
-        "default": false,
-        "optional": true
+        "default": false
       },
       {
         "label": "Randomize",
         "name": "randomize",
         "type": "boolean",
-        "default": true,
-        "optional": true
+        "default": true
       },
       {
         "label": "Show tips",
         "name": "showTips",
         "type": "boolean",
-        "default": true,
-        "optional": true
+        "default": true
       },
       {
         "label": "Answer mode",
@@ -179,8 +173,7 @@
         "label": "Enable \"Switch answer mode\" button",
         "importance": "low",
         "description": "Allow the end user to switch between modes \"Fill in\" and \"Drag text\".",
-        "default": false,
-        "optional": true
+        "default": false
       },
       {
         "name": "enableSwitchWordsButton",
@@ -188,8 +181,7 @@
         "label": "Enable \"Switch words\" button",
         "importance": "low",
         "description": "Allow the end user to switch between source and target words.",
-        "default": false,
-        "optional": true
+        "default": false
       }
     ]
   }
