@@ -2,6 +2,7 @@
   {
     "label": "Task description",
     "name": "description",
+    "description": "A guide telling the user how to answer this task.",
     "type": "text",
     "optional": true
   },
@@ -11,7 +12,7 @@
     "type": "text",
     "optional": true,
 
-    "description": "water:w___r,vann:v__n\nfire:f_r_,ild\n",
+    "description": "Add words by uploading a CSV-file.",
     "csvImport": {
       "insertInto": "./words",
       "displayWarningBeforeInsertingIfTheFieldIsNotEmpty": true
@@ -23,8 +24,8 @@
     "type": "text",
     "widget": "html",
     "important": {
-      "description": "<ul><li>Blanks are added with an asterisk (*) in front and behind the correct word/phrase.</li><li>Alternative answers are separated with a forward slash (/).</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li></ul>",
-      "example": "H5P content may be edited using a *browser/web-browser:Something you use every day*."
+      "description": "<ul><li>Source and target words are separated with a comma (,).</li><li>Alternative answers are separated with a forward slash (/).</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li></ul>",
+      "example": "water/sea:w___r,vann/hav:v__n"
     }
   },
   {
@@ -103,16 +104,14 @@
         "importance": "low",
         "name": "enableRetry",
         "type": "boolean",
-        "default": true,
-        "optional": true
+        "default": true
       },
       {
         "label": "Enable \"Show solution\" button",
         "importance": "low",
         "name": "enableSolutionsButton",
         "type": "boolean",
-        "default": true,
-        "optional": true
+        "default": true
       },
       {
         "label": "Automatically check answers after input",
@@ -134,8 +133,7 @@
         "importance": "low",
         "name": "showSolutionsRequiresInput",
         "type": "boolean",
-        "default": true,
-        "optional": true
+        "default": true
       },
       {
         "name": "acceptSpellingErrors",
@@ -143,19 +141,31 @@
         "label": "Accept minor spelling errors",
         "importance": "low",
         "description": "If activated, an answer will also count as correct with minor spelling errors (3-9 characters: 1 spelling error, more than 9 characters: 2 spelling errors). This option is only valid if the answer mode is set to Fill in",
-        "default": false,
-        "optional": true
+        "default": false
+      },
+      {
+        "label": "Randomize",
+        "name": "randomize",
+        "type": "boolean",
+        "default": true
+      },
+      {
+        "label": "Show tips",
+        "name": "showTips",
+        "type": "boolean",
+        "default": false
       },
       {
         "label": "Answer mode",
         "name": "answerMode",
         "type": "select",
+        "widget": "radioGroup",
+        "alignment": "horizontal",
         "options": [
           { "label": "Fill in", "value": "fillIn" },
           { "label": "Drag text", "value": "dragText" }
         ],
-        "default": "fillIn",
-        "optional": false
+        "default": "fillIn"
       },
       {
         "name": "enableSwitchAnswerModeButton",
@@ -163,8 +173,15 @@
         "label": "Enable \"Switch answer mode\" button",
         "importance": "low",
         "description": "Allow the end user to switch between modes \"Fill in\" and \"Drag text\".",
-        "default": false,
-        "optional": true
+        "default": false
+      },
+      {
+        "name": "enableSwitchWordsButton",
+        "type": "boolean",
+        "label": "Enable \"Switch words\" button",
+        "importance": "low",
+        "description": "Allow the end user to switch between source and target words.",
+        "default": false
       }
     ]
   }
