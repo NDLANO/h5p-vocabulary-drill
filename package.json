@@ -1,0 +1,34 @@
+{
+  "name": "h5p-vocabulary-drill",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/h5p-vocabulary-drill.js",
+  "scripts": {
+    "start": "vite build --mode=development --watch --minify=false",
+    "build": "tsc --noEmit && vite build",
+    "lint": "prettier .",
+    "lint:fix": "prettier . --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NDLANO/h5p-vocabulary-drill.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NDLANO/h5p-vocabulary-drill/issues"
+  },
+  "homepage": "https://github.com/NDLANO/h5p-vocabulary-drill#readme",
+  "dependencies": {
+    "h5p-utils": "^3.0.0"
+  },
+  "devDependencies": {
+    "h5p-types": "^1.1.0",
+    "prettier": "^2.8.2",
+    "prettier-config": "github:boyum/prettier-config",
+    "typescript": "^4.9.3",
+    "vite": "^3.0.9"
+  },
+  "prettier": "prettier-config"
+}

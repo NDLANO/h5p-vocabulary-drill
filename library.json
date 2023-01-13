@@ -20,11 +20,7 @@
     }
   ],
   "editorDependencies": [],
-  "preloadedCss": [
-    {
-      "path": "dist/h5p-vocabulary-drill.css"
-    }
-  ],
+  "preloadedCss": [],
   "preloadedJs": [
     {
       "path": "dist/h5p-vocabulary-drill.js"
