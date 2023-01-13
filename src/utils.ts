@@ -10,7 +10,7 @@ export const findLibraryInfo = (
 ):
   | Pick<Library, "machineName" | "majorVersion" | "minorVersion">
   | undefined => {
-return library.preloadedDependencies.find(
+  return library.preloadedDependencies.find(
       library => library.machineName === libraryName,
     );
 };
