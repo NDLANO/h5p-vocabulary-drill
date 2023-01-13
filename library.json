@@ -1,0 +1,33 @@
+{
+  "title": "Vocabulary Drill",
+  "machineName": "H5P.VocabularyDrill",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "license": "MIT",
+  "author": "NDLA",
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.Blanks",
+      "majorVersion": 1,
+      "minorVersion": 14
+    },
+    {
+      "machineName": "H5P.DragText",
+      "majorVersion": 1,
+      "minorVersion": 10
+    }
+  ],
+  "editorDependencies": [],
+  "preloadedCss": [
+    {
+      "path": "dist/h5p-vocabulary-drill.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "dist/h5p-vocabulary-drill.js"
+    }
+  ]
+}
