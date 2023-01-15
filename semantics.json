@@ -7,26 +7,20 @@
     "optional": true
   },
   {
-    "label": "Import CSV",
-    "name": "csvImport",
-    "type": "text",
-    "optional": true,
-
-    "description": "Add words by uploading a CSV-file.",
-    "csvImport": {
-      "insertInto": "./words",
-      "displayWarningBeforeInsertingIfTheFieldIsNotEmpty": true
-    }
-  },
-  {
     "label": "Words",
     "name": "words",
     "type": "text",
-    "widget": "html",
+    "optional": true,
+    "widget": "csv-to-text",
+    "description": "Add words by uploading a CSV-file or write them in the text field.",
     "important": {
       "description": "<ul><li>Source and target words are separated with a comma (,).</li><li>Alternative answers are separated with a forward slash (/).</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li></ul>",
       "example": "water/sea:w___r,vann/hav:v__n"
     }
+  },
+  {
+"name": "Test",
+"type": "file"
   },
   {
     "name": "overallFeedback",
