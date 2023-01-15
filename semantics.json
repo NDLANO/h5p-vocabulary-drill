@@ -19,10 +19,6 @@
     }
   },
   {
-"name": "Test",
-"type": "file"
-  },
-  {
     "name": "overallFeedback",
     "type": "group",
     "label": "Overall Feedback",
