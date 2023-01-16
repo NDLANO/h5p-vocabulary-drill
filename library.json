@@ -21,7 +21,7 @@
   ],
   "editorDependencies": [
     {
-      "machineName": "H5PEditor.FileToField",
+      "machineName": "H5PEditor.CSVToText",
       "majorVersion": 1,
       "minorVersion": 0
     },
