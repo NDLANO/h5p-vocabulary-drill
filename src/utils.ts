@@ -47,7 +47,7 @@ export const parseWords = (
   if (source) {
     newWordsList = sourceAndTargetList.map(word => {
       const tipsIndex = word[1].indexOf(":");
-      const word1 = word[1].substring(0, tipsIndex);
+      const word1 = tipsIndex > 0 ? word[1].substring(0, tipsIndex) : word[1];
       if (fillIn) {
         return `<p>${word1} *${word[0]}*</p>`
       }
@@ -57,7 +57,7 @@ export const parseWords = (
   else {
     newWordsList = sourceAndTargetList.map(word => {
       const tipsIndex = word[0].indexOf(":");
-      const word0 = word[0].substring(0, tipsIndex);
+      const word0 = tipsIndex > 0 ? word[0].substring(0, tipsIndex) : word[0];
       if (fillIn) {
         return `<p>${word0} *${word[1]}*</p>`
       }
