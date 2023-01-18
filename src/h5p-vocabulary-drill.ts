@@ -1,6 +1,7 @@
 import type { IH5PContentType } from "h5p-types";
 import { H5P, H5PContentType, registerContentType } from "h5p-utils";
 import { findLibraryInfo, isNil, libraryToString, parseWords } from "./utils";
+import "./index.css";
 
 type Params = {
   behaviour: {
@@ -42,7 +43,13 @@ class VocabularyDrill
       );
     }
 
+    // TODO: translate
+    const title = this.extras?.metadata.title ?? "Vocabulary drill";
+    const toolbar = VocabularyDrill.createToolbar(title);
+    
+    containerElement.appendChild(toolbar);
     containerElement.appendChild(this.wrapper);
+    containerElement.classList.add("h5p-vocabulary-drill");
 
     switch (answerMode) {
       case "dragText": {
@@ -82,6 +89,20 @@ class VocabularyDrill
         break;
       }
     }
+  }
+
+  private static createToolbar(title: string): HTMLDivElement {
+    const nodeTitle = document.createTextNode(title);
+    const titleElement = document.createElement("p");
+    titleElement.appendChild(nodeTitle);
+
+    const toolbar = document.createElement("div");
+    toolbar.classList.add("h5p-vocabulary-drill-toolbar");
+    toolbar.appendChild(titleElement);
+
+    const button = document.createElement("button");
+    toolbar.appendChild(button);
+    return toolbar;
   }
 }
 
