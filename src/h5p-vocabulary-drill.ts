@@ -1,11 +1,13 @@
-import type { IH5PContentType } from "h5p-types";
+import type {
+  DeepReadonly,
+  IH5PContentType,
+  InferParamsFromSemantics,
+} from "h5p-types";
 import { H5P, H5PContentType, registerContentType } from "h5p-utils";
 import { findLibraryInfo, isNil, libraryToString } from "./utils";
+import semantics from "../semantics.json";
 
-type Params = {
-  answerMode: "fillIn" | "dragText";
-  enableSwitchAnswerModeButton: boolean;
-};
+type Params = InferParamsFromSemantics<DeepReadonly<typeof semantics>>;
 
 class VocabularyDrill
   extends H5PContentType<Params>
@@ -13,7 +15,7 @@ class VocabularyDrill
 {
   attach() {
     const { contentId } = this;
-    const { answerMode } = this.params;
+    const { answerMode } = this.params.behaviour;
 
     const dragTextLibraryInfo = findLibraryInfo("H5P.DragText");
     const fillInTheBlanksLibraryInfo = findLibraryInfo("H5P.Blanks");

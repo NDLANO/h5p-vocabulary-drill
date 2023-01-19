@@ -42,6 +42,7 @@
         "defaultNum": 1,
         "optional": true,
         "field": {
+          "label": "Overall Feedback",
           "name": "overallFeedback",
           "type": "group",
           "importance": "low",
@@ -77,6 +78,7 @@
     ]
   },
   {
+    "label": "Localization",
     "name": "l10n",
     "type": "group",
     "fields": []
