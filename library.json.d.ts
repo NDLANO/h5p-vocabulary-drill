@@ -31,6 +31,9 @@ export const editorDependencies : [
 	}
 ];
 export const preloadedCss : [
+	{
+		path: "dist/h5p-vocabulary-drill.css"
+	}
 ];
 export const preloadedJs : [
 	{

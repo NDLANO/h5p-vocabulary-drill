@@ -6,17 +6,28 @@ export default defineConfig({
   build: {
     minify: "esbuild",
 
+    lib: {
+      entry: ["src/h5p-vocabulary-drill.ts"],
+      formats: ["iife"],
+      name: "H5PVocabularyDrill",
+      fileName: () => "h5p-vocabulary-drill.js",
+    },
+
     rollupOptions: {
-      input: "src/h5p-vocabulary-drill.ts",
       output: {
-        file: "dist/h5p-vocabulary-drill.js",
-        dir: undefined,
-        esModule: false,
-        format: "iife",
+        assetFileNames: assetInfo => {
+          // For some reason, an H5P content type's style file cannot be named `style.css`.
+          // Therefore we need to change the name before saving it.
+          if (assetInfo.name === "style.css") {
+            return "h5p-vocabulary-drill.css";
+          }
+
+          return assetInfo.name ?? "";
+        },
       },
     },
 
-    target: "es6",
+    target: "ES2015",
   },
 
   plugins: [jsonDts()],

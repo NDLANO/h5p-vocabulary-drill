@@ -16,7 +16,8 @@ class VocabularyDrill
 {
   attach($container: JQuery<HTMLElement>) {
     const { contentId } = this;
-    const { answerMode } = this.params.behaviour;
+    const { behaviour, description, words, overallFeedback } = this.params;
+    const { answerMode } = behaviour;
 
     const dragTextLibraryInfo = findLibraryInfo("H5P.DragText");
     const fillInTheBlanksLibraryInfo = findLibraryInfo("H5P.Blanks");
@@ -54,10 +55,10 @@ class VocabularyDrill
           {
             library: libraryToString(dragTextLibraryInfo),
             params: {
-              taskDescription: this.params.description,
-              textField: parseWords(this.params.words, answerMode),
-              behaviour: this.params.behaviour,
-              overallFeedback: this.params.overallFeedback,
+              taskDescription: description,
+              textField: parseWords(words, answerMode),
+              behaviour,
+              overallFeedback,
             },
           },
           contentId,
@@ -72,10 +73,10 @@ class VocabularyDrill
           {
             library: libraryToString(fillInTheBlanksLibraryInfo),
             params: {
-              text: this.params.description,
-              questions: [parseWords(this.params.words, answerMode)],
-              behaviour: this.params.behaviour,
-              overallFeedback: this.params.overallFeedback,
+              text: description,
+              questions: [parseWords(words, answerMode)],
+              behaviour,
+              overallFeedback,
             },
           },
           contentId,
