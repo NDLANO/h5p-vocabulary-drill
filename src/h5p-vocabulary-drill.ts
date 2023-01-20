@@ -6,7 +6,7 @@ import type {
 import { H5P, H5PContentType, registerContentType } from "h5p-utils";
 import { findLibraryInfo, isNil, libraryToString, parseWords } from "./utils";
 import semantics from "../semantics.json";
-import "./index.css";
+import "./index.scss";
 
 type Params = InferParamsFromSemantics<DeepReadonly<typeof semantics>>;
 
