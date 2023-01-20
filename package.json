@@ -27,10 +27,10 @@
     "h5p-types": "^1.4.2",
     "prettier": "^2.8.3",
     "prettier-config": "github:boyum/prettier-config",
+    "sass": "^1.57.1",
     "typescript": "^4.9.4",
     "unplugin-json-dts": "^1.2.0",
-    "vite": "3.0.9",
-    "sass": "^1.57.1"
+    "vite": "3.0.9"
   },
   "prettier": "prettier-config"
 }
