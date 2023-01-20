@@ -55,7 +55,7 @@ class VocabularyDrill
             library: libraryToString(dragTextLibraryInfo),
             params: {
               taskDescription: this.params.description,
-              textField: parseWords(this.params.words, answerMode),
+              textField: parseWords(this.params.words, answerMode as "dragText"),
               behaviour: this.params.behaviour,
               overallFeedback: this.params.overallFeedback
             },
@@ -74,7 +74,7 @@ class VocabularyDrill
             library: libraryToString(fillInTheBlanksLibraryInfo),
             params: {
               text: this.params.description,
-              questions: [parseWords(this.params.words, answerMode)],
+              questions: [parseWords(this.params.words, answerMode as "fillIn")],
               behaviour: this.params.behaviour,
               overallFeedback: this.params.overallFeedback
             },

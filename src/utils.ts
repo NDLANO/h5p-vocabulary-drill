@@ -32,10 +32,13 @@ export const libraryToString = ({
 () => semantics;
 
 export const parseWords = (
-  words: string,
+  words: string | undefined,
   contentType: "fillIn" | "dragText",
   sourceOrTarget?: "source" | "target"
 ): string => {
+  if (!words) {
+    return "";
+  }
   let newWords = "";
   let newWordsList: string[] = [];
   const fillIn = contentType === "fillIn";
