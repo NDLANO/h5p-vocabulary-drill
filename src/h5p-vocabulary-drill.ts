@@ -15,7 +15,7 @@ class VocabularyDrill
 {
   attach() {
     const { contentId } = this;
-    const { answerMode } = this.params.behaviour;
+    const { answerMode } = this.params.behaviour ?? {};
 
     const dragTextLibraryInfo = findLibraryInfo("H5P.DragText");
     const fillInTheBlanksLibraryInfo = findLibraryInfo("H5P.Blanks");

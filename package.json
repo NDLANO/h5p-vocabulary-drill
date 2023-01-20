@@ -25,7 +25,7 @@
     "h5p-utils": "^3.1.0"
   },
   "devDependencies": {
-    "h5p-types": "^1.4.1",
+    "h5p-types": "^1.4.2",
     "prettier": "^2.8.3",
     "prettier-config": "github:boyum/prettier-config",
     "typescript": "^4.9.4",
