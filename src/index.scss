@@ -1,0 +1,49 @@
+.h5p-vocabulary-drill {
+  color: #000000;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+
+  .h5p-question-introduction {
+    border-bottom: 1px solid #eee;
+    margin: 0;
+    padding: 0.8em 1em 1em;
+  }
+}
+
+.h5p-vocabulary-drill-toolbar {
+  align-items: center;
+  display: flex;
+  padding: 1em 1em 0;
+  justify-content: space-between;
+
+  p {
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2em;
+    margin: 0;
+  }
+
+  button {
+    background-color: #F5F7FC;
+    border: none;
+    color: #3068BE;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    padding: 0 4px;
+
+    &:before {
+      font-family: "H5PFontIcons";
+      content: "\e916";
+      line-height: 1;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: #EAEFF8;
+    }
+  }
+}
