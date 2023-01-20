@@ -1,3 +1,4 @@
+import jsonDts from "unplugin-json-dts/vite";
 import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
@@ -17,4 +18,6 @@ export default defineConfig({
 
     target: "es6",
   },
+
+  plugins: [jsonDts()],
 });

@@ -21,13 +21,14 @@
   },
   "homepage": "https://github.com/NDLANO/h5p-vocabulary-drill#readme",
   "dependencies": {
-    "h5p-utils": "^3.0.0"
+    "h5p-utils": "^3.1.0"
   },
   "devDependencies": {
-    "h5p-types": "^1.1.0",
-    "prettier": "^2.8.2",
+    "h5p-types": "^1.4.2",
+    "prettier": "^2.8.3",
     "prettier-config": "github:boyum/prettier-config",
-    "typescript": "^4.9.3",
+    "typescript": "^4.9.4",
+    "unplugin-json-dts": "^1.2.0",
     "vite": "3.0.9"
   },
   "prettier": "prettier-config"
