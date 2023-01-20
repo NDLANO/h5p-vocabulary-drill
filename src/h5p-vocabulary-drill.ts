@@ -16,7 +16,7 @@ class VocabularyDrill
 {
   attach($container: JQuery<HTMLElement>) {
     const { contentId } = this;
-    const { answerMode } = this.params.behaviour ?? {};
+    const { answerMode } = this.params.behaviour;
 
     const dragTextLibraryInfo = findLibraryInfo("H5P.DragText");
     const fillInTheBlanksLibraryInfo = findLibraryInfo("H5P.Blanks");
@@ -43,7 +43,7 @@ class VocabularyDrill
     // TODO: translate
     const title = this.extras?.metadata.title ?? "Vocabulary drill";
     const toolbar = VocabularyDrill.createToolbar(title);
-    
+
     containerElement.appendChild(toolbar);
     containerElement.appendChild(this.wrapper);
     containerElement.classList.add("h5p-vocabulary-drill");
@@ -55,9 +55,9 @@ class VocabularyDrill
             library: libraryToString(dragTextLibraryInfo),
             params: {
               taskDescription: this.params.description,
-              textField: parseWords(this.params.words, answerMode as "dragText"),
+              textField: parseWords(this.params.words, answerMode),
               behaviour: this.params.behaviour,
-              overallFeedback: this.params.overallFeedback
+              overallFeedback: this.params.overallFeedback,
             },
           },
           contentId,
@@ -67,16 +67,15 @@ class VocabularyDrill
         break;
       }
 
-      case "fillIn":
-      default: {
+      case "fillIn": {
         H5P.newRunnable(
           {
             library: libraryToString(fillInTheBlanksLibraryInfo),
             params: {
               text: this.params.description,
-              questions: [parseWords(this.params.words, answerMode as "fillIn")],
+              questions: [parseWords(this.params.words, answerMode)],
               behaviour: this.params.behaviour,
-              overallFeedback: this.params.overallFeedback
+              overallFeedback: this.params.overallFeedback,
             },
           },
           contentId,

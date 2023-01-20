@@ -90,7 +90,6 @@ declare const $defaultExport: [
 		label: "Behavioural settings",
 		importance: "low",
 		description: "These options will let you control how the task behaves.",
-		optional: true,
 		fields: [
 			{
 				label: "Enable \"Retry\"",
