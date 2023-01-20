@@ -31,7 +31,11 @@
       "minorVersion": 1
     }
   ],
-  "preloadedCss": [],
+  "preloadedCss": [
+    {
+      "path": "dist/h5p-vocabulary-drill.css"
+    }
+  ],
   "preloadedJs": [
     {
       "path": "dist/h5p-vocabulary-drill.js"
