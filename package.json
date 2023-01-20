@@ -7,8 +7,7 @@
     "start": "vite build --mode=development --watch --minify=false",
     "build": "tsc --noEmit && vite build",
     "lint": "prettier .",
-    "lint:fix": "prettier . --write",
-    "preparation": "echo \"declare const semantics: $(cat semantics.json);\n\nexport default semantics;\" > semantics.json.d.ts"
+    "lint:fix": "prettier . --write"
   },
   "repository": {
     "type": "git",
