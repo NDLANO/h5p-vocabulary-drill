@@ -64,39 +64,45 @@ const filterOutVariant = (wordsAndTip: string): string => {
 
 export const parseWords = (
   words: string | undefined,
-  contentType: "fillIn" | "dragText",
-  sourceOrTarget?: "source" | "target",
+  answerMode: "fillIn" | "dragText",
+  wordMode?: "source" | "target",
 ): string => {
   if (!words) {
     return "";
   }
   let newWords = "";
   let newWordsList: string[] = [];
-  const fillIn = contentType === "fillIn";
-  const source = sourceOrTarget === "source";
+  const answerModeFillIn = answerMode === "fillIn";
+  const wordModeSource = wordMode === "source";
 
   const wordsList = words.split(wordsSeparator);
   const sourceAndTargetList = wordsList
     .filter(Boolean)
     .map(word => word.split(sourceAndTargetSeparator));
 
-  if (source) {
-    newWordsList = sourceAndTargetList.map(word => {
-      const sourceWord = filterOutVariant(word[0]);
-      const targetWord = filterWord(word[1]);
-      if (fillIn) {
-        return `<p>${targetWord} *${word[0]}*</p>`;
+  if (wordModeSource) {
+    newWordsList = sourceAndTargetList.map(sourceAndTarget => {
+      const [source, target] = sourceAndTarget;
+
+      const filteredSource = filterOutVariant(source);
+      const filteredTarget = filterWord(target);
+
+      if (answerModeFillIn) {
+        return `<p>${filteredTarget} *${source}*</p>`;
       }
-      return `${targetWord} *${sourceWord}*\n`;
+      return `${filteredTarget} *${filteredSource}*\n`;
     });
   } else {
-    newWordsList = sourceAndTargetList.map(word => {
-      const sourceWord = filterWord(word[0]);
-      const targetWord = filterOutVariant(word[1]);
-      if (fillIn) {
-        return `<p>${sourceWord} *${word[1]}*</p>`;
+    newWordsList = sourceAndTargetList.map(sourceAndTarget => {
+      const [source, target] = sourceAndTarget;
+
+      const filteredSource = filterWord(source);
+      const filteredTarget = filterOutVariant(target);
+
+      if (answerModeFillIn) {
+        return `<p>${filteredSource} *${target}*</p>`;
       }
-      return `${sourceWord} *${targetWord}*\n`;
+      return `${filteredSource} *${filteredTarget}*\n`;
     });
   }
 
