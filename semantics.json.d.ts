@@ -14,7 +14,7 @@ declare const $defaultExport: [
 		options: [
 			{
 				value: "de",
-				label: "Dutch"
+				label: "German"
 			},
 			{
 				value: "en",
@@ -47,7 +47,7 @@ declare const $defaultExport: [
 		options: [
 			{
 				value: "de",
-				label: "Dutch"
+				label: "German"
 			},
 			{
 				value: "en",
