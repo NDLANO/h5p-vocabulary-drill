@@ -1,6 +1,12 @@
 import { Library } from "h5p-types";
 import { preloadedDependencies } from "../library.json";
 import semantics from "../semantics.json";
+import {
+  sourceAndTargetSeparator,
+  tipSeparator,
+  variantSeparator,
+  wordsSeparator,
+} from "./constants/separators";
 
 export const isNil = <T>(
   value: T | null | undefined,
@@ -31,40 +37,72 @@ export const libraryToString = ({
 // the future.
 () => semantics;
 
+const filterWord = (wordsAndTip: string): string => {
+  const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
+  const [word, _variant] = wordAndVariant.split(variantSeparator);
+
+  return word;
+};
+
+const filterOutVariant = (wordsAndTip: string): string => {
+  const [wordAndVariant, tip] = wordsAndTip.split(tipSeparator);
+  const [word, variant] = wordAndVariant.split(variantSeparator);
+
+  const hasVariant = !!variant;
+  const hasTip = !!tip;
+
+  if (hasVariant && hasTip) {
+    return [word, tip].join(tipSeparator);
+  }
+
+  if (hasVariant) {
+    return word;
+  }
+
+  return wordsAndTip;
+};
+
 export const parseWords = (
-  words: string | undefined,
-  contentType: "fillIn" | "dragText",
-  sourceOrTarget?: "source" | "target"
+  words: string | undefined,
+  answerMode: "fillIn" | "dragText",
+  wordMode?: "source" | "target",
 ): string => {
   if (!words) {
     return "";
   }
   let newWords = "";
   let newWordsList: string[] = [];
-  const fillIn = contentType === "fillIn";
-  const source = sourceOrTarget && sourceOrTarget === "source";
+  const answerModeFillIn = answerMode === "fillIn";
+  const wordModeSource = wordMode === "source";
 
-  const wordsList = words.split("\n");
-  const sourceAndTargetList = wordsList.map(word => word.split("|"));
+  const wordsList = words.split(wordsSeparator);
+  const sourceAndTargetList = wordsList
+    .filter(Boolean)
+    .map(word => word.split(sourceAndTargetSeparator));
 
-  if (source) {
-    newWordsList = sourceAndTargetList.map(word => {
-      const tipsIndex = word[1].indexOf(":");
-      const word1 = tipsIndex > 0 ? word[1].substring(0, tipsIndex) : word[1];
-      if (fillIn) {
-        return `<p>${word1} *${word[0]}*</p>`
+  if (wordModeSource) {
+    newWordsList = sourceAndTargetList.map(sourceAndTarget => {
+      const [source, target] = sourceAndTarget;
+
+      const filteredSource = filterOutVariant(source);
+      const filteredTarget = filterWord(target);
+
+      if (answerModeFillIn) {
+        return `<p>${filteredTarget} *${source}*</p>`;
       }
-      return `${word1} *${word[0]}*\n`
+      return `${filteredTarget} *${filteredSource}*\n`;
     });
-  } 
-  else {
-    newWordsList = sourceAndTargetList.map(word => {
-      const tipsIndex = word[0].indexOf(":");
-      const word0 = tipsIndex > 0 ? word[0].substring(0, tipsIndex) : word[0];
-      if (fillIn) {
-        return `<p>${word0} *${word[1]}*</p>`
+  } else {
+    newWordsList = sourceAndTargetList.map(sourceAndTarget => {
+      const [source, target] = sourceAndTarget;
+
+      const filteredSource = filterWord(source);
+      const filteredTarget = filterOutVariant(target);
+
+      if (answerModeFillIn) {
+        return `<p>${filteredSource} *${target}*</p>`;
       }
-      return `${word0} *${word[1]}*\n`
+      return `${filteredSource} *${filteredTarget}*\n`;
     });
   }
 
