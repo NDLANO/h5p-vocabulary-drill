@@ -31,10 +31,35 @@ export const libraryToString = ({
 // the future.
 () => semantics;
 
+const filterWord = (word: string): string => {
+  const variantIndex = word.indexOf("/");
+  const tipsIndex = word.indexOf(":");
+
+  if (variantIndex > 0) {
+    return word.substring(0, variantIndex);
+  } else if (tipsIndex > 0) {
+    return word.substring(0, tipsIndex);
+  }
+  return word;
+};
+
+const filterOutVariant = (word: string): string => {
+  const variantIndex = word.indexOf("/");
+  const tipsIndex = word.indexOf(":");
+
+  if (variantIndex > 0 && tipsIndex > 0) {
+    const toRemove = word.substring(variantIndex, tipsIndex);
+    return word.split(toRemove).join("");
+  } else if (variantIndex > 0) {
+    return word.substring(0, variantIndex);
+  }
+  return word;
+};
+
 export const parseWords = (
-  words: string | undefined,
+  words: string | undefined,
   contentType: "fillIn" | "dragText",
-  sourceOrTarget?: "source" | "target"
+  sourceOrTarget?: "source" | "target",
 ): string => {
   if (!words) {
     return "";
@@ -42,29 +67,30 @@ export const parseWords = (
   let newWords = "";
   let newWordsList: string[] = [];
   const fillIn = contentType === "fillIn";
-  const source = sourceOrTarget && sourceOrTarget === "source";
+  const source = sourceOrTarget === "source";
 
   const wordsList = words.split("\n");
-  const sourceAndTargetList = wordsList.map(word => word.split("|"));
+  const sourceAndTargetList = wordsList
+    .filter(Boolean)
+    .map(word => word.split(","));
 
   if (source) {
     newWordsList = sourceAndTargetList.map(word => {
-      const tipsIndex = word[1].indexOf(":");
-      const word1 = tipsIndex > 0 ? word[1].substring(0, tipsIndex) : word[1];
+      const sourceWord = filterOutVariant(word[0]);
+      const targetWord = filterWord(word[1]);
       if (fillIn) {
-        return `<p>${word1} *${word[0]}*</p>`
+        return `<p>${targetWord} *${word[0]}*</p>`;
       }
-      return `${word1} *${word[0]}*\n`
+      return `${targetWord} *${sourceWord}*\n`;
     });
-  } 
-  else {
+  } else {
     newWordsList = sourceAndTargetList.map(word => {
-      const tipsIndex = word[0].indexOf(":");
-      const word0 = tipsIndex > 0 ? word[0].substring(0, tipsIndex) : word[0];
+      const sourceWord = filterWord(word[0]);
+      const targetWord = filterOutVariant(word[1]);
       if (fillIn) {
-        return `<p>${word0} *${word[1]}*</p>`
+        return `<p>${sourceWord} *${word[1]}*</p>`;
       }
-      return `${word0} *${word[1]}*\n`
+      return `${sourceWord} *${targetWord}*\n`;
     });
   }
 
