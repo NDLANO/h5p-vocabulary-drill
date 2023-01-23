@@ -1,6 +1,12 @@
 import { Library } from "h5p-types";
 import { preloadedDependencies } from "../library.json";
 import semantics from "../semantics.json";
+import {
+  sourceAndTargetSeparator,
+  tipSeparator,
+  variantSeparator,
+  wordsSeparator,
+} from "./constants/separators";
 
 export const isNil = <T>(
   value: T | null | undefined,
@@ -31,29 +37,29 @@ export const libraryToString = ({
 // the future.
 () => semantics;
 
-const filterWord = (word: string): string => {
-  const variantIndex = word.indexOf("/");
-  const tipsIndex = word.indexOf(":");
+const filterWord = (wordsAndTip: string): string => {
+  const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
+  const [word, _variant] = wordAndVariant.split(variantSeparator);
 
-  if (variantIndex > 0) {
-    return word.substring(0, variantIndex);
-  } else if (tipsIndex > 0) {
-    return word.substring(0, tipsIndex);
-  }
   return word;
 };
 
-const filterOutVariant = (word: string): string => {
-  const variantIndex = word.indexOf("/");
-  const tipsIndex = word.indexOf(":");
+const filterOutVariant = (wordsAndTip: string): string => {
+  const [wordAndVariant, tip] = wordsAndTip.split(tipSeparator);
+  const [word, variant] = wordAndVariant.split(variantSeparator);
 
-  if (variantIndex > 0 && tipsIndex > 0) {
-    const toRemove = word.substring(variantIndex, tipsIndex);
-    return word.split(toRemove).join("");
-  } else if (variantIndex > 0) {
-    return word.substring(0, variantIndex);
+  const hasVariant = !!variant;
+  const hasTip = !!tip;
+
+  if (hasVariant && hasTip) {
+    return [word, tip].join(tipSeparator);
   }
-  return word;
+
+  if (hasVariant) {
+    return word;
+  }
+
+  return wordsAndTip;
 };
 
 export const parseWords = (
@@ -69,10 +75,10 @@ export const parseWords = (
   const fillIn = contentType === "fillIn";
   const source = sourceOrTarget === "source";
 
-  const wordsList = words.split("\n");
+  const wordsList = words.split(wordsSeparator);
   const sourceAndTargetList = wordsList
     .filter(Boolean)
-    .map(word => word.split(","));
+    .map(word => word.split(sourceAndTargetSeparator));
 
   if (source) {
     newWordsList = sourceAndTargetList.map(word => {
