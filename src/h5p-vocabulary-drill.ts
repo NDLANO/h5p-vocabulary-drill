@@ -7,7 +7,7 @@ import { H5P, H5PContentType, registerContentType } from "h5p-utils";
 import { findLibraryInfo, isNil, libraryToString, parseWords } from "./utils";
 import semantics from "../semantics.json";
 import "./index.scss";
-import { blanksClassName, dragTextClassName } from "./constants/separators";
+import { blanksClassName, dragTextClassName } from "./constants/classes";
 import { AnswerModeType, GuessModeType } from "./types/types";
 
 type Params = InferParamsFromSemantics<DeepReadonly<typeof semantics>>;
