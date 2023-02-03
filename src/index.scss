@@ -11,6 +11,81 @@
   }
 }
 
+.h5p-vocabulary-drill-settings {
+  display: none;
+
+  &.visible {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 6; // TODO: make sure this is correct
+  }
+
+  p {
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2em;
+    margin: 0;
+  }
+
+  &-top {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+
+    button {
+      background-color: #f5f7fc;
+      border: none;
+      color: #3068be;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      padding: 0 7px;
+
+      &:before {
+        font-family: "H5PFontAwesome4";
+        content: "\f00d";
+        line-height: 1;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: #eaeff8;
+      }
+    }
+  }
+
+  &-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    button {
+      background-color: #f5f7fc;
+      border: none;
+      color: #3068be;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      padding: 8px 16px;
+
+      &:hover,
+      &:focus {
+        background-color: #eaeff8;
+      }
+    }
+  }
+}
+
 .h5p-vocabulary-drill-toolbar {
   align-items: center;
   display: flex;

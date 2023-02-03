@@ -32,12 +32,13 @@ class VocabularyDrill
 
     // TODO: translate
     const title = this.extras?.metadata.title ?? "Vocabulary drill";
-    const toolbar = VocabularyDrill.createToolbar(
-      title,
+    const settings = VocabularyDrill.createSettings(
       () => this.handleAnswerModeChange(),
       () => this.handleLanguageModeChange(),
     );
+    const toolbar = VocabularyDrill.createToolbar(title, settings);
 
+    containerElement.appendChild(settings);
     containerElement.appendChild(toolbar);
     containerElement.appendChild(wrapper);
     containerElement.classList.add("h5p-vocabulary-drill");
@@ -47,8 +48,7 @@ class VocabularyDrill
 
   private static createToolbar(
     title: string,
-    handleAnswerModeChange: () => void,
-    handleLanguageModeChange: () => void,
+    settingsDiv: HTMLDivElement,
   ): HTMLDivElement {
     const nodeTitle = document.createTextNode(title);
     const titleElement = document.createElement("p");
@@ -58,25 +58,65 @@ class VocabularyDrill
     toolbar.classList.add("h5p-vocabulary-drill-toolbar");
     toolbar.appendChild(titleElement);
 
-    const nodeAnswerMode = document.createTextNode("Mode");
+    const button = document.createElement("button");
+    button.addEventListener("click", () =>
+      settingsDiv.classList.toggle("visible"),
+    );
+
+    toolbar.appendChild(button);
+    return toolbar;
+  }
+
+  private static createSettings(
+    handleAnswerModeChange: () => void,
+    handleLanguageModeChange: () => void,
+  ): HTMLDivElement {
+    const settings = document.createElement("div");
+    settings.classList.add("h5p-vocabulary-drill-settings");
+
+    const buttonClose = document.createElement("button");
+    buttonClose.addEventListener("click", () =>
+      settings.classList.toggle("visible"),
+    );
+
+    const top = document.createElement("div");
+    top.classList.add("h5p-vocabulary-drill-settings-top");
+    top.appendChild(buttonClose);
+
+    const container = document.createElement("div");
+    container.classList.add("h5p-vocabulary-drill-settings-container");
+
+    // TODO: translate
+    const nodeAnswerMode = document.createTextNode("Change answer mode");
     const buttonAnswerModeLabel = document.createElement("p");
     buttonAnswerModeLabel.appendChild(nodeAnswerMode);
 
     const buttonAnswerMode = document.createElement("button");
     buttonAnswerMode.addEventListener("click", handleAnswerModeChange);
+    buttonAnswerMode.addEventListener("click", () =>
+      settings.classList.toggle("visible"),
+    );
     buttonAnswerMode.appendChild(buttonAnswerModeLabel);
 
-    const nodeLanguageMode = document.createTextNode("Language");
+    // TODO: translate
+    const nodeLanguageMode = document.createTextNode("Change language");
     const buttonLanguageModeLabel = document.createElement("p");
     buttonLanguageModeLabel.appendChild(nodeLanguageMode);
 
     const buttonLanguageMode = document.createElement("button");
     buttonLanguageMode.addEventListener("click", handleLanguageModeChange);
+    buttonLanguageMode.addEventListener("click", () =>
+      settings.classList.toggle("visible"),
+    );
     buttonLanguageMode.appendChild(buttonLanguageModeLabel);
 
-    toolbar.appendChild(buttonAnswerMode);
-    toolbar.appendChild(buttonLanguageMode);
-    return toolbar;
+    container.appendChild(buttonAnswerMode);
+    container.appendChild(buttonLanguageMode);
+
+    settings.appendChild(top);
+    settings.appendChild(container);
+
+    return settings;
   }
 
   private async handleAnswerModeChange(): Promise<void> {
