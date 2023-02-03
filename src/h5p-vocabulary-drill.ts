@@ -154,8 +154,6 @@ class VocabularyDrill
           H5P.jQuery(wrapper),
         );
 
-        wrapper.classList.add(dragTextClassName);
-
         break;
       }
 
@@ -173,8 +171,6 @@ class VocabularyDrill
           contentId,
           H5P.jQuery(wrapper),
         );
-
-        wrapper.classList.add(blanksClassName);
 
         break;
       }
