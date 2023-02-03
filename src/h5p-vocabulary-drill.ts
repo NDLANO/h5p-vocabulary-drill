@@ -14,14 +14,111 @@ class VocabularyDrill
   extends H5PContentType<Params>
   implements IH5PContentType<Params>
 {
+  static answerMode: "fillIn" | "dragText" | undefined;
+  static guessMode: "source" | "target" | undefined;
+
   attach($container: JQuery<HTMLElement>) {
-    const { contentId } = this;
-    const { behaviour, description, words, overallFeedback } = this.params;
-    const { answerMode } = behaviour;
+    const { contentId, wrapper, params } = this;
+
+    const containerElement = $container.get(0);
+
+    if (isNil(containerElement)) {
+      throw new Error(
+        "H5P.VocabularyDrill: Found no containing element to attach content to.",
+      );
+    }
+
+    // TODO: translate
+    const title = this.extras?.metadata.title ?? "Vocabulary drill";
+    const toolbar = VocabularyDrill.createToolbar(
+      title,
+      () => this.handleAnswerClick(),
+      () => this.handleGuessClick(),
+    );
+
+    containerElement.appendChild(toolbar);
+    containerElement.appendChild(wrapper);
+    containerElement.classList.add("h5p-vocabulary-drill");
+
+    VocabularyDrill.addRunnable(wrapper, contentId, params);
+  }
+
+  private static createToolbar(
+    title: string,
+    handleAnswerClick: () => void,
+    handleGuessClick: () => void,
+  ): HTMLDivElement {
+    const nodeTitle = document.createTextNode(title);
+    const titleElement = document.createElement("p");
+    titleElement.appendChild(nodeTitle);
+
+    const toolbar = document.createElement("div");
+    toolbar.classList.add("h5p-vocabulary-drill-toolbar");
+    toolbar.appendChild(titleElement);
+
+    const nodeAnswerMode = document.createTextNode("Mode");
+    const buttonAnswerModeLabel = document.createElement("p");
+    buttonAnswerModeLabel.appendChild(nodeAnswerMode);
+
+    const buttonAnswerMode = document.createElement("button");
+    buttonAnswerMode.addEventListener("click", handleAnswerClick);
+    buttonAnswerMode.appendChild(buttonAnswerModeLabel);
+
+    const nodeGuessMode = document.createTextNode("Guess");
+    const buttonGuessModeLabel = document.createElement("p");
+    buttonGuessModeLabel.appendChild(nodeGuessMode);
+
+    const buttonGuessMode = document.createElement("button");
+    buttonGuessMode.addEventListener("click", handleGuessClick);
+    buttonGuessMode.appendChild(buttonGuessModeLabel);
+
+    toolbar.appendChild(buttonAnswerMode);
+    toolbar.appendChild(buttonGuessMode);
+    return toolbar;
+  }
+
+  private async handleAnswerClick(): Promise<void> {
+    const newAnswerMode =
+      VocabularyDrill.answerMode === "fillIn" ? "dragText" : "fillIn";
+
+    VocabularyDrill.removeRunnable(this.wrapper);
+    VocabularyDrill.addRunnable(
+      this.wrapper,
+      this.contentId,
+      this.params,
+      newAnswerMode,
+    );
+  }
+
+  private async handleGuessClick(): Promise<void> {
+    const newGuessMode =
+      VocabularyDrill.guessMode === "target" ? "source" : "target";
+
+    VocabularyDrill.removeRunnable(this.wrapper);
+    VocabularyDrill.addRunnable(
+      this.wrapper,
+      this.contentId,
+      this.params,
+      VocabularyDrill.answerMode,
+      newGuessMode,
+    );
+  }
+
+  private static addRunnable(
+    wrapper: HTMLElement,
+    contentId: string,
+    params: Params,
+    chosenAnswerMode?: "fillIn" | "dragText",
+    chosenGuessMode?: "source" | "target",
+  ): void {
+    const { behaviour, description, words, overallFeedback } = params;
+    const initialAnswerMode = behaviour.answerMode;
+
+    this.answerMode = chosenAnswerMode ?? initialAnswerMode;
+    this.guessMode = chosenGuessMode ?? "target";
 
     const dragTextLibraryInfo = findLibraryInfo("H5P.DragText");
     const fillInTheBlanksLibraryInfo = findLibraryInfo("H5P.Blanks");
-    const containerElement = $container.get(0);
 
     if (isNil(dragTextLibraryInfo)) {
       throw new Error(
@@ -35,35 +132,23 @@ class VocabularyDrill
       );
     }
 
-    if (isNil(containerElement)) {
-      throw new Error(
-        "H5P.VocabularyDrill: Found no containing element to attach content to.",
-      );
-    }
-
-    // TODO: translate
-    const title = this.extras?.metadata.title ?? "Vocabulary drill";
-    const toolbar = VocabularyDrill.createToolbar(title);
-
-    containerElement.appendChild(toolbar);
-    containerElement.appendChild(this.wrapper);
-    containerElement.classList.add("h5p-vocabulary-drill");
-
-    switch (answerMode) {
+    switch (this.answerMode) {
       case "dragText": {
         H5P.newRunnable(
           {
             library: libraryToString(dragTextLibraryInfo),
             params: {
               taskDescription: description,
-              textField: parseWords(words, answerMode),
+              textField: parseWords(words, this.answerMode, this.guessMode),
               behaviour,
               overallFeedback,
             },
           },
           contentId,
-          H5P.jQuery(this.wrapper),
+          H5P.jQuery(wrapper),
         );
+
+        wrapper.classList.add("h5p-drag-text");
 
         break;
       }
@@ -74,32 +159,31 @@ class VocabularyDrill
             library: libraryToString(fillInTheBlanksLibraryInfo),
             params: {
               text: description,
-              questions: [parseWords(words, answerMode)],
+              questions: [parseWords(words, this.answerMode, this.guessMode)],
               behaviour,
               overallFeedback,
             },
           },
           contentId,
-          H5P.jQuery(this.wrapper),
+          H5P.jQuery(wrapper),
         );
+
+        wrapper.classList.add("h5p-blanks");
 
         break;
       }
     }
   }
 
-  private static createToolbar(title: string): HTMLDivElement {
-    const nodeTitle = document.createTextNode(title);
-    const titleElement = document.createElement("p");
-    titleElement.appendChild(nodeTitle);
+  private static removeRunnable(wrapper: HTMLElement): void {
+    wrapper.replaceChildren();
 
-    const toolbar = document.createElement("div");
-    toolbar.classList.add("h5p-vocabulary-drill-toolbar");
-    toolbar.appendChild(titleElement);
-
-    const button = document.createElement("button");
-    toolbar.appendChild(button);
-    return toolbar;
+    if (this.answerMode === "fillIn") {
+      wrapper.classList.remove("h5p-blanks");
+    }
+    if (this.answerMode === "dragText") {
+      wrapper.classList.remove("h5p-drag-text");
+    }
   }
 }
 
