@@ -8,7 +8,7 @@ import { findLibraryInfo, isNil, libraryToString, parseWords } from "./utils";
 import semantics from "../semantics.json";
 import "./index.scss";
 import { blanksClassName, dragTextClassName } from "./constants/classes";
-import { AnswerModeType, GuessModeType } from "./types/types";
+import { AnswerModeType, LanguageModeType } from "./types/types";
 
 type Params = InferParamsFromSemantics<DeepReadonly<typeof semantics>>;
 
@@ -16,8 +16,8 @@ class VocabularyDrill
   extends H5PContentType<Params>
   implements IH5PContentType<Params>
 {
-  static answerMode: AnswerModeType | undefined;
-  static guessMode: GuessModeType | undefined;
+  static activeAnswerMode: AnswerModeType | undefined;
+  static activeLanguageMode: LanguageModeType | undefined;
 
   attach($container: JQuery<HTMLElement>) {
     const { contentId, wrapper, params } = this;
@@ -34,8 +34,8 @@ class VocabularyDrill
     const title = this.extras?.metadata.title ?? "Vocabulary drill";
     const toolbar = VocabularyDrill.createToolbar(
       title,
-      () => this.handleAnswerClick(),
-      () => this.handleGuessClick(),
+      () => this.handleAnswerModeChange(),
+      () => this.handleLanguageModeChange(),
     );
 
     containerElement.appendChild(toolbar);
@@ -47,8 +47,8 @@ class VocabularyDrill
 
   private static createToolbar(
     title: string,
-    handleAnswerClick: () => void,
-    handleGuessClick: () => void,
+    handleAnswerModeChange: () => void,
+    handleLanguageModeChange: () => void,
   ): HTMLDivElement {
     const nodeTitle = document.createTextNode(title);
     const titleElement = document.createElement("p");
@@ -63,25 +63,25 @@ class VocabularyDrill
     buttonAnswerModeLabel.appendChild(nodeAnswerMode);
 
     const buttonAnswerMode = document.createElement("button");
-    buttonAnswerMode.addEventListener("click", handleAnswerClick);
+    buttonAnswerMode.addEventListener("click", handleAnswerModeChange);
     buttonAnswerMode.appendChild(buttonAnswerModeLabel);
 
-    const nodeGuessMode = document.createTextNode("Guess");
-    const buttonGuessModeLabel = document.createElement("p");
-    buttonGuessModeLabel.appendChild(nodeGuessMode);
+    const nodeLanguageMode = document.createTextNode("Language");
+    const buttonLanguageModeLabel = document.createElement("p");
+    buttonLanguageModeLabel.appendChild(nodeLanguageMode);
 
-    const buttonGuessMode = document.createElement("button");
-    buttonGuessMode.addEventListener("click", handleGuessClick);
-    buttonGuessMode.appendChild(buttonGuessModeLabel);
+    const buttonLanguageMode = document.createElement("button");
+    buttonLanguageMode.addEventListener("click", handleLanguageModeChange);
+    buttonLanguageMode.appendChild(buttonLanguageModeLabel);
 
     toolbar.appendChild(buttonAnswerMode);
-    toolbar.appendChild(buttonGuessMode);
+    toolbar.appendChild(buttonLanguageMode);
     return toolbar;
   }
 
-  private async handleAnswerClick(): Promise<void> {
+  private async handleAnswerModeChange(): Promise<void> {
     const newAnswerMode =
-      VocabularyDrill.answerMode === AnswerModeType.FillIn
+      VocabularyDrill.activeAnswerMode === AnswerModeType.FillIn
         ? AnswerModeType.DragText
         : AnswerModeType.FillIn;
 
@@ -94,19 +94,19 @@ class VocabularyDrill
     );
   }
 
-  private async handleGuessClick(): Promise<void> {
-    const newGuessMode =
-      VocabularyDrill.guessMode === GuessModeType.Target
-        ? GuessModeType.Source
-        : GuessModeType.Target;
+  private async handleLanguageModeChange(): Promise<void> {
+    const newLanguageMode =
+      VocabularyDrill.activeLanguageMode === LanguageModeType.Target
+        ? LanguageModeType.Source
+        : LanguageModeType.Target;
 
     VocabularyDrill.removeRunnable(this.wrapper);
     VocabularyDrill.addRunnable(
       this.wrapper,
       this.contentId,
       this.params,
-      VocabularyDrill.answerMode,
-      newGuessMode,
+      VocabularyDrill.activeAnswerMode,
+      newLanguageMode,
     );
   }
 
@@ -114,14 +114,14 @@ class VocabularyDrill
     wrapper: HTMLElement,
     contentId: string,
     params: Params,
-    chosenAnswerMode?: AnswerModeType,
-    chosenGuessMode?: GuessModeType,
+    answerMode?: AnswerModeType,
+    languageMode?: LanguageModeType,
   ): void {
     const { behaviour, description, words, overallFeedback } = params;
     const initialAnswerMode = behaviour.answerMode as AnswerModeType;
 
-    this.answerMode = chosenAnswerMode ?? initialAnswerMode;
-    this.guessMode = chosenGuessMode ?? GuessModeType.Target;
+    this.activeAnswerMode = answerMode ?? initialAnswerMode;
+    this.activeLanguageMode = languageMode ?? LanguageModeType.Target;
 
     const dragTextLibraryInfo = findLibraryInfo("H5P.DragText");
     const fillInTheBlanksLibraryInfo = findLibraryInfo("H5P.Blanks");
@@ -138,14 +138,18 @@ class VocabularyDrill
       );
     }
 
-    switch (this.answerMode) {
+    switch (this.activeAnswerMode) {
       case AnswerModeType.DragText: {
         H5P.newRunnable(
           {
             library: libraryToString(dragTextLibraryInfo),
             params: {
               taskDescription: description,
-              textField: parseWords(words, this.answerMode, this.guessMode),
+              textField: parseWords(
+                words,
+                this.activeAnswerMode,
+                this.activeLanguageMode,
+              ),
               behaviour,
               overallFeedback,
             },
@@ -163,7 +167,13 @@ class VocabularyDrill
             library: libraryToString(fillInTheBlanksLibraryInfo),
             params: {
               text: description,
-              questions: [parseWords(words, this.answerMode, this.guessMode)],
+              questions: [
+                parseWords(
+                  words,
+                  this.activeAnswerMode,
+                  this.activeLanguageMode,
+                ),
+              ],
               behaviour,
               overallFeedback,
             },
@@ -180,10 +190,10 @@ class VocabularyDrill
   private static removeRunnable(wrapper: HTMLElement): void {
     wrapper.replaceChildren();
 
-    if (this.answerMode === AnswerModeType.FillIn) {
+    if (this.activeAnswerMode === AnswerModeType.FillIn) {
       wrapper.classList.remove(blanksClassName);
     }
-    if (this.answerMode === AnswerModeType.DragText) {
+    if (this.activeAnswerMode === AnswerModeType.DragText) {
       wrapper.classList.remove(dragTextClassName);
     }
   }

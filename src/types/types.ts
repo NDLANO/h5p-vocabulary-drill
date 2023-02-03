@@ -3,7 +3,7 @@ export enum AnswerModeType {
   DragText = "dragText",
 }
 
-export enum GuessModeType {
+export enum LanguageModeType {
   Source = "source",
   Target = "target",
 }
