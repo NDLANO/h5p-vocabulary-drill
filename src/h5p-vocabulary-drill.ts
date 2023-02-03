@@ -7,6 +7,8 @@ import { H5P, H5PContentType, registerContentType } from "h5p-utils";
 import { findLibraryInfo, isNil, libraryToString, parseWords } from "./utils";
 import semantics from "../semantics.json";
 import "./index.scss";
+import { blanksClassName, dragTextClassName } from "./constants/separators";
+import { AnswerModeType, GuessModeType } from "./types/types";
 
 type Params = InferParamsFromSemantics<DeepReadonly<typeof semantics>>;
 
@@ -14,8 +16,8 @@ class VocabularyDrill
   extends H5PContentType<Params>
   implements IH5PContentType<Params>
 {
-  static answerMode: "fillIn" | "dragText" | undefined;
-  static guessMode: "source" | "target" | undefined;
+  static answerMode: AnswerModeType | undefined;
+  static guessMode: GuessModeType | undefined;
 
   attach($container: JQuery<HTMLElement>) {
     const { contentId, wrapper, params } = this;
@@ -79,7 +81,9 @@ class VocabularyDrill
 
   private async handleAnswerClick(): Promise<void> {
     const newAnswerMode =
-      VocabularyDrill.answerMode === "fillIn" ? "dragText" : "fillIn";
+      VocabularyDrill.answerMode === AnswerModeType.FillIn
+        ? AnswerModeType.DragText
+        : AnswerModeType.FillIn;
 
     VocabularyDrill.removeRunnable(this.wrapper);
     VocabularyDrill.addRunnable(
@@ -92,7 +96,9 @@ class VocabularyDrill
 
   private async handleGuessClick(): Promise<void> {
     const newGuessMode =
-      VocabularyDrill.guessMode === "target" ? "source" : "target";
+      VocabularyDrill.guessMode === GuessModeType.Target
+        ? GuessModeType.Source
+        : GuessModeType.Target;
 
     VocabularyDrill.removeRunnable(this.wrapper);
     VocabularyDrill.addRunnable(
@@ -108,14 +114,14 @@ class VocabularyDrill
     wrapper: HTMLElement,
     contentId: string,
     params: Params,
-    chosenAnswerMode?: "fillIn" | "dragText",
-    chosenGuessMode?: "source" | "target",
+    chosenAnswerMode?: AnswerModeType,
+    chosenGuessMode?: GuessModeType,
   ): void {
     const { behaviour, description, words, overallFeedback } = params;
-    const initialAnswerMode = behaviour.answerMode;
+    const initialAnswerMode = behaviour.answerMode as AnswerModeType;
 
     this.answerMode = chosenAnswerMode ?? initialAnswerMode;
-    this.guessMode = chosenGuessMode ?? "target";
+    this.guessMode = chosenGuessMode ?? GuessModeType.Target;
 
     const dragTextLibraryInfo = findLibraryInfo("H5P.DragText");
     const fillInTheBlanksLibraryInfo = findLibraryInfo("H5P.Blanks");
@@ -133,7 +139,7 @@ class VocabularyDrill
     }
 
     switch (this.answerMode) {
-      case "dragText": {
+      case AnswerModeType.DragText: {
         H5P.newRunnable(
           {
             library: libraryToString(dragTextLibraryInfo),
@@ -148,12 +154,12 @@ class VocabularyDrill
           H5P.jQuery(wrapper),
         );
 
-        wrapper.classList.add("h5p-drag-text");
+        wrapper.classList.add(dragTextClassName);
 
         break;
       }
 
-      case "fillIn": {
+      case AnswerModeType.FillIn: {
         H5P.newRunnable(
           {
             library: libraryToString(fillInTheBlanksLibraryInfo),
@@ -168,7 +174,7 @@ class VocabularyDrill
           H5P.jQuery(wrapper),
         );
 
-        wrapper.classList.add("h5p-blanks");
+        wrapper.classList.add(blanksClassName);
 
         break;
       }
@@ -178,11 +184,11 @@ class VocabularyDrill
   private static removeRunnable(wrapper: HTMLElement): void {
     wrapper.replaceChildren();
 
-    if (this.answerMode === "fillIn") {
-      wrapper.classList.remove("h5p-blanks");
+    if (this.answerMode === AnswerModeType.FillIn) {
+      wrapper.classList.remove(blanksClassName);
     }
-    if (this.answerMode === "dragText") {
-      wrapper.classList.remove("h5p-drag-text");
+    if (this.answerMode === AnswerModeType.DragText) {
+      wrapper.classList.remove(dragTextClassName);
     }
   }
 }
