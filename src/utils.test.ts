@@ -2,7 +2,7 @@ import { filterOutVariant, filterWord, parseWords } from "./utils";
 
 describe("Vocabulary drill utils", () => {
   describe(filterWord.name, () => {
-    it("should return empty when epmty", () => {
+    it("should return empty when empty", () => {
       const word = "";
 
       const expected = "";
