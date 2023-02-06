@@ -37,14 +37,14 @@ export const libraryToString = ({
 // the future.
 () => semantics;
 
-const filterWord = (wordsAndTip: string): string => {
+export const filterWord = (wordsAndTip: string): string => {
   const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
   const [word, _variant] = wordAndVariant.split(variantSeparator);
 
   return word;
 };
 
-const filterOutVariant = (wordsAndTip: string): string => {
+export const filterOutVariant = (wordsAndTip: string): string => {
   const [wordAndVariant, tip] = wordsAndTip.split(tipSeparator);
   const [word, variant] = wordAndVariant.split(variantSeparator);
 
