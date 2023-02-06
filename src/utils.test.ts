@@ -116,12 +116,23 @@ describe("Vocabulary drill utils", () => {
   describe(parseWords.name, () => {
     it("should return empty string when words are undefined", () => {
       const words = undefined;
+      const numberOfWordsToShow = 0;
 
       const expected = "";
-      const actualFillIn = parseWords(words, "fillIn");
-      const actualFillInTarget = parseWords(words, "fillIn", "target");
-      const actualDragText = parseWords(words, "dragText");
-      const actualDragTextTarget = parseWords(words, "dragText", "target");
+      const actualFillIn = parseWords(words, numberOfWordsToShow, "fillIn");
+      const actualFillInTarget = parseWords(
+        words,
+        numberOfWordsToShow,
+        "fillIn",
+        "target",
+      );
+      const actualDragText = parseWords(words, numberOfWordsToShow, "dragText");
+      const actualDragTextTarget = parseWords(
+        words,
+        numberOfWordsToShow,
+        "dragText",
+        "target",
+      );
 
       expect(actualFillIn).toBe(expected);
       expect(actualFillInTarget).toBe(expected);
@@ -131,12 +142,23 @@ describe("Vocabulary drill utils", () => {
 
     it("should return empty string when words are empty", () => {
       const words = "";
+      const numberOfWordsToShow = 0;
 
       const expected = "";
-      const actualFillIn = parseWords(words, "fillIn");
-      const actualFillInTarget = parseWords(words, "fillIn", "target");
-      const actualDragText = parseWords(words, "dragText");
-      const actualDragTextTarget = parseWords(words, "dragText", "target");
+      const actualFillIn = parseWords(words, numberOfWordsToShow, "fillIn");
+      const actualFillInTarget = parseWords(
+        words,
+        numberOfWordsToShow,
+        "fillIn",
+        "target",
+      );
+      const actualDragText = parseWords(words, numberOfWordsToShow, "dragText");
+      const actualDragTextTarget = parseWords(
+        words,
+        numberOfWordsToShow,
+        "dragText",
+        "target",
+      );
 
       expect(actualFillIn).toBe(expected);
       expect(actualFillInTarget).toBe(expected);
@@ -146,72 +168,80 @@ describe("Vocabulary drill utils", () => {
 
     it("should parse one word correct (fillIn)", () => {
       const words = "ocean,sjø";
+      const numberOfWordsToShow = 0;
 
       const expected = "<p>ocean *sjø*</p>";
-      const actual = parseWords(words, "fillIn");
+      const actual = parseWords(words, numberOfWordsToShow, "fillIn");
 
       expect(actual).toBe(expected);
     });
 
     it("should parse one word correct (dragText)", () => {
       const words = "fire,ild";
+      const numberOfWordsToShow = 0;
 
       const expected = "fire *ild*\n";
-      const actual = parseWords(words, "dragText");
+      const actual = parseWords(words, numberOfWordsToShow, "dragText");
 
       expect(actual).toBe(expected);
     });
 
     it("should parse one word correct with variant (fillIn)", () => {
       const words = "ocean/sea,sjø/hav";
+      const numberOfWordsToShow = 0;
 
       const expected = "<p>ocean *sjø/hav*</p>";
-      const actual = parseWords(words, "fillIn");
+      const actual = parseWords(words, numberOfWordsToShow, "fillIn");
 
       expect(actual).toBe(expected);
     });
 
     it("should parse one word correct with variant (dragText)", () => {
       const words = "fire/heat,ild/brann";
+      const numberOfWordsToShow = 0;
 
       const expected = "fire *ild*\n";
-      const actual = parseWords(words, "dragText");
+      const actual = parseWords(words, numberOfWordsToShow, "dragText");
 
       expect(actual).toBe(expected);
     });
 
     it("should parse one word correct with variant and tip (fillIn)", () => {
       const words = "ocean/sea:boats go on it,sjø/hav:båter kjører på det";
+      const numberOfWordsToShow = 0;
 
       const expected = "<p>ocean *sjø/hav:båter kjører på det*</p>";
-      const actual = parseWords(words, "fillIn");
+      const actual = parseWords(words, numberOfWordsToShow, "fillIn");
 
       expect(actual).toBe(expected);
     });
 
     it("should parse one word correct with variant and tip (dragText)", () => {
       const words = "fire/heat:f__e,ild/brann:i_d";
+      const numberOfWordsToShow = 0;
 
       const expected = "fire *ild:i_d*\n";
-      const actual = parseWords(words, "dragText");
+      const actual = parseWords(words, numberOfWordsToShow, "dragText");
 
       expect(actual).toBe(expected);
     });
 
     it("should parse several words correct (fillIn)", () => {
       const words = "ocean,sjø\nfire,ild\nsky,himmel";
+      const numberOfWordsToShow = 0;
 
       const expected = "<p>ocean *sjø*</p><p>fire *ild*</p><p>sky *himmel*</p>";
-      const actual = parseWords(words, "fillIn");
+      const actual = parseWords(words, numberOfWordsToShow, "fillIn");
 
       expect(actual).toBe(expected);
     });
 
     it("should parse several words correct (dragText)", () => {
       const words = "ocean,sjø\nfire,ild\nsky,himmel";
+      const numberOfWordsToShow = 0;
 
       const expected = "ocean *sjø*\nfire *ild*\nsky *himmel*\n";
-      const actual = parseWords(words, "dragText");
+      const actual = parseWords(words, numberOfWordsToShow, "dragText");
 
       expect(actual).toBe(expected);
     });
@@ -219,10 +249,11 @@ describe("Vocabulary drill utils", () => {
     it("should parse several words correct with variants (fillIn)", () => {
       const words =
         "ocean/sea,sjø/hav\nfire/heat,ild/brann\nsky/cloud,himmel/sky";
+      const numberOfWordsToShow = 0;
 
       const expected =
         "<p>ocean *sjø/hav*</p><p>fire *ild/brann*</p><p>sky *himmel/sky*</p>";
-      const actual = parseWords(words, "fillIn");
+      const actual = parseWords(words, numberOfWordsToShow, "fillIn");
 
       expect(actual).toBe(expected);
     });
@@ -230,9 +261,10 @@ describe("Vocabulary drill utils", () => {
     it("should parse several words correct with variants (dragText)", () => {
       const words =
         "ocean/sea,sjø/hav\nfire/heat,ild/brann\nsky/cloud,himmel/sky";
+      const numberOfWordsToShow = 0;
 
       const expected = "ocean *sjø*\nfire *ild*\nsky *himmel*\n";
-      const actual = parseWords(words, "dragText");
+      const actual = parseWords(words, numberOfWordsToShow, "dragText");
 
       expect(actual).toBe(expected);
     });
@@ -240,10 +272,11 @@ describe("Vocabulary drill utils", () => {
     it("should parse several words correct with variants and tips (fillIn)", () => {
       const words =
         "ocean/sea:boats go on it,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:veldig varmt\nsky/cloud:above us,himmel/sky:over oss";
+      const numberOfWordsToShow = 0;
 
       const expected =
         "<p>ocean *sjø/hav:båter kjører på det*</p><p>fire *ild/brann:veldig varmt*</p><p>sky *himmel/sky:over oss*</p>";
-      const actual = parseWords(words, "fillIn");
+      const actual = parseWords(words, numberOfWordsToShow, "fillIn");
 
       expect(actual).toBe(expected);
     });
@@ -251,10 +284,11 @@ describe("Vocabulary drill utils", () => {
     it("should parse several words correct with variants and tips (dragText)", () => {
       const words =
         "ocean/sea:boats go on it,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:veldig varmt\nsky/cloud:above us,himmel/sky:over oss";
+      const numberOfWordsToShow = 0;
 
       const expected =
         "ocean *sjø:båter kjører på det*\nfire *ild:veldig varmt*\nsky *himmel:over oss*\n";
-      const actual = parseWords(words, "dragText");
+      const actual = parseWords(words, numberOfWordsToShow, "dragText");
 
       expect(actual).toBe(expected);
     });
