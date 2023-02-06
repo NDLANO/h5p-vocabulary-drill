@@ -62,8 +62,31 @@ export const filterOutVariant = (wordsAndTip: string): string => {
   return wordsAndTip;
 };
 
+export const getRandomWords = (
+  numberOfWordsToGet: number,
+  wordsList: string[],
+): string[] => {
+  let newWordsList: string[] = [];
+  let wordsListCopy = wordsList.concat();
+  let wordsToGet =
+    numberOfWordsToGet <= wordsList.length
+      ? numberOfWordsToGet
+      : wordsList.length;
+
+  [...Array(wordsToGet)].map(() => {
+    const randomWord =
+      wordsListCopy[Math.floor(Math.random() * wordsListCopy.length)];
+
+    newWordsList.push(randomWord);
+    wordsListCopy.splice(wordsListCopy.indexOf(randomWord), 1);
+  });
+
+  return newWordsList;
+};
+
 export const parseWords = (
   words: string | undefined,
+  numberOfWordsToShow: number,
   answerMode: "fillIn" | "dragText",
   wordMode?: "source" | "target",
 ): string => {
@@ -72,10 +95,16 @@ export const parseWords = (
   }
   let newWords = "";
   let newWordsList: string[] = [];
+  const filterNumberOfWords = numberOfWordsToShow > 0;
   const answerModeFillIn = answerMode === "fillIn";
   const wordModeSource = wordMode === "source";
 
-  const wordsList = words.split(wordsSeparator);
+  let wordsList = words.split(wordsSeparator);
+
+  if (filterNumberOfWords) {
+    wordsList = getRandomWords(numberOfWordsToShow, wordsList);
+  }
+
   const sourceAndTargetList = wordsList
     .filter(Boolean)
     .map(word => word.split(sourceAndTargetSeparator));

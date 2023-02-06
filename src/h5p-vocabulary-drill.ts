@@ -182,6 +182,7 @@ class VocabularyDrill
     languageMode?: LanguageModeType,
   ): void {
     const { behaviour, description, words, overallFeedback } = params;
+    const { numberOfWordsToShow } = behaviour;
     const initialAnswerMode = behaviour.answerMode as AnswerModeType;
 
     this.activeAnswerMode = answerMode ?? initialAnswerMode;
@@ -211,6 +212,7 @@ class VocabularyDrill
               taskDescription: description,
               textField: parseWords(
                 words,
+                numberOfWordsToShow,
                 this.activeAnswerMode,
                 this.activeLanguageMode,
               ),
@@ -237,6 +239,7 @@ class VocabularyDrill
               questions: [
                 parseWords(
                   words,
+                  numberOfWordsToShow,
                   this.activeAnswerMode,
                   this.activeLanguageMode,
                 ),

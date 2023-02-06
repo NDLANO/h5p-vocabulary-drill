@@ -203,6 +203,13 @@
         "importance": "low",
         "description": "Allow the end user to switch between source and target words.",
         "default": false
+      },
+      {
+        "label": "Number of words",
+        "name": "numberOfWordsToShow",
+        "description": "Defines how many words that will be visible each time. If 0 is set, all words will be shown.",
+        "type": "number",
+        "default": 0
       }
     ]
   }
