@@ -99,6 +99,7 @@ class VocabularyDrill
     buttonAnswerMode.appendChild(buttonAnswerModeLabel);
 
     // TODO: translate
+    // TODO: Show only if `allow changing language` is turned on in semantics
     const nodeLanguageMode = document.createTextNode("Change language");
     const buttonLanguageModeLabel = document.createElement("p");
     buttonLanguageModeLabel.appendChild(nodeLanguageMode);
