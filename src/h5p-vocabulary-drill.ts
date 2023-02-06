@@ -7,7 +7,6 @@ import { H5P, H5PContentType, registerContentType } from "h5p-utils";
 import { findLibraryInfo, isNil, libraryToString, parseWords } from "./utils";
 import semantics from "../semantics.json";
 import "./index.scss";
-import { blanksClassName, dragTextClassName } from "./constants/classes";
 import { AnswerModeType, LanguageModeType } from "./types/types";
 
 type Params = InferParamsFromSemantics<DeepReadonly<typeof semantics>>;
@@ -254,13 +253,7 @@ class VocabularyDrill
 
   private static removeRunnable(wrapper: HTMLElement): void {
     wrapper.replaceChildren();
-
-    if (this.activeAnswerMode === AnswerModeType.FillIn) {
-      wrapper.classList.remove(blanksClassName);
-    }
-    if (this.activeAnswerMode === AnswerModeType.DragText) {
-      wrapper.classList.remove(dragTextClassName);
-    }
+    wrapper.className = "";
   }
 }
 
