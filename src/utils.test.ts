@@ -54,7 +54,7 @@ describe("Vocabulary drill utils", () => {
       const actual = filterWord(word);
 
       expect(actual).toBe(expected);
-    });    
+    });
   });
 
   describe(filterOutVariant.name, () => {
@@ -217,16 +217,19 @@ describe("Vocabulary drill utils", () => {
     });
 
     it("should parse several words correct with variants (fillIn)", () => {
-      const words = "ocean/sea,sjø/hav\nfire/heat,ild/brann\nsky/cloud,himmel/sky";
+      const words =
+        "ocean/sea,sjø/hav\nfire/heat,ild/brann\nsky/cloud,himmel/sky";
 
-      const expected = "<p>ocean *sjø/hav*</p><p>fire *ild/brann*</p><p>sky *himmel/sky*</p>";
+      const expected =
+        "<p>ocean *sjø/hav*</p><p>fire *ild/brann*</p><p>sky *himmel/sky*</p>";
       const actual = parseWords(words, "fillIn");
 
       expect(actual).toBe(expected);
     });
 
     it("should parse several words correct with variants (dragText)", () => {
-      const words = "ocean/sea,sjø/hav\nfire/heat,ild/brann\nsky/cloud,himmel/sky";
+      const words =
+        "ocean/sea,sjø/hav\nfire/heat,ild/brann\nsky/cloud,himmel/sky";
 
       const expected = "ocean *sjø*\nfire *ild*\nsky *himmel*\n";
       const actual = parseWords(words, "dragText");
@@ -235,18 +238,22 @@ describe("Vocabulary drill utils", () => {
     });
 
     it("should parse several words correct with variants and tips (fillIn)", () => {
-      const words = "ocean/sea:boats go on it,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:veldig varmt\nsky/cloud:above us,himmel/sky:over oss";
+      const words =
+        "ocean/sea:boats go on it,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:veldig varmt\nsky/cloud:above us,himmel/sky:over oss";
 
-      const expected = "<p>ocean *sjø/hav:båter kjører på det*</p><p>fire *ild/brann:veldig varmt*</p><p>sky *himmel/sky:over oss*</p>";
+      const expected =
+        "<p>ocean *sjø/hav:båter kjører på det*</p><p>fire *ild/brann:veldig varmt*</p><p>sky *himmel/sky:over oss*</p>";
       const actual = parseWords(words, "fillIn");
 
       expect(actual).toBe(expected);
     });
 
     it("should parse several words correct with variants and tips (dragText)", () => {
-      const words = "ocean/sea:boats go on it,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:veldig varmt\nsky/cloud:above us,himmel/sky:over oss";
+      const words =
+        "ocean/sea:boats go on it,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:veldig varmt\nsky/cloud:above us,himmel/sky:over oss";
 
-      const expected = "ocean *sjø:båter kjører på det*\nfire *ild:veldig varmt*\nsky *himmel:over oss*\n";
+      const expected =
+        "ocean *sjø:båter kjører på det*\nfire *ild:veldig varmt*\nsky *himmel:over oss*\n";
       const actual = parseWords(words, "dragText");
 
       expect(actual).toBe(expected);
