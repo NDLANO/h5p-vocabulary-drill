@@ -16,8 +16,8 @@ class VocabularyDrill
   extends H5PContentType<Params>
   implements IH5PContentType<Params>
 {
-  static activeAnswerMode: AnswerModeType | undefined;
-  static activeLanguageMode: LanguageModeType | undefined;
+  private static activeAnswerMode: AnswerModeType | undefined;
+  private static activeLanguageMode: LanguageModeType | undefined;
 
   attach($container: JQuery<HTMLElement>) {
     const { contentId, wrapper, params } = this;
@@ -120,7 +120,7 @@ class VocabularyDrill
     return settings;
   }
 
-  private async handleAnswerModeChange(): Promise<void> {
+  private handleAnswerModeChange(): void {
     const newAnswerMode =
       VocabularyDrill.activeAnswerMode === AnswerModeType.FillIn
         ? AnswerModeType.DragText
@@ -132,10 +132,11 @@ class VocabularyDrill
       this.contentId,
       this.params,
       newAnswerMode,
+      VocabularyDrill.activeLanguageMode,
     );
   }
 
-  private async handleLanguageModeChange(): Promise<void> {
+  private handleLanguageModeChange(): void {
     const newLanguageMode =
       VocabularyDrill.activeLanguageMode === LanguageModeType.Target
         ? LanguageModeType.Source
