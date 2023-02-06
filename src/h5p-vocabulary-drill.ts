@@ -21,6 +21,11 @@ class VocabularyDrill
 
   attach($container: JQuery<HTMLElement>) {
     const { contentId, wrapper, params } = this;
+    const { enableSwitchAnswerModeButton, enableSwitchWordsButton } =
+      params.behaviour;
+
+    const enableSettings =
+      enableSwitchAnswerModeButton || enableSwitchWordsButton;
 
     const containerElement = $container.get(0);
 
@@ -32,13 +37,22 @@ class VocabularyDrill
 
     // TODO: translate
     const title = this.extras?.metadata.title ?? "Vocabulary drill";
-    const settings = VocabularyDrill.createSettings(
-      () => this.handleAnswerModeChange(),
-      () => this.handleLanguageModeChange(),
-    );
+
+    let settings: HTMLDivElement | undefined;
+
+    if (enableSettings) {
+      settings = VocabularyDrill.createSettings(
+        () => this.handleAnswerModeChange(),
+        () => this.handleLanguageModeChange(),
+        enableSwitchAnswerModeButton,
+        enableSwitchWordsButton,
+      );
+
+      containerElement.appendChild(settings);
+    }
+
     const toolbar = VocabularyDrill.createToolbar(title, settings);
 
-    containerElement.appendChild(settings);
     containerElement.appendChild(toolbar);
     containerElement.appendChild(wrapper);
     containerElement.classList.add("h5p-vocabulary-drill");
@@ -48,7 +62,7 @@ class VocabularyDrill
 
   private static createToolbar(
     title: string,
-    settingsDiv: HTMLDivElement,
+    settingsDiv: HTMLDivElement | undefined,
   ): HTMLDivElement {
     const nodeTitle = document.createTextNode(title);
     const titleElement = document.createElement("p");
@@ -58,18 +72,23 @@ class VocabularyDrill
     toolbar.classList.add("h5p-vocabulary-drill-toolbar");
     toolbar.appendChild(titleElement);
 
-    const button = document.createElement("button");
-    button.addEventListener("click", () =>
-      settingsDiv.classList.toggle("visible"),
-    );
+    if (settingsDiv) {
+      const button = document.createElement("button");
+      button.addEventListener("click", () =>
+        settingsDiv.classList.toggle("visible"),
+      );
 
-    toolbar.appendChild(button);
+      toolbar.appendChild(button);
+    }
+
     return toolbar;
   }
 
   private static createSettings(
     handleAnswerModeChange: () => void,
     handleLanguageModeChange: () => void,
+    enableAnswerMode: boolean,
+    enableLanguageMode: boolean,
   ): HTMLDivElement {
     const settings = document.createElement("div");
     settings.classList.add("h5p-vocabulary-drill-settings");
@@ -86,33 +105,37 @@ class VocabularyDrill
     const container = document.createElement("div");
     container.classList.add("h5p-vocabulary-drill-settings-container");
 
-    // TODO: translate
-    const nodeAnswerMode = document.createTextNode("Change answer mode");
-    const buttonAnswerModeLabel = document.createElement("p");
-    buttonAnswerModeLabel.appendChild(nodeAnswerMode);
+    if (enableAnswerMode) {
+      // TODO: translate
+      const nodeAnswerMode = document.createTextNode("Change answer mode");
+      const buttonAnswerModeLabel = document.createElement("p");
+      buttonAnswerModeLabel.appendChild(nodeAnswerMode);
 
-    const buttonAnswerMode = document.createElement("button");
-    buttonAnswerMode.addEventListener("click", handleAnswerModeChange);
-    buttonAnswerMode.addEventListener("click", () =>
-      settings.classList.toggle("visible"),
-    );
-    buttonAnswerMode.appendChild(buttonAnswerModeLabel);
+      const buttonAnswerMode = document.createElement("button");
+      buttonAnswerMode.addEventListener("click", handleAnswerModeChange);
+      buttonAnswerMode.addEventListener("click", () =>
+        settings.classList.toggle("visible"),
+      );
+      buttonAnswerMode.appendChild(buttonAnswerModeLabel);
 
-    // TODO: translate
-    // TODO: Show only if `allow changing language` is turned on in semantics
-    const nodeLanguageMode = document.createTextNode("Change language");
-    const buttonLanguageModeLabel = document.createElement("p");
-    buttonLanguageModeLabel.appendChild(nodeLanguageMode);
+      container.appendChild(buttonAnswerMode);
+    }
 
-    const buttonLanguageMode = document.createElement("button");
-    buttonLanguageMode.addEventListener("click", handleLanguageModeChange);
-    buttonLanguageMode.addEventListener("click", () =>
-      settings.classList.toggle("visible"),
-    );
-    buttonLanguageMode.appendChild(buttonLanguageModeLabel);
+    if (enableLanguageMode) {
+      // TODO: translate
+      const nodeLanguageMode = document.createTextNode("Change language");
+      const buttonLanguageModeLabel = document.createElement("p");
+      buttonLanguageModeLabel.appendChild(nodeLanguageMode);
 
-    container.appendChild(buttonAnswerMode);
-    container.appendChild(buttonLanguageMode);
+      const buttonLanguageMode = document.createElement("button");
+      buttonLanguageMode.addEventListener("click", handleLanguageModeChange);
+      buttonLanguageMode.addEventListener("click", () =>
+        settings.classList.toggle("visible"),
+      );
+      buttonLanguageMode.appendChild(buttonLanguageModeLabel);
+
+      container.appendChild(buttonLanguageMode);
+    }
 
     settings.appendChild(top);
     settings.appendChild(container);
