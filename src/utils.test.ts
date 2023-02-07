@@ -1,3 +1,4 @@
+import { AnswerModeType, LanguageModeType } from "./types/types";
 import { filterOutVariant, filterWord, parseWords } from "./utils";
 
 describe("Vocabulary drill utils", () => {
@@ -118,33 +119,38 @@ describe("Vocabulary drill utils", () => {
       const words = undefined;
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "";
       const actualFillIn = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "fillIn",
+        AnswerModeType.FillIn,
       );
       const actualFillInTarget = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "fillIn",
-        "target",
+        AnswerModeType.FillIn,
+        LanguageModeType.Target,
       );
       const actualDragText = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "dragText",
+        AnswerModeType.DragText,
       );
       const actualDragTextTarget = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "dragText",
-        "target",
+        AnswerModeType.DragText,
+        LanguageModeType.Target,
       );
 
       expect(actualFillIn).toBe(expected);
@@ -157,33 +163,38 @@ describe("Vocabulary drill utils", () => {
       const words = "";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "";
       const actualFillIn = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "fillIn",
+        AnswerModeType.FillIn,
       );
       const actualFillInTarget = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "fillIn",
-        "target",
+        AnswerModeType.FillIn,
+        LanguageModeType.Target,
       );
       const actualDragText = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "dragText",
+        AnswerModeType.DragText,
       );
       const actualDragTextTarget = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "dragText",
-        "target",
+        AnswerModeType.DragText,
+        LanguageModeType.Target,
       );
 
       expect(actualFillIn).toBe(expected);
@@ -196,13 +207,15 @@ describe("Vocabulary drill utils", () => {
       const words = "ocean,sjø";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "<p>ocean *sjø*</p>";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "fillIn",
+        AnswerModeType.FillIn,
       );
 
       expect(actual).toBe(expected);
@@ -212,13 +225,15 @@ describe("Vocabulary drill utils", () => {
       const words = "fire,ild";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "fire *ild*\n";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "dragText",
+        AnswerModeType.DragText,
       );
 
       expect(actual).toBe(expected);
@@ -228,13 +243,15 @@ describe("Vocabulary drill utils", () => {
       const words = "ocean/sea,sjø/hav";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "<p>ocean *sjø/hav*</p>";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "fillIn",
+        AnswerModeType.FillIn,
       );
 
       expect(actual).toBe(expected);
@@ -244,13 +261,15 @@ describe("Vocabulary drill utils", () => {
       const words = "fire/heat,ild/brann";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "fire *ild*\n";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "dragText",
+        AnswerModeType.DragText,
       );
 
       expect(actual).toBe(expected);
@@ -260,13 +279,15 @@ describe("Vocabulary drill utils", () => {
       const words = "ocean/sea:boats go on it,sjø/hav:båter kjører på det";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "<p>ocean *sjø/hav:båter kjører på det*</p>";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "fillIn",
+        AnswerModeType.FillIn,
       );
 
       expect(actual).toBe(expected);
@@ -276,13 +297,15 @@ describe("Vocabulary drill utils", () => {
       const words = "fire/heat:f__e,ild/brann:i_d";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "fire *ild:i_d*\n";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "dragText",
+        AnswerModeType.DragText,
       );
 
       expect(actual).toBe(expected);
@@ -292,13 +315,15 @@ describe("Vocabulary drill utils", () => {
       const words = "ocean,sjø\nfire,ild\nsky,himmel";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "<p>ocean *sjø*</p><p>fire *ild*</p><p>sky *himmel*</p>";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "fillIn",
+        AnswerModeType.FillIn,
       );
 
       expect(actual).toBe(expected);
@@ -308,13 +333,15 @@ describe("Vocabulary drill utils", () => {
       const words = "ocean,sjø\nfire,ild\nsky,himmel";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "ocean *sjø*\nfire *ild*\nsky *himmel*\n";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "dragText",
+        AnswerModeType.DragText,
       );
 
       expect(actual).toBe(expected);
@@ -325,14 +352,16 @@ describe("Vocabulary drill utils", () => {
         "ocean/sea,sjø/hav\nfire/heat,ild/brann\nsky/cloud,himmel/sky";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected =
         "<p>ocean *sjø/hav*</p><p>fire *ild/brann*</p><p>sky *himmel/sky*</p>";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "fillIn",
+        AnswerModeType.FillIn,
       );
 
       expect(actual).toBe(expected);
@@ -343,13 +372,15 @@ describe("Vocabulary drill utils", () => {
         "ocean/sea,sjø/hav\nfire/heat,ild/brann\nsky/cloud,himmel/sky";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected = "ocean *sjø*\nfire *ild*\nsky *himmel*\n";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "dragText",
+        AnswerModeType.DragText,
       );
 
       expect(actual).toBe(expected);
@@ -360,14 +391,16 @@ describe("Vocabulary drill utils", () => {
         "ocean/sea:boats go on it,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:veldig varmt\nsky/cloud:above us,himmel/sky:over oss";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected =
         "<p>ocean *sjø/hav:båter kjører på det*</p><p>fire *ild/brann:veldig varmt*</p><p>sky *himmel/sky:over oss*</p>";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "fillIn",
+        AnswerModeType.FillIn,
       );
 
       expect(actual).toBe(expected);
@@ -378,14 +411,16 @@ describe("Vocabulary drill utils", () => {
         "ocean/sea:boats go on it,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:veldig varmt\nsky/cloud:above us,himmel/sky:over oss";
       const numberOfWordsToShow = 0;
       const randomize = false;
+      const showTips = true;
 
       const expected =
         "ocean *sjø:båter kjører på det*\nfire *ild:veldig varmt*\nsky *himmel:over oss*\n";
       const actual = parseWords(
         words,
         randomize,
+        showTips,
         numberOfWordsToShow,
-        "dragText",
+        AnswerModeType.DragText,
       );
 
       expect(actual).toBe(expected);

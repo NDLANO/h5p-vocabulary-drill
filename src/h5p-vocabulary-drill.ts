@@ -20,7 +20,7 @@ class VocabularyDrill
 
   attach($container: JQuery<HTMLElement>) {
     const { contentId, wrapper, params } = this;
-    const { showTips, enableSwitchAnswerModeButton, enableSwitchWordsButton } =
+    const { enableSwitchAnswerModeButton, enableSwitchWordsButton } =
       params.behaviour;
 
     const enableSettings =
@@ -55,10 +55,6 @@ class VocabularyDrill
     containerElement.appendChild(toolbar);
     containerElement.appendChild(wrapper);
     containerElement.classList.add("h5p-vocabulary-drill");
-
-    if (!showTips) {
-      containerElement.classList.add("h5p-vocabulary-drill-hide-tips");
-    }
 
     VocabularyDrill.addRunnable(wrapper, contentId, params);
   }
@@ -186,7 +182,7 @@ class VocabularyDrill
     languageMode?: LanguageModeType,
   ): void {
     const { behaviour, description, words, overallFeedback } = params;
-    const { autoCheck, randomize, numberOfWordsToShow } = behaviour;
+    const { autoCheck, randomize, showTips, numberOfWordsToShow } = behaviour;
     const initialAnswerMode = behaviour.answerMode as AnswerModeType;
 
     this.activeAnswerMode = answerMode ?? initialAnswerMode;
@@ -217,6 +213,7 @@ class VocabularyDrill
               textField: parseWords(
                 words,
                 randomize,
+                showTips,
                 numberOfWordsToShow,
                 this.activeAnswerMode,
                 this.activeLanguageMode,
@@ -245,6 +242,7 @@ class VocabularyDrill
                 parseWords(
                   words,
                   randomize,
+                  showTips,
                   numberOfWordsToShow,
                   this.activeAnswerMode,
                   this.activeLanguageMode,
