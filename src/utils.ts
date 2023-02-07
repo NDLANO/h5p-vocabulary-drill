@@ -69,25 +69,15 @@ export const filterOutVariant = (wordsAndTip: string): string => {
   return wordsAndTip;
 };
 
-export const getRandomWords = (
-  numberOfWordsToGet: number,
+export const getRandomWords = (wordsList: string[]): string[] => {
+  return wordsList.concat().sort(() => 0.5 - Math.random());
+};
+
+export const getNumberOfWords = (
   wordsList: string[],
+  numberOfWordsToGet: number,
 ): string[] => {
-  let newWordsList: string[] = [];
-  let wordsListCopy = wordsList.concat();
-  const tooLow = numberOfWordsToGet <= 0;
-  const tooHigh = numberOfWordsToGet > wordsList.length;
-  const wordsToGet = tooLow || tooHigh ? wordsList.length : numberOfWordsToGet;
-
-  [...Array(wordsToGet)].map(() => {
-    const randomWord =
-      wordsListCopy[Math.floor(Math.random() * wordsListCopy.length)];
-
-    newWordsList.push(randomWord);
-    wordsListCopy.splice(wordsListCopy.indexOf(randomWord), 1);
-  });
-
-  return newWordsList;
+  return wordsList.concat().slice(0, numberOfWordsToGet);
 };
 
 export const createFillInString = (source: string, target: string): string => {
@@ -114,12 +104,16 @@ export const parseWords = (
   }
   let newWords = "";
   let newWordsList: string[] = [];
-  const filterNumberOfWords = numberOfWordsToShow > 0 || randomize;
-
   let wordsList = words.split(wordsSeparator);
+  const validNumberOfWords =
+    numberOfWordsToShow > 0 && numberOfWordsToShow <= wordsList.length;
 
-  if (filterNumberOfWords) {
-    wordsList = getRandomWords(numberOfWordsToShow, wordsList);
+  if (randomize) {
+    wordsList = getRandomWords(wordsList);
+  }
+
+  if (validNumberOfWords) {
+    wordsList = getNumberOfWords(wordsList, numberOfWordsToShow);
   }
 
   newWordsList = parseSourceAndTarget(
@@ -141,43 +135,50 @@ export const parseSourceAndTarget = (
 ): string[] => {
   let newWordsList: string[] = [];
   const answerModeFillIn = answerMode === AnswerModeType.FillIn;
-  const wordModeSource = languageMode === LanguageModeType.Source;
+  const languageModeSource = languageMode === LanguageModeType.Source;
 
   const sourceAndTargetList = wordsList
     .filter(Boolean)
     .map(word => word.split(sourceAndTargetSeparator));
 
-  if (wordModeSource) {
-    newWordsList = sourceAndTargetList.map(sourceAndTarget => {
-      const [source, target] = sourceAndTarget;
+  newWordsList = sourceAndTargetList.map(sourceAndTarget => {
+    const [source, target] = sourceAndTarget;
 
-      const filteredSourceFillIn = showTips ? source : filterOutTip(source);
-      const filteredSource = showTips
-        ? filterOutVariant(source)
-        : filterWord(source);
-      const filteredTarget = filterWord(target);
+    if (languageModeSource) {
+      return createSourceAndTargetString(
+        target,
+        source,
+        showTips,
+        answerModeFillIn,
+      );
+    }
 
-      if (answerModeFillIn) {
-        return createFillInString(filteredTarget, filteredSourceFillIn);
-      }
-      return createDragTextString(filteredTarget, filteredSource);
-    });
-  } else {
-    newWordsList = sourceAndTargetList.map(sourceAndTarget => {
-      const [source, target] = sourceAndTarget;
-
-      const filteredSource = filterWord(source);
-      const filteredTarget = showTips
-        ? filterOutVariant(target)
-        : filterWord(target);
-      const filteredTargetFillIn = showTips ? target : filterOutTip(target);
-
-      if (answerModeFillIn) {
-        return createFillInString(filteredSource, filteredTargetFillIn);
-      }
-      return createDragTextString(filteredSource, filteredTarget);
-    });
-  }
+    return createSourceAndTargetString(
+      source,
+      target,
+      showTips,
+      answerModeFillIn,
+    );
+  });
 
   return newWordsList;
+};
+
+export const createSourceAndTargetString = (
+  source: string,
+  target: string,
+  showTips: boolean,
+  answerModeFillIn: boolean,
+): string => {
+  const filteredSource = filterWord(source);
+  const filteredTarget = showTips
+    ? filterOutVariant(target)
+    : filterWord(target);
+  const filteredTargetFillIn = showTips ? target : filterOutTip(target);
+
+  if (answerModeFillIn) {
+    return createFillInString(filteredSource, filteredTargetFillIn);
+  }
+
+  return createDragTextString(filteredSource, filteredTarget);
 };
