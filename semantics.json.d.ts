@@ -252,7 +252,7 @@ declare const $defaultExport: [
 				name: "numberOfWordsToShow",
 				description: "Defines how many words that will be visible each time. If 0 is set, all words will be shown.",
 				type: "number",
-				"default": 0
+				optional: true
 			}
 		]
 	}

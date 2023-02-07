@@ -95,7 +95,7 @@ export const parseWords = (
   words: string | undefined,
   randomize: boolean,
   showTips: boolean,
-  numberOfWordsToShow: number,
+  numberOfWordsToShow: number | undefined,
   answerMode: AnswerModeType,
   languageMode?: LanguageModeType,
 ): string => {
@@ -106,7 +106,9 @@ export const parseWords = (
   let newWordsList: string[] = [];
   let wordsList = words.split(wordsSeparator);
   const validNumberOfWords =
-    numberOfWordsToShow > 0 && numberOfWordsToShow <= wordsList.length;
+    numberOfWordsToShow &&
+    numberOfWordsToShow > 0 &&
+    numberOfWordsToShow <= wordsList.length;
 
   if (randomize) {
     wordsList = getRandomWords(wordsList);
