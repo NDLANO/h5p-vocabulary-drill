@@ -214,7 +214,10 @@ class VocabularyDrill
                 this.activeAnswerMode,
                 this.activeLanguageMode,
               ),
-              behaviour,
+              behaviour: {
+                instantFeedback: behaviour.autoCheck,
+                ...behaviour,
+              },
               overallFeedback,
             },
           },
