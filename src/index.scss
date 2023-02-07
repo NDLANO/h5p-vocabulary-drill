@@ -4,6 +4,12 @@
   font-size: 16px;
   line-height: 1.5em;
 
+  &.h5p-vocabulary-drill-hide-tips {
+    .joubel-tip-container {
+      display: none;
+    }
+  }
+
   .h5p-question-introduction {
     border-bottom: 1px solid #eee;
     margin: 0;

@@ -68,10 +68,9 @@ export const getRandomWords = (
 ): string[] => {
   let newWordsList: string[] = [];
   let wordsListCopy = wordsList.concat();
-  let wordsToGet =
-    numberOfWordsToGet <= wordsList.length
-      ? numberOfWordsToGet
-      : wordsList.length;
+  const tooLow = numberOfWordsToGet <= 0;
+  const tooHigh = numberOfWordsToGet > wordsList.length;
+  const wordsToGet = tooLow || tooHigh ? wordsList.length : numberOfWordsToGet;
 
   [...Array(wordsToGet)].map(() => {
     const randomWord =
@@ -86,6 +85,7 @@ export const getRandomWords = (
 
 export const parseWords = (
   words: string | undefined,
+  randomize: boolean,
   numberOfWordsToShow: number,
   answerMode: "fillIn" | "dragText",
   wordMode?: "source" | "target",
@@ -95,7 +95,7 @@ export const parseWords = (
   }
   let newWords = "";
   let newWordsList: string[] = [];
-  const filterNumberOfWords = numberOfWordsToShow > 0;
+  const filterNumberOfWords = numberOfWordsToShow > 0 || randomize;
   const answerModeFillIn = answerMode === "fillIn";
   const wordModeSource = wordMode === "source";
 
