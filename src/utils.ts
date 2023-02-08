@@ -102,8 +102,6 @@ export const parseWords = (
   if (!words) {
     return "";
   }
-  let newWords = "";
-  let newWordsList: string[] = [];
   let wordsList = words.split(wordsSeparator);
   const validNumberOfWords =
     numberOfWordsToShow &&
@@ -118,15 +116,16 @@ export const parseWords = (
     wordsList = getNumberOfWords(wordsList, numberOfWordsToShow);
   }
 
-  newWordsList = parseSourceAndTarget(
+  const newWordsList = parseSourceAndTarget(
     wordsList,
     showTips,
     answerMode,
     languageMode,
   );
 
-  newWords = newWordsList.join("");
-  return newWords;
+  const parsedWords = newWordsList.join("");
+
+  return parsedWords;
 };
 
 export const parseSourceAndTarget = (
