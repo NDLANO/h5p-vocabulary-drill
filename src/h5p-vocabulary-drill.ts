@@ -182,6 +182,7 @@ class VocabularyDrill
     languageMode?: LanguageModeType,
   ): void {
     const { behaviour, description, words, overallFeedback } = params;
+    const { autoCheck, randomize, showTips, numberOfWordsToShow } = behaviour;
     const initialAnswerMode = behaviour.answerMode as AnswerModeType;
 
     this.activeAnswerMode = answerMode ?? initialAnswerMode;
@@ -211,11 +212,14 @@ class VocabularyDrill
               taskDescription: description,
               textField: parseWords(
                 words,
+                randomize,
+                showTips,
+                numberOfWordsToShow,
                 this.activeAnswerMode,
                 this.activeLanguageMode,
               ),
               behaviour: {
-                instantFeedback: behaviour.autoCheck,
+                instantFeedback: autoCheck,
                 ...behaviour,
               },
               overallFeedback,
@@ -237,6 +241,9 @@ class VocabularyDrill
               questions: [
                 parseWords(
                   words,
+                  randomize,
+                  showTips,
+                  numberOfWordsToShow,
                   this.activeAnswerMode,
                   this.activeLanguageMode,
                 ),
