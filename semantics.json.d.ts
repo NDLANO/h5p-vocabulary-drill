@@ -128,7 +128,8 @@ declare const $defaultExport: [
 							min: 0,
 							max: 100,
 							"default": 100,
-							unit: "%"
+							unit: "%",
+							label: ""
 						},
 						{
 							name: "feedback",
