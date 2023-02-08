@@ -135,7 +135,6 @@ export const parseSourceAndTarget = (
   answerMode: AnswerModeType,
   languageMode?: LanguageModeType,
 ): string[] => {
-  let newWordsList: string[] = [];
   const answerModeFillIn = answerMode === AnswerModeType.FillIn;
   const languageModeSource = languageMode === LanguageModeType.Source;
 
@@ -143,7 +142,7 @@ export const parseSourceAndTarget = (
     .filter(Boolean)
     .map(word => word.split(sourceAndTargetSeparator));
 
-  newWordsList = sourceAndTargetList.map(sourceAndTarget => {
+  const newWordsList = sourceAndTargetList.map(sourceAndTarget => {
     const [source, target] = sourceAndTarget;
 
     if (languageModeSource) {
