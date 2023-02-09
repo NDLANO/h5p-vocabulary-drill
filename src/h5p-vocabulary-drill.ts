@@ -4,7 +4,13 @@ import type {
   InferParamsFromSemantics,
 } from "h5p-types";
 import { H5P, H5PContentType, registerContentType } from "h5p-utils";
-import { findLibraryInfo, isNil, libraryToString, parseWords } from "./utils";
+import {
+  findLanguageName,
+  findLibraryInfo,
+  isNil,
+  libraryToString,
+  parseWords,
+} from "./utils";
 import semantics from "../semantics.json";
 import "./index.scss";
 import { AnswerModeType, LanguageModeType } from "./types/types";
@@ -17,6 +23,8 @@ class VocabularyDrill
 {
   private static activeAnswerMode: AnswerModeType | undefined;
   private static activeLanguageMode: LanguageModeType | undefined;
+  private static settingsAnswerMode: AnswerModeType | undefined;
+  private static settingsLanguageMode: LanguageModeType | undefined;
 
   attach($container: JQuery<HTMLElement>) {
     const { contentId, wrapper, params } = this;
@@ -41,10 +49,9 @@ class VocabularyDrill
 
     if (enableSettings) {
       settings = VocabularyDrill.createSettings(
-        () => this.handleAnswerModeChange(),
-        () => this.handleLanguageModeChange(),
-        enableSwitchAnswerModeButton,
-        enableSwitchWordsButton,
+        () => this.handleSubmit(settings),
+        () => this.handleClose(settings),
+        params,
       );
 
       containerElement.appendChild(settings);
@@ -84,18 +91,27 @@ class VocabularyDrill
   }
 
   private static createSettings(
-    handleAnswerModeChange: () => void,
-    handleLanguageModeChange: () => void,
-    enableAnswerMode: boolean,
-    enableLanguageMode: boolean,
+    handleSubmit: () => void,
+    handleClose: () => void,
+    params: Params,
   ): HTMLDivElement {
+    const { sourceLanguage, targetLanguage } = params;
+    const {
+      answerMode,
+      enableSwitchAnswerModeButton,
+      enableSwitchWordsButton,
+    } = params.behaviour;
+
+    this.settingsAnswerMode =
+      this.activeAnswerMode ?? (answerMode as AnswerModeType);
+    this.settingsLanguageMode =
+      this.activeLanguageMode ?? LanguageModeType.Target;
+
     const settings = document.createElement("div");
     settings.classList.add("h5p-vocabulary-drill-settings");
 
     const buttonClose = document.createElement("button");
-    buttonClose.addEventListener("click", () =>
-      settings.classList.toggle("visible"),
-    );
+    buttonClose.addEventListener("click", handleClose);
 
     const top = document.createElement("div");
     top.classList.add("h5p-vocabulary-drill-settings-top");
@@ -104,37 +120,50 @@ class VocabularyDrill
     const container = document.createElement("div");
     container.classList.add("h5p-vocabulary-drill-settings-container");
 
-    if (enableAnswerMode) {
-      // TODO: translate
-      const nodeAnswerMode = document.createTextNode("Change answer mode");
-      const buttonAnswerModeLabel = document.createElement("p");
-      buttonAnswerModeLabel.appendChild(nodeAnswerMode);
+    if (enableSwitchAnswerModeButton) {
+      const label = "Answer Mode"; // TODO: Translate
+      const option1text = "Fill in"; // TODO: Translate
+      const option2text = "Drag text"; // TODO: Translate
 
-      const buttonAnswerMode = document.createElement("button");
-      buttonAnswerMode.addEventListener("click", handleAnswerModeChange);
-      buttonAnswerMode.addEventListener("click", () =>
-        settings.classList.toggle("visible"),
+      const answerModeWrapper = this.createSelectField(
+        label,
+        AnswerModeType.FillIn,
+        option1text,
+        AnswerModeType.DragText,
+        option2text,
+        this.settingsAnswerMode,
+        (e: { target: HTMLSelectElement }) =>
+          (this.settingsAnswerMode = e.target.value as AnswerModeType),
       );
-      buttonAnswerMode.appendChild(buttonAnswerModeLabel);
-
-      container.appendChild(buttonAnswerMode);
+      container.appendChild(answerModeWrapper);
     }
 
-    if (enableLanguageMode) {
-      // TODO: translate
-      const nodeLanguageMode = document.createTextNode("Change language");
-      const buttonLanguageModeLabel = document.createElement("p");
-      buttonLanguageModeLabel.appendChild(nodeLanguageMode);
+    if (enableSwitchWordsButton) {
+      const label = "Language mode"; // TODO: Translate
 
-      const buttonLanguageMode = document.createElement("button");
-      buttonLanguageMode.addEventListener("click", handleLanguageModeChange);
-      buttonLanguageMode.addEventListener("click", () =>
-        settings.classList.toggle("visible"),
+      const languageModeWrapper = this.createSelectField(
+        label,
+        LanguageModeType.Target,
+        findLanguageName(targetLanguage),
+        LanguageModeType.Source,
+        findLanguageName(sourceLanguage),
+        this.settingsLanguageMode,
+        (e: { target: HTMLSelectElement }) =>
+          (this.settingsLanguageMode = e.target.value as LanguageModeType),
       );
-      buttonLanguageMode.appendChild(buttonLanguageModeLabel);
-
-      container.appendChild(buttonLanguageMode);
+      container.appendChild(languageModeWrapper);
     }
+
+    // TODO: translate
+    const submitNode = document.createTextNode("Change settings");
+    const submitLabel = document.createElement("p");
+    submitLabel.appendChild(submitNode);
+
+    const submitButton = document.createElement("button");
+    submitButton.addEventListener("click", handleSubmit);
+    submitButton.appendChild(submitLabel);
+
+    container.appendChild(submitButton);
 
     settings.appendChild(top);
     settings.appendChild(container);
@@ -142,11 +171,57 @@ class VocabularyDrill
     return settings;
   }
 
-  private handleAnswerModeChange(): void {
+  private static createSelectField(
+    labelText: string,
+    option1value: string,
+    option1text: string,
+    option2value: string,
+    option2text: string,
+    active: any,
+    eventListener: any,
+  ): HTMLDivElement {
+    const option1 = document.createElement("option");
+    option1.value = option1value;
+    option1.text = option1text;
+    if (active === option1.value) {
+      option1.selected = true;
+    }
+
+    const option2 = document.createElement("option");
+    option2.value = option2value;
+    option2.text = option2text;
+    if (active === option2.value) {
+      option2.selected = true;
+    }
+
+    const label = document.createElement("label");
+    label.textContent = labelText;
+
+    const select = document.createElement("select");
+    select.appendChild(option1);
+    select.appendChild(option2);
+    select.addEventListener("change", eventListener);
+
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("h5p-vocabulary-drill-settings-select");
+    wrapper.appendChild(label);
+    wrapper.appendChild(select);
+
+    return wrapper;
+  }
+
+  private handleClose(settings: HTMLDivElement | undefined): void {
+    settings?.classList.toggle("visible");
+    VocabularyDrill.settingsAnswerMode = VocabularyDrill.activeAnswerMode;
+    VocabularyDrill.settingsLanguageMode = VocabularyDrill.activeLanguageMode;
+  }
+
+  private handleSubmit(settings: HTMLDivElement | undefined): void {
     const newAnswerMode =
-      VocabularyDrill.activeAnswerMode === AnswerModeType.FillIn
-        ? AnswerModeType.DragText
-        : AnswerModeType.FillIn;
+      VocabularyDrill.settingsAnswerMode ?? VocabularyDrill.activeAnswerMode;
+    const newLanguageMode =
+      VocabularyDrill.settingsLanguageMode ??
+      VocabularyDrill.activeLanguageMode;
 
     VocabularyDrill.removeRunnable(this.wrapper);
     VocabularyDrill.addRunnable(
@@ -154,24 +229,10 @@ class VocabularyDrill
       this.contentId,
       this.params,
       newAnswerMode,
-      VocabularyDrill.activeLanguageMode,
-    );
-  }
-
-  private handleLanguageModeChange(): void {
-    const newLanguageMode =
-      VocabularyDrill.activeLanguageMode === LanguageModeType.Target
-        ? LanguageModeType.Source
-        : LanguageModeType.Target;
-
-    VocabularyDrill.removeRunnable(this.wrapper);
-    VocabularyDrill.addRunnable(
-      this.wrapper,
-      this.contentId,
-      this.params,
-      VocabularyDrill.activeAnswerMode,
       newLanguageMode,
     );
+
+    this.handleClose(settings);
   }
 
   private static addRunnable(

@@ -1,6 +1,7 @@
 import { Library } from "h5p-types";
 import { preloadedDependencies } from "../library.json";
 import semantics from "../semantics.json";
+import { Languages } from "./constants/languages";
 import {
   sourceAndTargetSeparator,
   tipSeparator,
@@ -37,6 +38,10 @@ export const libraryToString = ({
 // generate `semantics.json.d.ts. This is a hack and should be avoided in
 // the future.
 () => semantics;
+
+export const findLanguageName = (code: string): string => {
+  return Languages.find(lang => lang.code === code)?.name ?? code;
+};
 
 export const filterWord = (wordsAndTip: string): string => {
   const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);

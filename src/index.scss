@@ -63,10 +63,11 @@
   }
 
   &-container {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    margin: 0 auto;
 
     button {
       background-color: #f5f7fc;
@@ -82,6 +83,43 @@
       &:focus {
         background-color: #eaeff8;
       }
+    }
+
+    select {
+      appearance: none; // Remove default arrow
+      border: 1px solid #8e8e8e;
+      border-radius: 0.25em;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      padding: 0.5em 2.75em 0.5em 1em;
+
+      // Remove default arrow for lower IE versions
+      &::-ms-expand {
+        display: none;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: #f2f2f2;
+      }
+    }
+  }
+
+  &-select {
+    align-items: center;
+    display: flex;
+    gap: 1em;
+    position: relative;
+
+    &::after {
+      content: "\f107";
+      font-family: "H5PFontAwesome4";
+      font-size: 1.2em;
+      pointer-events: none;
+      position: absolute;
+      right: 1em;
+      top: 50%;
+      transform: translate(0, -50%);
     }
   }
 }
