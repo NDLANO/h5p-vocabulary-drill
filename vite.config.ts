@@ -1,6 +1,6 @@
+import react from "@vitejs/plugin-react";
 import jsonDts from "unplugin-json-dts/vite";
 import { defineConfig } from "vite";
-import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,5 +31,8 @@ export default defineConfig({
     target: "ES2015",
   },
 
-  plugins: [jsonDts(), react()],
+  plugins: [react(), jsonDts()],
+  define: {
+    'process.env': {}
+  }
 });
