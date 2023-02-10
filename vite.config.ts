@@ -1,3 +1,4 @@
+import react from "@vitejs/plugin-react";
 import jsonDts from "unplugin-json-dts/vite";
 import { defineConfig } from "vite";
 
@@ -7,7 +8,7 @@ export default defineConfig({
     minify: "esbuild",
 
     lib: {
-      entry: ["src/h5p-vocabulary-drill.ts"],
+      entry: ["src/h5p-vocabulary-drill.tsx"],
       formats: ["iife"],
       name: "H5PVocabularyDrill",
       fileName: () => "h5p-vocabulary-drill.js",
@@ -30,5 +31,8 @@ export default defineConfig({
     target: "ES2015",
   },
 
-  plugins: [jsonDts()],
+  plugins: [react(), jsonDts()],
+  define: {
+    "process.env": {},
+  },
 });
