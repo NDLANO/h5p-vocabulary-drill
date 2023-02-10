@@ -1,6 +1,6 @@
-import { H5P } from "h5p-utils";
+import { H5P, H5PContentType } from "h5p-utils";
 import React from "react";
-import { AnswerModeType, LanguageModeType } from "../../types/types";
+import { AnswerModeType, LanguageModeType, Params } from "../../types/types";
 import {
   findLibraryInfo,
   isNil,
@@ -11,13 +11,17 @@ import { Settings } from "../Settings/Settings";
 import { Toolbar } from "../Toolbar/Toolbar";
 
 type VocabularyDrillProps = {
-  context: any;
+  title: string;
+  contentId: string;
+  context: H5PContentType<Params>;
 };
 
 export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
+  title,
+  contentId,
   context,
 }) => {
-  const { contentId, params } = context;
+  const { params } = context;
   const { behaviour, description, words, overallFeedback } = params;
   const {
     autoCheck,
@@ -38,9 +42,6 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
 
   const dragTextLibraryInfo = findLibraryInfo("H5P.DragText");
   const fillInTheBlanksLibraryInfo = findLibraryInfo("H5P.Blanks");
-
-  // TODO: Translate
-  const title = context.extras?.metadata.title ?? "Vocabulary drill";
 
   const enableSettings =
     enableSwitchAnswerModeButton || enableSwitchWordsButton;

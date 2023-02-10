@@ -1,17 +1,11 @@
-import type {
-  DeepReadonly,
-  IH5PContentType,
-  InferParamsFromSemantics,
-} from "h5p-types";
+import type { IH5PContentType } from "h5p-types";
 import { H5PContentType, registerContentType } from "h5p-utils";
 import { isNil } from "./utils";
-import semantics from "../semantics.json";
-import "./index.scss";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./components/App/App";
-
-type Params = InferParamsFromSemantics<DeepReadonly<typeof semantics>>;
+import { Params } from "./types/types";
+import "./index.scss";
 
 class VocabularyDrill
   extends H5PContentType<Params>
@@ -26,10 +20,13 @@ class VocabularyDrill
       );
     }
 
+    // TODO: Translate
+    const title = this.extras?.metadata.title ?? "Vocabulary drill";
+
     const root = createRoot(containerElement);
     root.render(
       <React.StrictMode>
-        <App context={this} />
+        <App title={title} contentId={this.contentId} context={this} />
       </React.StrictMode>,
     );
 
