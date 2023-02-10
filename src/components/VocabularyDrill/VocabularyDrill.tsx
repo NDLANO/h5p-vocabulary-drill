@@ -23,7 +23,14 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 }) => {
   const { t } = useTranslation();
   const { params } = context;
-  const { behaviour, description, words, overallFeedback } = params;
+  const {
+    behaviour,
+    description,
+    words,
+    overallFeedback,
+    sourceLanguage,
+    targetLanguage,
+  } = params;
   const {
     autoCheck,
     randomize,
@@ -65,23 +72,12 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setShowSettings(!showSettings);
   };
 
-  const handleAnswerModeChange = (): void => {
-    if (activeAnswerMode === AnswerModeType.DragText) {
-      setActiveAnswerMode(AnswerModeType.FillIn);
-    }
-    else {
-      setActiveAnswerMode(AnswerModeType.DragText);
-    }
-    toggleShowSettings();
-  };
-
-  const handleLanguageModeChange = (): void => {
-    if (activeLanguageMode === LanguageModeType.Target) {
-      setActiveLanguageMode(LanguageModeType.Source);
-    }
-    else {
-      setActiveLanguageMode(LanguageModeType.Target);
-    }
+  const handleSumbit = (
+    answerMode: AnswerModeType,
+    languageMode: LanguageModeType,
+  ): void => {
+    setActiveAnswerMode(answerMode);
+    setActiveLanguageMode(languageMode);
     toggleShowSettings();
   };
 
@@ -179,10 +175,13 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         <Settings
           showSettings={showSettings}
           toggleShowSettings={toggleShowSettings}
+          activeAnswerMode={activeAnswerMode}
+          activeLanguageMode={activeLanguageMode}
           enableAnswerMode={enableSwitchAnswerModeButton}
           enableLanguageMode={enableSwitchWordsButton}
-          handleAnswerModeChange={handleAnswerModeChange}
-          handleLanguageModeChange={handleLanguageModeChange}
+          sourceLanguage={sourceLanguage}
+          targetLanguage={targetLanguage}
+          handleSumbit={handleSumbit}
         />
       )}
       <Toolbar

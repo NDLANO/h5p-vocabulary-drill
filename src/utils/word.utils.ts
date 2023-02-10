@@ -1,3 +1,4 @@
+import { Languages } from '../constants/languages';
 import {
   sourceAndTargetSeparator,
   tipSeparator,
@@ -5,6 +6,10 @@ import {
   wordsSeparator,
 } from '../constants/separators';
 import { AnswerModeType, LanguageModeType } from '../types/types';
+
+export const findLanguageName = (code: string): string => {
+  return Languages.find(lang => lang.code === code)?.name ?? code;
+};
 
 export const filterWord = (wordsAndTip: string): string => {
   const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
