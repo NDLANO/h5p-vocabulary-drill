@@ -33,6 +33,6 @@ export default defineConfig({
 
   plugins: [react(), jsonDts()],
   define: {
-    'process.env': {}
-  }
+    "process.env": {},
+  },
 });
