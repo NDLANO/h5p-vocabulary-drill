@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "target": "ES2015",
     "useDefineForClassFields": true,
     "module": "ESNext",
@@ -15,5 +16,5 @@
     "noImplicitAny": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

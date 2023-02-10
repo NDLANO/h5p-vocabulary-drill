@@ -8,6 +8,9 @@ import { findLibraryInfo, isNil, libraryToString, parseWords } from "./utils";
 import semantics from "../semantics.json";
 import "./index.scss";
 import { AnswerModeType, LanguageModeType } from "./types/types";
+import * as React from "react";
+import { createRoot } from 'react-dom/client'
+import { App } from "./components/App";
 
 type Params = InferParamsFromSemantics<DeepReadonly<typeof semantics>>;
 
@@ -36,6 +39,11 @@ class VocabularyDrill
 
     // TODO: translate
     const title = this.extras?.metadata.title ?? "Vocabulary drill";
+
+    const root = createRoot(containerElement);
+    root.render(
+      <React.StrictMode><App /></React.StrictMode>
+    );
 
     let settings: HTMLDivElement | undefined;
 
