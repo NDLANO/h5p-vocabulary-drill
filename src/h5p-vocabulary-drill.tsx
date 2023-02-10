@@ -1,13 +1,14 @@
 import type { IH5PContentType } from "h5p-types";
+import { ContentIdContext } from "use-h5p";
 import { H5PContentType, registerContentType } from "h5p-utils";
 import { isNil } from "./utils";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./components/App/App";
+import { VocabularyDrill } from "./components/VocabularyDrill/VocabularyDrill";
 import { Params } from "./types/types";
 import "./index.scss";
 
-class VocabularyDrill
+class VocabularyDrillContentType
   extends H5PContentType<Params>
   implements IH5PContentType<Params>
 {
@@ -22,11 +23,14 @@ class VocabularyDrill
 
     // TODO: Translate
     const title = this.extras?.metadata.title ?? "Vocabulary drill";
+    const { contentId } = this;
 
     const root = createRoot(containerElement);
     root.render(
       <React.StrictMode>
-        <App title={title} contentId={this.contentId} context={this} />
+        <ContentIdContext.Provider value={contentId}>
+          <VocabularyDrill title={title} context={this} />
+        </ContentIdContext.Provider>
       </React.StrictMode>,
     );
 
@@ -34,4 +38,4 @@ class VocabularyDrill
   }
 }
 
-registerContentType("VocabularyDrill", VocabularyDrill);
+registerContentType("VocabularyDrill", VocabularyDrillContentType);

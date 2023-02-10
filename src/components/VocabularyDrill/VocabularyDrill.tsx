@@ -7,18 +7,17 @@ import {
   libraryToString,
   parseWords,
 } from "../../utils";
+import { useContentId } from "use-h5p";
 import { Settings } from "../Settings/Settings";
 import { Toolbar } from "../Toolbar/Toolbar";
 
 type VocabularyDrillProps = {
   title: string;
-  contentId: string;
   context: H5PContentType<Params>;
 };
 
 export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
   title,
-  contentId,
   context,
 }) => {
   const { params } = context;
@@ -32,6 +31,7 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
     enableSwitchWordsButton,
   } = behaviour;
   const initialAnswerMode = behaviour.answerMode as AnswerModeType;
+  const contentId = useContentId();
 
   const wrapperRef = React.useRef<HTMLDivElement>(null);
   const [showSettings, setShowSettings] = React.useState<boolean>(false);
