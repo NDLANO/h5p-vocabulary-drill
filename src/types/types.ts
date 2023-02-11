@@ -12,3 +12,4 @@ export enum LanguageModeType {
 }
 
 export type Params = InferParamsFromSemantics<DeepReadonly<typeof semantics>>;
+export type TranslationKey = keyof Params["l10n"];
