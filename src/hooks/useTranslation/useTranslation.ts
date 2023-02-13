@@ -5,6 +5,7 @@ export const useTranslation = () => {
   const { t } = useH5PTranslation();
 
   return {
+    ...useH5PTranslation,
     t: (key: TranslationKey) => t(key),
   };
 };
