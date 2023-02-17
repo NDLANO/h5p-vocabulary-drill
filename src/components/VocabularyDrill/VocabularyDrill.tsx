@@ -1,13 +1,10 @@
 import { H5P, H5PContentType } from "h5p-utils";
 import React from "react";
-import { AnswerModeType, LanguageModeType, Params } from "../../types/types";
-import {
-  findLibraryInfo,
-  isNil,
-  libraryToString,
-  parseWords,
-} from "../../utils";
 import { useContentId } from "use-h5p";
+import { AnswerModeType, LanguageModeType, Params } from "../../types/types";
+import { findLibraryInfo, libraryToString } from "../../utils/h5p.utils";
+import { isNil } from "../../utils/type.utils";
+import { parseWords } from "../../utils/word.utils";
 import { Settings } from "../Settings/Settings";
 import { Toolbar } from "../Toolbar/Toolbar";
 

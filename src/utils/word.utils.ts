@@ -1,42 +1,10 @@
-import { Library } from "h5p-types";
-import { preloadedDependencies } from "../library.json";
-import semantics from "../semantics.json";
 import {
   sourceAndTargetSeparator,
   tipSeparator,
   variantSeparator,
   wordsSeparator,
-} from "./constants/separators";
-import { AnswerModeType, LanguageModeType } from "./types/types";
-
-export const isNil = <T>(
-  value: T | null | undefined,
-): value is null | undefined => {
-  return value == null;
-};
-
-export const findLibraryInfo = (
-  libraryName: string,
-):
-  | Pick<Library, "machineName" | "majorVersion" | "minorVersion">
-  | undefined => {
-  return preloadedDependencies.find(
-    library => library.machineName === libraryName,
-  );
-};
-
-export const libraryToString = ({
-  machineName,
-  majorVersion,
-  minorVersion,
-}: Pick<Library, "machineName" | "majorVersion" | "minorVersion">): string => {
-  return `${machineName} ${majorVersion}.${minorVersion}`;
-};
-
-// By using `semantics` we let `unplugin-json-dts` know that we want it to
-// generate `semantics.json.d.ts. This is a hack and should be avoided in
-// the future.
-() => semantics;
+} from "../constants/separators";
+import { AnswerModeType, LanguageModeType } from "../types/types";
 
 export const filterWord = (wordsAndTip: string): string => {
   const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
@@ -45,7 +13,7 @@ export const filterWord = (wordsAndTip: string): string => {
   return word;
 };
 
-export const filterOutTip = (wordsAndTip: string): string => {
+const filterOutTip = (wordsAndTip: string): string => {
   const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
 
   return wordAndVariant;
@@ -69,25 +37,22 @@ export const filterOutVariant = (wordsAndTip: string): string => {
   return wordsAndTip;
 };
 
-export const getRandomWords = (wordsList: string[]): string[] => {
+const getRandomWords = (wordsList: string[]): string[] => {
   return wordsList.concat().sort(() => 0.5 - Math.random());
 };
 
-export const getNumberOfWords = (
+const getNumberOfWords = (
   wordsList: string[],
   numberOfWordsToGet: number,
 ): string[] => {
   return wordsList.concat().slice(0, numberOfWordsToGet);
 };
 
-export const createFillInString = (source: string, target: string): string => {
+const createFillInString = (source: string, target: string): string => {
   return `<p>${source} *${target}*</p>`;
 };
 
-export const createDragTextString = (
-  source: string,
-  target: string,
-): string => {
+const createDragTextString = (source: string, target: string): string => {
   return `${source} *${target}*\n`;
 };
 
@@ -128,7 +93,26 @@ export const parseWords = (
   return parsedWords;
 };
 
-export const parseSourceAndTarget = (
+const createSourceAndTargetString = (
+  source: string,
+  target: string,
+  showTips: boolean,
+  answerModeFillIn: boolean,
+): string => {
+  const filteredSource = filterWord(source);
+  const filteredTarget = showTips
+    ? filterOutVariant(target)
+    : filterWord(target);
+  const filteredTargetFillIn = showTips ? target : filterOutTip(target);
+
+  if (answerModeFillIn) {
+    return createFillInString(filteredSource, filteredTargetFillIn);
+  }
+
+  return createDragTextString(filteredSource, filteredTarget);
+};
+
+const parseSourceAndTarget = (
   wordsList: string[],
   showTips: boolean,
   answerMode: AnswerModeType,
@@ -162,23 +146,4 @@ export const parseSourceAndTarget = (
   });
 
   return newWordsList;
-};
-
-export const createSourceAndTargetString = (
-  source: string,
-  target: string,
-  showTips: boolean,
-  answerModeFillIn: boolean,
-): string => {
-  const filteredSource = filterWord(source);
-  const filteredTarget = showTips
-    ? filterOutVariant(target)
-    : filterWord(target);
-  const filteredTargetFillIn = showTips ? target : filterOutTip(target);
-
-  if (answerModeFillIn) {
-    return createFillInString(filteredSource, filteredTargetFillIn);
-  }
-
-  return createDragTextString(filteredSource, filteredTarget);
 };
