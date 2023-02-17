@@ -12,9 +12,9 @@
     "description": "Choose the language of the source words.",
     "type": "select",
     "options": [
-      { "value": "de", "label": "German" },
       { "value": "en", "label": "English" },
       { "value": "fr", "label": "French" },
+      { "value": "de", "label": "German" },
       { "value": "nb", "label": "Norwegian bokmål" },
       { "value": "nn", "label": "Norwegian nynorsk" },
       { "value": "es", "label": "Spanish" }
@@ -27,9 +27,9 @@
     "description": "Choose the language of the target words.",
     "type": "select",
     "options": [
-      { "value": "de", "label": "German" },
       { "value": "en", "label": "English" },
       { "value": "fr", "label": "French" },
+      { "value": "de", "label": "German" },
       { "value": "nb", "label": "Norwegian bokmål" },
       { "value": "nn", "label": "Norwegian nynorsk" },
       { "value": "es", "label": "Spanish" }
