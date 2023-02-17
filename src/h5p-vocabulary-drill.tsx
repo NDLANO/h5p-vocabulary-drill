@@ -38,7 +38,7 @@ class VocabularyDrillContentType
           <VocabularyDrill
             title={title}
             context={this}
-            onChangeContentType={contentType => {
+            onChangeContentType={(contentType) => {
               this.activeContentType = contentType;
             }}
           />
@@ -92,7 +92,7 @@ class VocabularyDrillContentType
   getXAPIData(): {
     statement: XAPIDefinition;
     children?: XAPIEvent[] | undefined;
-  } {
+    } {
     if (!this.activeContentType) {
       return {} as {
         statement: XAPIDefinition;
