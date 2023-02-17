@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type SettingsProps = {
   enableAnswerMode: boolean;
@@ -17,13 +17,13 @@ export const Settings: React.FC<SettingsProps> = ({
   handleAnswerModeChange,
   handleLanguageModeChange,
 }) => {
-  const answerModeText = "Change answer mode"; // TODO: Translate
-  const languageModeText = "Change language"; // TODO: Translate
+  const answerModeText = 'Change answer mode'; // TODO: Translate
+  const languageModeText = 'Change language'; // TODO: Translate
 
   return (
     <div
       className={`h5p-vocabulary-drill-settings ${
-        showSettings ? "visible" : ""
+        showSettings ? 'visible' : ''
       }`}
     >
       <div className="h5p-vocabulary-drill-settings-top">
