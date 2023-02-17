@@ -1,4 +1,9 @@
-import type { IH5PContentType } from 'h5p-types';
+import type {
+  IH5PContentType,
+  IH5PQuestionType,
+  XAPIDefinition,
+  XAPIEvent,
+} from 'h5p-types';
 import { H5PContentType, registerContentType } from 'h5p-utils';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
@@ -10,7 +15,9 @@ import { isNil } from './utils/type.utils';
 
 class VocabularyDrillContentType
   extends H5PContentType<Params>
-  implements IH5PContentType<Params> {
+  implements IH5PContentType<Params>, IH5PQuestionType {
+  private activeContentType: IH5PQuestionType | undefined;
+
   attach($container: JQuery<HTMLElement>) {
     const containerElement = $container.get(0);
 
@@ -28,12 +35,71 @@ class VocabularyDrillContentType
     root.render(
       <React.StrictMode>
         <ContentIdContext.Provider value={contentId}>
-          <VocabularyDrill title={title} context={this} />
+          <VocabularyDrill
+            title={title}
+            context={this}
+            onChangeContentType={contentType => {
+              this.activeContentType = contentType;
+            }}
+          />
         </ContentIdContext.Provider>
       </React.StrictMode>,
     );
 
     containerElement.classList.add('h5p-vocabulary-drill');
+  }
+
+  getAnswerGiven(): boolean {
+    if (!this.activeContentType) {
+      return false;
+    }
+
+    return this.activeContentType.getAnswerGiven();
+  }
+
+  getScore(): number {
+    if (!this.activeContentType) {
+      return 0;
+    }
+
+    return this.activeContentType.getScore();
+  }
+
+  getMaxScore(): number {
+    if (!this.activeContentType) {
+      return 0;
+    }
+
+    return this.activeContentType.getMaxScore();
+  }
+
+  showSolutions(): void {
+    if (!this.activeContentType) {
+      return;
+    }
+
+    this.activeContentType.showSolutions();
+  }
+
+  resetTask(): void {
+    if (!this.activeContentType) {
+      return;
+    }
+
+    this.activeContentType.resetTask();
+  }
+
+  getXAPIData(): {
+    statement: XAPIDefinition;
+    children?: XAPIEvent[] | undefined;
+  } {
+    if (!this.activeContentType) {
+      return {} as {
+        statement: XAPIDefinition;
+      };
+    }
+
+    return this.activeContentType.getXAPIData();
   }
 }
 
