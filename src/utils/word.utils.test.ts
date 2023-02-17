@@ -1,5 +1,5 @@
-import { AnswerModeType, LanguageModeType } from "./types/types";
-import { filterOutVariant, filterWord, parseWords } from "./utils";
+import { AnswerModeType, LanguageModeType } from "../types/types";
+import { filterOutVariant, filterWord, parseWords } from "./word.utils";
 
 describe("Vocabulary drill utils", () => {
   describe(filterWord.name, () => {

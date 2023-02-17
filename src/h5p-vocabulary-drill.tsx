@@ -1,12 +1,12 @@
 import type { IH5PContentType } from "h5p-types";
-import { ContentIdContext } from "use-h5p";
 import { H5PContentType, registerContentType } from "h5p-utils";
-import { isNil } from "./utils";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
+import { ContentIdContext } from "use-h5p";
 import { VocabularyDrill } from "./components/VocabularyDrill/VocabularyDrill";
-import { Params } from "./types/types";
 import "./index.scss";
+import { Params } from "./types/types";
+import { isNil } from "./utils/type.utils";
 
 class VocabularyDrillContentType
   extends H5PContentType<Params>
