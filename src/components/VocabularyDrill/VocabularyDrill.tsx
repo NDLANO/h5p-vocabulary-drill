@@ -1,12 +1,12 @@
-import { H5P, H5PContentType } from "h5p-utils";
-import React from "react";
-import { useContentId } from "use-h5p";
-import { AnswerModeType, LanguageModeType, Params } from "../../types/types";
-import { findLibraryInfo, libraryToString } from "../../utils/h5p.utils";
-import { isNil } from "../../utils/type.utils";
-import { parseWords } from "../../utils/word.utils";
-import { Settings } from "../Settings/Settings";
-import { Toolbar } from "../Toolbar/Toolbar";
+import { H5P, H5PContentType } from 'h5p-utils';
+import React from 'react';
+import { useContentId } from 'use-h5p';
+import { AnswerModeType, LanguageModeType, Params } from '../../types/types';
+import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
+import { isNil } from '../../utils/type.utils';
+import { parseWords } from '../../utils/word.utils';
+import { Settings } from '../Settings/Settings';
+import { Toolbar } from '../Toolbar/Toolbar';
 
 type VocabularyDrillProps = {
   title: string;
@@ -37,28 +37,33 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
   const [activeLanguageMode, setActiveLanguageMode] =
     React.useState<LanguageModeType>(LanguageModeType.Target);
 
-  const dragTextLibraryInfo = findLibraryInfo("H5P.DragText");
-  const fillInTheBlanksLibraryInfo = findLibraryInfo("H5P.Blanks");
+  const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
+  const fillInTheBlanksLibraryInfo = findLibraryInfo('H5P.Blanks');
 
   const enableSettings =
     enableSwitchAnswerModeButton || enableSwitchWordsButton;
 
   if (isNil(dragTextLibraryInfo)) {
     throw new Error(
-      "H5P.VocabularyDrill: H5P.DragText is missing in the list of preloaded dependencies",
+      'H5P.VocabularyDrill: H5P.DragText is missing in the list of preloaded dependencies',
     );
   }
 
   if (isNil(fillInTheBlanksLibraryInfo)) {
     throw new Error(
-      "H5P.VocabularyDrill: H5P.Blanks is missing in the list of preloaded dependencies",
+      'H5P.VocabularyDrill: H5P.Blanks is missing in the list of preloaded dependencies',
     );
   }
+
+  const toggleShowSettings = (): void => {
+    setShowSettings(!showSettings);
+  };
 
   const handleAnswerModeChange = (): void => {
     if (activeAnswerMode === AnswerModeType.DragText) {
       setActiveAnswerMode(AnswerModeType.FillIn);
-    } else {
+    }
+    else {
       setActiveAnswerMode(AnswerModeType.DragText);
     }
     toggleShowSettings();
@@ -67,14 +72,11 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
   const handleLanguageModeChange = (): void => {
     if (activeLanguageMode === LanguageModeType.Target) {
       setActiveLanguageMode(LanguageModeType.Source);
-    } else {
+    }
+    else {
       setActiveLanguageMode(LanguageModeType.Target);
     }
     toggleShowSettings();
-  };
-
-  const toggleShowSettings = (): void => {
-    setShowSettings(!showSettings);
   };
 
   React.useEffect(() => {
@@ -143,7 +145,7 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
           }
 
           default: {
-            throw new Error("H5P.VocabularyDrill: Invalid answer mode");
+            throw new Error('H5P.VocabularyDrill: Invalid answer mode');
           }
         }
       };
@@ -151,7 +153,7 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
       const removeRunnable = (): void => {
         if (wrapper) {
           wrapper.replaceChildren();
-          wrapper.className = "";
+          wrapper.className = '';
         }
       };
 
