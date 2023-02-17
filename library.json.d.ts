@@ -2,7 +2,7 @@ export const title : "Vocabulary Drill";
 export const machineName : "H5P.VocabularyDrill";
 export const majorVersion : 1;
 export const minorVersion : 0;
-export const patchVersion : 1;
+export const patchVersion : 2;
 export const runnable : 1;
 export const license : "MIT";
 export const author : "NDLA";

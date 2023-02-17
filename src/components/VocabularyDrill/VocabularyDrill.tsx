@@ -172,7 +172,11 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
           handleLanguageModeChange={handleLanguageModeChange}
         />
       )}
-      <Toolbar title={title} toggleShowSettings={toggleShowSettings} />
+      <Toolbar
+        title={title}
+        enableSettings={enableSettings}
+        toggleShowSettings={toggleShowSettings}
+      />
       <div ref={wrapperRef} />
     </div>
   );
