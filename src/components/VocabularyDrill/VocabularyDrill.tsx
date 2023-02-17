@@ -1,3 +1,4 @@
+import { IH5PQuestionType } from 'h5p-types';
 import { H5P, H5PContentType } from 'h5p-utils';
 import React from 'react';
 import { useContentId } from 'use-h5p';
@@ -11,11 +12,13 @@ import { Toolbar } from '../Toolbar/Toolbar';
 type VocabularyDrillProps = {
   title: string;
   context: H5PContentType<Params>;
+  onChangeContentType: (contentType: IH5PQuestionType) => void;
 };
 
 export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
   title,
   context,
+  onChangeContentType,
 }) => {
   const { params } = context;
   const { behaviour, description, words, overallFeedback } = params;
@@ -88,58 +91,63 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
       }
 
       const addRunnable = () => {
+        let activeContentType: IH5PQuestionType;
         switch (activeAnswerMode) {
           case AnswerModeType.DragText: {
-            H5P.newRunnable(
+            const params = {
+              taskDescription: description,
+              textField: parseWords(
+                words,
+                randomize,
+                showTips,
+                numberOfWordsToShow,
+                activeAnswerMode,
+                activeLanguageMode,
+              ),
+              behaviour: {
+                instantFeedback: autoCheck,
+                ...behaviour,
+              },
+              overallFeedback,
+            };
+
+            activeContentType = H5P.newRunnable(
               {
                 library: libraryToString(dragTextLibraryInfo),
-                params: {
-                  taskDescription: description,
-                  textField: parseWords(
-                    words,
-                    randomize,
-                    showTips,
-                    numberOfWordsToShow,
-                    activeAnswerMode,
-                    activeLanguageMode,
-                  ),
-                  behaviour: {
-                    instantFeedback: autoCheck,
-                    ...behaviour,
-                  },
-                  overallFeedback,
-                },
+                params,
               },
               contentId,
               H5P.jQuery(wrapper),
-            );
+            ) as unknown as IH5PQuestionType;
 
             break;
           }
 
           case AnswerModeType.FillIn: {
-            H5P.newRunnable(
+            const params = {
+              text: description,
+              questions: [
+                parseWords(
+                  words,
+                  randomize,
+                  showTips,
+                  numberOfWordsToShow,
+                  activeAnswerMode,
+                  activeLanguageMode,
+                ),
+              ],
+              behaviour,
+              overallFeedback,
+            };
+
+            activeContentType = H5P.newRunnable(
               {
                 library: libraryToString(fillInTheBlanksLibraryInfo),
-                params: {
-                  text: description,
-                  questions: [
-                    parseWords(
-                      words,
-                      randomize,
-                      showTips,
-                      numberOfWordsToShow,
-                      activeAnswerMode,
-                      activeLanguageMode,
-                    ),
-                  ],
-                  behaviour,
-                  overallFeedback,
-                },
+                params,
               },
               contentId,
               H5P.jQuery(wrapper),
-            );
+            ) as unknown as IH5PQuestionType;
 
             break;
           }
@@ -148,6 +156,8 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
             throw new Error('H5P.VocabularyDrill: Invalid answer mode');
           }
         }
+
+        onChangeContentType(activeContentType);
       };
 
       const removeRunnable = (): void => {
