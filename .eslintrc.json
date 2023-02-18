@@ -1,0 +1,4 @@
+{
+  "extends": ["eslint-config-ndla-h5p"],
+  "parser": "@typescript-eslint/parser"
+}

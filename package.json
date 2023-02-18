@@ -5,9 +5,10 @@
   "main": "dist/h5p-vocabulary-drill.js",
   "scripts": {
     "start": "vite build --mode=development --watch --minify=false",
+    "watch": "npm start",
     "build": "tsc --noEmit && vite build",
-    "lint": "prettier .",
-    "lint:fix": "prettier . --write",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "npm run lint -- --fix",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -31,18 +32,19 @@
   "devDependencies": {
     "@types/jest": "^29.4.0",
     "@types/node": "^18.13.0",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "@vitejs/plugin-react": "^3.1.0",
-    "h5p-types": "^1.7.0",
-    "jest": "^29.4.2",
-    "prettier": "^2.8.4",
-    "prettier-config": "github:boyum/prettier-config",
-    "sass": "^1.58.0",
+    "eslint": "^8.34.0",
+    "eslint-config-ndla-h5p": "github:ndlano/eslint-config-ndla-h5p",
+    "h5p-types": "^1.10.0",
+    "jest": "^29.4.3",
+    "sass": "^1.58.2",
     "ts-jest": "^29.0.5",
     "typescript": "^4.9.5",
     "unplugin-json-dts": "^1.2.0",
-    "vite": "^4.1.1"
-  },
-  "prettier": "prettier-config"
+    "vite": "^4.1.2"
+  }
 }
