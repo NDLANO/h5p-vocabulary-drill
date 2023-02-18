@@ -33,14 +33,12 @@ export const editorDependencies : [
 		minorVersion: 1
 	}
 ];
-export const preloadedCss : [
-	{
-		path: "dist/h5p-vocabulary-drill.css"
-	}
-];
 export const preloadedJs : [
 	{
 		path: "dist/h5p-vocabulary-drill.js"
+	},
+	{
+		path: "dist/vendor.js"
 	}
 ];
 declare const $defaultExport: {
@@ -55,7 +53,6 @@ declare const $defaultExport: {
 	embedTypes: typeof embedTypes,
 	preloadedDependencies: typeof preloadedDependencies,
 	editorDependencies: typeof editorDependencies,
-	preloadedCss: typeof preloadedCss,
 	preloadedJs: typeof preloadedJs
 };
 

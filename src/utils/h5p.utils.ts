@@ -1,12 +1,12 @@
 import { Library } from 'h5p-types';
-import { preloadedDependencies } from '../../library.json';
+import libraryConfig from '../../library.json';
 
 export const findLibraryInfo = (
   libraryName: string,
 ):
   | Pick<Library, 'machineName' | 'majorVersion' | 'minorVersion'>
   | undefined => {
-  return preloadedDependencies.find(
+  return libraryConfig.preloadedDependencies.find(
     (library) => library.machineName === libraryName,
   );
 };

@@ -10,5 +10,5 @@ build_info
 package.json
 package-lock.json
 README.md
-vite.config.ts
+webpack.config.js
 tsconfig.json
