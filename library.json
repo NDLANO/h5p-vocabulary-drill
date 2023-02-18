@@ -3,10 +3,11 @@
   "machineName": "H5P.VocabularyDrill",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 2,
+  "patchVersion": 3,
   "runnable": 1,
   "license": "MIT",
   "author": "NDLA",
+  "embedTypes": ["iframe"],
   "preloadedDependencies": [
     {
       "machineName": "H5P.Blanks",
@@ -31,14 +32,12 @@
       "minorVersion": 1
     }
   ],
-  "preloadedCss": [
-    {
-      "path": "dist/h5p-vocabulary-drill.css"
-    }
-  ],
   "preloadedJs": [
     {
       "path": "dist/h5p-vocabulary-drill.js"
+    },
+    {
+      "path": "dist/vendor.js"
     }
   ]
 }

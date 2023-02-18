@@ -3,8 +3,8 @@ import {
   tipSeparator,
   variantSeparator,
   wordsSeparator,
-} from "../constants/separators";
-import { AnswerModeType, LanguageModeType } from "../types/types";
+} from '../constants/separators';
+import { AnswerModeType, LanguageModeType } from '../types/types';
 
 export const filterWord = (wordsAndTip: string): string => {
   const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
@@ -56,43 +56,6 @@ const createDragTextString = (source: string, target: string): string => {
   return `${source} *${target}*\n`;
 };
 
-export const parseWords = (
-  words: string | undefined,
-  randomize: boolean,
-  showTips: boolean,
-  numberOfWordsToShow: number | undefined,
-  answerMode: AnswerModeType,
-  languageMode?: LanguageModeType,
-): string => {
-  if (!words) {
-    return "";
-  }
-  let wordsList = words.split(wordsSeparator);
-  const validNumberOfWords =
-    numberOfWordsToShow &&
-    numberOfWordsToShow > 0 &&
-    numberOfWordsToShow <= wordsList.length;
-
-  if (randomize) {
-    wordsList = getRandomWords(wordsList);
-  }
-
-  if (validNumberOfWords) {
-    wordsList = getNumberOfWords(wordsList, numberOfWordsToShow);
-  }
-
-  const newWordsList = parseSourceAndTarget(
-    wordsList,
-    showTips,
-    answerMode,
-    languageMode,
-  );
-
-  const parsedWords = newWordsList.join("");
-
-  return parsedWords;
-};
-
 const createSourceAndTargetString = (
   source: string,
   target: string,
@@ -123,9 +86,9 @@ const parseSourceAndTarget = (
 
   const sourceAndTargetList = wordsList
     .filter(Boolean)
-    .map(word => word.split(sourceAndTargetSeparator));
+    .map((word) => word.split(sourceAndTargetSeparator));
 
-  const newWordsList = sourceAndTargetList.map(sourceAndTarget => {
+  const newWordsList = sourceAndTargetList.map((sourceAndTarget) => {
     const [source, target] = sourceAndTarget;
 
     if (languageModeSource) {
@@ -146,4 +109,42 @@ const parseSourceAndTarget = (
   });
 
   return newWordsList;
+};
+
+export const parseWords = (
+  words: string | undefined,
+  randomize: boolean,
+  showTips: boolean,
+  numberOfWordsToShow: number | undefined,
+  answerMode: AnswerModeType,
+  languageMode?: LanguageModeType,
+): string => {
+  if (!words) {
+    return '';
+  }
+
+  let wordsList = words.split(wordsSeparator);
+  const validNumberOfWords =
+    numberOfWordsToShow &&
+    numberOfWordsToShow > 0 &&
+    numberOfWordsToShow <= wordsList.length;
+
+  if (randomize) {
+    wordsList = getRandomWords(wordsList);
+  }
+
+  if (validNumberOfWords) {
+    wordsList = getNumberOfWords(wordsList, numberOfWordsToShow);
+  }
+
+  const newWordsList = parseSourceAndTarget(
+    wordsList,
+    showTips,
+    answerMode,
+    languageMode,
+  );
+
+  const parsedWords = newWordsList.join('');
+
+  return parsedWords;
 };
