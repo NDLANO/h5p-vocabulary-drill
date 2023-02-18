@@ -2,10 +2,13 @@ export const title : "Vocabulary Drill";
 export const machineName : "H5P.VocabularyDrill";
 export const majorVersion : 1;
 export const minorVersion : 0;
-export const patchVersion : 2;
+export const patchVersion : 3;
 export const runnable : 1;
 export const license : "MIT";
 export const author : "NDLA";
+export const embedTypes : [
+	"iframe"
+];
 export const preloadedDependencies : [
 	{
 		machineName: "H5P.Blanks",
@@ -49,6 +52,7 @@ declare const $defaultExport: {
 	runnable: typeof runnable,
 	license: typeof license,
 	author: typeof author,
+	embedTypes: typeof embedTypes,
 	preloadedDependencies: typeof preloadedDependencies,
 	editorDependencies: typeof editorDependencies,
 	preloadedCss: typeof preloadedCss,
