@@ -1,6 +1,6 @@
 import { IH5PQuestionType } from 'h5p-types';
 import { H5P, H5PContentType } from 'h5p-utils';
-import React from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useContentId } from 'use-h5p';
 import { AnswerModeType, LanguageModeType, Params } from '../../types/types';
 import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
@@ -15,7 +15,7 @@ type VocabularyDrillProps = {
   onChangeContentType: (contentType: IH5PQuestionType) => void;
 };
 
-export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
+export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   title,
   context,
   onChangeContentType,
@@ -33,12 +33,13 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
   const initialAnswerMode = behaviour.answerMode as AnswerModeType;
   const contentId = useContentId();
 
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const [showSettings, setShowSettings] = React.useState<boolean>(false);
-  const [activeAnswerMode, setActiveAnswerMode] =
-    React.useState<AnswerModeType>(initialAnswerMode);
-  const [activeLanguageMode, setActiveLanguageMode] =
-    React.useState<LanguageModeType>(LanguageModeType.Target);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [showSettings, setShowSettings] = useState(false);
+  const [activeAnswerMode, setActiveAnswerMode] = useState(initialAnswerMode);
+  const [activeLanguageMode, setActiveLanguageMode] = useState(
+    LanguageModeType.Target,
+  );
+  const [hasWords, setHasWords] = useState(true);
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
   const fillInTheBlanksLibraryInfo = findLibraryInfo('H5P.Blanks');
@@ -82,7 +83,7 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
     toggleShowSettings();
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     (() => {
       const wrapper = wrapperRef.current;
 
@@ -91,19 +92,26 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
       }
 
       const addRunnable = () => {
+        const parsedWords = parseWords(
+          words,
+          randomize,
+          showTips,
+          numberOfWordsToShow,
+          activeAnswerMode,
+          activeLanguageMode,
+        );
+
+        if (parsedWords.length === 0) {
+          setHasWords(false);
+          return;
+        }
+
         let activeContentType: IH5PQuestionType;
         switch (activeAnswerMode) {
           case AnswerModeType.DragText: {
             const params = {
               taskDescription: description,
-              textField: parseWords(
-                words,
-                randomize,
-                showTips,
-                numberOfWordsToShow,
-                activeAnswerMode,
-                activeLanguageMode,
-              ),
+              textField: parsedWords,
               behaviour: {
                 instantFeedback: autoCheck,
                 ...behaviour,
@@ -126,16 +134,7 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
           case AnswerModeType.FillIn: {
             const params = {
               text: description,
-              questions: [
-                parseWords(
-                  words,
-                  randomize,
-                  showTips,
-                  numberOfWordsToShow,
-                  activeAnswerMode,
-                  activeLanguageMode,
-                ),
-              ],
+              questions: [parsedWords],
               behaviour,
               overallFeedback,
             };
@@ -172,7 +171,7 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
     })();
   }, [activeAnswerMode, activeLanguageMode]);
 
-  return (
+  return hasWords ? (
     <div>
       {enableSettings && (
         <Settings
@@ -190,6 +189,11 @@ export const VocabularyDrill: React.FC<VocabularyDrillProps> = ({
         toggleShowSettings={toggleShowSettings}
       />
       <div ref={wrapperRef} />
+    </div>
+  ) : (
+    <div className="h5p-vd-empty-state">
+      {/* TODO: Translate */}
+      No valid words found. Please check your words and try again.
     </div>
   );
 };
