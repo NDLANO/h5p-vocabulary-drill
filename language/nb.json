@@ -1,0 +1,125 @@
+{
+  "semantics": [
+    {
+      "label": "Oppgavebeskrivelse",
+      "description": "En beskrivelse av hvordan oppgaven skal løses."
+    },
+    {
+      "label": "Kildespråk",
+      "description": "Velg språk for kideordene.",
+      "options": [
+        { "label": "Tysk" },
+        { "label": "Engelsk" },
+        { "label": "Fransk" },
+        { "label": "Norsk bokmål" },
+        { "label": "Norsk nynorsk" },
+        { "label": "Spansk" }
+      ]
+    },
+    {
+      "label": "Målspråk",
+      "description": "Velg språk for målordene",
+      "options": [
+        { "label": "Tysk" },
+        { "label": "Engelsk" },
+        { "label": "Fransk" },
+        { "label": "Norsk bokmål" },
+        { "label": "Norsk nynorsk" },
+        { "label": "Spansk" }
+      ]
+    },
+    {
+      "label": "Ord",
+      "description": "Legg til ord ved å laste opp en CSV-fil eller skriv ordene inn i tekstfeltet.",
+      "important": {
+        "description": "<ul><li>Kilde- og målord er separert med komma (,).</li><li>Alternative svar er separert med en fremoverlent skråstrek (/).</li><li>Du kan legge til et teksttips ved å bruke kolon (:) foran tipset.</li></ul>",
+        "example": "water/sea:w___r,vann/hav:v__n"
+      }
+    },
+    {
+      "label": "Tilbakemelding på hele oppgava",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Forhandsinnstilling"
+            }
+          ],
+          "label": "Opprett poengområder og legg inn tilbakemeldinger.",
+          "description": "Klikk på knappen \"Legg til poengområde\" og legg til så mange poengområder du trenger. Eksempel: 0–40 % Svakt resultat, 41–80 % Gjennomsnittlig resultat, 81–100 % Flott resultat!",
+          "entity": "Område",
+          "field": {
+            "label": "Tilbakemelding på hele oppgava",
+            "fields": [
+              {
+                "label": "Poengområde"
+              },
+              {
+                "label": ""
+              },
+              {
+                "label": "Tilbakemelding for definert poengområde",
+                "placeholder": "Skriv inn tilbakemelding."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Lokalisering",
+      "fields": []
+    },
+    {
+      "label": "Innstillinger for oppgave-oppførsel",
+      "description": "Disse instillingene lar deg bestemme hvordan oppgavetypen skal oppføre seg.",
+      "fields": [
+        {
+          "label": "Aktiver \"Prøv igjen\"-knapp"
+        },
+        {
+          "label": "Aktiver \"Fasit\"-knapp"
+        },
+        {
+          "label": "Gi tilbakemelding med en gang brukeren har avgitt svar"
+        },
+        {
+          "label": "Skill mellom store og små bokstaver",
+          "description": "Sørger for at svaret til brukeren må være nøyaktig det samme som i oppgaven."
+        },
+        {
+          "label": "Krev at alle felter er besvart før fasit gis"
+        },
+        {
+          "label": "Godta mindre stavefeil",
+          "description": "Hvis aktivert, vil et svar også telle som riktig med mindre stavefeil (3-9 tegn: 1 stavefeil, mer enn 9 tegn: 2 stavefeil). Dette alternativet er bare gyldig hvis svarmodus er satt til Fyll ut"
+        },
+        {
+          "label": "Randomiser"
+        },
+        {
+          "label": "Vis tips"
+        },
+        {
+          "label": "Svarmodus",
+          "options": [
+            { "label": "Fyll inn" },
+            { "label": "Dra tekst" }
+          ]
+        },
+        {
+          "label": "Aktiver \"Bytt svarmodus\"-knapp",
+          "description": "Tillat sluttbrukeren å bytte mellom modusene \"Fyll inn\" og \"Dra tekst\"."
+        },
+        {
+          "label": "Aktiver \"Bytt ord\"-knappen",
+          "description": "La sluttbrukeren veksle mellom kilde- og målord."
+        },
+        {
+          "label": "Antall ord",
+          "description": "Definerer hvor mange ord som vil være synlige hver gang. Hvis 0 er satt, vil alle ordene vises."
+        }
+      ]
+    }
+  ]
+}
