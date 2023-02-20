@@ -68,7 +68,16 @@
     },
     {
       "label": "Lokalisering",
-      "fields": []
+      "fields": [
+        {
+          "label": "Åpne innstilinger aria tekst",
+          "default": "Åpne innstillinger"
+        },
+        {
+          "label": "Lukk innstillinger aria tekst",
+          "default": "Lukk innstillinger"
+        }
+      ]
     },
     {
       "label": "Innstillinger for oppgave-oppførsel",

@@ -68,7 +68,16 @@
     },
     {
       "label": "Localization",
-      "fields": []
+      "fields": [
+        {
+          "label": "Open settings aria label",
+          "default": "Open settings"
+        },
+        {
+          "label": "Close settings aria label",
+          "default": "Close settings"
+        }
+      ]
     },
     {
       "label": "Behavioural settings",

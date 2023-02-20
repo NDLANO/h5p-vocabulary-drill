@@ -112,7 +112,21 @@
     "label": "Localization",
     "name": "l10n",
     "type": "group",
-    "fields": []
+    "common": true,
+    "fields": [
+      {
+        "label": "Open settings aria label",
+        "name": "openSettingsAriaLabel",
+        "default": "Open settings",
+        "type": "text"
+      },
+      {
+        "label": "Close settings aria label",
+        "name": "closeSettingsAriaLabel",
+        "default": "Close settings",
+        "type": "text"
+      }
+    ]
   },
   {
     "name": "behaviour",

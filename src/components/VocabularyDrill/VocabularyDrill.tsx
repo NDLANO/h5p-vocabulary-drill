@@ -186,6 +186,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       <Toolbar
         title={title}
         enableSettings={enableSettings}
+        showSettings={showSettings}
         toggleShowSettings={toggleShowSettings}
       />
       <div ref={wrapperRef} />
