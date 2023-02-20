@@ -70,6 +70,10 @@
       "label": "Localization",
       "fields": [
         {
+          "label": "No valid words",
+          "default": "No valid words found. Please check your words and try again."
+        },
+        {
           "label": "Open settings aria label",
           "default": "Open settings"
         },

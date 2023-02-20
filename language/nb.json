@@ -70,6 +70,10 @@
       "label": "Lokalisering",
       "fields": [
         {
+          "label": "Ingen gyldige ord",
+          "default": "Ingen gyldige ord funnet. Kontroller ordene dine og prøv igjen."
+        },
+        {
           "label": "Åpne innstilinger aria tekst",
           "default": "Åpne innstillinger"
         },

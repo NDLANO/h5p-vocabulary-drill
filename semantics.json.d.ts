@@ -115,6 +115,12 @@ declare const json: [
     "common": true,
     "fields": [
       {
+        "label": "No valid words",
+        "name": "noValidWords",
+        "default": "No valid words found. Please check your words and try again.",
+        "type": "text"
+      },
+      {
         "label": "Open settings aria label",
         "name": "openSettingsAriaLabel",
         "default": "Open settings",
