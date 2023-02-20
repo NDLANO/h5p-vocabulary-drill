@@ -40,11 +40,17 @@ class VocabularyDrillContentType
             context={this}
             onChangeContentType={(contentType) => {
               this.activeContentType = contentType;
+              this.resize();
             }}
           />
         </ContentIdContext.Provider>
       </React.StrictMode>,
     );
+
+    // Resize the iframe viewport after React has rendered.
+    window.requestAnimationFrame(() => {
+      this.resize();
+    });
 
     containerElement.classList.add('h5p-vocabulary-drill');
   }
@@ -100,6 +106,13 @@ class VocabularyDrillContentType
     }
 
     return this.activeContentType.getXAPIData();
+  }
+
+  /**
+   * Resize the iframe viewport.
+   */
+  private resize() {
+    this.trigger('resize');
   }
 }
 
