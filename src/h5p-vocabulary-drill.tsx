@@ -21,7 +21,9 @@ type State = {
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
   implements IH5PContentType<Params>, IH5PQuestionType {
-  private activeContentType: IH5PQuestionType | undefined;
+  private activeContentType:
+    | (IH5PQuestionType & H5PResumableContentType)
+    | undefined;
 
   attach($container: JQuery<HTMLElement>) {
     const containerElement = $container.get(0);
@@ -116,7 +118,15 @@ class VocabularyDrillContentType
   }
 
   getCurrentState(): State | undefined {
-    return this.state;
+    const contentTypeState = this.activeContentType?.getCurrentState?.();
+    if (typeof contentTypeState !== 'object' || contentTypeState == null) {
+      return this.state;
+    }
+
+    return {
+      ...this.state,
+      ...contentTypeState,
+    };
   }
 
   /**
