@@ -74,11 +74,11 @@
           "default": "No valid words found. Please check your words and try again."
         },
         {
-          "label": "Open settings aria label",
+          "label": "Assistive technology label for \"Open settings\" button",
           "default": "Open settings"
         },
         {
-          "label": "Close settings aria label",
+          "label": "Assistive technology label for \"Close settings\" button",
           "default": "Close settings"
         },
         {

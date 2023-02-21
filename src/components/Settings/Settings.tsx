@@ -20,9 +20,6 @@ export const Settings: React.FC<SettingsProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const answerModeText = t('answerModeLabel');
-  const languageModeText = t('languageModeLabel');
-
   return (
     <div
       className={`h5p-vocabulary-drill-settings ${showSettings ? 'visible' : ''
@@ -34,12 +31,12 @@ export const Settings: React.FC<SettingsProps> = ({
       <div className="h5p-vocabulary-drill-settings-container">
         {enableAnswerMode && (
           <button type="button" onClick={handleAnswerModeChange}>
-            <p>{answerModeText}</p>
+            <p>{t('answerModeLabel')}</p>
           </button>
         )}
         {enableLanguageMode && (
           <button type="button" onClick={handleLanguageModeChange}>
-            <p>{languageModeText}</p>
+            <p>{t('languageModeLabel')}</p>
           </button>
         )}
       </div>

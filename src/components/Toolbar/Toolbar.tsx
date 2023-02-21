@@ -16,8 +16,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const openSettingsLabel = t('openSettingsAriaLabel');
-  const closeSettingsLabel = t('closeSettingsAriaLabel');
+  const openSettingsLabel = t('openSettingsLabel');
+  const closeSettingsLabel = t('closeSettingsLabel');
 
   return (
     <div className="h5p-vocabulary-drill-toolbar">

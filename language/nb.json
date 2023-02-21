@@ -74,11 +74,11 @@
           "default": "Ingen gyldige ord funnet. Kontroller ordene dine og prøv igjen."
         },
         {
-          "label": "Åpne innstillinger aria tekst",
+          "label": "Skjermlesertekst for \"Åpne innstillinger\" knapp",
           "default": "Åpne innstillinger"
         },
         {
-          "label": "Lukk innstillinger aria tekst",
+          "label": "Skjermlesertekst for \"Lukk innstillinger\" knapp",
           "default": "Lukk innstillinger"
         },
         {
@@ -93,7 +93,7 @@
     },
     {
       "label": "Innstillinger for oppgave-oppførsel",
-      "description": "Disse instillingene lar deg bestemme hvordan oppgavetypen skal oppføre seg.",
+      "description": "Disse innstillingene lar deg bestemme hvordan oppgavetypen skal oppføre seg.",
       "fields": [
         {
           "label": "Aktiver \"Prøv igjen\"-knapp"
@@ -113,10 +113,10 @@
         },
         {
           "label": "Godta mindre stavefeil",
-          "description": "Hvis aktivert, vil et svar også telle som riktig med mindre stavefeil (3-9 tegn: 1 stavefeil, mer enn 9 tegn: 2 stavefeil). Dette alternativet er bare gyldig hvis svarmodus er satt til Fyll ut"
+          "description": "Hvis denne er aktivert vil et svar også telle som riktig med mindre stavefeil (3-9 tegn: 1 stavefeil, mer enn 9 tegn: 2 stavefeil). Dette alternativet er bare gyldig hvis svarmodus er satt til Fyll ut"
         },
         {
-          "label": "Randomiser"
+          "label": "Velg tilfeldige ord"
         },
         {
           "label": "Vis tips"

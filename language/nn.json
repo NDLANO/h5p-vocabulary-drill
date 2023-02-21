@@ -74,11 +74,11 @@
           "default": "Ingen gyldige ord funne. Kontroller orda dine og prøv igjen."
         },
         {
-          "label": "Opne innstillingar aria tekst",
+          "label": "Skjermlesartekst for \"Opne innstillingar\" knapp",
           "default": "Opne innstillingar"
         },
         {
-          "label": "Lukk innstillingar aria tekst",
+          "label": "Skjermlesartekst for \"Lukk innstillingar\" knapp",
           "default": "Lukk innstillingar"
         },
         {
@@ -92,8 +92,8 @@
       ]
     },
     {
-      "label": "Innstillinger for oppgave-åtferd",
-      "description": "Desse instillingene lar deg bestemme hvordan oppgavetypen skal oppføre seg.",
+      "label": "Innstillingar for oppgåve-åtferd",
+      "description": "Desse innstillingane lèt deg bestemma korleis oppgåvetypen skal oppføra seg.",
       "fields": [
         {
           "label": "Aktiver \"Prøv igjen\"-knapp"
@@ -113,10 +113,10 @@
         },
         {
           "label": "Godta mindre stavefeil",
-          "description": "Viss aktivert, vil eit svar også telja som rett med mindre stavefeil (3-9 teikn: 1 stavefeil, meir enn 9 teikn: 2 stavefeil). Dette alternativet er berre gyldig viss svarmodus er sett til Fyll ut"
+          "description": "Viss denne er aktivert vil eit svar også telja som rett med mindre stavefeil (3-9 teikn: 1 stavefeil, meir enn 9 teikn: 2 stavefeil). Dette alternativet er berre gyldig viss svarmodus er sett til Fyll ut"
         },
         {
-          "label": "Randomiser"
+          "label": "Vel tilfeldige ord"
         },
         {
           "label": "Vis tips"

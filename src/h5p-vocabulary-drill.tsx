@@ -27,8 +27,7 @@ class VocabularyDrillContentType
       );
     }
 
-    // TODO: Translate
-    const title = this.extras?.metadata.title ?? 'Vocabulary drill';
+    const title = this.extras?.metadata.title ?? '';
     const { contentId, params } = this;
     const { l10n } = params;
 
