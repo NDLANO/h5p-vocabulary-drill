@@ -80,6 +80,14 @@
         {
           "label": "Close settings aria label",
           "default": "Close settings"
+        },
+        {
+          "label": "Answer mode label",
+          "default": "Change answer mode"
+        },
+        {
+          "label": "Language mode label",
+          "default": "Change language mode"
         }
       ]
     },

@@ -80,6 +80,14 @@
         {
           "label": "Lukk innstillinger aria tekst",
           "default": "Lukk innstillinger"
+        },
+        {
+          "label": "Etikett for svarmodus",
+          "default": "Endre svarmodus"
+        },
+        {
+          "label": "Etikett for språkmodus",
+          "default": "Endre språkmodus"
         }
       ]
     },

@@ -131,6 +131,18 @@
         "name": "closeSettingsAriaLabel",
         "default": "Close settings",
         "type": "text"
+      },
+      {
+        "label": "Answer mode label",
+        "name": "answerModeLabel",
+        "default": "Change answer mode",
+        "type": "text"
+      },
+      {
+        "label": "Language mode label",
+        "name": "languageModeLabel",
+        "default": "Change language mode",
+        "type": "text"
       }
     ]
   },
