@@ -116,7 +116,8 @@ declare const json: [
       "H5P.Blanks 1.14", 
       "H5P.DragText 1.10"
     ],
-    "default": "H5P.Blanks 1.14"
+    "default": "H5P.Blanks 1.14",
+    "widget": "none"
   },
   {
     "label": "Localization",
