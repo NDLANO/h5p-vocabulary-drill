@@ -16,14 +16,11 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const openSettingsLabel = t('openSettingsLabel');
-  const closeSettingsLabel = t('closeSettingsLabel');
-
   return (
     <div className="h5p-vocabulary-drill-toolbar">
       <p>{title}</p>
       {enableSettings && (
-        <button type="button" aria-label={showSettings ? closeSettingsLabel : openSettingsLabel} onClick={toggleShowSettings} />
+        <button type="button" aria-label={showSettings ? t('closeSettingsLabel') : t('openSettingsLabel')} onClick={toggleShowSettings} />
       )}
     </div>
   );
