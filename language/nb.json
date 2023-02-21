@@ -8,9 +8,9 @@
       "label": "Kildespråk",
       "description": "Velg språk for kildeordene.",
       "options": [
-        { "label": "Tysk" },
         { "label": "Engelsk" },
         { "label": "Fransk" },
+        { "label": "Tysk" },
         { "label": "Norsk bokmål" },
         { "label": "Norsk nynorsk" },
         { "label": "Spansk" }
@@ -20,9 +20,9 @@
       "label": "Målspråk",
       "description": "Velg språk for målordene.",
       "options": [
-        { "label": "Tysk" },
         { "label": "Engelsk" },
         { "label": "Fransk" },
+        { "label": "Tysk" },
         { "label": "Norsk bokmål" },
         { "label": "Norsk nynorsk" },
         { "label": "Spansk" }

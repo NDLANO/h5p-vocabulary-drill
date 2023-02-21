@@ -8,9 +8,9 @@
       "label": "Source language",
       "description": "Choose the language of the source words.",
       "options": [
-        { "label": "German" },
         { "label": "English" },
         { "label": "French" },
+        { "label": "German" },
         { "label": "Norwegian bokmål" },
         { "label": "Norwegian nynorsk" },
         { "label": "Spanish" }
@@ -20,9 +20,9 @@
       "label": "Target language",
       "description": "Choose the language of the target words.",
       "options": [
-        { "label": "German" },
         { "label": "English" },
         { "label": "French" },
+        { "label": "German" },
         { "label": "Norwegian bokmål" },
         { "label": "Norwegian nynorsk" },
         { "label": "Spanish" }
