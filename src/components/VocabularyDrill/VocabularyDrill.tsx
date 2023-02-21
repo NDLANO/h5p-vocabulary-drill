@@ -1,5 +1,5 @@
 import { IH5PQuestionType } from 'h5p-types';
-import { H5P, H5PContentType } from 'h5p-utils';
+import { H5P, H5PContentType, H5PResumableContentType } from 'h5p-utils';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useContentId } from 'use-h5p';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
@@ -12,7 +12,9 @@ import { Toolbar } from '../Toolbar/Toolbar';
 type VocabularyDrillProps = {
   title: string;
   context: H5PContentType<Params>;
-  onChangeContentType: (contentType: IH5PQuestionType) => void;
+  onChangeContentType: (
+    contentType: IH5PQuestionType & H5PResumableContentType,
+  ) => void;
 };
 
 export const VocabularyDrill: FC<VocabularyDrillProps> = ({
@@ -97,7 +99,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           return;
         }
 
-        let activeContentType: IH5PQuestionType;
+        let activeContentType: IH5PQuestionType & H5PResumableContentType;
         switch (activeAnswerMode) {
           case AnswerModeType.DragText: {
             const params = {
@@ -118,7 +120,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               },
               contentId,
               H5P.jQuery(wrapper),
-            ) as unknown as IH5PQuestionType;
+            ) as unknown as IH5PQuestionType & H5PResumableContentType;
 
             break;
           }
@@ -139,7 +141,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               },
               contentId,
               H5P.jQuery(wrapper),
-            ) as unknown as IH5PQuestionType;
+            ) as unknown as IH5PQuestionType & H5PResumableContentType;
 
             break;
           }
