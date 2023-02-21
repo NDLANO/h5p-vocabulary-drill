@@ -2,6 +2,7 @@ import { IH5PQuestionType } from 'h5p-types';
 import { H5P, H5PContentType } from 'h5p-utils';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useContentId } from 'use-h5p';
+import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import { AnswerModeType, LanguageModeType, Params } from '../../types/types';
 import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
@@ -20,6 +21,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   context,
   onChangeContentType,
 }) => {
+  const { t } = useTranslation();
   const { params } = context;
   const { behaviour, description, words, overallFeedback } = params;
   const {
@@ -186,14 +188,14 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       <Toolbar
         title={title}
         enableSettings={enableSettings}
+        showSettings={showSettings}
         toggleShowSettings={toggleShowSettings}
       />
       <div ref={wrapperRef} />
     </div>
   ) : (
     <div className="h5p-vd-empty-state">
-      {/* TODO: Translate */}
-      No valid words found. Please check your words and try again.
+      {t('noValidWords')}
     </div>
   );
 };
