@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import { AnswerModeType, LanguageModeType } from '../../types/types';
-import { findLanguageName } from '../../utils/word.utils';
+import { findLanguageName } from '../../utils/language.utils';
 
 type SettingsProps = {
   showSettings: boolean;
@@ -35,9 +35,9 @@ export const Settings: React.FC<SettingsProps> = ({
   const [settingsLanguageMode, setSettingsLanguageMode] =
     React.useState<LanguageModeType>(activeLanguageMode);
 
-  const sumbitButtonText = "Submit"; // TODO: Translate
-  const fillInText = "Fill in"; // TODO: Translate
-  const dragTextText = "Drag text"; // TODO: Translate
+  const sumbitButtonText = 'Submit'; // TODO: Translate
+  const fillInText = 'Fill in'; // TODO: Translate
+  const dragTextText = 'Drag text'; // TODO: Translate
 
   const sourceText = findLanguageName(sourceLanguage);
   const targetText = findLanguageName(targetLanguage);
@@ -73,7 +73,7 @@ export const Settings: React.FC<SettingsProps> = ({
   return (
     <div
       className={`h5p-vocabulary-drill-settings ${showSettings ? 'visible' : ''
-        }`}
+      }`}
     >
       <div className="h5p-vocabulary-drill-settings-top">
         <button type="button" aria-label="close" onClick={handleClose} />
