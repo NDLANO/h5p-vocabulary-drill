@@ -23,6 +23,9 @@
     "url": "https://github.com/NDLANO/h5p-vocabulary-drill/issues"
   },
   "homepage": "https://github.com/NDLANO/h5p-vocabulary-drill#readme",
+  "browserslist": [
+    "last 4 versions"
+  ],
   "dependencies": {
     "h5p-utils": "^3.2.1",
     "react": "^18.2.0",

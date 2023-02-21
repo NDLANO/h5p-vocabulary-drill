@@ -4,17 +4,22 @@ import type {
   XAPIDefinition,
   XAPIEvent,
 } from 'h5p-types';
-import { H5PContentType, registerContentType } from 'h5p-utils';
+import { H5PResumableContentType, registerContentType } from 'h5p-utils';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ContentIdContext, L10nContext } from 'use-h5p';
 import { VocabularyDrill } from './components/VocabularyDrill/VocabularyDrill';
 import './index.scss';
-import { Params } from './types/types';
+import { AnswerModeType, LanguageModeType, Params } from './types/types';
 import { isNil } from './utils/type.utils';
 
+type State = {
+  activeAnswerMode?: AnswerModeType;
+  activeLanguageMode?: LanguageModeType;
+};
+
 class VocabularyDrillContentType
-  extends H5PContentType<Params>
+  extends H5PResumableContentType<Params, State>
   implements IH5PContentType<Params>, IH5PQuestionType {
   private activeContentType: IH5PQuestionType | undefined;
 
@@ -108,6 +113,10 @@ class VocabularyDrillContentType
     }
 
     return this.activeContentType.getXAPIData();
+  }
+
+  getCurrentState(): State | undefined {
+    return this.state;
   }
 
   /**
