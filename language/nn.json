@@ -109,11 +109,12 @@
           "description": "Syrgjer for at svaret til brukaren må være nøyaktig det same som i oppgåva."
         },
         {
-          "label": "Krev at alle felt er besvart før fasit gis"
+          "label": "Krev at alle felt er besvart før fasit gis",
+          "description": "Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll inn\"."
         },
         {
           "label": "Godta mindre stavefeil",
-          "description": "Viss denne er aktivert vil eit svar også telja som rett med mindre stavefeil (3-9 teikn: 1 stavefeil, meir enn 9 teikn: 2 stavefeil). Dette alternativet er berre gyldig viss svarmodus er sett til Fyll ut"
+          "description": "Viss denne er aktivert vil eit svar også telja som rett med mindre stavefeil (3-9 teikn: 1 stavefeil, meir enn 9 teikn: 2 stavefeil). Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll inn\"."
         },
         {
           "label": "Vel tilfeldige ord"
