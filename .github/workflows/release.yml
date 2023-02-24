@@ -14,13 +14,15 @@ jobs:
         uses: boyum/pack-h5p-action@v1.0.0 # https://github.com/boyum/pack-h5p-action
         id: release-h5p
 
-      - name: Check if library is updated
-        uses: boyum/is-h5p-library-updated-action@v1.1 # https://github.com/boyum/is-h5p-library-updated-action
-        id: h5p-version-check
+      - name: Check if tag exists already # (to avoid replacing releases)
+        uses: mukunku/tag-exists-action@v1.2.0 # https://github.com/mukunku/tag-exists-action
+        id: check-tag
+        with:
+          tag: ${{ steps.release-h5p.outputs.version }}
 
       - name: Release # (only if library is updated)
-        uses: 'marvinpinto/action-automatic-releases@latest' # https://github.com/marvinpinto/actions/tree/master/packages/automatic-releases
-        if: ${{ github.ref == 'refs/heads/main' && steps.h5p-version-check.outputs.is-ahead == 'true' }}
+        uses: marvinpinto/action-automatic-releases@latest # https://github.com/marvinpinto/actions/tree/master/packages/automatic-releases
+        if: ${{ github.ref == 'refs/heads/main' && steps.check-tag.outputs.exists == 'false' }}
         with:
           repo_token: '${{ secrets.GITHUB_TOKEN }}'
           automatic_release_tag: ${{steps.release-h5p.outputs.version}}
