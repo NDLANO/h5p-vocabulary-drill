@@ -1,0 +1,147 @@
+{
+  "semantics": [
+    {
+      "label": "Oppgåvebeskriving",
+      "description": "Ein tekst som fortel brukaren korleis oppgåva skal løysast."
+    },
+    {
+      "label": "Kjeldespråk",
+      "description": "Vel språk for kjeldeorda.",
+      "options": [
+        { "label": "Engelsk" },
+        { "label": "Fransk" },
+        { "label": "Tysk" },
+        { "label": "Norsk bokmål" },
+        { "label": "Norsk nynorsk" },
+        { "label": "Spansk" }
+      ]
+    },
+    {
+      "label": "Målspråk",
+      "description": "Vel språk for målorda.",
+      "options": [
+        { "label": "Engelsk" },
+        { "label": "Fransk" },
+        { "label": "Tysk" },
+        { "label": "Norsk bokmål" },
+        { "label": "Norsk nynorsk" },
+        { "label": "Spansk" }
+      ]
+    },
+    {
+      "label": "Ord",
+      "description": "Legg til ord ved å lasta opp ei CSV-fil eller skriv orda inn i tekstfeltet.",
+      "important": {
+        "description": "<ul><li>Kjelde- og målord er separert med komma (,).</li><li>Alternative svar er separert med ein framoverlent skråstrek (/).</li><li>Du kan leggja til eit teksttips ved å bruka kolon (:) framfor tipset.</li></ul>",
+        "example": "water/sea:w___r,vann/hav:v__n"
+      }
+    },
+    {
+      "label": "Tilbakemelding på heile oppgåva",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Førehandsinnstilling"
+            }
+          ],
+          "label": "Opprett poengområde og legg inn tilbakemeldingar.",
+          "description": "Klikk på knappen \"Legg til poengområde\" og legg til så mange poengområde du treng. Døme: 0-40 % Svakt resultat, 41-80 % Gjennomsnittleg resultat, 81-100 % Flott resultat!",
+          "entity": "Område",
+          "field": {
+            "label": "Tilbakemelding på hele oppgava",
+            "fields": [
+              {
+                "label": "Poengområde"
+              },
+              {
+                "label": ""
+              },
+              {
+                "label": "Tilbakemelding for definert poengområde",
+                "placeholder": "Skriv inn tilbakemelding."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Lokalisering",
+      "fields": [
+        {
+          "label": "Ingen gyldige ord",
+          "default": "Ingen gyldige ord funne. Kontroller orda dine og prøv igjen."
+        },
+        {
+          "label": "Skjermlesartekst for \"Opne innstillingar\" knapp",
+          "default": "Opne innstillingar"
+        },
+        {
+          "label": "Skjermlesartekst for \"Lukk innstillingar\" knapp",
+          "default": "Lukk innstillingar"
+        },
+        {
+          "label": "Etikett for svarmodus",
+          "default": "Endre svarmodus"
+        },
+        {
+          "label": "Etikett for språkmodus",
+          "default": "Endre språkmodus"
+        }
+      ]
+    },
+    {
+      "label": "Innstillingar for oppgåve-åtferd",
+      "description": "Desse innstillingane lèt deg bestemma korleis oppgåvetypen skal oppføra seg.",
+      "fields": [
+        {
+          "label": "Aktiver \"Prøv igjen\"-knapp"
+        },
+        {
+          "label": "Aktiver \"Fasit\"-knapp"
+        },
+        {
+          "label": "Gi tilbakemelding med ein gong brukaren har svart"
+        },
+        {
+          "label": "Skil mellom store og små bokstavar",
+          "description": "Syrgjer for at svaret til brukaren må være nøyaktig det same som i oppgåva."
+        },
+        {
+          "label": "Krev at alle felt er besvart før fasit gis",
+          "description": "Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll inn\"."
+        },
+        {
+          "label": "Godta mindre stavefeil",
+          "description": "Viss denne er aktivert vil eit svar også telja som rett med mindre stavefeil (3-9 teikn: 1 stavefeil, meir enn 9 teikn: 2 stavefeil). Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll inn\"."
+        },
+        {
+          "label": "Vel tilfeldige ord"
+        },
+        {
+          "label": "Vis tips"
+        },
+        {
+          "label": "Svarmodus",
+          "options": [
+            { "label": "Fyll inn" },
+            { "label": "Dra tekst" }
+          ]
+        },
+        {
+          "label": "Aktiver \"Bytt svarmodus\"-knapp",
+          "description": "Tillat sluttbrukaren å byta mellom modusane \"Fyll inn\" og \"Dra tekst\"."
+        },
+        {
+          "label": "Aktiver \"Bytt ord\"-knappen",
+          "description": "La sluttbrukaren veksla mellom kjelde- og målord."
+        },
+        {
+          "label": "Talet på ord",
+          "description": "Definerer kor mange ord som vil vera synlege kvar gong. Viss 0 er sette, vil alle orda visast."
+        }
+      ]
+    }
+  ]
+}

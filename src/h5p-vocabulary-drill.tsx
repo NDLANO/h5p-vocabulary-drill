@@ -7,7 +7,7 @@ import type {
 import { H5PContentType, registerContentType } from 'h5p-utils';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { ContentIdContext } from 'use-h5p';
+import { ContentIdContext, L10nContext } from 'use-h5p';
 import { VocabularyDrill } from './components/VocabularyDrill/VocabularyDrill';
 import './index.scss';
 import { Params } from './types/types';
@@ -27,23 +27,25 @@ class VocabularyDrillContentType
       );
     }
 
-    // TODO: Translate
-    const title = this.extras?.metadata.title ?? 'Vocabulary drill';
-    const { contentId } = this;
+    const title = this.extras?.metadata.title ?? '';
+    const { contentId, params } = this;
+    const { l10n } = params;
 
     const root = createRoot(containerElement);
     root.render(
       <React.StrictMode>
-        <ContentIdContext.Provider value={contentId}>
-          <VocabularyDrill
-            title={title}
-            context={this}
-            onChangeContentType={(contentType) => {
-              this.activeContentType = contentType;
-              this.resize();
-            }}
-          />
-        </ContentIdContext.Provider>
+        <L10nContext.Provider value={l10n}>
+          <ContentIdContext.Provider value={contentId}>
+            <VocabularyDrill
+              title={title}
+              context={this}
+              onChangeContentType={(contentType) => {
+                this.activeContentType = contentType;
+                this.resize();
+              }}
+            />
+          </ContentIdContext.Provider>
+        </L10nContext.Provider>
       </React.StrictMode>,
     );
 

@@ -12,9 +12,9 @@ declare const json: [
     "description": "Choose the language of the source words.",
     "type": "select",
     "options": [
-      { "value": "de", "label": "German" },
       { "value": "en", "label": "English" },
       { "value": "fr", "label": "French" },
+      { "value": "de", "label": "German" },
       { "value": "nb", "label": "Norwegian bokmål" },
       { "value": "nn", "label": "Norwegian nynorsk" },
       { "value": "es", "label": "Spanish" }
@@ -27,9 +27,9 @@ declare const json: [
     "description": "Choose the language of the target words.",
     "type": "select",
     "options": [
-      { "value": "de", "label": "German" },
       { "value": "en", "label": "English" },
       { "value": "fr", "label": "French" },
+      { "value": "de", "label": "German" },
       { "value": "nb", "label": "Norwegian bokmål" },
       { "value": "nn", "label": "Norwegian nynorsk" },
       { "value": "es", "label": "Spanish" }
@@ -112,7 +112,39 @@ declare const json: [
     "label": "Localization",
     "name": "l10n",
     "type": "group",
-    "fields": []
+    "common": true,
+    "fields": [
+      {
+        "label": "No valid words",
+        "name": "noValidWords",
+        "default": "No valid words found. Please check your words and try again.",
+        "type": "text"
+      },
+      {
+        "label": "Assistive technology label for \"Open settings\" button",
+        "name": "openSettingsLabel",
+        "default": "Open settings",
+        "type": "text"
+      },
+      {
+        "label": "Assistive technology label for \"Close settings\" button",
+        "name": "closeSettingsLabel",
+        "default": "Close settings",
+        "type": "text"
+      },
+      {
+        "label": "Answer mode label",
+        "name": "answerModeLabel",
+        "default": "Change answer mode",
+        "type": "text"
+      },
+      {
+        "label": "Language mode label",
+        "name": "languageModeLabel",
+        "default": "Change language mode",
+        "type": "text"
+      }
+    ]
   },
   {
     "name": "behaviour",
@@ -152,6 +184,7 @@ declare const json: [
       },
       {
         "label": "Require all fields to be answered before the solution can be viewed",
+        "description": "This option is only valid if the answer mode is set to \"Fill in\".",
         "importance": "low",
         "name": "showSolutionsRequiresInput",
         "type": "boolean",
@@ -162,7 +195,7 @@ declare const json: [
         "type": "boolean",
         "label": "Accept minor spelling errors",
         "importance": "low",
-        "description": "If activated, an answer will also count as correct with minor spelling errors (3-9 characters: 1 spelling error, more than 9 characters: 2 spelling errors). This option is only valid if the answer mode is set to Fill in",
+        "description": "If activated, an answer will also count as correct with minor spelling errors (3-9 characters: 1 spelling error, more than 9 characters: 2 spelling errors). This option is only valid if the answer mode is set to \"Fill in\".",
         "default": false
       },
       {

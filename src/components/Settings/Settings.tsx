@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 
 type SettingsProps = {
   enableAnswerMode: boolean;
@@ -17,13 +18,11 @@ export const Settings: React.FC<SettingsProps> = ({
   handleAnswerModeChange,
   handleLanguageModeChange,
 }) => {
-  const answerModeText = 'Change answer mode'; // TODO: Translate
-  const languageModeText = 'Change language'; // TODO: Translate
+  const { t } = useTranslation();
 
   return (
     <div
-      className={`h5p-vocabulary-drill-settings ${
-        showSettings ? 'visible' : ''
+      className={`h5p-vocabulary-drill-settings ${showSettings ? 'visible' : ''
       }`}
     >
       <div className="h5p-vocabulary-drill-settings-top">
@@ -32,12 +31,12 @@ export const Settings: React.FC<SettingsProps> = ({
       <div className="h5p-vocabulary-drill-settings-container">
         {enableAnswerMode && (
           <button type="button" onClick={handleAnswerModeChange}>
-            <p>{answerModeText}</p>
+            <p>{t('answerModeLabel')}</p>
           </button>
         )}
         {enableLanguageMode && (
           <button type="button" onClick={handleLanguageModeChange}>
-            <p>{languageModeText}</p>
+            <p>{t('languageModeLabel')}</p>
           </button>
         )}
       </div>
