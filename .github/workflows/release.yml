@@ -7,13 +7,22 @@ jobs:
     runs-on: ubuntu-latest
     name: Pack and release
     steps:
-      - uses: actions/checkout@v3
-      - uses: boyum/pack-h5p-action@0.0.6
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Pack library and dependencies into .h5p file
+        uses: boyum/pack-h5p-action@v1.0.0 # https://github.com/boyum/pack-h5p-action
         id: release-h5p
-      - uses: "marvinpinto/action-automatic-releases@latest" # https://github.com/marvinpinto/actions/tree/master/packages/automatic-releases
-        if: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Check if library is updated
+        uses: boyum/is-h5p-library-updated-action@v1.1 # https://github.com/boyum/is-h5p-library-updated-action
+        id: h5p-version-check
+
+      - name: Release # (only if library is updated)
+        uses: 'marvinpinto/action-automatic-releases@latest' # https://github.com/marvinpinto/actions/tree/master/packages/automatic-releases
+        if: ${{ github.ref == 'refs/heads/main' && steps.h5p-version-check.outputs.is-ahead == 'true' }}
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
           automatic_release_tag: ${{steps.release-h5p.outputs.version}}
           prerelease: false
           files: |
