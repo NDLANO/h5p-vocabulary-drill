@@ -134,7 +134,7 @@
           "description": "Allow the end user to switch between modes \"Fill in\" and \"Drag text\"."
         },
         {
-          "label": "Enable \"Switch words\" button",
+          "label": "Enable \"Switch language mode\" button",
           "description": "Allow the end user to switch between source and target words."
         },
         {

@@ -134,7 +134,7 @@
           "description": "Tillat sluttbrukeren å bytte mellom modusene \"Fyll inn\" og \"Dra tekst\"."
         },
         {
-          "label": "Aktiver \"Bytt ord\"-knappen",
+          "label": "Aktiver \"Bytt språkmodus\"-knapp",
           "description": "La sluttbrukeren veksle mellom kilde- og målord."
         },
         {
