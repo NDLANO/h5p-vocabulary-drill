@@ -233,7 +233,7 @@
       {
         "name": "enableSwitchWordsButton",
         "type": "boolean",
-        "label": "Enable \"Switch words\" button",
+        "label": "Enable \"Switch language mode\" button",
         "importance": "low",
         "description": "Allow the end user to switch between source and target words.",
         "default": false
