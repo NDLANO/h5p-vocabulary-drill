@@ -147,6 +147,277 @@ declare const json: [
     ]
   },
   {
+    "label": "Localization for Blanks",
+    "name": "blanksl10n",
+    "importance": "low",
+    "type": "group",
+    "common": true,
+    "fields": [
+      {
+        "label": "Text for \"Show solutions\" button",
+        "name": "showSolutions",
+        "type": "text",
+        "default": "Show solution"
+      },
+      {
+        "label": "Text for \"Retry\" button",
+        "name": "tryAgain",
+        "type": "text",
+        "default": "Retry",
+        "optional": true
+      },
+      {
+        "label": "Text for \"Check\" button",
+        "name": "checkAnswer",
+        "type": "text",
+        "default": "Check",
+        "optional": true
+      },
+      {
+        "label": "Text for \"Submit\" button",
+        "name": "submitAnswer",
+        "type": "text",
+        "default": "Submit",
+        "optional": true
+      },
+      {
+        "label": "Text for \"Not filled out\" message",
+        "name": "notFilledOut",
+        "type": "text",
+        "default": "Please fill in all blanks to view solution",
+        "optional": true
+      },
+      {
+        "label": "Text for \"':ans' is correct\" message",
+        "name": "answerIsCorrect",
+        "type": "text",
+        "default": "':ans' is correct",
+        "optional": true
+      },
+      {
+        "label": "Text for \"':ans' is wrong\" message",
+        "name": "answerIsWrong",
+        "type": "text",
+        "default": "':ans' is wrong",
+        "optional": true
+      },
+      {
+        "label": "Text for \"Answered correctly\" message",
+        "name": "answeredCorrectly",
+        "type": "text",
+        "default": "Answered correctly",
+        "optional": true
+      },
+      {
+        "label": "Text for \"Answered incorrectly\" message",
+        "name": "answeredIncorrectly",
+        "type": "text",
+        "default": "Answered incorrectly",
+        "optional": true
+      },
+      {
+        "label": "Assistive technology label for solution",
+        "name": "solutionLabel",
+        "type": "text",
+        "default": "Correct answer:",
+        "optional": true
+      },
+      {
+        "label": "Assistive technology label for input field",
+        "name": "inputLabel",
+        "type": "text",
+        "description": "Use @num and @total to replace current cloze number and total cloze number",
+        "default": "Blank input @num of @total",
+        "optional": true
+      },
+      {
+        "label": "Assistive technology label for saying an input has a tip tied to it",
+        "name": "inputHasTipLabel",
+        "type": "text",
+        "default": "Tip available",
+        "optional": true
+      },
+      {
+        "label": "Tip icon label",
+        "name": "tipLabel",
+        "type": "text",
+        "default": "Tip",
+        "optional": true
+      },
+      {
+        "name": "scoreBarLabel",
+        "type": "text",
+        "label": "Textual representation of the score bar for those using a readspeaker",
+        "default": "You got :num out of :total points"
+      },
+      {
+        "name": "a11yCheck",
+        "type": "text",
+        "label": "Assistive technology description for \"Check\" button",
+        "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      },
+      {
+        "name": "a11yShowSolution",
+        "type": "text",
+        "label": "Assistive technology description for \"Show Solution\" button",
+        "default": "Show the solution. The task will be marked with its correct solution."
+      },
+      {
+        "name": "a11yRetry",
+        "type": "text",
+        "label": "Assistive technology description for \"Retry\" button",
+        "default": "Retry the task. Reset all responses and start the task over again."
+      },
+      {
+        "name": "a11yCheckingModeHeader",
+        "type": "text",
+        "label": "Assistive technology description for starting task",
+        "default": "Checking mode"
+      }
+    ]
+  },
+  {
+    "label": "Localization for DragText",
+    "name": "dragtextl10n",
+    "importance": "low",
+    "type": "group",
+    "common": true,
+    "fields": [
+      {
+        "label": "Text for \"Check\" button",
+        "importance": "low",
+        "name": "checkAnswer",
+        "type": "text",
+        "default": "Check"
+      },
+      {
+        "label": "Text for \"Submit\" button",
+        "name": "submitAnswer",
+        "type": "text",
+        "default": "Submit"
+      },
+      {
+        "label": "Text for \"Retry\" button",
+        "name": "tryAgain",
+        "type": "text",
+        "default": "Retry"
+      },
+      {
+        "label": "Text for \"Show Solution\" button",
+        "name": "showSolution",
+        "type": "text",
+        "default": "Show solution"
+      },
+      {
+        "label": "Numbered Drop zone label",
+        "name": "dropZoneIndex",
+        "type": "text",
+        "default": "Drop Zone @index.",
+        "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+      },
+      {
+        "label": "Empty Drop Zone label",
+        "name": "empty",
+        "type": "text",
+        "default": "Drop Zone @index is empty.",
+        "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+      },
+      {
+        "label": "Contains Drop Zone label",
+        "name": "contains",
+        "type": "text",
+        "default": "Drop Zone @index contains draggable @draggable.",
+        "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+      },
+      {
+        "label": "Draggable elements label",
+        "name": "ariaDraggableIndex",
+        "type": "text",
+        "default": "@index of @count draggables.",
+        "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+      },
+      {
+        "label": "Label for show tip button",
+        "name": "tipLabel",
+        "type": "text",
+        "default": "Show tip",
+        "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+      },
+      {
+        "name": "correctText",
+        "type": "text",
+        "label": "Readspeaker text for correct answer",
+        "default": "Correct!"
+      },
+      {
+        "name": "incorrectText",
+        "type": "text",
+        "label": "Readspeaker text for incorrect answer",
+        "default": "Incorrect!"
+      },
+      {
+        "name": "resetDropTitle",
+        "type": "text",
+        "label": "Confirmation dialog title that user wants to reset a droppable",
+        "default": "Reset drop"
+      },
+      {
+        "name": "resetDropDescription",
+        "type": "text",
+        "label": "Confirmation dialog description that user wants to reset a droppable",
+        "default": "Are you sure you want to reset this drop zone?"
+      },
+      {
+        "name": "grabbed",
+        "type": "text",
+        "label": "Label used for accessibility, where the read speaker indicates that dragging is initiated",
+        "default": "Draggable is grabbed."
+      },
+      {
+        "name": "cancelledDragging",
+        "type": "text",
+        "label": "Label used for accessibility, where the read speaker indicates that dragging is canceled",
+        "default": "Cancelled dragging."
+      },
+      {
+        "name": "correctAnswer",
+        "type": "text",
+        "label": "Label used for accessibility, where the read speaker indicates that a text is the correct answer",
+        "default": "Correct answer:"
+      },
+      {
+        "name": "feedbackHeader",
+        "type": "text",
+        "label": "Header for panel containing feedback for correct/incorrect answers",
+        "default": "Feedback"
+      },
+      {
+        "name": "scoreBarLabel",
+        "type": "text",
+        "label": "Textual representation of the score bar for those using a readspeaker",
+        "default": "You got :num out of :total points"
+      },
+      {
+        "name": "a11yCheck",
+        "type": "text",
+        "label": "Assistive technology label for \"Check\" button",
+        "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+      },
+      {
+        "name": "a11yShowSolution",
+        "type": "text",
+        "label": "Assistive technology label for \"Show Solution\" button",
+        "default": "Show the solution. The task will be marked with its correct solution."
+      },
+      {
+        "name": "a11yRetry",
+        "type": "text",
+        "label": "Assistive technology label for \"Retry\" button",
+        "default": "Retry the task. Reset all responses and start the task over again."
+      }
+    ]
+  },
+  {
     "name": "behaviour",
     "type": "group",
     "label": "Behavioural settings",
