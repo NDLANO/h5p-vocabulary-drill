@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/NDLANO/h5p-vocabulary-drill#readme",
   "dependencies": {
-    "h5p-utils": "^3.1.0",
+    "h5p-utils": "^3.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "use-h5p": "^1.2.1"
