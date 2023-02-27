@@ -18,6 +18,10 @@
     text-align: center;
   }
 
+  &-next {
+    margin: 0 0.5em 1em 1em; 
+  }
+
   .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);

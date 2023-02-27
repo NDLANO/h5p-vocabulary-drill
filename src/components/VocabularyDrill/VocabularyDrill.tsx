@@ -74,94 +74,100 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     }
   };
 
-  useEffect(() => {
-    (() => {
-      const wrapper = wrapperRef.current;
+  const createRunnable = (): void => {
+    const wrapper = wrapperRef.current;
 
-      if (!wrapper) {
+    if (!wrapper) {
+      return;
+    }
+
+    const addRunnable = () => {
+      const parsedWords = parseWords(
+        words,
+        randomize,
+        showTips,
+        numberOfWordsToShow,
+        activeAnswerMode,
+        activeLanguageMode,
+      );
+
+      if (parsedWords.length === 0) {
+        setHasWords(false);
         return;
       }
 
-      const addRunnable = () => {
-        const parsedWords = parseWords(
-          words,
-          randomize,
-          showTips,
-          numberOfWordsToShow,
-          activeAnswerMode,
-          activeLanguageMode,
-        );
+      let activeContentType: IH5PQuestionType;
+      switch (activeAnswerMode) {
+        case AnswerModeType.DragText: {
+          const params = {
+            taskDescription: description,
+            textField: parsedWords,
+            behaviour: {
+              instantFeedback: autoCheck,
+              ...behaviour,
+            },
+            overallFeedback,
+            ...dragtextl10n,
+          };
 
-        if (parsedWords.length === 0) {
-          setHasWords(false);
-          return;
+          activeContentType = H5P.newRunnable(
+            {
+              library: libraryToString(dragTextLibraryInfo),
+              params,
+            },
+            contentId,
+            H5P.jQuery(wrapper),
+          ) as unknown as IH5PQuestionType;
+
+          break;
         }
 
-        let activeContentType: IH5PQuestionType;
-        switch (activeAnswerMode) {
-          case AnswerModeType.DragText: {
-            const params = {
-              taskDescription: description,
-              textField: parsedWords,
-              behaviour: {
-                instantFeedback: autoCheck,
-                ...behaviour,
-              },
-              overallFeedback,
-              ...dragtextl10n,
-            };
+        case AnswerModeType.FillIn: {
+          const params = {
+            text: description,
+            questions: [parsedWords],
+            behaviour,
+            overallFeedback,
+            ...blanksl10n,
+          };
 
-            activeContentType = H5P.newRunnable(
-              {
-                library: libraryToString(dragTextLibraryInfo),
-                params,
-              },
-              contentId,
-              H5P.jQuery(wrapper),
-            ) as unknown as IH5PQuestionType;
+          activeContentType = H5P.newRunnable(
+            {
+              library: libraryToString(fillInTheBlanksLibraryInfo),
+              params,
+            },
+            contentId,
+            H5P.jQuery(wrapper),
+          ) as unknown as IH5PQuestionType;
 
-            break;
-          }
-
-          case AnswerModeType.FillIn: {
-            const params = {
-              text: description,
-              questions: [parsedWords],
-              behaviour,
-              overallFeedback,
-              ...blanksl10n,
-            };
-
-            activeContentType = H5P.newRunnable(
-              {
-                library: libraryToString(fillInTheBlanksLibraryInfo),
-                params,
-              },
-              contentId,
-              H5P.jQuery(wrapper),
-            ) as unknown as IH5PQuestionType;
-
-            break;
-          }
-
-          default: {
-            throw new Error('H5P.VocabularyDrill: Invalid answer mode');
-          }
+          break;
         }
 
-        onChangeContentType(activeContentType);
-      };
-
-      const removeRunnable = (): void => {
-        if (wrapper) {
-          wrapper.replaceChildren();
-          wrapper.className = '';
+        default: {
+          throw new Error('H5P.VocabularyDrill: Invalid answer mode');
         }
-      };
+      }
 
-      removeRunnable();
-      addRunnable();
-    })();
+      onChangeContentType(activeContentType);
+    };
+
+    const removeRunnable = (): void => {
+      if (wrapper) {
+        wrapper.replaceChildren();
+        wrapper.className = '';
+      }
+    };
+
+    removeRunnable();
+    addRunnable();
+  };
+
+  const handleNext = (): void => {
+    createRunnable();
+  };
+
+  useEffect(() => {
+    createRunnable();
   }, [activeAnswerMode, activeLanguageMode]);
 
   return hasWords ? (
@@ -175,6 +181,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         onLanguageModeChange={handleLanguageModeChange}
       />
       <div ref={wrapperRef} />
+      <div className="h5p-vocabulary-drill-next">
+        <button type="button" className="h5p-joubelui-button" onClick={handleNext}>Next</button>
+      </div>
     </div>
   ) : (
     <div className="h5p-vd-empty-state">
