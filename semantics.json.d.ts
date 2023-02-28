@@ -142,7 +142,7 @@ declare const json: [
       {
         "label": "Language mode label",
         "name": "languageModeLabel",
-        "default": "Change language mode",
+        "default": "Swap language",
         "type": "text"
       }
     ]
