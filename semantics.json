@@ -112,6 +112,7 @@
     "label": "Localization",
     "name": "l10n",
     "type": "group",
+    "importance": "low",
     "common": true,
     "fields": [
       {
@@ -285,7 +286,6 @@
     "fields": [
       {
         "label": "Text for \"Check\" button",
-        "importance": "low",
         "name": "checkAnswer",
         "type": "text",
         "default": "Check"
