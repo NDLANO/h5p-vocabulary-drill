@@ -23,7 +23,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 }) => {
   const { t } = useTranslation();
   const { params } = context;
-  const { behaviour, description, words, overallFeedback, blanksl10n, dragtextl10n } = params;
+  const { behaviour, description, words, overallFeedback, blanksl10n, dragtextl10n, confirmCheck, confirmRetry } = params;
   const {
     autoCheck,
     randomize,
@@ -119,27 +119,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
                 ...behaviour,
               },
               overallFeedback,
-              checkAnswer: dragtextl10n.checkAnswer,
-              submitAnswer: dragtextl10n.submitAnswer,
-              tryAgain: dragtextl10n.tryAgain,
-              showSolution: dragtextl10n.showSolution,
-              dropZoneIndex: dragtextl10n.dropZoneIndex,
-              empty: dragtextl10n.empty,
-              contains: dragtextl10n.contains,
-              ariaDraggableIndex: dragtextl10n.ariaDraggableIndex,
-              tipLabel: dragtextl10n.tipLabel,
-              correctText: dragtextl10n.correctText,
-              incorrectText: dragtextl10n.incorrectText,
-              resetDropTitle: dragtextl10n.resetDropTitle,
-              resetDropDescription: dragtextl10n.resetDropDescription,
-              grabbed: dragtextl10n.grabbed,
-              cancelledDragging: dragtextl10n.cancelledDragging,
-              correctAnswer: dragtextl10n.correctAnswer,
-              feedbackHeader: dragtextl10n.feedbackHeader,
-              scoreBarLabel: dragtextl10n.scoreBarLabel,
-              a11yCheck: dragtextl10n.a11yCheck,
-              a11yShowSolution: dragtextl10n.a11yShowSolution,
-              a11yRetry: dragtextl10n.a11yRetry,
+              ...dragtextl10n,
             };
 
             activeContentType = H5P.newRunnable(
@@ -160,24 +140,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               questions: [parsedWords],
               behaviour,
               overallFeedback,
-              showSolutions: blanksl10n.showSolutions,
-              tryAgain: blanksl10n.tryAgain,
-              checkAnswer: blanksl10n.checkAnswer,
-              submitAnswer: blanksl10n.submitAnswer,
-              notFilledOut: blanksl10n.notFilledOut,
-              answerIsCorrect: blanksl10n.answerIsCorrect,
-              answerIsWrong: blanksl10n.answerIsWrong,
-              answeredCorrectly: blanksl10n.answeredCorrectly,
-              answeredIncorrectly: blanksl10n.answeredIncorrectly,
-              solutionLabel: blanksl10n.solutionLabel,
-              inputLabel: blanksl10n.inputLabel,
-              inputHasTipLabel: blanksl10n.inputHasTipLabel,
-              tipLabel: blanksl10n.tipLabel,
-              scoreBarLabel: blanksl10n.scoreBarLabel,
-              a11yCheck: blanksl10n.a11yCheck,
-              a11yShowSolution: blanksl10n.a11yShowSolution,
-              a11lyRetry: blanksl10n.a11yRetry,
-              a11yCheckingModeHeader: blanksl10n.a11yCheckingModeHeader,
+              confirmCheck,
+              confirmRetry,
+              ...blanksl10n,
             };
 
             activeContentType = H5P.newRunnable(

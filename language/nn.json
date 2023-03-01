@@ -314,6 +314,48 @@
           "description": "Definerer kor mange ord som vil vera synlege kvar gong. Viss 0 er sette, vil alle orda visast."
         }
       ]
-    }
+    },
+    {
+      "label": "Bruker-stadfesting for fasit-visning",
+      "fields": [
+        {
+          "label": "Tittel",
+          "default": "Ferdig ?"
+        },
+        {
+          "label": "Tekst",
+          "default": "Er du sikker på at du er ferdig?"
+        },
+        {
+          "label": "Avbryt etikett",
+          "default": "Avbryt"
+        },
+        {
+          "label": "Stadfesting etikett",
+          "default": "Stadfest"
+        }
+      ]
+    },
+    {
+      "label": "Prøv igjen brukar-stadfesting",
+      "fields": [
+        {
+          "label": "Tittel",
+          "default": "Prøv igjen ?"
+        },
+        {
+          "label": "Tekst",
+          "default": "Er du sikker på at du vil prøva igjen?"
+        },
+        {
+          "label": "Avbryt etikett",
+          "default": "Avbryt"
+        },
+        {
+          "label": "Stadfesting etikett",
+          "default": "Stadfest"
+        }
+      ]
+    },
   ]
 }
