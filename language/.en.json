@@ -74,14 +74,6 @@
           "default": "No valid words found. Please check your words and try again."
         },
         {
-          "label": "Assistive technology label for \"Open settings\" button",
-          "default": "Open settings"
-        },
-        {
-          "label": "Assistive technology label for \"Close settings\" button",
-          "default": "Close settings"
-        },
-        {
           "label": "Answer mode label",
           "default": "Change answer mode"
         },

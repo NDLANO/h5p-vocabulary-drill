@@ -122,18 +122,6 @@ declare const json: [
         "type": "text"
       },
       {
-        "label": "Assistive technology label for \"Open settings\" button",
-        "name": "openSettingsLabel",
-        "default": "Open settings",
-        "type": "text"
-      },
-      {
-        "label": "Assistive technology label for \"Close settings\" button",
-        "name": "closeSettingsLabel",
-        "default": "Close settings",
-        "type": "text"
-      },
-      {
         "label": "Answer mode label",
         "name": "answerModeLabel",
         "default": "Change answer mode",

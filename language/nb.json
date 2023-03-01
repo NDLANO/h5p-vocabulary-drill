@@ -74,14 +74,6 @@
           "default": "Ingen gyldige ord funnet. Kontroller ordene dine og prøv igjen."
         },
         {
-          "label": "Skjermlesertekst for \"Åpne innstillinger\" knapp",
-          "default": "Åpne innstillinger"
-        },
-        {
-          "label": "Skjermlesertekst for \"Lukk innstillinger\" knapp",
-          "default": "Lukk innstillinger"
-        },
-        {
           "label": "Etikett for svarmodus",
           "default": "Endre svarmodus"
         },
