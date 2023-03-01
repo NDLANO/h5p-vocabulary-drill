@@ -23,7 +23,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 }) => {
   const { t } = useTranslation();
   const { params } = context;
-  const { behaviour, description, words, overallFeedback, blanksl10n, dragtextl10n, confirmCheck, confirmRetry } = params;
+  const { behaviour, description, words, overallFeedback, blanksl10n, dragtextl10n } = params;
   const {
     autoCheck,
     randomize,
@@ -140,8 +140,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               questions: [parsedWords],
               behaviour,
               overallFeedback,
-              confirmCheck,
-              confirmRetry,
               ...blanksl10n,
             };
 
