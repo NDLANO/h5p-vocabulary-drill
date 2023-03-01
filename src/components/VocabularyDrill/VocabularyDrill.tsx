@@ -23,7 +23,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 }) => {
   const { t } = useTranslation();
   const { params } = context;
-  const { behaviour, description, words, overallFeedback } = params;
+  const { behaviour, description, words, overallFeedback, blanksl10n, dragtextl10n } = params;
   const {
     autoCheck,
     randomize,
@@ -119,6 +119,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
                 ...behaviour,
               },
               overallFeedback,
+              ...dragtextl10n,
             };
 
             activeContentType = H5P.newRunnable(
@@ -139,6 +140,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               questions: [parsedWords],
               behaviour,
               overallFeedback,
+              ...blanksl10n,
             };
 
             activeContentType = H5P.newRunnable(
