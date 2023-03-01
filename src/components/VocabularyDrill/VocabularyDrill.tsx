@@ -35,7 +35,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const contentId = useContentId();
 
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [showSettings, setShowSettings] = useState(false);
   const [activeAnswerMode, setActiveAnswerMode] = useState(initialAnswerMode);
   const [activeLanguageMode, setActiveLanguageMode] = useState(
     LanguageModeType.Target,
@@ -57,10 +56,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     );
   }
 
-  const toggleShowSettings = (): void => {
-    setShowSettings(!showSettings);
-  };
-
   const handleAnswerModeChange = (): void => {
     if (activeAnswerMode === AnswerModeType.DragText) {
       setActiveAnswerMode(AnswerModeType.FillIn);
@@ -68,7 +63,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     else {
       setActiveAnswerMode(AnswerModeType.DragText);
     }
-    toggleShowSettings();
   };
 
   const handleLanguageModeChange = (): void => {
@@ -78,7 +72,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     else {
       setActiveLanguageMode(LanguageModeType.Target);
     }
-    toggleShowSettings();
   };
 
   useEffect(() => {
