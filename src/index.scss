@@ -17,6 +17,16 @@
     padding: 2rem 1rem;
     text-align: center;
   }
+
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
 }
 
 .h5p-vocabulary-drill-toolbar {
@@ -98,10 +108,6 @@
     display: flex;
     gap: 1em;
     position: relative;
-
-    label {
-      display: none;
-    }
 
     &::after {
       color: #1a73d9;

@@ -122,6 +122,18 @@
         "type": "text"
       },
       {
+        "label": "Label for \"Fill in\" answer mode",
+        "name": "fillInLabel",
+        "default": "Fill in",
+        "type": "text"
+      },
+      {
+        "label": "Label for \"Drag text\" answer mode",
+        "name": "dragTextLabel",
+        "default": "Drag text",
+        "type": "text"
+      },
+      {
         "label": "Answer mode label",
         "name": "answerModeLabel",
         "default": "Change answer mode",

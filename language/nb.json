@@ -74,6 +74,14 @@
           "default": "Ingen gyldige ord funnet. Kontroller ordene dine og prøv igjen."
         },
         {
+          "label": "Etikett for \"Fyll inn\" svarmodus",
+          "default": "Fyll in"
+        },
+        {
+          "label": "Etikett for \"Dra tekst\" svarmodus",
+          "default": "Dra tekst"
+        },
+        {
           "label": "Etikett for svarmodus",
           "default": "Endre svarmodus"
         },
