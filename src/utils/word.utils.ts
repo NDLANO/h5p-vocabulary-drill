@@ -48,7 +48,10 @@ const getNumberOfWords = (
   return wordsList.concat().slice(0, numberOfWordsToGet);
 };
 
-// createFillInString creates a word string for the H5P.Blanks content type.
+/**
+ * Creates a word string for the H5P.Blanks content type. 
+ * H5P.Blanks expects the input as an HTML string on the format `<from> *<to>*`.
+ */
 const createFillInString = (source: string, target: string): string => {
   return `<p>${source} *${target}*</p>`;
 };
