@@ -48,14 +48,18 @@ const getNumberOfWords = (
   return wordsList.concat().slice(0, numberOfWordsToGet);
 };
 
+// createFillInString creates a word string for the H5P.Blanks content type.
 const createFillInString = (source: string, target: string): string => {
   return `<p>${source} *${target}*</p>`;
 };
 
+// createDragTextString creates a word string for the H5P.DragText content type.
 const createDragTextString = (source: string, target: string): string => {
   return `${source} *${target}*\n`;
 };
 
+// createSourceAndTargetString filters the source and target word and creates 
+// a word string for the chosen H5P content type (defined by answerMode).
 const createSourceAndTargetString = (
   source: string,
   target: string,
@@ -75,6 +79,9 @@ const createSourceAndTargetString = (
   return createDragTextString(filteredSource, filteredTarget);
 };
 
+// parseSourceAndTarget takes in a list of words, separates the source and target,
+// and based on the user's settings returns the words as a string that can be 
+// used by the chosen H5P content type (defined by answerMode).
 const parseSourceAndTarget = (
   wordsList: string[],
   showTips: boolean,
@@ -111,6 +118,8 @@ const parseSourceAndTarget = (
   return newWordsList;
 };
 
+// parseWords takes in a string of words, validates and parses the words based 
+// on the user's settings, and returns the parsed words as a string.
 export const parseWords = (
   words: string | undefined,
   randomize: boolean,
