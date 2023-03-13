@@ -171,8 +171,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         activeAnswerMode={activeAnswerMode}
         enableAnswerMode={enableSwitchAnswerModeButton}
         enableLanguageMode={enableSwitchWordsButton}
-        handleAnswerModeChange={handleAnswerModeChange}
-        handleLanguageModeChange={handleLanguageModeChange}
+        onAnswerModeChange={handleAnswerModeChange}
+        onLanguageModeChange={handleLanguageModeChange}
       />
       <div ref={wrapperRef} />
     </div>

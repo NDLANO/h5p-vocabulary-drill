@@ -7,8 +7,8 @@ type ToolbarProps = {
   activeAnswerMode: AnswerModeType;
   enableAnswerMode: boolean;
   enableLanguageMode: boolean;
-  handleAnswerModeChange: () => void;
-  handleLanguageModeChange: () => void;
+  onAnswerModeChange: () => void;
+  onLanguageModeChange: () => void;
 };
 
 export const Toolbar: React.FC<ToolbarProps> = ({
@@ -16,8 +16,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   activeAnswerMode,
   enableAnswerMode,
   enableLanguageMode,
-  handleAnswerModeChange,
-  handleLanguageModeChange,
+  onAnswerModeChange,
+  onLanguageModeChange,
 }) => {
   const { t } = useTranslation();
 
@@ -39,7 +39,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
               <select
                 id="answerMode"
                 name="answerMode"
-                onChange={handleAnswerModeChange}
+                onChange={onAnswerModeChange}
               >
                 <option
                   value={AnswerModeType.FillIn}
@@ -57,7 +57,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             </div>
           )}
           {enableLanguageMode && (
-            <button type="button" className="h5p-vocabulary-drill-language-mode" onClick={handleLanguageModeChange}>
+            <button type="button" className="h5p-vocabulary-drill-language-mode" onClick={onLanguageModeChange}>
               {t('languageModeLabel')}
             </button>
           )}
