@@ -7,7 +7,6 @@ import { AnswerModeType, LanguageModeType, Params } from '../../types/types';
 import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
 import { parseWords } from '../../utils/word.utils';
-import { Settings } from '../Settings/Settings';
 import { Toolbar } from '../Toolbar/Toolbar';
 
 type VocabularyDrillProps = {
@@ -36,7 +35,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const contentId = useContentId();
 
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [showSettings, setShowSettings] = useState(false);
   const [activeAnswerMode, setActiveAnswerMode] = useState(initialAnswerMode);
   const [activeLanguageMode, setActiveLanguageMode] = useState(
     LanguageModeType.Target,
@@ -45,9 +43,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
   const fillInTheBlanksLibraryInfo = findLibraryInfo('H5P.Blanks');
-
-  const enableSettings =
-    enableSwitchAnswerModeButton || enableSwitchWordsButton;
 
   if (isNil(dragTextLibraryInfo)) {
     throw new Error(
@@ -61,10 +56,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     );
   }
 
-  const toggleShowSettings = (): void => {
-    setShowSettings(!showSettings);
-  };
-
   const handleAnswerModeChange = (): void => {
     if (activeAnswerMode === AnswerModeType.DragText) {
       setActiveAnswerMode(AnswerModeType.FillIn);
@@ -72,7 +63,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     else {
       setActiveAnswerMode(AnswerModeType.DragText);
     }
-    toggleShowSettings();
   };
 
   const handleLanguageModeChange = (): void => {
@@ -82,7 +72,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     else {
       setActiveLanguageMode(LanguageModeType.Target);
     }
-    toggleShowSettings();
   };
 
   useEffect(() => {
@@ -177,21 +166,13 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
   return hasWords ? (
     <div>
-      {enableSettings && (
-        <Settings
-          showSettings={showSettings}
-          toggleShowSettings={toggleShowSettings}
-          enableAnswerMode={enableSwitchAnswerModeButton}
-          enableLanguageMode={enableSwitchWordsButton}
-          handleAnswerModeChange={handleAnswerModeChange}
-          handleLanguageModeChange={handleLanguageModeChange}
-        />
-      )}
       <Toolbar
         title={title}
-        enableSettings={enableSettings}
-        showSettings={showSettings}
-        toggleShowSettings={toggleShowSettings}
+        activeAnswerMode={activeAnswerMode}
+        enableAnswerMode={enableSwitchAnswerModeButton}
+        enableLanguageMode={enableSwitchWordsButton}
+        onAnswerModeChange={handleAnswerModeChange}
+        onLanguageModeChange={handleLanguageModeChange}
       />
       <div ref={wrapperRef} />
     </div>

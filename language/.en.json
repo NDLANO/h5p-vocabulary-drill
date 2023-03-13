@@ -74,12 +74,12 @@
           "default": "No valid words found. Please check your words and try again."
         },
         {
-          "label": "Assistive technology label for \"Open settings\" button",
-          "default": "Open settings"
+          "label": "Label for \"Fill in\" answer mode",
+          "default": "Fill in"
         },
         {
-          "label": "Assistive technology label for \"Close settings\" button",
-          "default": "Close settings"
+          "label": "Label for \"Drag text\" answer mode",
+          "default": "Drag text"
         },
         {
           "label": "Answer mode label",
@@ -87,7 +87,7 @@
         },
         {
           "label": "Language mode label",
-          "default": "Change language mode"
+          "default": "Swap languages"
         }
       ]
     },

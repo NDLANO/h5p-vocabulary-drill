@@ -1,129 +1,137 @@
 .h5p-vocabulary-drill {
-  color: #000000;
+  background-color: #fff;
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   line-height: 1.5em;
 
+  .h5p-question {
+    background-color: transparent;
+  }
+
   .h5p-question-introduction {
-    border-bottom: 1px solid #eee;
     margin: 0;
-    padding: 0.8em 1em 1em;
+    padding: 1em 1em 0.5em;
   }
 
   .h5p-vd-empty-state {
     padding: 2rem 1rem;
     text-align: center;
   }
-}
 
-.h5p-vocabulary-drill-settings {
-  display: none;
-
-  &.visible {
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 6; // TODO: make sure this is correct
-  }
-
-  p {
-    font-family: sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2em;
-    margin: 0;
-  }
-
-  &-top {
-    display: flex;
-    justify-content: flex-end;
-    padding: 16px;
-
-    button {
-      background-color: #f5f7fc;
-      border: none;
-      color: #3068be;
-      cursor: pointer;
-      font-family: Arial, sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      padding: 0 7px;
-
-      &:before {
-        font-family: "H5PFontAwesome4";
-        content: "\f00d";
-        line-height: 1;
-      }
-
-      &:hover,
-      &:focus {
-        background-color: #eaeff8;
-      }
-    }
-  }
-
-  &-container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    button {
-      background-color: #f5f7fc;
-      border: none;
-      color: #3068be;
-      cursor: pointer;
-      font-family: Arial, sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      padding: 8px 16px;
-
-      &:hover,
-      &:focus {
-        background-color: #eaeff8;
-      }
-    }
+    white-space: nowrap;
+    width: 1px;
   }
 }
 
 .h5p-vocabulary-drill-toolbar {
   align-items: center;
+  background-color: #fff;
+  box-shadow: 10px 10px 30px rgb(166 166 166 / 20%);
   display: flex;
-  padding: 1em 1em 0;
+  flex-wrap: wrap;
+  gap: 1em;
   justify-content: space-between;
-
+  margin-bottom: 1em;
+  min-height: 2.7em;
+  padding: 0.5em 0.5em 0.5em 1em;
+  position: relative;
+  
   p {
+    color: #4c4452;
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 1.15em;
     font-weight: 700;
     line-height: 1.2em;
     margin: 0;
   }
 
+  &-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+
   button {
     background-color: #f5f7fc;
     border: none;
-    color: #3068be;
+    color: #1a73d9;
     cursor: pointer;
-    font-family: Arial, sans-serif;
-    font-size: 28px;
+    display: inline-block;
+    font-size: 1em;
     font-weight: 700;
-    padding: 0 4px;
-
-    &:before {
-      font-family: "H5PFontIcons";
-      content: "\e916";
-      line-height: 1;
-    }
+    line-height: 1.2;
+    padding: 0.75em 1.25em;
+    white-space: nowrap;
 
     &:hover,
     &:focus {
       background-color: #eaeff8;
+    }
+
+    &.h5p-vocabulary-drill-language-mode:before {
+      content: "\F021";
+      font-family: 'H5PFontAwesome4';
+      padding-right: 0.5em;
+    }
+  }
+
+  select {
+    appearance: none; // Remove default arrow
+    background-color: #f5f7fc;
+    border: none;
+    color: #1a73d9;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 0.75em 2.75em 0.75em 2.7em;
+
+    &:hover,
+    &:focus {
+      background-color: #eaeff8;
+    }
+  }
+
+  &-select {
+    align-items: center;
+    display: flex;
+    gap: 1em;
+    position: relative;
+
+    &::after {
+      color: #1a73d9;
+      content: "\f107";
+      font-family: "H5PFontAwesome4";
+      font-size: 1.2em;
+      pointer-events: none;
+      position: absolute;
+      right: 1em;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    &::before {
+      color: #1a73d9;
+      content: "\F040";
+      font-family: 'H5PFontAwesome4';
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      left: 1.25em;
+    }
+
+    &.h5p-vocabulary-drill-fill-in::before {
+      content: "\F040";
+    }
+
+    &.h5p-vocabulary-drill-drag-text::before {
+      content: "\F047";
     }
   }
 }

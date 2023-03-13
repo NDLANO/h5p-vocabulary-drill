@@ -122,15 +122,15 @@ declare const json: [
         "type": "text"
       },
       {
-        "label": "Assistive technology label for \"Open settings\" button",
-        "name": "openSettingsLabel",
-        "default": "Open settings",
+        "label": "Label for \"Fill in\" answer mode",
+        "name": "fillInLabel",
+        "default": "Fill in",
         "type": "text"
       },
       {
-        "label": "Assistive technology label for \"Close settings\" button",
-        "name": "closeSettingsLabel",
-        "default": "Close settings",
+        "label": "Label for \"Drag text\" answer mode",
+        "name": "dragTextLabel",
+        "default": "Drag text",
         "type": "text"
       },
       {
@@ -142,7 +142,7 @@ declare const json: [
       {
         "label": "Language mode label",
         "name": "languageModeLabel",
-        "default": "Change language mode",
+        "default": "Swap languages",
         "type": "text"
       }
     ]

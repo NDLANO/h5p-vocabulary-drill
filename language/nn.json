@@ -74,12 +74,12 @@
           "default": "Ingen gyldige ord funne. Kontroller orda dine og prøv igjen."
         },
         {
-          "label": "Skjermlesartekst for \"Opne innstillingar\" knapp",
-          "default": "Opne innstillingar"
+          "label": "Etikett for \"Fyll inn\" svarmodus",
+          "default": "Fyll inn"
         },
         {
-          "label": "Skjermlesartekst for \"Lukk innstillingar\" knapp",
-          "default": "Lukk innstillingar"
+          "label": "Etikett for \"Dra tekst\" svarmodus",
+          "default": "Dra tekst"
         },
         {
           "label": "Etikett for svarmodus",
