@@ -87,7 +87,7 @@
         },
         {
           "label": "Language mode label",
-          "default": "Swap language"
+          "default": "Swap languages"
         }
       ]
     },

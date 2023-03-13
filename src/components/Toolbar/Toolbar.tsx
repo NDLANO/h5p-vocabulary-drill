@@ -23,11 +23,9 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 
   const enableTools = enableAnswerMode || enableLanguageMode;
 
-  const getSelectedAnswerMode = (): string => {
-    if (activeAnswerMode === AnswerModeType.FillIn) {
-      return 'h5p-vocabulary-drill-fill-in';
-    }
-    return 'h5p-vocabulary-drill-drag-text';
+  const classes = {
+    [AnswerModeType.FillIn]: 'h5p-vocabulary-drill-fill-in',
+    [AnswerModeType.DragText]: 'h5p-vocabulary-drill-drag-text',
   };
 
   return (
@@ -36,7 +34,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
       {enableTools &&
         <div className="h5p-vocabulary-drill-toolbar-tools">
           {enableAnswerMode && (
-            <div className={`h5p-vocabulary-drill-toolbar-select ${getSelectedAnswerMode()}`}>
+            <div className={`h5p-vocabulary-drill-toolbar-select ${classes[activeAnswerMode]}`}>
               <label className="visually-hidden" htmlFor="answerMode">{t('answerModeLabel')}</label>
               <select
                 id="answerMode"
