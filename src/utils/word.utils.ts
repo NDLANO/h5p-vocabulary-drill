@@ -48,14 +48,29 @@ const getNumberOfWords = (
   return wordsList.concat().slice(0, numberOfWordsToGet);
 };
 
+/**
+ * Creates a word string for the H5P.Blanks content type. 
+ * H5P.Blanks expects the input as an HTML string on the format `source *target*`.
+ * In order to show the word on a seperate line, we wrap the string in a <p> tag.
+ */
 const createFillInString = (source: string, target: string): string => {
   return `<p>${source} *${target}*</p>`;
 };
 
+/**
+ * Creates a word string for the H5P.DragText content type.
+ * H5P.DragText expects the input as a string on the format `source *target*`.
+ * In order to show the word on a seperate line, we add a newline character.
+ */
 const createDragTextString = (source: string, target: string): string => {
   return `${source} *${target}*\n`;
 };
 
+/**
+ * Filters the source and target word and creates a word string for the chosen 
+ * H5P content type (defined by answerMode) using createFillInString or
+ * createDragTextString.
+ */
 const createSourceAndTargetString = (
   source: string,
   target: string,
@@ -75,6 +90,11 @@ const createSourceAndTargetString = (
   return createDragTextString(filteredSource, filteredTarget);
 };
 
+/**
+ * Separates the source and target from a list of words, and based on the 
+ * user's settings returns the words as a string that can be used by the 
+ * chosen H5P content type (defined by answerMode).
+ */
 const parseSourceAndTarget = (
   wordsList: string[],
   showTips: boolean,
@@ -111,6 +131,10 @@ const parseSourceAndTarget = (
   return newWordsList;
 };
 
+/** 
+ * Takes in a string of words, validates and parses the words based on 
+ * the user's settings, and returns the parsed words as a string.
+ */
 export const parseWords = (
   words: string | undefined,
   randomize: boolean,
