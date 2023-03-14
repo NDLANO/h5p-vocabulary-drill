@@ -5,16 +5,18 @@ It lets students answer glossary tests by text or by dragging words in the corre
 
 ## Answer modes
 
-### Fill in words
+There are two answer modes available, they are based on content types [H5P.Blanks](https://github.com/h5p/h5p-blanks) (Fill in the Blanks) and [H5P.DragText](https://github.com/h5p/h5p-drag-text) (Drag the Words). The editor has the option to allow the end user to change answer mode, or if only one answer mode should be available.
 
-In "Fill in words" mode, each `source` word is listed together with an empty text input field in which the student types in the answer.
+### Fill in
+
+In "Fill in" mode, each `source` word is listed together with an empty text input field in which the student types in the answer.
 
 <!-- TODO: Add image -->
 
-### Drag the words
+### Drag text
 
-In "Fill in words" mode, `source` words are listed on the left, while `target` words are listed on the right.
-The student drags the `target` words to their translations.
+In "Drag text" mode, `source` words are listed on the left, while `target` words are listed on the right.
+The student drags the `target` words to their corresponding translations.
 
 <!-- TODO: Add image -->
 
