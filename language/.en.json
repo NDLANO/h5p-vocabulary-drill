@@ -83,7 +83,7 @@
         },
         {
           "label": "Answer mode label",
-          "default": "Change answer mode"
+          "default": "Answer mode"
         },
         {
           "label": "Language mode label",
