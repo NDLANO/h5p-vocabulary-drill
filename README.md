@@ -5,7 +5,7 @@ It lets students answer glossary tests by text or by dragging words in the corre
 
 ## Answer modes
 
-There are two answer modes available, they are based on content types H5P.Blanks (Fill in the Blanks) and H5P.DragText (Drag the Words). The editor has the option to allow the end user to change answer mode, or if only one answer mode should be available.
+There are two answer modes available, they are based on content types [H5P.Blanks](https://github.com/h5p/h5p-blanks) (Fill in the Blanks) and [H5P.DragText](https://github.com/h5p/h5p-drag-text) (Drag the Words). The editor has the option to allow the end user to change answer mode, or if only one answer mode should be available.
 
 ### Fill in
 
