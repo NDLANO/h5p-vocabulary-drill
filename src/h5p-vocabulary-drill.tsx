@@ -117,7 +117,19 @@ class VocabularyDrillContentType
   }
 
   getCurrentState(): State | undefined {
-    return this.state;
+    const contentTypeState = this.activeContentType?.getCurrentState?.();
+    if (
+      typeof contentTypeState !== 'object' ||
+      contentTypeState == null ||
+      !this.state?.activeAnswerMode
+    ) {
+      return this.state;
+    }
+
+    return {
+      ...this.state,
+      [this.state.activeAnswerMode]: contentTypeState,
+    };
   }
 
   /**
