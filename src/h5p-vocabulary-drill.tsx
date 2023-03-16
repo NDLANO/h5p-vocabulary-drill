@@ -2,7 +2,6 @@ import type {
   IH5PContentType,
   IH5PQuestionType,
   XAPIDefinition,
-  XAPIEvent,
 } from 'h5p-types';
 import { H5PResumableContentType, registerContentType } from 'h5p-utils';
 import * as React from 'react';
@@ -10,20 +9,19 @@ import { createRoot } from 'react-dom/client';
 import { ContentIdContext, L10nContext } from 'use-h5p';
 import { VocabularyDrill } from './components/VocabularyDrill/VocabularyDrill';
 import './index.scss';
-import { AnswerModeType, LanguageModeType, Params } from './types/types';
+import type {
+  AnswerModeType,
+  ChildContentType,
+  LanguageModeType,
+  Params,
+  State,
+} from './types/types';
 import { isNil } from './utils/type.utils';
-
-type State = {
-  activeAnswerMode?: AnswerModeType;
-  activeLanguageMode?: LanguageModeType;
-};
 
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
   implements IH5PContentType<Params>, IH5PQuestionType {
-  private activeContentType:
-    | (IH5PQuestionType & H5PResumableContentType)
-    | undefined;
+  private activeContentType: ChildContentType | undefined;
 
   attach($container: JQuery<HTMLElement>) {
     const containerElement = $container.get(0);
@@ -34,8 +32,9 @@ class VocabularyDrillContentType
       );
     }
 
-    const title = this.extras?.metadata.title ?? '';
-    const { contentId, params } = this;
+    const { contentId, extras, params } = this;
+
+    const title = extras?.metadata.title ?? '';
     const { l10n } = params;
 
     const root = createRoot(containerElement);
@@ -45,11 +44,14 @@ class VocabularyDrillContentType
           <ContentIdContext.Provider value={contentId}>
             <VocabularyDrill
               title={title}
-              context={this}
-              onChangeContentType={(contentType) => {
-                this.activeContentType = contentType;
-                this.resize();
-              }}
+              params={params}
+              previousState={this.state}
+              onChangeContentType={(answerMode, contentType) =>
+                this.handleChangeContentType(answerMode, contentType)
+              }
+              onChangeLanguageMode={(languageMode) =>
+                this.handleLanguageModeChange(languageMode)
+              }
             />
           </ContentIdContext.Provider>
         </L10nContext.Provider>
@@ -104,10 +106,7 @@ class VocabularyDrillContentType
     this.activeContentType.resetTask();
   }
 
-  getXAPIData(): {
-    statement: XAPIDefinition;
-    children?: XAPIEvent[] | undefined;
-    } {
+  getXAPIData() {
     if (!this.activeContentType) {
       return {} as {
         statement: XAPIDefinition;
@@ -134,6 +133,31 @@ class VocabularyDrillContentType
    */
   private resize() {
     this.trigger('resize');
+  }
+
+  private setState(state: Partial<State>) {
+    this.state = {
+      ...this.state,
+      ...state,
+    };
+  }
+
+  private handleChangeContentType(
+    answerMode: AnswerModeType,
+    contentType: ChildContentType,
+  ): void {
+    this.activeContentType = contentType;
+
+    this.setState({
+      activeAnswerMode: answerMode,
+      [answerMode]: contentType.getCurrentState?.(),
+    });
+
+    this.resize();
+  }
+
+  private handleLanguageModeChange(languageMode: LanguageModeType): void {
+    this.setState({ activeLanguageMode: languageMode });
   }
 }
 
