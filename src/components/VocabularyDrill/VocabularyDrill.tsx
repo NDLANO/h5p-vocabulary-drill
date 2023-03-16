@@ -1,9 +1,15 @@
-import { IH5PQuestionType } from 'h5p-types';
-import { H5P, H5PContentType } from 'h5p-utils';
+import { IH5PQuestionType, H5PExtrasWithState } from 'h5p-types';
+import { H5P, H5PResumableContentType } from 'h5p-utils';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useContentId } from 'use-h5p';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
-import { AnswerModeType, LanguageModeType, Params } from '../../types/types';
+import {
+  AnswerModeType,
+  ChildContentType,
+  LanguageModeType,
+  Params,
+  State,
+} from '../../types/types';
 import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
 import { parseWords } from '../../utils/word.utils';
@@ -11,18 +17,31 @@ import { Toolbar } from '../Toolbar/Toolbar';
 
 type VocabularyDrillProps = {
   title: string;
-  context: H5PContentType<Params>;
-  onChangeContentType: (contentType: IH5PQuestionType) => void;
+  params: Params;
+  previousState: State | undefined;
+  onChangeContentType: (
+    type: AnswerModeType,
+    contentType: ChildContentType,
+  ) => void;
+  onChangeLanguageMode: (languageMode: LanguageModeType) => void;
 };
 
 export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   title,
-  context,
+  params,
+  previousState,
   onChangeContentType,
+  onChangeLanguageMode,
 }) => {
-  const { t } = useTranslation();
-  const { params } = context;
-  const { behaviour, description, words, overallFeedback, blanksl10n, dragtextl10n } = params;
+  const {
+    behaviour,
+    description,
+    words,
+    overallFeedback,
+    blanksl10n,
+    dragtextl10n,
+  } = params;
+
   const {
     autoCheck,
     randomize,
@@ -31,14 +50,20 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     enableSwitchAnswerModeButton,
     enableSwitchWordsButton,
   } = behaviour;
-  const initialAnswerMode = behaviour.answerMode as AnswerModeType;
+
+  const initialAnswerMode =
+    previousState?.activeAnswerMode ?? (behaviour.answerMode as AnswerModeType);
+  const initialLanguageMode =
+    previousState?.activeLanguageMode ?? LanguageModeType.Target;
+
+  const { t } = useTranslation();
   const contentId = useContentId();
 
   const wrapperRef = useRef<HTMLDivElement>(null);
+
   const [activeAnswerMode, setActiveAnswerMode] = useState(initialAnswerMode);
-  const [activeLanguageMode, setActiveLanguageMode] = useState(
-    LanguageModeType.Target,
-  );
+  const [activeLanguageMode, setActiveLanguageMode] =
+    useState(initialLanguageMode);
   const [hasWords, setHasWords] = useState(true);
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
@@ -57,21 +82,22 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   }
 
   const handleAnswerModeChange = (): void => {
-    if (activeAnswerMode === AnswerModeType.DragText) {
-      setActiveAnswerMode(AnswerModeType.FillIn);
-    }
-    else {
-      setActiveAnswerMode(AnswerModeType.DragText);
-    }
+    const newAnswerMode =
+      activeAnswerMode === AnswerModeType.DragText
+        ? AnswerModeType.FillIn
+        : AnswerModeType.DragText;
+
+    setActiveAnswerMode(newAnswerMode);
   };
 
   const handleLanguageModeChange = (): void => {
-    if (activeLanguageMode === LanguageModeType.Target) {
-      setActiveLanguageMode(LanguageModeType.Source);
-    }
-    else {
-      setActiveLanguageMode(LanguageModeType.Target);
-    }
+    const newLanguageMode =
+      activeLanguageMode === LanguageModeType.Target
+        ? LanguageModeType.Source
+        : LanguageModeType.Target;
+
+    setActiveLanguageMode(newLanguageMode);
+    onChangeLanguageMode(newLanguageMode);
   };
 
   useEffect(() => {
@@ -97,7 +123,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           return;
         }
 
-        let activeContentType: IH5PQuestionType;
+        const extras = {
+          previousState: previousState?.[activeAnswerMode],
+        } as H5PExtrasWithState<unknown>;
+
+        let activeContentType: ChildContentType;
         switch (activeAnswerMode) {
           case AnswerModeType.DragText: {
             const params = {
@@ -118,7 +148,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               },
               contentId,
               H5P.jQuery(wrapper),
-            ) as unknown as IH5PQuestionType;
+              undefined,
+              extras,
+            ) as unknown as ChildContentType;
 
             break;
           }
@@ -139,17 +171,19 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               },
               contentId,
               H5P.jQuery(wrapper),
-            ) as unknown as IH5PQuestionType;
+              undefined,
+              extras,
+            ) as unknown as IH5PQuestionType & H5PResumableContentType;
 
             break;
           }
 
           default: {
-            throw new Error('H5P.VocabularyDrill: Invalid answer mode');
+            throw new Error(`H5P.VocabularyDrill: Invalid answer mode '${activeAnswerMode}'`);
           }
         }
 
-        onChangeContentType(activeContentType);
+        onChangeContentType(activeAnswerMode, activeContentType);
       };
 
       const removeRunnable = (): void => {
@@ -177,8 +211,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       <div ref={wrapperRef} />
     </div>
   ) : (
-    <div className="h5p-vd-empty-state">
-      {t('noValidWords')}
-    </div>
+    <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
   );
 };
