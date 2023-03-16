@@ -83,11 +83,11 @@
         },
         {
           "label": "Etikett for svarmodus",
-          "default": "Endre svarmodus"
+          "default": "Svarmodus"
         },
         {
           "label": "Etikett for språkmodus",
-          "default": "Endre språkmodus"
+          "default": "Bytt språk"
         }
       ]
     },
