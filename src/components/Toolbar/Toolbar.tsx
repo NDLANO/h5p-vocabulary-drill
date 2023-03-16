@@ -31,38 +31,41 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   return (
     <div className="h5p-vocabulary-drill-toolbar">
       <p>{title}</p>
-      {enableTools &&
+      {enableTools && (
         <div className="h5p-vocabulary-drill-toolbar-tools">
           {enableAnswerMode && (
-            <div className={`h5p-vocabulary-drill-toolbar-select ${classes[activeAnswerMode]}`}>
-              <label className="visually-hidden" htmlFor="answerMode">{t('answerModeLabel')}</label>
+            <div
+              className={`h5p-vocabulary-drill-toolbar-select ${classes[activeAnswerMode]}`}
+            >
+              <label className="visually-hidden" htmlFor="answerMode">
+                {t('answerModeLabel')}
+              </label>
               <select
                 id="answerMode"
                 name="answerMode"
                 onChange={onAnswerModeChange}
+                value={activeAnswerMode}
               >
-                <option
-                  value={AnswerModeType.FillIn}
-                  selected={AnswerModeType.FillIn === activeAnswerMode}
-                >
+                <option value={AnswerModeType.FillIn}>
                   {t('fillInLabel')}
                 </option>
-                <option
-                  value={AnswerModeType.DragText}
-                  selected={AnswerModeType.DragText === activeAnswerMode}
-                >
+                <option value={AnswerModeType.DragText}>
                   {t('dragTextLabel')}
                 </option>
               </select>
             </div>
           )}
           {enableLanguageMode && (
-            <button type="button" className="h5p-vocabulary-drill-language-mode" onClick={onLanguageModeChange}>
+            <button
+              type="button"
+              className="h5p-vocabulary-drill-language-mode"
+              onClick={onLanguageModeChange}
+            >
               {t('languageModeLabel')}
             </button>
           )}
         </div>
-      }
+      )}
     </div>
   );
 };

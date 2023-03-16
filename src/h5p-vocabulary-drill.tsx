@@ -117,15 +117,7 @@ class VocabularyDrillContentType
   }
 
   getCurrentState(): State | undefined {
-    const contentTypeState = this.activeContentType?.getCurrentState?.();
-    if (typeof contentTypeState !== 'object' || contentTypeState == null) {
-      return this.state;
-    }
-
-    return {
-      ...this.state,
-      ...contentTypeState,
-    };
+    return this.state;
   }
 
   /**
