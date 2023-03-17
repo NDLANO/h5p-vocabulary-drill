@@ -65,6 +65,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [activeLanguageMode, setActiveLanguageMode] =
     useState(initialLanguageMode);
   const [hasWords, setHasWords] = useState(true);
+  const [disableTools, setDisableTools] = useState(false);
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
   const fillInTheBlanksLibraryInfo = findLibraryInfo('H5P.Blanks');
@@ -183,6 +184,16 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           }
         }
 
+        // TODO: Use xAPI event type from h5p-types
+        activeContentType.on('xAPI', (event: any) => {
+          if (event.getVerb() === 'answered') {
+            setDisableTools(true);
+          } else {
+            // TODO: Enable tools on Retry
+            setDisableTools(false);
+          }
+        });
+
         onChangeContentType(activeAnswerMode, activeContentType);
       };
 
@@ -203,6 +214,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       <Toolbar
         title={title}
         activeAnswerMode={activeAnswerMode}
+        disableTools={disableTools}
         enableAnswerMode={enableSwitchAnswerModeButton}
         enableLanguageMode={enableSwitchWordsButton}
         onAnswerModeChange={handleAnswerModeChange}
