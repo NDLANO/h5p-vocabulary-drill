@@ -1,5 +1,10 @@
 import { AnswerModeType, LanguageModeType } from '../types/types';
-import { filterOutVariant, filterWord, parseWords } from './word.utils';
+import {
+  filterOutVariant,
+  filterWord,
+  parseWords,
+  pickWords,
+} from './word.utils';
 
 describe('Vocabulary drill utils', () => {
   describe(filterWord.name, () => {
@@ -117,7 +122,7 @@ describe('Vocabulary drill utils', () => {
   describe(parseWords.name, () => {
     it('should return empty string when words are undefined', () => {
       const words = undefined;
-      const numberOfWordsToShow = 0;
+
       const randomize = false;
       const showTips = true;
 
@@ -126,14 +131,14 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
+
         AnswerModeType.FillIn,
       );
       const actualFillInTarget = parseWords(
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
+
         AnswerModeType.FillIn,
         LanguageModeType.Target,
       );
@@ -141,14 +146,14 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
+
         AnswerModeType.DragText,
       );
       const actualDragTextTarget = parseWords(
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
+
         AnswerModeType.DragText,
         LanguageModeType.Target,
       );
@@ -161,7 +166,6 @@ describe('Vocabulary drill utils', () => {
 
     it('should return empty string when words are empty', () => {
       const words = '';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -170,14 +174,12 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.FillIn,
       );
       const actualFillInTarget = parseWords(
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.FillIn,
         LanguageModeType.Target,
       );
@@ -185,14 +187,12 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.DragText,
       );
       const actualDragTextTarget = parseWords(
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.DragText,
         LanguageModeType.Target,
       );
@@ -205,7 +205,6 @@ describe('Vocabulary drill utils', () => {
 
     it('should parse one word correct (fillIn)', () => {
       const words = 'ocean,sjø';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -214,7 +213,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.FillIn,
       );
 
@@ -223,7 +221,6 @@ describe('Vocabulary drill utils', () => {
 
     it('should parse one word correct (dragText)', () => {
       const words = 'fire,ild';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -232,7 +229,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.DragText,
       );
 
@@ -241,7 +237,6 @@ describe('Vocabulary drill utils', () => {
 
     it('should parse one word correct with variant (fillIn)', () => {
       const words = 'ocean/sea,sjø/hav';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -250,7 +245,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.FillIn,
       );
 
@@ -259,7 +253,6 @@ describe('Vocabulary drill utils', () => {
 
     it('should parse one word correct with variant (dragText)', () => {
       const words = 'fire/heat,ild/brann';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -268,7 +261,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.DragText,
       );
 
@@ -277,7 +269,6 @@ describe('Vocabulary drill utils', () => {
 
     it('should parse one word correct with variant and tip (fillIn)', () => {
       const words = 'ocean/sea:boats go on it,sjø/hav:båter kjører på det';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -286,7 +277,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.FillIn,
       );
 
@@ -295,7 +285,6 @@ describe('Vocabulary drill utils', () => {
 
     it('should parse one word correct with variant and tip (dragText)', () => {
       const words = 'fire/heat:f__e,ild/brann:i_d';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -304,7 +293,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.DragText,
       );
 
@@ -313,7 +301,6 @@ describe('Vocabulary drill utils', () => {
 
     it('should parse several words correct (fillIn)', () => {
       const words = 'ocean,sjø\nfire,ild\nsky,himmel';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -322,7 +309,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.FillIn,
       );
 
@@ -331,7 +317,6 @@ describe('Vocabulary drill utils', () => {
 
     it('should parse several words correct (dragText)', () => {
       const words = 'ocean,sjø\nfire,ild\nsky,himmel';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -340,7 +325,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.DragText,
       );
 
@@ -350,7 +334,6 @@ describe('Vocabulary drill utils', () => {
     it('should parse several words correct with variants (fillIn)', () => {
       const words =
         'ocean/sea,sjø/hav\nfire/heat,ild/brann\nsky/cloud,himmel/sky';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -360,7 +343,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.FillIn,
       );
 
@@ -370,7 +352,6 @@ describe('Vocabulary drill utils', () => {
     it('should parse several words correct with variants (dragText)', () => {
       const words =
         'ocean/sea,sjø/hav\nfire/heat,ild/brann\nsky/cloud,himmel/sky';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -379,7 +360,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.DragText,
       );
 
@@ -389,7 +369,6 @@ describe('Vocabulary drill utils', () => {
     it('should parse several words correct with variants and tips (fillIn)', () => {
       const words =
         'ocean/sea:boats go on it,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:veldig varmt\nsky/cloud:above us,himmel/sky:over oss';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -399,7 +378,6 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.FillIn,
       );
 
@@ -409,7 +387,6 @@ describe('Vocabulary drill utils', () => {
     it('should parse several words correct with variants and tips (dragText)', () => {
       const words =
         'ocean/sea:boats go on it,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:veldig varmt\nsky/cloud:above us,himmel/sky:over oss';
-      const numberOfWordsToShow = 0;
       const randomize = false;
       const showTips = true;
 
@@ -419,11 +396,45 @@ describe('Vocabulary drill utils', () => {
         words,
         randomize,
         showTips,
-        numberOfWordsToShow,
         AnswerModeType.DragText,
       );
 
       expect(actual).toBe(expected);
+    });
+  });
+
+  describe(pickWords.name, () => {
+    it('should page a list of strings with zero indexed page', () => {
+      const page = 1;
+      const pageSize = 2;
+      const words = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+
+      const expected = ['c', 'd'];
+      const actual = pickWords(words, page, pageSize);
+
+      expect(actual).toEqual(expected);
+    });
+
+    it('should handle page sizes greater than the number of remaining elements', () => {
+      const page = 1;
+      const pageSize = 8;
+      const words = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+
+      const expected = ['i', 'j'];
+      const actual = pickWords(words, page, pageSize);
+
+      expect(actual).toEqual(expected);
+    });
+
+    it('should handle page indexes greater than the number of pages', () => {
+      const page = 100;
+      const pageSize = 2;
+      const words = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+
+      const expected: Array<string> = [];
+      const actual = pickWords(words, page, pageSize);
+
+      expect(actual).toEqual(expected);
     });
   });
 });

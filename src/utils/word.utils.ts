@@ -41,15 +41,16 @@ const getRandomWords = (wordsList: string[]): string[] => {
   return wordsList.concat().sort(() => 0.5 - Math.random());
 };
 
-const getNumberOfWords = (
-  wordsList: string[],
-  numberOfWordsToGet: number,
-): string[] => {
-  return wordsList.concat().slice(0, numberOfWordsToGet);
+export const pickWords = (
+  words: Array<string>,
+  page: number,
+  pageSize: number,
+): Array<string> => {
+  return words.slice(page * pageSize, pageSize + page * pageSize);
 };
 
 /**
- * Creates a word string for the H5P.Blanks content type. 
+ * Creates a word string for the H5P.Blanks content type.
  * H5P.Blanks expects the input as an HTML string on the format `source *target*`.
  * In order to show the word on a seperate line, we wrap the string in a <p> tag.
  */
@@ -67,7 +68,7 @@ const createDragTextString = (source: string, target: string): string => {
 };
 
 /**
- * Filters the source and target word and creates a word string for the chosen 
+ * Filters the source and target word and creates a word string for the chosen
  * H5P content type (defined by answerMode) using createFillInString or
  * createDragTextString.
  */
@@ -91,8 +92,8 @@ const createSourceAndTargetString = (
 };
 
 /**
- * Separates the source and target from a list of words, and based on the 
- * user's settings returns the words as a string that can be used by the 
+ * Separates the source and target from a list of words, and based on the
+ * user's settings returns the words as a string that can be used by the
  * chosen H5P content type (defined by answerMode).
  */
 const parseSourceAndTarget = (
@@ -131,35 +132,34 @@ const parseSourceAndTarget = (
   return newWordsList;
 };
 
-/** 
- * Takes in a string of words, validates and parses the words based on 
+/**
+ * Takes in a string of words, validates and parses the words based on
  * the user's settings, and returns the parsed words as a string.
  */
 export const parseWords = (
   words: string | undefined,
   randomize: boolean,
   showTips: boolean,
-  numberOfWordsToShow: number | undefined,
   answerMode: AnswerModeType,
   languageMode?: LanguageModeType,
-): string => {
+): string[] => {
   if (!words) {
-    return '';
+    return [];
   }
 
   let wordsList = words.split(wordsSeparator);
-  const validNumberOfWords =
-    numberOfWordsToShow &&
-    numberOfWordsToShow > 0 &&
-    numberOfWordsToShow <= wordsList.length;
+  // const validNumberOfWords =
+  //   numberOfWordsToShow &&
+  //   numberOfWordsToShow > 0 &&
+  //   numberOfWordsToShow <= wordsList.length;
 
   if (randomize) {
     wordsList = getRandomWords(wordsList);
   }
 
-  if (validNumberOfWords) {
-    wordsList = getNumberOfWords(wordsList, numberOfWordsToShow);
-  }
+  // if (validNumberOfWords) {
+  //   wordsList = getNumberOfWords(wordsList, numberOfWordsToShow);
+  // }
 
   const newWordsList = parseSourceAndTarget(
     wordsList,
@@ -168,7 +168,5 @@ export const parseWords = (
     languageMode,
   );
 
-  const parsedWords = newWordsList.join('');
-
-  return parsedWords;
+  return newWordsList;
 };

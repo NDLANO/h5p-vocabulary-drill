@@ -18,6 +18,10 @@
     text-align: center;
   }
 
+  &-next {
+    margin: 0 0.5em 1em 1em;
+  }
+
   .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -41,7 +45,7 @@
   min-height: 2.7em;
   padding: 0.5em 0.5em 0.5em 1em;
   position: relative;
-  
+
   p {
     color: #4c4452;
     font-family: sans-serif;
@@ -75,7 +79,7 @@
     }
 
     &.h5p-vocabulary-drill-language-mode:before {
-      content: "\F021";
+      content: '\F021';
       font-family: 'H5PFontAwesome4';
       padding-right: 0.5em;
     }
@@ -106,8 +110,8 @@
 
     &::after {
       color: #1a73d9;
-      content: "\f107";
-      font-family: "H5PFontAwesome4";
+      content: '\f107';
+      font-family: 'H5PFontAwesome4';
       font-size: 1.2em;
       pointer-events: none;
       position: absolute;
@@ -118,7 +122,7 @@
 
     &::before {
       color: #1a73d9;
-      content: "\F040";
+      content: '\F040';
       font-family: 'H5PFontAwesome4';
       position: absolute;
       top: 50%;
@@ -127,11 +131,11 @@
     }
 
     &.h5p-vocabulary-drill-fill-in::before {
-      content: "\F040";
+      content: '\F040';
     }
 
     &.h5p-vocabulary-drill-drag-text::before {
-      content: "\F047";
+      content: '\F047';
     }
   }
 }
