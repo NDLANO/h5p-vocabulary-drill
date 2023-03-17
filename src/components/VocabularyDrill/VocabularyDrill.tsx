@@ -188,7 +188,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         activeContentType.on('xAPI', (event: any) => {
           if (event.getVerb() === 'answered') {
             setDisableTools(true);
-          } else {
+          }
+          else {
             // TODO: Enable tools on Retry
             setDisableTools(false);
           }
