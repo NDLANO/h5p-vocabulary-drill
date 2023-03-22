@@ -13,6 +13,7 @@ import {
 import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
 import { parseWords, pickWords } from '../../utils/word.utils';
+import { ProgressBar } from '../ProgressBar/ProgressBar';
 import { Toolbar } from '../Toolbar/Toolbar';
 
 type VocabularyDrillProps = {
@@ -175,6 +176,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     '',
   );
 
+  const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow);
   const showNextButton = (page + 1) * numberOfWordsToShow < totalNumberOfWords;
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
@@ -306,19 +308,20 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         onLanguageModeChange={handleLanguageModeChange}
       />
       <div ref={wrapperRef} />
-      {showNextButton ? (
-        <div className="h5p-vocabulary-drill-next">
+      <ProgressBar page={page + 1} totalPages={totalPages} />
+      <div className="h5p-vocabulary-drill-status">
+        {score != null ? <>Score: {score} / {maxScore}</> : null}
+        {showNextButton ? (<>
+          <div>{page + 1} / {totalPages}</div>
           <button
             type="button"
-            className="h5p-joubelui-button"
+            className="h5p-vocabulary-drill-next"
             onClick={handleNext}
           >
             Next
           </button>
-        </div>
-      ) : null}
-
-      {score != null ? <>Score: {score} / {maxScore}</> : null}
+        </>) : null}
+      </div>
     </div>
   ) : (
     <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
