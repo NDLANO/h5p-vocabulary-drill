@@ -147,25 +147,10 @@ export const parseWords = (
   }
 
   let wordsList = words.split(wordsSeparator);
-  // const validNumberOfWords =
-  //   numberOfWordsToShow &&
-  //   numberOfWordsToShow > 0 &&
-  //   numberOfWordsToShow <= wordsList.length;
 
   if (randomize) {
     wordsList = getRandomWords(wordsList);
   }
-
-  // if (validNumberOfWords) {
-  //   wordsList = getNumberOfWords(wordsList, numberOfWordsToShow);
-  // }
-
-  //const newWordsList = parseSourceAndTarget(
-  //  wordsList,
-  //  showTips,
-  //  answerMode,
-  //  languageMode,
-  //);
 
   return wordsList;
 };
