@@ -9,7 +9,7 @@ export const ProgressBar: FC<ProgressBarProps> = ({
   page, totalPages
 }) => {
   const progress = (page / totalPages) * 100;
-
+  // TODO: Add a11y support
   return (
     <div className="h5p-vocabulary-drill-progressbar">
       <div

@@ -13,7 +13,7 @@ import {
 import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
 import { parseWords, pickWords, parseSourceAndTarget } from '../../utils/word.utils';
-import { ProgressBar } from '../ProgressBar/ProgressBar';
+import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
 
 type VocabularyDrillProps = {
@@ -317,20 +317,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         onLanguageModeChange={handleLanguageModeChange}
       />
       <div ref={wrapperRef} />
-      {severalPages ? <ProgressBar page={page + 1} totalPages={totalPages} /> : null}
-      <div className="h5p-vocabulary-drill-status">
-        {score != null ? <>Score: {score} / {maxScore}</> : null}
-        {severalPages ? <div>{page + 1} / {totalPages}</div> : null}
-        {showNextButton && severalPages ?
-          <button
-            type="button"
-            className="h5p-vocabulary-drill-next"
-            onClick={handleNext}
-          >
-            Next
-          </button>
-          : null}
-      </div>
+      {severalPages && (
+        <StatusBar page={page + 1} totalPages={totalPages} score={score} maxScore={maxScore} showNextButton={showNextButton} onNext={handleNext} />
+      )}
     </div>
   ) : (
     <div className="h5p-vd-empty-state">{t('noValidWords')}</div>

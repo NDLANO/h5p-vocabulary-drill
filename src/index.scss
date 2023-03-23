@@ -141,7 +141,7 @@
   background-color: #fff;
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 2em;
   justify-content: space-between;
   min-height: 2.7em;
   padding: 0.5em 0.5em 0.5em 1em;
@@ -169,6 +169,25 @@
       font-family: 'H5PFontAwesome4';
       padding-left: 0.5em;
     }
+  }
+
+  &-score {
+    color: #4c4452;
+    font-size: 1em;
+    font-weight: 700;
+    flex-grow: 1;
+  }
+
+  &-number {
+    color: #356BBD;
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+
+  &-divider {
+    color: #4c4452;
+    font-size: 1.2em;
+    font-weight: 700;
   }
 }
 
