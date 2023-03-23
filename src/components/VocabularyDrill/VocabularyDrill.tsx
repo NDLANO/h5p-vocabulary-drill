@@ -12,7 +12,7 @@ import {
 } from '../../types/types';
 import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
-import { parseWords, pickWords } from '../../utils/word.utils';
+import { parseWords, pickWords, parseSourceAndTarget } from '../../utils/word.utils';
 import { ProgressBar } from '../ProgressBar/ProgressBar';
 import { Toolbar } from '../Toolbar/Toolbar';
 
@@ -56,7 +56,9 @@ function attachContentType(
 function createDragText(
   params: Params,
   contentId: string,
-  words: string,
+  words: string[],
+  showTips: boolean,
+  languageMode: LanguageModeType,
   extras: H5PExtrasWithState<unknown>,
   libraryInfo: Pick<
     H5PLibrary,
@@ -64,9 +66,11 @@ function createDragText(
   >,
   wrapper: HTMLElement,
 ): SubContentType {
-  const contentTypeParams = {
+  const dragTextWords = parseSourceAndTarget(words, showTips, AnswerModeType.DragText, languageMode);
+
+  const dragTextParams = {
     taskDescription: params.description,
-    textField: words,
+    textField: dragTextWords,
     behaviour: {
       instantFeedback: params.behaviour.autoCheck,
       ...params.behaviour,
@@ -80,7 +84,7 @@ function createDragText(
     extras,
     libraryInfo,
     wrapper,
-    contentTypeParams,
+    dragTextParams,
   );
 
   return activeContentType;
@@ -89,7 +93,9 @@ function createDragText(
 function createFillIn(
   params: Params,
   contentId: string,
-  words: string,
+  words: string[],
+  showTips: boolean,
+  languageMode: LanguageModeType,
   extras: H5PExtrasWithState<unknown>,
   libraryInfo: Pick<
     H5PLibrary,
@@ -97,9 +103,11 @@ function createFillIn(
   >,
   wrapper: HTMLElement,
 ) {
+  const fillInWords = parseSourceAndTarget(words, showTips, AnswerModeType.FillIn, languageMode);
+
   const fillInParams = {
     text: params.description,
-    questions: [words],
+    questions: [fillInWords],
     behaviour: params.behaviour,
     overallFeedback: params.overallFeedback,
     ...params.blanksl10n,
@@ -157,9 +165,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     parseWords(
       params.words,
       randomize,
-      showTips,
-      activeAnswerMode,
-      activeLanguageMode,
     ),
   );
 
@@ -172,11 +177,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       ? behaviour.numberOfWordsToShow
       : totalNumberOfWords;
 
-  const pickedWords = pickWords(words.current, page, numberOfWordsToShow).join(
-    '',
-  );
+  const pickedWords = pickWords(words.current, page, numberOfWordsToShow);
 
   const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow);
+  const severalPages = totalPages > 1;
   const showNextButton = (page + 1) * numberOfWordsToShow < totalNumberOfWords;
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
@@ -236,10 +240,13 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             params,
             contentId,
             pickedWords,
+            showTips,
+            activeLanguageMode,
             extras,
             dragTextLibraryInfo,
             wrapper,
           );
+          break;
         }
 
         case AnswerModeType.FillIn: {
@@ -247,6 +254,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             params,
             contentId,
             pickedWords,
+            showTips,
+            activeLanguageMode,
             extras,
             fillInTheBlanksLibraryInfo,
             wrapper,
@@ -308,11 +317,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         onLanguageModeChange={handleLanguageModeChange}
       />
       <div ref={wrapperRef} />
-      <ProgressBar page={page + 1} totalPages={totalPages} />
+      {severalPages ? <ProgressBar page={page + 1} totalPages={totalPages} /> : null}
       <div className="h5p-vocabulary-drill-status">
         {score != null ? <>Score: {score} / {maxScore}</> : null}
-        {showNextButton ? (<>
-          <div>{page + 1} / {totalPages}</div>
+        {severalPages ? <div>{page + 1} / {totalPages}</div> : null}
+        {showNextButton && severalPages ?
           <button
             type="button"
             className="h5p-vocabulary-drill-next"
@@ -320,7 +329,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           >
             Next
           </button>
-        </>) : null}
+          : null}
       </div>
     </div>
   ) : (

@@ -1,16 +1,14 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 
 type ProgressBarProps = {
   page: number;
   totalPages: number;
 };
 
-export const ProgressBar: FC<ProgressBarProps> = ({ page, totalPages }) => {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    setProgress((page / totalPages) * 100);
-  }, [page, totalPages]);
+export const ProgressBar: FC<ProgressBarProps> = ({
+  page, totalPages
+}) => {
+  const progress = (page / totalPages) * 100;
 
   return (
     <div className="h5p-vocabulary-drill-progressbar">

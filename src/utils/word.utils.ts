@@ -96,12 +96,12 @@ const createSourceAndTargetString = (
  * user's settings returns the words as a string that can be used by the
  * chosen H5P content type (defined by answerMode).
  */
-const parseSourceAndTarget = (
+export const parseSourceAndTarget = (
   wordsList: string[],
   showTips: boolean,
   answerMode: AnswerModeType,
   languageMode?: LanguageModeType,
-): string[] => {
+): string => {
   const answerModeFillIn = answerMode === AnswerModeType.FillIn;
   const languageModeSource = languageMode === LanguageModeType.Source;
 
@@ -129,7 +129,9 @@ const parseSourceAndTarget = (
     );
   });
 
-  return newWordsList;
+  const parsedWords = newWordsList.join('');
+
+  return parsedWords;
 };
 
 /**
@@ -139,9 +141,6 @@ const parseSourceAndTarget = (
 export const parseWords = (
   words: string | undefined,
   randomize: boolean,
-  showTips: boolean,
-  answerMode: AnswerModeType,
-  languageMode?: LanguageModeType,
 ): string[] => {
   if (!words) {
     return [];
@@ -161,12 +160,12 @@ export const parseWords = (
   //   wordsList = getNumberOfWords(wordsList, numberOfWordsToShow);
   // }
 
-  const newWordsList = parseSourceAndTarget(
-    wordsList,
-    showTips,
-    answerMode,
-    languageMode,
-  );
+  //const newWordsList = parseSourceAndTarget(
+  //  wordsList,
+  //  showTips,
+  //  answerMode,
+  //  languageMode,
+  //);
 
-  return newWordsList;
+  return wordsList;
 };
