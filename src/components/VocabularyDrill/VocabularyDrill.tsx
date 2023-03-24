@@ -1,4 +1,4 @@
-import { H5PExtrasWithState, H5PLibrary } from 'h5p-types';
+import { H5PExtrasWithState, H5PLibrary, XAPIEvent } from 'h5p-types';
 import { H5P } from 'h5p-utils';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useContentId } from 'use-h5p';
@@ -137,6 +137,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     answerMode,
     enableSwitchAnswerModeButton,
     enableSwitchWordsButton,
+    enableRetry,
     randomize,
     showTips,
   } = behaviour;
@@ -158,6 +159,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [page, setPage] = useState(/* previousState?.page ?? */ 0);
   const [score, setScore] = useState(previousState?.score ?? 0);
   const [maxScore, setMaxScore] = useState(previousState?.maxScore ?? 0);
+  const [disableTools, setDisableTools] = useState(false);
+  const [disableNextButton, setDisableNextButton] = useState(true);
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
@@ -217,6 +220,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     onChangeLanguageMode(newLanguageMode);
   };
 
+  const handleRetry = (): void => {
+    setDisableTools(false);
+    setDisableNextButton(true);
+  };
+
   const createRunnable = () => {
     const wrapper = wrapperRef.current;
 
@@ -274,6 +282,23 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         onResize();
       });
 
+      activeContentType.current.on('xAPI', (event: XAPIEvent) => {
+        if (event.getVerb() === 'answered') {
+          setDisableTools(true);
+          setDisableNextButton(false);
+
+          if (enableRetry) {
+            // Wait for the retry button to be added to the DOM
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                const retryButton = wrapper.querySelector('button.h5p-question-try-again');
+                retryButton?.addEventListener('click', handleRetry, { once: true });
+              });
+            });
+          }
+        }
+      });
+
       setMaxScore(score + activeContentType.current.getMaxScore());
       onChangeContentType(activeAnswerMode, activeContentType.current);
 
@@ -285,6 +310,12 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         wrapper.className = '';
       }
     };
+
+    // Remove previous resize listener
+    activeContentType.current?.off('resize');
+
+    // Remove previous xAPIEvent listener
+    activeContentType.current?.off('xAPI');
 
     removeRunnable();
     addRunnable();
@@ -304,6 +335,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
     // Re-render sub content type
     createRunnable();
+    setDisableNextButton(true);
+    setDisableTools(false);
   };
 
   return hasWords ? (
@@ -315,10 +348,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         enableLanguageMode={enableSwitchWordsButton}
         onAnswerModeChange={handleAnswerModeChange}
         onLanguageModeChange={handleLanguageModeChange}
+        disableTools={disableTools}
       />
       <div ref={wrapperRef} />
       {severalPages && (
-        <StatusBar page={page + 1} totalPages={totalPages} score={score} maxScore={maxScore} showNextButton={showNextButton} onNext={handleNext} />
+        <StatusBar page={page + 1} totalPages={totalPages} score={score} maxScore={maxScore} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
       )}
     </div>
   ) : (

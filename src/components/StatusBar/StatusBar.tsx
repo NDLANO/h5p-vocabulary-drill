@@ -7,6 +7,7 @@ type StatusBarProps = {
   score: number | null;
   maxScore: number | null;
   showNextButton: boolean;
+  disableNextButton: boolean;
   onNext: () => void;
 };
 
@@ -16,6 +17,7 @@ export const StatusBar: FC<StatusBarProps> = ({
   score,
   maxScore,
   showNextButton,
+  disableNextButton,
   onNext
 }) => {
   // TODO: Translate "Next"
@@ -39,6 +41,7 @@ export const StatusBar: FC<StatusBarProps> = ({
             type="button"
             className="h5p-vocabulary-drill-next"
             onClick={onNext}
+            disabled={disableNextButton}
           >
             Next
           </button>
