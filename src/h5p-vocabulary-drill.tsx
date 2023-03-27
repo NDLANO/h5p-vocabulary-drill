@@ -52,6 +52,7 @@ class VocabularyDrillContentType
               onChangeLanguageMode={(languageMode) =>
                 this.handleLanguageModeChange(languageMode)
               }
+              onResize={() => this.resize()}
             />
           </ContentIdContext.Provider>
         </L10nContext.Provider>
