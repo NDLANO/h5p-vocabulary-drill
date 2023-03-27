@@ -299,7 +299,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         }
       });
 
-      setMaxScore(score + activeContentType.current.getMaxScore());
       onChangeContentType(activeAnswerMode, activeContentType.current);
 
     };
@@ -332,9 +331,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     onPageChange(newPage);
 
     setScore(score + (activeContentType.current?.getScore() ?? 0));
+    setMaxScore(maxScore + (activeContentType.current?.getMaxScore() ?? 0));
 
-    // Re-render sub content type
-    createRunnable();
     setDisableNextButton(true);
     setDisableTools(false);
 
@@ -361,7 +359,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       />
       <div ref={wrapperRef} />
       {severalPages && (
-        <StatusBar page={page + 1} totalPages={totalPages} score={score} maxScore={maxScore} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
+        <StatusBar page={page + 1} totalPages={totalPages} score={score} totalScore={totalNumberOfWords} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
       )}
     </div>
   ) : (
