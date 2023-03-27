@@ -337,6 +337,15 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     createRunnable();
     setDisableNextButton(true);
     setDisableTools(false);
+
+    // TODO: Avoid using 'any' here
+    // Make sure the first element on the new page is focused
+    if (activeAnswerMode === AnswerModeType.DragText) {
+      (activeContentType.current as any).$introduction.parent().focus();
+    }
+    else if (activeAnswerMode === AnswerModeType.FillIn) {
+      (activeContentType.current as any).a11yHeader.focus();
+    }
   };
 
   return hasWords ? (
