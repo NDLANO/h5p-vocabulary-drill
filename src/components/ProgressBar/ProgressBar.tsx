@@ -8,7 +8,7 @@ type ProgressBarProps = {
 export const ProgressBar: FC<ProgressBarProps> = ({
   page, totalPages
 }) => {
-  const progress = (page / totalPages) * 100;
+  const progress = (page / Math.max(1, totalPages)) * 100;
   // TODO: Add a11y support
   return (
     <div className="h5p-vocabulary-drill-progressbar">
