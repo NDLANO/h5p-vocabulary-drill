@@ -24,6 +24,7 @@ type VocabularyDrillProps = {
     contentType: ChildContentType,
   ) => void;
   onChangeLanguageMode: (languageMode: LanguageModeType) => void;
+  onResize: () => void;
 };
 
 export const VocabularyDrill: FC<VocabularyDrillProps> = ({
@@ -32,6 +33,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   previousState,
   onChangeContentType,
   onChangeLanguageMode,
+  onResize,
 }) => {
   const {
     behaviour,
@@ -182,6 +184,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             throw new Error(`H5P.VocabularyDrill: Invalid answer mode '${activeAnswerMode}'`);
           }
         }
+
+        activeContentType.on('resize', () => {
+          onResize();
+        });
 
         onChangeContentType(activeAnswerMode, activeContentType);
       };
