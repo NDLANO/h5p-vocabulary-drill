@@ -20,7 +20,7 @@ export const StatusBar: FC<StatusBarProps> = ({
   disableNextButton,
   onNext
 }) => {
-  // TODO: Translate "Next"
+  // TODO: Translate "Next" and "Score"
   return (
     <>
       <ProgressBar page={page} totalPages={totalPages} />
