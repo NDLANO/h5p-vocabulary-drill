@@ -54,9 +54,7 @@
               {
                 "label": "Score Range"
               },
-              {
-                "label": ""
-              },
+              {},
               {
                 "label": "Feedback for defined score range",
                 "placeholder": "Fill in the feedback"

@@ -92,8 +92,7 @@ declare const json: [
               "min": 0,
               "max": 100,
               "default": 100,
-              "unit": "%",
-              "label": ""
+              "unit": "%"
             },
             {
               "name": "feedback",

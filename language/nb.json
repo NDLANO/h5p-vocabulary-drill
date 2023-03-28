@@ -54,9 +54,7 @@
               {
                 "label": "Poengområde"
               },
-              {
-                "label": ""
-              },
+              {},
               {
                 "label": "Tilbakemelding for definert poengområde",
                 "placeholder": "Skriv inn tilbakemelding."
