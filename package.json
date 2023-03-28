@@ -1,6 +1,6 @@
 {
   "name": "h5p-vocabulary-drill",
-  "version": "1.0.0",
+  "version": "1.0.16",
   "description": "",
   "main": "dist/h5p-vocabulary-drill.js",
   "scripts": {
