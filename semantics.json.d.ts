@@ -512,7 +512,7 @@ declare const json: [
       {
         "label": "Number of words",
         "name": "numberOfWordsToShow",
-        "description": "Defines how many words that will be visible each time. If 0 is set, all words will be shown.",
+        "description": "Defines how many words will be visible each time. If 0 is set, all words will be shown.",
         "type": "number",
         "optional": true
       }
