@@ -227,7 +227,7 @@ declare const json: [
         "label": "Assistive technology label for input field",
         "name": "inputLabel",
         "type": "text",
-        "description": "Use @num and @total to replace current cloze number and total cloze number",
+        "description": "Use @num and @total to replace current cloze number and total cloze number.",
         "default": "Blank input @num of @total",
         "optional": true
       },
@@ -313,35 +313,35 @@ declare const json: [
         "name": "dropZoneIndex",
         "type": "text",
         "default": "Drop Zone @index.",
-        "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+        "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index."
       },
       {
         "label": "Empty Drop Zone label",
         "name": "empty",
         "type": "text",
         "default": "Drop Zone @index is empty.",
-        "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+        "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty."
       },
       {
         "label": "Contains Drop Zone label",
         "name": "contains",
         "type": "text",
         "default": "Drop Zone @index contains draggable @draggable.",
-        "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+        "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable."
       },
       {
         "label": "Draggable elements label",
         "name": "ariaDraggableIndex",
         "type": "text",
         "default": "@index of @count draggables.",
-        "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+        "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count."
       },
       {
         "label": "Label for show tip button",
         "name": "tipLabel",
         "type": "text",
         "default": "Show tip",
-        "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+        "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out."
       },
       {
         "name": "correctText",
