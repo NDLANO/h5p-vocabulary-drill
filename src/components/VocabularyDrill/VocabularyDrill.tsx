@@ -354,7 +354,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       setDisableNextButton(true);
       setDisableTools(false);
       createRunnable(randomize ? getRandomWords(words.current) : null);
-    } else {
+    }
+    else {
       setScore(0);
       setMaxScore(0);
       createRunnable(randomize ? getRandomWords(words.current) : null);
