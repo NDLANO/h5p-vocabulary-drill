@@ -41,7 +41,7 @@
   min-height: 2.7em;
   padding: 0.5em 0.5em 0.5em 1em;
   position: relative;
-  
+
   p {
     color: #4c4452;
     font-family: sans-serif;
@@ -69,13 +69,19 @@
     padding: 0.75em 1.25em;
     white-space: nowrap;
 
-    &:hover,
-    &:focus {
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
       background-color: #eaeff8;
     }
 
+    &:disabled {
+      background-color: #f2f2f2;
+      color: grey;
+      cursor: not-allowed;
+    }
+
     &.h5p-vocabulary-drill-language-mode:before {
-      content: "\F021";
+      content: '\F021';
       font-family: 'H5PFontAwesome4';
       padding-right: 0.5em;
     }
@@ -92,9 +98,16 @@
     line-height: 1.2;
     padding: 0.75em 2.75em 0.75em 2.7em;
 
-    &:hover,
-    &:focus {
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
       background-color: #eaeff8;
+    }
+
+    &:disabled {
+      background-color: #f2f2f2;
+      color: grey;
+      cursor: not-allowed;
+      opacity: 1;
     }
   }
 
@@ -106,8 +119,8 @@
 
     &::after {
       color: #1a73d9;
-      content: "\f107";
-      font-family: "H5PFontAwesome4";
+      content: '\f107';
+      font-family: 'H5PFontAwesome4';
       font-size: 1.2em;
       pointer-events: none;
       position: absolute;
@@ -118,7 +131,7 @@
 
     &::before {
       color: #1a73d9;
-      content: "\F040";
+      content: '\F040';
       font-family: 'H5PFontAwesome4';
       position: absolute;
       top: 50%;
@@ -126,12 +139,94 @@
       left: 1.25em;
     }
 
+    &.disabled {
+      &::after, 
+      &::before {
+        color: grey;
+      }
+    }
+
     &.h5p-vocabulary-drill-fill-in::before {
-      content: "\F040";
+      content: '\F040';
     }
 
     &.h5p-vocabulary-drill-drag-text::before {
-      content: "\F047";
+      content: '\F047';
     }
+  }
+}
+
+.h5p-vocabulary-drill-status {
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: space-between;
+  min-height: 2.7em;
+  padding: 0.5em 0.5em 0.5em 1em;
+  position: relative;
+
+  button {
+    background-color: #f5f7fc;
+    border: none;
+    color: #1a73d9;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 0.75em 1.25em;
+    white-space: nowrap;
+
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+      background-color: #eaeff8;
+    }
+
+    &:disabled {
+      background-color: #f2f2f2;
+      color: grey;
+      cursor: not-allowed;
+    }
+
+    &.h5p-vocabulary-drill-next::after {
+      content: '\F105';
+      font-family: 'H5PFontAwesome4';
+      padding-left: 0.5em;
+    }
+  }
+
+  &-score {
+    color: #4c4452;
+    font-size: 1em;
+    font-weight: 700;
+    flex-grow: 1;
+  }
+
+  &-number {
+    color: #356BBD;
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+
+  &-divider {
+    color: #4c4452;
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+}
+
+.h5p-vocabulary-drill-progressbar {
+  background-color: #D3DDEE;
+  background-size: cover;
+  height: 0.313em;
+  margin-top: 1em;
+  width: 100%;
+
+  &-front {
+    background-color: #356BBD;
+    height: 0.313em;
+    transition: 1s;
   }
 }

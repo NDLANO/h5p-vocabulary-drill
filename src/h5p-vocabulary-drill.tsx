@@ -11,7 +11,7 @@ import { VocabularyDrill } from './components/VocabularyDrill/VocabularyDrill';
 import './index.scss';
 import type {
   AnswerModeType,
-  ChildContentType,
+  SubContentType as SubContentType,
   LanguageModeType,
   Params,
   State,
@@ -21,7 +21,7 @@ import { isNil } from './utils/type.utils';
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
   implements IH5PContentType<Params>, IH5PQuestionType {
-  private activeContentType: ChildContentType | undefined;
+  private activeContentType: SubContentType | undefined;
 
   attach($container: JQuery<HTMLElement>) {
     const containerElement = $container.get(0);
@@ -53,6 +53,7 @@ class VocabularyDrillContentType
                 this.handleLanguageModeChange(languageMode)
               }
               onResize={() => this.resize()}
+              onPageChange={(page) => this.handlePageChange(page)}
             />
           </ContentIdContext.Provider>
         </L10nContext.Provider>
@@ -80,7 +81,7 @@ class VocabularyDrillContentType
       return 0;
     }
 
-    return this.activeContentType.getScore();
+    return this.state?.score ?? this.activeContentType.getScore();
   }
 
   getMaxScore(): number {
@@ -88,7 +89,7 @@ class VocabularyDrillContentType
       return 0;
     }
 
-    return this.activeContentType.getMaxScore();
+    return this.state?.maxScore ?? this.activeContentType.getMaxScore();
   }
 
   showSolutions(): void {
@@ -103,6 +104,8 @@ class VocabularyDrillContentType
     if (!this.activeContentType) {
       return;
     }
+
+    this.state = {};
 
     this.activeContentType.resetTask();
   }
@@ -149,7 +152,7 @@ class VocabularyDrillContentType
 
   private handleChangeContentType(
     answerMode: AnswerModeType,
-    contentType: ChildContentType,
+    contentType: SubContentType,
   ): void {
     this.activeContentType = contentType;
 
@@ -163,6 +166,17 @@ class VocabularyDrillContentType
 
   private handleLanguageModeChange(languageMode: LanguageModeType): void {
     this.setState({ activeLanguageMode: languageMode });
+  }
+
+  private handlePageChange(
+    page: number,
+  ): void {
+    this.setState({
+      page,
+      score: (this.state?.score ?? 0) + (this.activeContentType?.getScore() ?? 0),
+      maxScore:
+        (this.state?.maxScore ?? 0) + (this.activeContentType?.getMaxScore() ?? 0),
+    });
   }
 }
 

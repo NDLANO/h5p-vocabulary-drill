@@ -9,6 +9,7 @@ type ToolbarProps = {
   enableLanguageMode: boolean;
   onAnswerModeChange: () => void;
   onLanguageModeChange: () => void;
+  disableTools: boolean;
 };
 
 export const Toolbar: React.FC<ToolbarProps> = ({
@@ -18,6 +19,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   enableLanguageMode,
   onAnswerModeChange,
   onLanguageModeChange,
+  disableTools,
 }) => {
   const { t } = useTranslation();
 
@@ -35,7 +37,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
         <div className="h5p-vocabulary-drill-toolbar-tools">
           {enableAnswerMode && (
             <div
-              className={`h5p-vocabulary-drill-toolbar-select ${classes[activeAnswerMode]}`}
+              className={`h5p-vocabulary-drill-toolbar-select ${classes[activeAnswerMode]} ${disableTools ? 'disabled' : ''}`}
             >
               <label className="visually-hidden" htmlFor="answerMode">
                 {t('answerModeLabel')}
@@ -45,6 +47,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 name="answerMode"
                 onChange={onAnswerModeChange}
                 value={activeAnswerMode}
+                disabled={disableTools}
               >
                 <option value={AnswerModeType.FillIn}>
                   {t('fillInLabel')}
@@ -60,6 +63,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
               type="button"
               className="h5p-vocabulary-drill-language-mode"
               onClick={onLanguageModeChange}
+              disabled={disableTools}
             >
               {t('languageModeLabel')}
             </button>
