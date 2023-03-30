@@ -515,6 +515,13 @@
         "description": "Defines how many words that will be visible each time. If 0 is set, all words will be shown.",
         "type": "number",
         "optional": true
+      },
+      {
+        "label": "Enable multiple pages",
+        "name": "enableMultiplePages",
+        "description": "If \"Number of words\" is set to a lower number then the word count, this option will enable multiple pages.",
+        "type": "boolean",
+        "default": false
       }
     ]
   }

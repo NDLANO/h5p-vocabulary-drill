@@ -312,6 +312,10 @@
         {
           "label": "Talet på ord",
           "description": "Definerer kor mange ord som vil vera synlege kvar gong. Viss 0 er sette, vil alle orda visast."
+        },
+        {
+          "label": "Aktiver fleire sider",
+          "description": "Viss \"Talet på word\" er sett til eit lågare tal enn total talet på ord, vil denne aktivera fleire sider."
         }
       ]
     }

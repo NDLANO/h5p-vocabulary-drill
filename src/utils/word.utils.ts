@@ -37,7 +37,7 @@ export const filterOutVariant = (wordsAndTip: string): string => {
   return wordsAndTip;
 };
 
-const getRandomWords = (wordsList: string[]): string[] => {
+export const getRandomWords = (wordsList: string[]): string[] => {
   return wordsList.concat().sort(() => 0.5 - Math.random());
 };
 

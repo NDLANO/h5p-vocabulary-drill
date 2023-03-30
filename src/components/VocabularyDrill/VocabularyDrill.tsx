@@ -12,7 +12,7 @@ import {
 } from '../../types/types';
 import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
-import { parseWords, pickWords, parseSourceAndTarget } from '../../utils/word.utils';
+import { parseWords, pickWords, parseSourceAndTarget, getRandomWords } from '../../utils/word.utils';
 import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
 
@@ -137,6 +137,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     answerMode,
     enableSwitchAnswerModeButton,
     enableSwitchWordsButton,
+    enableMultiplePages,
     enableRetry,
     randomize,
     showTips,
@@ -164,7 +165,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
-  const words = useRef(
+  let words = useRef(
     parseWords(
       params.words,
       randomize,
@@ -179,8 +180,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       behaviour.numberOfWordsToShow <= totalNumberOfWords
       ? behaviour.numberOfWordsToShow
       : totalNumberOfWords;
-
-  const pickedWords = pickWords(words.current, page, numberOfWordsToShow);
 
   const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow);
   const severalPages = totalPages > 1;
@@ -225,8 +224,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setDisableNextButton(true);
   };
 
-  const createRunnable = () => {
+  const createRunnable = (newWords?: string[] | null) => {
     const wrapper = wrapperRef.current;
+    const pickedWords = pickWords(newWords ?? words.current, page, numberOfWordsToShow);
 
     if (!wrapper) {
       return;
@@ -346,6 +346,21 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     }
   };
 
+  const handleRestart = () => {
+    if (enableMultiplePages) {
+      setPage(0);
+      setScore(0);
+      setMaxScore(0);
+      setDisableNextButton(true);
+      setDisableTools(false);
+      createRunnable(randomize ? getRandomWords(words.current) : null);
+    } else {
+      setScore(0);
+      setMaxScore(0);
+      createRunnable(randomize ? getRandomWords(words.current) : null);
+    }
+  };
+
   return hasWords ? (
     <div>
       <Toolbar
@@ -358,8 +373,13 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         disableTools={disableTools}
       />
       <div ref={wrapperRef} />
-      {severalPages && (
-        <StatusBar page={page + 1} totalPages={totalPages} score={score} totalScore={totalNumberOfWords} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
+      {severalPages && !enableMultiplePages && (
+        <div className="h5p-vocabulary-drill-restart-wrapper">
+          <button role="button" className="h5p-joubelui-button  h5p-vocabulary-drill-restart" onClick={handleRestart}>Restart</button>
+        </div>
+      )}
+      {severalPages && enableMultiplePages && (
+        <StatusBar page={page + 1} totalPages={totalPages} score={score} totalScore={totalNumberOfWords} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} onRestart={handleRestart} />
       )}
     </div>
   ) : (

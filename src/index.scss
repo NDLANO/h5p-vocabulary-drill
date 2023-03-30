@@ -27,6 +27,17 @@
     white-space: nowrap;
     width: 1px;
   }
+
+  .h5p-vocabulary-drill-restart-wrapper {
+    margin: 0 0 1em 1em;
+  }
+
+  button.h5p-vocabulary-drill-restart::before {
+    content: '\F01E';
+    font-family: 'H5PFontAwesome4';
+    padding-right: 0.5em;
+  }
+  
 }
 
 .h5p-vocabulary-drill-toolbar {

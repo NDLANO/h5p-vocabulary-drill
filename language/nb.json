@@ -312,6 +312,10 @@
         {
           "label": "Antall ord",
           "description": "Definerer hvor mange ord som vil være synlige hver gang. Hvis 0 er satt, vil alle ordene vises."
+        },
+        {
+          "label": "Aktiver flere sider",
+          "description": "Hvis \"Antall word\" er satt til et lavere tall enn total antall ord, vil denne aktivere flere sider."
         }
       ]
     }
