@@ -315,7 +315,7 @@
         },
         {
           "label": "Aktiver fleire sider",
-          "description": "Viss \"Talet på word\" er sett til eit lågare tal enn total talet på ord, vil denne aktivera fleire sider."
+          "description": "Viss \"Talet på word\" er sett til eit lågare tal enn det totale talet på ord, vil denne aktivere fleire sider."
         }
       ]
     }

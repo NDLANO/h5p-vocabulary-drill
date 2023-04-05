@@ -51,7 +51,7 @@ export const StatusBar: FC<StatusBarProps> = ({
           </button>
           : null}
         {!showNextButton && (
-          <button role="button" className="h5p-vocabulary-drill-restart" onClick={onRestart}>Restart</button>
+          <button type="button" className="h5p-vocabulary-drill-restart" onClick={onRestart}>Restart</button>
         )}
       </div>
     </>

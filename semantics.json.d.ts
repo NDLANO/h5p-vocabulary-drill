@@ -519,7 +519,7 @@ declare const json: [
       {
         "label": "Enable multiple pages",
         "name": "enableMultiplePages",
-        "description": "If \"Number of words\" is set to a lower number then the word count, this option will enable multiple pages.",
+        "description": "If \"Number of words\" is set to a lower number than the word count, this option will enable multiple pages.",
         "type": "boolean",
         "default": false
       }

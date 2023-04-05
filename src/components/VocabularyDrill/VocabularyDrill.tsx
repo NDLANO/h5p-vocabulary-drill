@@ -376,7 +376,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       <div ref={wrapperRef} />
       {severalPages && !enableMultiplePages && (
         <div className="h5p-vocabulary-drill-restart-wrapper">
-          <button role="button" className="h5p-joubelui-button  h5p-vocabulary-drill-restart" onClick={handleRestart}>Restart</button>
+          <button type="button" className="h5p-joubelui-button  h5p-vocabulary-drill-restart" onClick={handleRestart}>Restart</button>
         </div>
       )}
       {severalPages && enableMultiplePages && (
