@@ -50,6 +50,17 @@ export const pickWords = (
 };
 
 /**
+ * Picks a random set of words from the list of words.
+ */
+export const pickRandomWords = (
+  words: Array<string>,
+  pageSize: number,
+): Array<string> => {
+  const randomWords = getRandomWords(words);
+  return randomWords.slice(0, pageSize);
+};
+
+/**
  * Creates a word string for the H5P.Blanks content type.
  * H5P.Blanks expects the input as an HTML string on the format `source *target*`.
  * In order to show the word on a seperate line, we wrap the string in a <p> tag.
