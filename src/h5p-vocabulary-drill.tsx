@@ -168,14 +168,14 @@ class VocabularyDrillContentType
     this.setState({ activeLanguageMode: languageMode });
   }
 
-  private handlePageChange(
-    page: number,
-  ): void {
+  private handlePageChange(page: number): void {
     this.setState({
       page,
-      score: (this.state?.score ?? 0) + (this.activeContentType?.getScore() ?? 0),
+      score:
+        (this.state?.score ?? 0) + (this.activeContentType?.getScore() ?? 0),
       maxScore:
-        (this.state?.maxScore ?? 0) + (this.activeContentType?.getMaxScore() ?? 0),
+        (this.state?.maxScore ?? 0) +
+        (this.activeContentType?.getMaxScore() ?? 0),
     });
   }
 }
