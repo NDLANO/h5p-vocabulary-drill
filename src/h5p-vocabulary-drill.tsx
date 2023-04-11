@@ -20,8 +20,7 @@ import { isNil } from './utils/type.utils';
 
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
-  implements IH5PContentType<Params>, IH5PQuestionType
-{
+  implements IH5PContentType<Params>, IH5PQuestionType {
   private activeContentType: SubContentType | undefined;
 
   attach($container: JQuery<HTMLElement>) {
