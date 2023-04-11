@@ -154,16 +154,12 @@ class VocabularyDrillContentType
     answerMode: AnswerModeType,
     contentType: SubContentType,
   ): void {
-    const previousContentType = this.activeContentType;
     this.activeContentType = contentType;
 
     this.setState({
       activeAnswerMode: answerMode,
       [answerMode]: contentType.getCurrentState?.(),
     });
-
-    previousContentType?.off('resize', () => this.resize());
-    contentType.on('resize', () => this.resize());
 
     this.resize();
   }
