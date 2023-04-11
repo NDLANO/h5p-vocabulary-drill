@@ -315,7 +315,7 @@
         },
         {
           "label": "Aktiver flere sider",
-          "description": "Hvis \"Antall word\" er satt til et lavere tall enn total antall ord, vil denne aktivere flere sider."
+          "description": "Hvis \"Antall ord\" er satt til et lavere tall enn total antall ord, vil denne aktivere flere sider."
         }
       ]
     }
