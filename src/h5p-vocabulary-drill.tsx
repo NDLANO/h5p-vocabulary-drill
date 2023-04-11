@@ -20,7 +20,8 @@ import { isNil } from './utils/type.utils';
 
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
-  implements IH5PContentType<Params>, IH5PQuestionType {
+  implements IH5PContentType<Params>, IH5PQuestionType
+{
   private activeContentType: SubContentType | undefined;
 
   attach($container: JQuery<HTMLElement>) {
@@ -154,12 +155,16 @@ class VocabularyDrillContentType
     answerMode: AnswerModeType,
     contentType: SubContentType,
   ): void {
+    const previousContentType = this.activeContentType;
     this.activeContentType = contentType;
 
     this.setState({
       activeAnswerMode: answerMode,
       [answerMode]: contentType.getCurrentState?.(),
     });
+
+    previousContentType?.off('resize', () => this.resize());
+    contentType.on('resize', () => this.resize());
 
     this.resize();
   }
@@ -168,14 +173,14 @@ class VocabularyDrillContentType
     this.setState({ activeLanguageMode: languageMode });
   }
 
-  private handlePageChange(
-    page: number,
-  ): void {
+  private handlePageChange(page: number): void {
     this.setState({
       page,
-      score: (this.state?.score ?? 0) + (this.activeContentType?.getScore() ?? 0),
+      score:
+        (this.state?.score ?? 0) + (this.activeContentType?.getScore() ?? 0),
       maxScore:
-        (this.state?.maxScore ?? 0) + (this.activeContentType?.getMaxScore() ?? 0),
+        (this.state?.maxScore ?? 0) +
+        (this.activeContentType?.getMaxScore() ?? 0),
     });
   }
 }
