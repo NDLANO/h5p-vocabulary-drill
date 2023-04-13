@@ -60,7 +60,7 @@
   button {
     background-color: #f5f7fc;
     border: none;
-    color: #1a73d9;
+    color: #356bbd;
     cursor: pointer;
     display: inline-block;
     font-size: 1em;
@@ -91,7 +91,7 @@
     appearance: none; // Remove default arrow
     background-color: #f5f7fc;
     border: none;
-    color: #1a73d9;
+    color: #356bbd;
     cursor: pointer;
     font-size: 1em;
     font-weight: 700;
@@ -118,7 +118,7 @@
     position: relative;
 
     &::after {
-      color: #1a73d9;
+      color: #356bbd;
       content: '\f107';
       font-family: 'H5PFontAwesome4';
       font-size: 1.2em;
@@ -130,7 +130,7 @@
     }
 
     &::before {
-      color: #1a73d9;
+      color: #356bbd;
       content: '\F040';
       font-family: 'H5PFontAwesome4';
       position: absolute;
@@ -153,6 +153,96 @@
     &.h5p-vocabulary-drill-drag-text::before {
       content: '\F047';
     }
+  }
+
+  .combo *,
+  .combo *::before,
+  .combo *::after {
+    box-sizing: border-box;
+  }
+
+  .combo {
+    //align-items: center;
+    //display: flex;
+    //gap: 1em;
+    //position: relative;
+    display: block;
+    max-width: 400px;
+    position: relative;
+
+    &::after {
+      color: #356bbd;
+      content: '\f107';
+      font-family: 'H5PFontAwesome4';
+      font-size: 1.2em;
+      pointer-events: none;
+      //margin-left: 1em;
+      position: absolute;
+      right: 1em;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    &::before {
+      color: #356bbd;
+      content: '\F040';
+      font-family: 'H5PFontAwesome4';
+      //margin-right: 0.5em;
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      left: 1.25em;
+    }
+
+    &.disabled {
+      &::after, 
+      &::before {
+        color: grey;
+      }
+    }
+
+    &-input {
+      background-color: #f5f7fc;
+      border: none;
+      color: #356bbd;
+      //cursor: pointer;
+      font-size: 1em;
+      font-weight: 700;
+      line-height: 1.2;
+      padding: 0.75em 2.75em 0.75em 2.7em;
+    }
+
+    &-menu {
+      background-color: #f5f7fc;
+      border: 1px solid rgb(0 0 0 / 25%);
+      border-radius: 0;
+      display: none;
+      max-height: 300px;
+      overflow-y: scroll;
+      left: 0;
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      z-index: 100;
+    }
+
+    &-option {
+      padding: 0.5em 0.75em;
+
+      &.option-current {
+        outline: 3px solid #356bbd;
+        outline-offset: -3px;
+      }
+
+      &:hover {
+        background-color: #eaeff8;
+      }
+    }
+
+    &.open .combo-menu {
+      display: block;
+    }
+    
   }
 }
 
