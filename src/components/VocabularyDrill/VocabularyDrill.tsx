@@ -348,6 +348,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     }
   };
 
+  // Resize can be required if !hasWords and plain div is rendered
+  onResize();
+
   return hasWords ? (
     <div>
       <Toolbar
