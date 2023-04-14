@@ -93,20 +93,25 @@ export const Combobox: React.FC<ComboboxProps> = ({
     if (menuOpen) {
       if (key === 'ArrowUp' && altKey) {
         return SelectActions.CloseSelect;
-      } else if (key === 'ArrowDown' && !altKey) {
+      }
+      else if (key === 'ArrowDown' && !altKey) {
         return SelectActions.Next;
-      } else if (key === 'ArrowUp') {
+      }
+      else if (key === 'ArrowUp') {
         return SelectActions.Previous;
-      } else if (key === 'PageDown') {
+      }
+      else if (key === 'PageDown') {
         return SelectActions.PageDown;
-      } else if (key === 'PageUp') {
+      }
+      else if (key === 'PageUp') {
         return SelectActions.PageUp;
-      } else if (key === 'Enter' || key === ' ') {
+      }
+      else if (key === 'Enter' || key === ' ') {
         return SelectActions.CloseSelect;
       }
     }
     return;
-  }
+  };
 
   const getUpdatedIndex = (action: number, currentIndex: number, maxIndex: number) => {
     const pageSize = 10;
@@ -204,7 +209,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
               <div
                 role="option"
                 id={`${id}-option-${index}`}
-                className={`combo-option ${selectedOption.index === option.index ? "option-current" : ""}`}
+                className={`combo-option ${selectedOption.index === option.index ? 'option-current' : ''}`}
                 aria-selected={activeOption.index === option.index}
                 onClick={() => handleChangeOption(option)}
                 onMouseMove={() => handleSelectedOption(option)}

@@ -39,7 +39,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           {enableAnswerMode && (
             <Combobox
               id="h5p-vocabulary-drill-answermode-combobox"
-              className={`h5p-vocabulary-drill-combobox`}
+              className="h5p-vocabulary-drill-combobox"
               label={t('answerModeLabel')}
               active={activeAnswerMode}
               options={answerModeOptions}
