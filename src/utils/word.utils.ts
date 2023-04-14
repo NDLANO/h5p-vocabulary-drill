@@ -103,6 +103,20 @@ const createSourceAndTargetString = (
 };
 
 /**
+ * Trim every word and variant in either source or target string.
+ */
+const trimWordAndVariants = (sourceOrTarget: string): string => {
+  const segments = sourceOrTarget.split(tipSeparator);
+
+  segments[0] = segments[0]
+    .split(variantSeparator)
+    .map((word) => word.trim())
+    .join(variantSeparator);
+
+  return segments.join(tipSeparator);
+};
+
+/**
  * Separates the source and target from a list of words, and based on the
  * user's settings returns the words as a string that can be used by the
  * chosen H5P content type (defined by answerMode).
@@ -121,7 +135,9 @@ export const parseSourceAndTarget = (
     .map((word) => word.split(sourceAndTargetSeparator));
 
   const newWordsList = sourceAndTargetList.map((sourceAndTarget) => {
-    const [source, target] = sourceAndTarget;
+    let [source, target] = sourceAndTarget;
+    source = trimWordAndVariants(source);
+    target = trimWordAndVariants(target);
 
     if (languageModeSource) {
       return createSourceAndTargetString(
