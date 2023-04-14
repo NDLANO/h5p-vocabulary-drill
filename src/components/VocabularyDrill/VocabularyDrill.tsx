@@ -15,6 +15,7 @@ import { isNil } from '../../utils/type.utils';
 import { parseWords, pickWords, parseSourceAndTarget, pickRandomWords } from '../../utils/word.utils';
 import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
+import he from 'he';
 
 type VocabularyDrillProps = {
   title: string;
@@ -68,6 +69,12 @@ function createDragText(
 ): SubContentType {
   const dragTextWords = parseSourceAndTarget(words, showTips, AnswerModeType.DragText, languageMode);
 
+  // Yes. I know. But not going to change the whole TypeScript H5P tooling now
+  let dragtextl10n = params.dragtextl10n as any;
+  for (const [key, value] of Object.entries(dragtextl10n)) {
+    dragtextl10n[key] = he.decode(value as string);
+  }
+
   const dragTextParams = {
     taskDescription: params.description,
     textField: dragTextWords,
@@ -76,7 +83,7 @@ function createDragText(
       ...params.behaviour,
     },
     overallFeedback: params.overallFeedback,
-    ...params.dragtextl10n,
+    ...dragtextl10n,
   };
 
   const activeContentType = attachContentType(
@@ -105,12 +112,18 @@ function createFillIn(
 ) {
   const fillInWords = parseSourceAndTarget(words, showTips, AnswerModeType.FillIn, languageMode);
 
+  // Yes. I know. But not going to change the whole TypeScript H5P tooling now
+  let blanksl10n = params.blanksl10n as any;
+  for (const [key, value] of Object.entries(blanksl10n)) {
+    blanksl10n[key] = he.decode(value as string);
+  }
+
   const fillInParams = {
     text: params.description,
     questions: [fillInWords],
     behaviour: params.behaviour,
     overallFeedback: params.overallFeedback,
-    ...params.blanksl10n,
+    ...blanksl10n,
   };
 
   return attachContentType(

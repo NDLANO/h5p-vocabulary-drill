@@ -1,4 +1,5 @@
 import React from 'react';
+import he from 'he';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import { AnswerModeType } from '../../types/types';
 import { Combobox } from '../Combobox/Combobox';
@@ -33,7 +34,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 
   return (
     <div className="h5p-vocabulary-drill-toolbar">
-      <p>{title}</p>
+      <p>{ he.decode(title) }</p>
       {enableTools && (
         <div className="h5p-vocabulary-drill-toolbar-tools">
           {enableAnswerMode && (

@@ -17,6 +17,7 @@ import type {
   State,
 } from './types/types';
 import { isNil } from './utils/type.utils';
+import he from 'he';
 
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
@@ -35,7 +36,12 @@ class VocabularyDrillContentType
     const { contentId, extras, params } = this;
 
     const title = extras?.metadata.title ?? '';
-    const { l10n } = params;
+
+    // Yes. I know. But not going to change the whole TypeScript H5P tooling now
+    let l10n = params.l10n as any;
+    for (const [key, value] of Object.entries(l10n)) {
+      l10n[key] = he.decode(value as string);
+    }
 
     const root = createRoot(containerElement);
     root.render(
