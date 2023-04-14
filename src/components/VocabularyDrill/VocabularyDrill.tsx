@@ -179,10 +179,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
+  // If previous state set, word must not be randomized to keep previous order
   const words = useRef(
     parseWords(
       params.words,
-      randomize,
+      randomize && !previousState?.[activeAnswerMode],
     ),
   );
 
@@ -293,6 +294,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         }
       }
 
+      // Remove previous state once used to start with clean slate after resets
+      previousState = undefined;
+
       activeContentType.current?.on('resize', () => {
         onResize();
       });
@@ -335,7 +339,14 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     addRunnable();
   };
 
+  // Fighting against React.StrictMode to not re-create runnable on remount
+  let shouldCreateRunnable = true;
   useEffect(() => {
+    if (!shouldCreateRunnable) {
+      return;
+    }
+
+    shouldCreateRunnable = false;
     createRunnable();
   }, [activeAnswerMode, activeLanguageMode, page]);
 
