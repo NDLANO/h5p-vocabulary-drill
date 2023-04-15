@@ -1,4 +1,4 @@
-import { H5PExtrasWithState, H5PLibrary, XAPIEvent } from 'h5p-types';
+import { H5PExtrasWithState, H5PLibrary, XAPIEvent, XAPIVerb } from 'h5p-types';
 import { H5P } from 'h5p-utils';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useContentId } from 'use-h5p';
@@ -27,6 +27,7 @@ type VocabularyDrillProps = {
   ) => void;
   onChangeLanguageMode: (languageMode: LanguageModeType) => void;
   onResize: () => void;
+  onTrigger: (event: XAPIVerb) => void;
   onPageChange: (page: number) => void;
 };
 
@@ -142,6 +143,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   onChangeContentType,
   onChangeLanguageMode,
   onResize,
+  onTrigger,
   onPageChange,
 }) => {
   const { behaviour } = params;
@@ -315,6 +317,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               });
             });
           }
+
+          // Give subcontent's statement time to be triggered first
+          window.requestAnimationFrame(() => {
+            onTrigger('completed');
+          });
         }
       });
 

@@ -1,8 +1,21 @@
 import type {
   IH5PContentType,
   IH5PQuestionType,
-  XAPIDefinition,
+  XAPIVerb,
+  XAPIInteractionType,
+  XAPIStatement,
+  XAPIEvent
 } from 'h5p-types';
+
+type XAPIData = {
+  statement: XAPIStatement,
+  children?: Array<XAPIData>
+}
+
+type IH5PQuestionTypeFixed = Omit<IH5PQuestionType, 'getXAPIData'> & {
+  getXAPIData(): XAPIData;
+}
+
 import { H5PResumableContentType, registerContentType } from 'h5p-utils';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
@@ -17,12 +30,14 @@ import type {
   State,
 } from './types/types';
 import { isNil } from './utils/type.utils';
+import XAPIUtils from './utils/xapi.utils';
 import he from 'he';
 
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
-  implements IH5PContentType<Params>, IH5PQuestionType {
+  implements IH5PContentType<Params>, IH5PQuestionTypeFixed {
   private activeContentType: SubContentType | undefined;
+  private xAPIUtils: XAPIUtils | undefined;
 
   attach($container: JQuery<HTMLElement>) {
     const containerElement = $container.get(0);
@@ -34,6 +49,12 @@ class VocabularyDrillContentType
     }
 
     const { contentId, extras, params } = this;
+
+    this.xAPIUtils = new XAPIUtils({
+      context: this as unknown as IH5PContentType<Params> & IH5PQuestionType,
+      description: params.description,
+      title: extras?.metadata.title
+    });
 
     const title = extras?.metadata.title ?? '';
 
@@ -59,6 +80,7 @@ class VocabularyDrillContentType
                 this.handleLanguageModeChange(languageMode)
               }
               onResize={() => this.resize()}
+              onTrigger={(verb: XAPIVerb) => this.xAPIUtils?.triggerXAPIEvent(verb)}
               onPageChange={(page) => this.handlePageChange(page)}
             />
           </ContentIdContext.Provider>
@@ -116,14 +138,20 @@ class VocabularyDrillContentType
     this.activeContentType.resetTask();
   }
 
-  getXAPIData() {
-    if (!this.activeContentType) {
-      return {} as {
-        statement: XAPIDefinition;
-      };
-    }
+  getXAPIData(): XAPIData {
+    const xAPIEvent = this.xAPIUtils?.createXAPIEvent('completed') as unknown as XAPIEvent;
 
-    return this.activeContentType.getXAPIData();
+    // Not a valid xAPI value (!), but H5P uses it for reporting
+    xAPIEvent.data.statement.object.definition.interactionType = 'compound' as XAPIInteractionType;
+
+    let childrenData: Array<XAPIData> = this.activeContentType ?
+      [this.activeContentType.getXAPIData() as unknown as XAPIData] :
+      [];
+
+    return {
+      statement: xAPIEvent?.data.statement,
+      children: childrenData
+    };
   }
 
   getCurrentState(): State | undefined {
