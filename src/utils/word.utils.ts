@@ -119,9 +119,23 @@ export const parseSourceAndTarget = (
   const answerModeFillIn = answerMode === AnswerModeType.FillIn;
   const languageModeSource = languageMode === LanguageModeType.Source;
 
+  /*
+   * CSV import needs to follow pattern like water/sea:w___r,vann/hav:v__n
+   * with optional tips separated by colon and optional word variants
+   * separated by forward slash
+   */
+
+  // Cannot use `(\w|\d)+`, because of chars like ø or we'd need to use unicode
+  const patternWord = `[^\\${variantSeparator}\\${tipSeparator}\\${sourceAndTargetSeparator}]+`;
+  const patternVariants = `(\\${variantSeparator}${patternWord})*`;
+  const patternTip = '(:[^,\n]+)?';
+  const patternSourceOrTarget = `${patternWord}${patternVariants}${patternTip}`;
+  const regExpCSV = new RegExp(`^${patternSourceOrTarget}\\${sourceAndTargetSeparator}${patternSourceOrTarget}$`);
+
   const sourceAndTargetList = wordsList
     .filter(Boolean)
-    .map((word) => word.split(sourceAndTargetSeparator));
+    .filter((word) => regExpCSV.test(word.trim()))
+    .map((word) => word.trim().split(sourceAndTargetSeparator));
 
   const newWordsList = sourceAndTargetList.map((sourceAndTarget) => {
     let [source, target] = sourceAndTarget;
