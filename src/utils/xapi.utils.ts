@@ -1,4 +1,4 @@
-import { H5P } from './h5p.utils';
+import { H5P } from 'h5p-utils';
 import {
   IH5PContentType,
   IH5PQuestionType,
