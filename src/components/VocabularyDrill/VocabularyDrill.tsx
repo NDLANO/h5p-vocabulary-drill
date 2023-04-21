@@ -12,7 +12,7 @@ import {
 } from '../../types/types';
 import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
-import { parseWords, pickWords, parseSourceAndTarget } from '../../utils/word.utils';
+import { parseWords, pickWords, parseSourceAndTarget, pickRandomWords } from '../../utils/word.utils';
 import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
 
@@ -147,6 +147,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const initialLanguageMode =
     previousState?.activeLanguageMode ?? LanguageModeType.Target;
 
+  const enableMultiplePages = false;
+
   const { t } = useTranslation();
   const contentId = useContentId();
 
@@ -180,10 +182,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       ? behaviour.numberOfWordsToShow
       : totalNumberOfWords;
 
-  const pickedWords = pickWords(words.current, page, numberOfWordsToShow);
+  const pickedWords = enableMultiplePages || !randomize ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
 
   const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow);
-  const severalPages = totalPages > 1;
+  const multiplePages = totalPages > 1;
   const showNextButton = (page + 1) * numberOfWordsToShow < totalNumberOfWords;
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
@@ -358,7 +360,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         disableTools={disableTools}
       />
       <div ref={wrapperRef} />
-      {severalPages && (
+      {enableMultiplePages && multiplePages && (
         <StatusBar page={page + 1} totalPages={totalPages} score={score} totalScore={totalNumberOfWords} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
       )}
     </div>
