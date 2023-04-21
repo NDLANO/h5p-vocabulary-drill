@@ -88,16 +88,16 @@
   }
 
   .h5p-vocabulary-drill-combobox {
-    .combo *,
-    .combo *::before,
-    .combo *::after {
-      box-sizing: border-box;
-    }
-
     .combo {
       display: block;
       max-width: 400px;
       position: relative;
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
 
       &::after {
         color: #356bbd;
