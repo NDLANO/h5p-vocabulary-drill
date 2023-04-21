@@ -54,9 +54,7 @@
               {
                 "label": "Score Range"
               },
-              {
-                "label": ""
-              },
+              {},
               {
                 "label": "Feedback for defined score range",
                 "placeholder": "Fill in the feedback"
@@ -136,7 +134,7 @@
         },
         {
           "label": "Assistive technology label for input field",
-          "description": "Use @num and @total to replace current cloze number and total cloze number",
+          "description": "Use @num and @total to replace current cloze number and total cloze number.",
           "default": "Blank input @num of @total"
         },
         {
@@ -191,27 +189,27 @@
         {
           "label": "Numbered Drop zone label",
           "default": "Drop Zone @index.",
-          "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+          "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index."
         },
         {
           "label": "Empty Drop Zone label",
           "default": "Drop Zone @index is empty.",
-          "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+          "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty."
         },
         {
           "label": "Contains Drop Zone label",
           "default": "Drop Zone @index contains draggable @draggable.",
-          "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+          "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable."
         },
         {
           "label": "Draggable elements label",
           "default": "@index of @count draggables.",
-          "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+          "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count."
         },
         {
           "label": "Label for show tip button",
           "default": "Show tip",
-          "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+          "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out."
         },
         {
           "label": "Readspeaker text for correct answer",
@@ -311,7 +309,7 @@
         },
         {
           "label": "Number of words",
-          "description": "Defines how many words that will be visible each time. If 0 is set, all words will be shown."
+          "description": "Defines how many words will be visible each time. If 0 is set, all words will be shown."
         }
       ]
     }
