@@ -171,6 +171,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
     }
   };
 
+  // TODO: make id-s unique
   return (
     <div className={className}>
       <label id={`${id}-label`} className="visually-hidden combo-label" htmlFor={id}>
