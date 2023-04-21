@@ -182,7 +182,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       ? behaviour.numberOfWordsToShow
       : totalNumberOfWords;
 
-  const pickedWords = enableSeveralPages ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
+  const pickedWords = enableSeveralPages || !randomize ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
 
   const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow);
   const severalPages = totalPages > 1;
