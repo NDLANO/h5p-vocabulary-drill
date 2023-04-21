@@ -17,6 +17,7 @@ type IH5PQuestionTypeFixed = Omit<IH5PQuestionType, 'getXAPIData'> & {
 }
 
 import { H5PResumableContentType, registerContentType } from 'h5p-utils';
+import { sanitizeRecord } from './utils/h5p.utils';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ContentIdContext, L10nContext } from 'use-h5p';
@@ -31,7 +32,6 @@ import type {
 } from './types/types';
 import { isNil } from './utils/type.utils';
 import XAPIUtils from './utils/xapi.utils';
-import he from 'he';
 
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
@@ -58,16 +58,10 @@ class VocabularyDrillContentType
 
     const title = extras?.metadata.title ?? '';
 
-    // Yes. I know. But not going to change the whole TypeScript H5P tooling now
-    let l10n = params.l10n as any;
-    for (const [key, value] of Object.entries(l10n)) {
-      l10n[key] = he.decode(value as string);
-    }
-
     const root = createRoot(containerElement);
     root.render(
       <React.StrictMode>
-        <L10nContext.Provider value={l10n}>
+        <L10nContext.Provider value={sanitizeRecord(params.l10n)}>
           <ContentIdContext.Provider value={contentId}>
             <VocabularyDrill
               title={title}
