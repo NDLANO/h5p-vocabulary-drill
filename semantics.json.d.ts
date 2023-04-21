@@ -135,7 +135,7 @@ declare const json: [
       {
         "label": "Answer mode label",
         "name": "answerModeLabel",
-        "default": "Answer mode",
+        "default": "Change answer mode",
         "type": "text"
       },
       {
