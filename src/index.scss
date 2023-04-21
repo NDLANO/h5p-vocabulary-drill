@@ -90,7 +90,7 @@
   .h5p-vocabulary-drill-combobox {
     .combo {
       display: block;
-      max-width: 400px;
+      max-width: 25rem;
       position: relative;
 
       *,
@@ -163,7 +163,7 @@
         border: 1px solid rgb(0 0 0 / 25%);
         border-radius: 0;
         display: none;
-        max-height: 300px;
+        max-height: 18.75rem;
         overflow-y: scroll;
         left: 0;
         position: absolute;
