@@ -200,7 +200,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
           ref={listboxRef}
           className="combo-menu"
           id={`${id}-listbox`}
-          aria-aria-labelledby={`${id}-label`}
+          aria-labelledby={`${id}-label`}
           onChange={onChange}
           tabIndex={-1}
         >
