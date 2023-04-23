@@ -131,7 +131,7 @@
       }
 
       &.disabled {
-        &::after, 
+        &::after,
         &::before {
           color: grey;
         }
@@ -164,7 +164,7 @@
         border-radius: 0;
         display: none;
         max-height: 18.75rem;
-        overflow-y: scroll;
+        overflow-y: auto;
         left: 0;
         position: absolute;
         top: 100%;
