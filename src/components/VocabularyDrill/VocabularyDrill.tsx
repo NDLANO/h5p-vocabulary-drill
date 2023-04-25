@@ -299,8 +299,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             // Wait for the retry button to be added to the DOM
             requestAnimationFrame(() => {
               requestAnimationFrame(() => {
-                const retryButton = wrapper.querySelector('button.h5p-question-try-again');
-                retryButton?.addEventListener('click', handleRetry, { once: true });
+                requestAnimationFrame(() => {
+                  const retryButton = wrapper.querySelector('button.h5p-question-try-again');
+                  retryButton?.addEventListener('click', handleRetry, { once: true });
+                });
               });
             });
           }
