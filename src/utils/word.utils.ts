@@ -103,6 +103,20 @@ const createSourceAndTargetString = (
 };
 
 /**
+ * Trim every word and variant in either source or target string.
+ */
+const trimWordAndVariants = (sourceOrTarget: string): string => {
+  const segments = sourceOrTarget.split(tipSeparator);
+
+  segments[0] = segments[0]
+    .split(variantSeparator)
+    .map((word) => word.trim())
+    .join(variantSeparator);
+
+  return segments.join(tipSeparator);
+};
+
+/**
  * Separates the source and target from a list of words, and based on the
  * user's settings returns the words as a string that can be used by the
  * chosen H5P content type (defined by answerMode).
@@ -116,12 +130,28 @@ export const parseSourceAndTarget = (
   const answerModeFillIn = answerMode === AnswerModeType.FillIn;
   const languageModeSource = languageMode === LanguageModeType.Source;
 
+  /*
+   * CSV import needs to follow pattern like water/sea:w___r,vann/hav:v__n
+   * with optional tips separated by colon and optional word variants
+   * separated by forward slash
+   */
+
+  // Cannot use `(\w|\d)+`, because of chars like ø or we'd need to use unicode
+  const patternWord = `[^\\${variantSeparator}\\${tipSeparator}\\${sourceAndTargetSeparator}]+`;
+  const patternVariants = `(\\${variantSeparator}${patternWord})*`;
+  const patternTip = '(:[^,\n]+)?';
+  const patternSourceOrTarget = `${patternWord}${patternVariants}${patternTip}`;
+  const regExpCSV = new RegExp(`^${patternSourceOrTarget}\\${sourceAndTargetSeparator}${patternSourceOrTarget}$`);
+
   const sourceAndTargetList = wordsList
     .filter(Boolean)
-    .map((word) => word.split(sourceAndTargetSeparator));
+    .filter((word) => regExpCSV.test(word.trim()))
+    .map((word) => word.trim().split(sourceAndTargetSeparator));
 
   const newWordsList = sourceAndTargetList.map((sourceAndTarget) => {
-    const [source, target] = sourceAndTarget;
+    let [source, target] = sourceAndTarget;
+    source = trimWordAndVariants(source);
+    target = trimWordAndVariants(target);
 
     if (languageModeSource) {
       return createSourceAndTargetString(

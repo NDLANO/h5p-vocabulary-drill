@@ -1,4 +1,4 @@
-import { H5PExtrasWithState, H5PLibrary, XAPIEvent } from 'h5p-types';
+import { H5PExtrasWithState, H5PLibrary, XAPIEvent, XAPIVerb } from 'h5p-types';
 import { H5P } from 'h5p-utils';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useContentId } from 'use-h5p';
@@ -10,7 +10,7 @@ import {
   Params,
   State,
 } from '../../types/types';
-import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
+import { findLibraryInfo, libraryToString, sanitizeRecord } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
 import { parseWords, pickWords, parseSourceAndTarget, pickRandomWords } from '../../utils/word.utils';
 import { StatusBar } from '../StatusBar/StatusBar';
@@ -26,6 +26,7 @@ type VocabularyDrillProps = {
   ) => void;
   onChangeLanguageMode: (languageMode: LanguageModeType) => void;
   onResize: () => void;
+  onTrigger: (event: XAPIVerb) => void;
   onPageChange: (page: number) => void;
 };
 
@@ -76,7 +77,7 @@ function createDragText(
       ...params.behaviour,
     },
     overallFeedback: params.overallFeedback,
-    ...params.dragtextl10n,
+    ...sanitizeRecord(params.dragtextl10n),
   };
 
   const activeContentType = attachContentType(
@@ -110,7 +111,7 @@ function createFillIn(
     questions: [fillInWords],
     behaviour: params.behaviour,
     overallFeedback: params.overallFeedback,
-    ...params.blanksl10n,
+    ...sanitizeRecord(params.blanksl10n),
   };
 
   return attachContentType(
@@ -129,6 +130,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   onChangeContentType,
   onChangeLanguageMode,
   onResize,
+  onTrigger,
   onPageChange,
 }) => {
   const { behaviour } = params;
@@ -166,10 +168,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
+  // If previous state set, word must not be randomized to keep previous order
   const words = useRef(
     parseWords(
       params.words,
-      randomize,
+      randomize && !previousState?.[activeAnswerMode],
     ),
   );
 
@@ -280,6 +283,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         }
       }
 
+      // Remove previous state once used to start with clean slate after resets
+      previousState = undefined;
+
       activeContentType.current?.on('resize', () => {
         onResize();
       });
@@ -298,6 +304,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               });
             });
           }
+
+          // Give subcontent's statement time to be triggered first
+          window.requestAnimationFrame(() => {
+            onTrigger('completed');
+          });
         }
       });
 
@@ -322,7 +333,14 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     addRunnable();
   };
 
+  // Fighting against React.StrictMode to not re-create runnable on remount
+  let shouldCreateRunnable = true;
   useEffect(() => {
+    if (!shouldCreateRunnable) {
+      return;
+    }
+
+    shouldCreateRunnable = false;
     createRunnable();
   }, [activeAnswerMode, activeLanguageMode, page]);
 
@@ -347,6 +365,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       (activeContentType.current as any).a11yHeader.focus();
     }
   };
+
+  // Resize can be required if !hasWords and plain div is rendered
+  onResize();
 
   return hasWords ? (
     <div>
