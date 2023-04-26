@@ -86,6 +86,10 @@
         {
           "label": "Language mode label",
           "default": "Swap languages"
+        },
+        {
+          "label": "Changed answer mode aria",
+          "default": "Changed answer mode to"
         }
       ]
     },

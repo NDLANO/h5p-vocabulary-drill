@@ -35,9 +35,12 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     { value: AnswerModeType.DragText, label: t('dragTextLabel'), className: 'h5p-vocabulary-drill-drag-text' },
   ];
 
+  const activeAnswerModeLabel = answerModeOptions.find((option) => option.value === activeAnswerMode)?.label ?? '';
+  const answerModeAriaLive = `${t('changedAnswerModeAria')} ${activeAnswerModeLabel}`;
+
   return (
     <div className="h5p-vocabulary-drill-toolbar">
-      <p>{ he.decode(title) }</p>
+      <p>{he.decode(title)}</p>
       {enableTools && (
         <div className="h5p-vocabulary-drill-toolbar-tools">
           {enableAnswerMode && (
@@ -49,6 +52,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
               options={answerModeOptions}
               onChange={onAnswerModeChange}
               disabled={disableTools}
+              ariaLive={answerModeAriaLive}
             />
           )}
           {enableLanguageMode && (

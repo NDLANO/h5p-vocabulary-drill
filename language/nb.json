@@ -86,6 +86,10 @@
         {
           "label": "Etikett for språkmodus",
           "default": "Bytt språk"
+        },
+        {
+          "label": "Endret svarmodus aria",
+          "default": "Endret svarmodus til"
         }
       ]
     },

@@ -143,6 +143,12 @@ declare const json: [
         "name": "languageModeLabel",
         "default": "Swap languages",
         "type": "text"
+      },
+      {
+        "label": "Changed answer mode aria",
+        "name": "changedAnswerModeAria",
+        "default": "Changed answer mode to",
+        "type": "text"
       }
     ]
   },
