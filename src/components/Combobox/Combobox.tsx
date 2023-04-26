@@ -1,4 +1,5 @@
 import React from 'react';
+import { H5P } from 'h5p-utils';
 
 type ComboboxOption = {
   index?: number;
@@ -171,7 +172,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
     }
   };
 
-  // TODO: make id-s unique
   return (
     <div className={className}>
       <label id={`${id}-label`} className="visually-hidden combo-label" htmlFor={id}>
@@ -200,7 +200,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
           ref={listboxRef}
           className="combo-menu"
           id={`${id}-listbox`}
-          aria-aria-labelledby={`${id}-label`}
+          aria-labelledby={`${id}-label`}
           onChange={onChange}
           tabIndex={-1}
         >
@@ -210,6 +210,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
               <div
                 role="option"
                 id={`${id}-option-${index}`}
+                key={H5P.createUUID()}
                 className={`combo-option ${selectedOption.index === option.index ? 'option-current' : ''}`}
                 aria-selected={activeOption.index === option.index}
                 onClick={() => handleChangeOption(option)}

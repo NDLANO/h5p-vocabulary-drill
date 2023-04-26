@@ -3,6 +3,7 @@ import he from 'he';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import { AnswerModeType } from '../../types/types';
 import { Combobox } from '../Combobox/Combobox';
+import { H5P } from 'h5p-utils';
 
 type ToolbarProps = {
   title: string;
@@ -25,6 +26,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 }) => {
   const { t } = useTranslation();
 
+  const id = `h5p-vocabulary-drill-answermode-combobox-${H5P.createUUID()}`;
+
   const enableTools = enableAnswerMode || enableLanguageMode;
 
   const answerModeOptions = [
@@ -39,7 +42,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
         <div className="h5p-vocabulary-drill-toolbar-tools">
           {enableAnswerMode && (
             <Combobox
-              id="h5p-vocabulary-drill-answermode-combobox"
+              id={id}
               className="h5p-vocabulary-drill-combobox"
               label={t('answerModeLabel')}
               active={activeAnswerMode}
