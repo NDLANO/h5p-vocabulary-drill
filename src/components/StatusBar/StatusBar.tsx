@@ -9,6 +9,7 @@ type StatusBarProps = {
   showNextButton: boolean;
   disableNextButton: boolean;
   onNext: () => void;
+  onSubmit: () => void;
 };
 
 export const StatusBar: FC<StatusBarProps> = ({
@@ -18,9 +19,10 @@ export const StatusBar: FC<StatusBarProps> = ({
   totalScore,
   showNextButton,
   disableNextButton,
-  onNext
+  onNext,
+  onSubmit,
 }) => {
-  // TODO: Translate "Next", "Score" and "Page"
+  // TODO: Translate "Next", "Submit", "Score" and "Page"
   return (
     <>
       <ProgressBar page={page} totalPages={totalPages} />
@@ -46,6 +48,16 @@ export const StatusBar: FC<StatusBarProps> = ({
             disabled={disableNextButton}
           >
             Next
+          </button>
+          : null}
+        {!showNextButton ?
+          <button
+            type="button"
+            className="h5p-vocabulary-drill-next"
+            onClick={onSubmit}
+            disabled={disableNextButton}
+          >
+            Sumbit
           </button>
           : null}
       </div>

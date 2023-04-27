@@ -151,8 +151,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const initialLanguageMode =
     previousState?.activeLanguageMode ?? LanguageModeType.Target;
 
-  const enableMultiplePages = false;
-
   const { t } = useTranslation();
   const contentId = useContentId();
 
@@ -168,6 +166,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [disableTools, setDisableTools] = useState(false);
   const [disableNextButton, setDisableNextButton] = useState(true);
   const [ariaLiveText, setAriaLiveText] = useState('');
+  const [showResults, setShowResults] = useState(false);
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
@@ -188,7 +187,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       ? behaviour.numberOfWordsToShow
       : totalNumberOfWords;
 
-  const pickedWords = enableMultiplePages || !randomize ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
+  const pickedWords = !randomize ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
 
   const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow);
   const multiplePages = totalPages > 1;
@@ -372,6 +371,23 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     }
   };
 
+  const handleSumbit = () => {
+    setShowResults(true);
+
+    setScore(score + (activeContentType.current?.getScore() ?? 0));
+    setMaxScore(maxScore + (activeContentType.current?.getMaxScore() ?? 0));
+  };
+
+  const handleRestart = () => {
+    activeContentType.current?.resetTask();
+    setShowResults(false);
+    setPage(0);
+    setScore(0);
+    setMaxScore(0);
+    setDisableNextButton(true);
+    setDisableTools(false);
+  };
+
   // Resize can be required if !hasWords and plain div is rendered
   onResize();
 
@@ -391,8 +407,15 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             targetLanguageCode={targetLanguage}
             disableTools={disableTools}
           />
-          <div ref={wrapperRef} />
-          {enableMultiplePages && multiplePages && (
+          {!showResults && <div ref={wrapperRef} />}
+          {showResults && (
+            <div className="h5p-vocabulary-drill-results">
+              <p>Results</p>
+              <p>Score: {score} / {totalNumberOfWords}</p>
+              <button type="button" className="h5p-joubelui-button h5p-vocabulary-drill-restart" onClick={handleRestart}>Restart</button>
+            </div>
+          )}
+          {multiplePages && !showResults && (
             <StatusBar
               page={page + 1}
               totalPages={totalPages}
@@ -401,6 +424,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               showNextButton={showNextButton}
               disableNextButton={disableNextButton}
               onNext={handleNext}
+              onSubmit={handleSumbit}
             />
           )}
         </div>
