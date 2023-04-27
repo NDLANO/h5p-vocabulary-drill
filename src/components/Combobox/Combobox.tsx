@@ -35,7 +35,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 
   const [openMenu, setOpenMenu] = React.useState(false);
   const [selectedOption, setSelectedOption] = React.useState<ComboboxOption>(activeOption);
-  const [useAriaLive, setUseAriaLive] = React.useState(false);
+  const [ariaLiveActive, setAriaLiveActive] = React.useState(false);
 
 
   const SelectActions = {
@@ -71,7 +71,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
     }
     handleSelectedOption(option);
     setOpenMenu(false);
-    setUseAriaLive(true);
+    setAriaLiveActive(true);
   };
 
   const getActionFromKey = (event: React.KeyboardEvent<HTMLDivElement>, menuOpen: boolean) => {
@@ -174,7 +174,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
       setOpenMenu(false);
     }
     // When the user moves on to another element, we don't want to announce the change anymore
-    setUseAriaLive(false);
+    setAriaLiveActive(false);
   };
 
   return (
@@ -228,9 +228,9 @@ export const Combobox: React.FC<ComboboxProps> = ({
           })}
         </div>
       </div>
-      <div role="region" id={`${id}-listbox`} aria-live="polite" className="visually-hidden">
-        {useAriaLive ? ariaLive : ''}
-      </div>
+      {ariaLiveActive && <div role="region" id={`${id}-listbox`} aria-live="polite" className="visually-hidden">
+        {ariaLive}
+      </div>}
     </div>
   );
 };
