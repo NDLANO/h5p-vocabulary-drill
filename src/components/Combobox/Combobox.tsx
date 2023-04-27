@@ -3,7 +3,6 @@ import { H5P } from 'h5p-utils';
 
 type ComboboxOption = {
   index?: number;
-  key?: string;
   value: any;
   label: string;
   className: string;
@@ -207,12 +206,12 @@ export const Combobox: React.FC<ComboboxProps> = ({
         >
           {options.map((option, index) => {
             option.index = index;
-            option.key = option.key ?? H5P.createUUID();
+
             return (
               <div
                 role="option"
                 id={`${id}-option-${index}`}
-                key={option.key}
+                key={option.value}
                 className={`combo-option ${selectedOption.index === option.index ? 'option-current' : ''}`}
                 aria-selected={activeOption.index === option.index}
                 onClick={() => handleChangeOption(option)}
