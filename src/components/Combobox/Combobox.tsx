@@ -1,5 +1,4 @@
 import React from 'react';
-import { H5P } from 'h5p-utils';
 
 type ComboboxOption = {
   index?: number;
