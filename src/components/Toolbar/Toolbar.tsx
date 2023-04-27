@@ -36,7 +36,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   ];
 
   const activeAnswerModeLabel = answerModeOptions.find((option) => option.value === activeAnswerMode)?.label ?? '';
-  const answerModeAriaLive = `${t('changedAnswerModeAria')} ${activeAnswerModeLabel}`;
+  const answerModeAriaLiveText = `${t('changedAnswerModeAria')} ${activeAnswerModeLabel}`;
 
   return (
     <div className="h5p-vocabulary-drill-toolbar">
@@ -52,7 +52,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
               options={answerModeOptions}
               onChange={onAnswerModeChange}
               disabled={disableTools}
-              ariaLive={answerModeAriaLive}
+              ariaLiveText={answerModeAriaLiveText}
             />
           )}
           {enableLanguageMode && (

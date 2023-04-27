@@ -15,7 +15,7 @@ type ComboboxProps = {
   options: ComboboxOption[];
   onChange: () => void;
   disabled: boolean;
-  ariaLive: string;
+  ariaLiveText: string;
 };
 
 export const Combobox: React.FC<ComboboxProps> = ({
@@ -26,7 +26,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
   options,
   onChange,
   disabled,
-  ariaLive,
+  ariaLiveText,
 }) => {
   const comboRef = React.useRef<HTMLDivElement>(null);
   const listboxRef = React.useRef<HTMLDivElement>(null);
@@ -229,7 +229,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
         </div>
       </div>
       {ariaLiveActive && <div role="region" id={`${id}-listbox`} aria-live="polite" className="visually-hidden">
-        {ariaLive}
+        {ariaLiveText}
       </div>}
     </div>
   );
