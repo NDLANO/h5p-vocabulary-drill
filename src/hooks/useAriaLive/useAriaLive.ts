@@ -1,7 +1,6 @@
-export const useAriaLive = (ariaLiveText: string): void => {
-  const ariaLiveElement = document.querySelector('#h5p-vocabulary-drill-aria-live');
+import { useContext } from 'react';
+import { AriaLiveContext } from '../../contexts/AriaLiveContext';
 
-  if (ariaLiveElement) {
-    ariaLiveElement.textContent = ariaLiveText;
-  }
+export const useAriaLive = () => {
+  return useContext(AriaLiveContext);
 };

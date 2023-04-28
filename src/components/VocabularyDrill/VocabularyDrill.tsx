@@ -15,6 +15,8 @@ import { isNil } from '../../utils/type.utils';
 import { parseWords, pickWords, parseSourceAndTarget, pickRandomWords } from '../../utils/word.utils';
 import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
+import { AriaLiveContext } from '../../contexts/AriaLiveContext';
+import { AriaLive } from '../AriaLive/AriaLive';
 
 type VocabularyDrillProps = {
   title: string;
@@ -165,6 +167,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [maxScore, setMaxScore] = useState(previousState?.maxScore ?? 0);
   const [disableTools, setDisableTools] = useState(false);
   const [disableNextButton, setDisableNextButton] = useState(true);
+  const [ariaLiveText, setAriaLiveText] = useState('');
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
@@ -360,7 +363,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setDisableNextButton(true);
     setDisableTools(false);
 
-    // TODO: Avoid using 'any' here
     // Make sure the first element on the new page is focused
     if (activeAnswerMode === AnswerModeType.DragText) {
       (activeContentType.current as any).$introduction.parent().focus();
@@ -373,7 +375,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   // Resize can be required if !hasWords and plain div is rendered
   onResize();
 
-  return <>
+  return <AriaLiveContext.Provider value={{ ariaLiveText, setAriaLiveText }}>
     {hasWords ? (
       <div>
         <Toolbar
@@ -393,6 +395,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     ) : (
       <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
     )}
-    <div role="status" aria-live="polite" id="h5p-vocabulary-drill-aria-live" className="visually-hidden" />
-  </>;
+    <AriaLive />
+  </AriaLiveContext.Provider>;
 };
