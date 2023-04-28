@@ -147,7 +147,7 @@ declare const json: [
       {
         "label": "Changed answer mode aria",
         "name": "changedAnswerModeAria",
-        "default": "Changed answer mode to",
+        "default": "Changed answer mode to @option",
         "type": "text"
       }
     ]

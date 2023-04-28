@@ -68,7 +68,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
   const handleChangeOption = (option: ComboboxOption) => {
     if (active !== option.value) {
       onChange();
-      setAriaLiveText(`${ariaLiveText} ${option.label}`);
+      setAriaLiveText(ariaLiveText.replace('@option', option.label));
     }
     handleSelectedOption(option);
     setOpenMenu(false);

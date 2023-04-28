@@ -89,7 +89,7 @@
         },
         {
           "label": "Changed answer mode aria",
-          "default": "Changed answer mode to"
+          "default": "Changed answer mode to @option"
         }
       ]
     },
