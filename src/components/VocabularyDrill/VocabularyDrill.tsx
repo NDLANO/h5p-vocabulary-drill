@@ -167,7 +167,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [maxScore, setMaxScore] = useState(previousState?.maxScore ?? 0);
   const [disableTools, setDisableTools] = useState(false);
   const [disableNextButton, setDisableNextButton] = useState(true);
-  const [ariaLiveText, setAriaLiveText] = useState('');
+  const [ariaLiveText, setAriaLiveText] = useState<string | null>(null);
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
@@ -375,26 +375,28 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   // Resize can be required if !hasWords and plain div is rendered
   onResize();
 
-  return <AriaLiveContext.Provider value={{ ariaLiveText, setAriaLiveText }}>
-    {hasWords ? (
-      <div>
-        <Toolbar
-          title={title}
-          activeAnswerMode={activeAnswerMode}
-          enableAnswerMode={enableSwitchAnswerModeButton}
-          enableLanguageMode={enableSwitchWordsButton}
-          onAnswerModeChange={handleAnswerModeChange}
-          onLanguageModeChange={handleLanguageModeChange}
-          disableTools={disableTools}
-        />
-        <div ref={wrapperRef} />
-        {enableMultiplePages && multiplePages && (
-          <StatusBar page={page + 1} totalPages={totalPages} score={score} totalScore={totalNumberOfWords} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
-        )}
-      </div>
-    ) : (
-      <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
-    )}
-    <AriaLive />
-  </AriaLiveContext.Provider>;
+  return (
+    <AriaLiveContext.Provider value={{ ariaLiveText, setAriaLiveText }}>
+      {hasWords ? (
+        <div>
+          <Toolbar
+            title={title}
+            activeAnswerMode={activeAnswerMode}
+            enableAnswerMode={enableSwitchAnswerModeButton}
+            enableLanguageMode={enableSwitchWordsButton}
+            onAnswerModeChange={handleAnswerModeChange}
+            onLanguageModeChange={handleLanguageModeChange}
+            disableTools={disableTools}
+          />
+          <div ref={wrapperRef} />
+          {enableMultiplePages && multiplePages && (
+            <StatusBar page={page + 1} totalPages={totalPages} score={score} totalScore={totalNumberOfWords} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
+          )}
+        </div>
+      ) : (
+        <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
+      )}
+      <AriaLive />
+    </AriaLiveContext.Provider>
+  );
 };

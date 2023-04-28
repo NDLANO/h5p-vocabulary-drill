@@ -1,11 +1,11 @@
-import {createContext} from 'react';
+import { createContext } from 'react';
 
 type AriaLiveContext = {
-  ariaLiveText: string;
-  setAriaLiveText: (str: string) => void;
+  ariaLiveText: string | null;
+  setAriaLiveText: (str: string | null) => void;
 }
 
 export const AriaLiveContext = createContext<AriaLiveContext>({ 
-  ariaLiveText: '',
+  ariaLiveText: null,
   setAriaLiveText: () => {},
 });
