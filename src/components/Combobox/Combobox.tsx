@@ -173,7 +173,6 @@ export const Combobox: React.FC<ComboboxProps> = ({
       }
       setOpenMenu(false);
     }
-    setAriaLiveText(null);
   };
 
   return (
