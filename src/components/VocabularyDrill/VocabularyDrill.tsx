@@ -373,23 +373,26 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   // Resize can be required if !hasWords and plain div is rendered
   onResize();
 
-  return hasWords ? (
-    <div>
-      <Toolbar
-        title={title}
-        activeAnswerMode={activeAnswerMode}
-        enableAnswerMode={enableSwitchAnswerModeButton}
-        enableLanguageMode={enableSwitchWordsButton}
-        onAnswerModeChange={handleAnswerModeChange}
-        onLanguageModeChange={handleLanguageModeChange}
-        disableTools={disableTools}
-      />
-      <div ref={wrapperRef} />
-      {enableMultiplePages && multiplePages && (
-        <StatusBar page={page + 1} totalPages={totalPages} score={score} totalScore={totalNumberOfWords} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
-      )}
-    </div>
-  ) : (
-    <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
-  );
+  return <>
+    {hasWords ? (
+      <div>
+        <Toolbar
+          title={title}
+          activeAnswerMode={activeAnswerMode}
+          enableAnswerMode={enableSwitchAnswerModeButton}
+          enableLanguageMode={enableSwitchWordsButton}
+          onAnswerModeChange={handleAnswerModeChange}
+          onLanguageModeChange={handleLanguageModeChange}
+          disableTools={disableTools}
+        />
+        <div ref={wrapperRef} />
+        {enableMultiplePages && multiplePages && (
+          <StatusBar page={page + 1} totalPages={totalPages} score={score} totalScore={totalNumberOfWords} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
+        )}
+      </div>
+    ) : (
+      <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
+    )}
+    <div role="status" aria-live="polite" id="h5p-vocabulary-drill-aria-live" className="visually-hidden" />
+  </>;
 };

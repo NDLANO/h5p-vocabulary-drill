@@ -35,8 +35,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     { value: AnswerModeType.DragText, label: t('dragTextLabel'), className: 'h5p-vocabulary-drill-drag-text' },
   ];
 
-  const activeAnswerModeLabel = answerModeOptions.find((option) => option.value === activeAnswerMode)?.label ?? '';
-  const answerModeAriaLiveText = `${t('changedAnswerModeAria')} ${activeAnswerModeLabel}`;
+  const answerModeAriaLiveText = t('changedAnswerModeAria');
 
   return (
     <div className="h5p-vocabulary-drill-toolbar">
