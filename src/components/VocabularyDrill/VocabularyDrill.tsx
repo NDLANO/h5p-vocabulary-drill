@@ -167,7 +167,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [maxScore, setMaxScore] = useState(previousState?.maxScore ?? 0);
   const [disableTools, setDisableTools] = useState(false);
   const [disableNextButton, setDisableNextButton] = useState(true);
-  const [ariaLiveText, setAriaLiveText] = useState<string | null>(null);
+  const [ariaLiveText, setAriaLiveText] = useState('');
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
