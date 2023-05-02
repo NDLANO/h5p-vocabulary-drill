@@ -390,7 +390,15 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           />
           <div ref={wrapperRef} />
           {enableMultiplePages && multiplePages && (
-            <StatusBar page={page + 1} totalPages={totalPages} score={score} totalScore={totalNumberOfWords} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
+            <StatusBar
+              page={page + 1}
+              totalPages={totalPages}
+              score={score}
+              totalScore={totalNumberOfWords}
+              showNextButton={showNextButton}
+              disableNextButton={disableNextButton}
+              onNext={handleNext}
+            />
           )}
         </div>
       ) : (
