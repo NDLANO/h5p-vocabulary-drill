@@ -17,6 +17,7 @@ import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
 import { AriaLiveContext } from '../../contexts/AriaLiveContext';
 import { AriaLive } from '../AriaLive/AriaLive';
+import { ScorePage } from '../ScorePage/ScorePage';
 
 type VocabularyDrillProps = {
   title: string;
@@ -187,11 +188,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       ? behaviour.numberOfWordsToShow
       : totalNumberOfWords;
 
-  const pickedWords = !randomize ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
-
   const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow);
   const multiplePages = totalPages > 1;
   const showNextButton = (page + 1) * numberOfWordsToShow < totalNumberOfWords;
+
+  const pickedWords = multiplePages || !randomize ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
   const fillInTheBlanksLibraryInfo = findLibraryInfo('H5P.Blanks');
@@ -409,11 +410,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           />
           {!showResults && <div ref={wrapperRef} />}
           {showResults && (
-            <div className="h5p-vocabulary-drill-results">
-              <p>Results</p>
-              <p>Score: {score} / {totalNumberOfWords}</p>
-              <button type="button" className="h5p-joubelui-button h5p-vocabulary-drill-restart" onClick={handleRestart}>Restart</button>
-            </div>
+            <ScorePage
+              score={score}
+              maxScore={maxScore}
+              onRestart={handleRestart}
+            />
           )}
           {multiplePages && !showResults && (
             <StatusBar

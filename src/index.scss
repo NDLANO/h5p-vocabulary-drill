@@ -28,8 +28,12 @@
     width: 1px;
   }
 
-  .h5p-vocabulary-drill-results {
-    margin: 0 0 1em 1em;
+  .h5p-vocabulary-drill-score-page {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
 
     button.h5p-vocabulary-drill-restart::before {
       content: '\F01E';
