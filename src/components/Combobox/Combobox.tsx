@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAriaLive } from '../../hooks/useAriaLive/useAriaLive';
 
 type ComboboxOption = {
   index?: number;
@@ -15,6 +16,7 @@ type ComboboxProps = {
   options: ComboboxOption[];
   onChange: () => void;
   disabled: boolean;
+  ariaLiveText: string;
 };
 
 export const Combobox: React.FC<ComboboxProps> = ({
@@ -25,6 +27,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
   options,
   onChange,
   disabled,
+  ariaLiveText,
 }) => {
   const comboRef = React.useRef<HTMLDivElement>(null);
   const listboxRef = React.useRef<HTMLDivElement>(null);
@@ -33,7 +36,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
 
   const [openMenu, setOpenMenu] = React.useState(false);
   const [selectedOption, setSelectedOption] = React.useState<ComboboxOption>(activeOption);
-
+  const { setAriaLiveText } = useAriaLive();
 
   const SelectActions = {
     Close: 0,
@@ -65,6 +68,7 @@ export const Combobox: React.FC<ComboboxProps> = ({
   const handleChangeOption = (option: ComboboxOption) => {
     if (active !== option.value) {
       onChange();
+      setAriaLiveText(ariaLiveText.replace('@option', option.label));
     }
     handleSelectedOption(option);
     setOpenMenu(false);
