@@ -93,7 +93,7 @@
         },
         {
           "label": "Language mode aria",
-          "default": "Change language from @sourceLanguage to @targetLanguage"
+          "default": "Swap language from @sourceLanguage to @targetLanguage"
         },
         {
           "label": "English",

@@ -153,7 +153,7 @@ declare const json: [
       {
         "label": "Language mode aria",
         "name": "languageModeAria",
-        "default": "Swapped language from @sourceLanguage to @targetLanguage",
+        "default": "Swap language from @sourceLanguage to @targetLanguage",
         "type": "text"
       },
       {
