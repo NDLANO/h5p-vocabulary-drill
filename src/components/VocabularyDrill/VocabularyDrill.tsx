@@ -136,7 +136,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   onTrigger,
   onPageChange,
 }) => {
-  const { behaviour, sourceLanguage, targetLanguage } = params;
+  const { behaviour, sourceLanguage, targetLanguage, overallFeedback } = params;
 
   const {
     answerMode,
@@ -413,6 +413,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             <ScorePage
               score={score}
               maxScore={maxScore}
+              overallFeedbacks={overallFeedback}
               onRestart={handleRestart}
             />
           )}
