@@ -1,27 +1,34 @@
 import React from 'react';
 import he from 'he';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
-import { AnswerModeType } from '../../types/types';
+import { AnswerModeType, LanguageModeType } from '../../types/types';
 import { Combobox } from '../Combobox/Combobox';
 import { H5P } from 'h5p-utils';
+import { getLanguageModeAria } from '../../utils/language.utils';
 
 type ToolbarProps = {
   title: string;
   activeAnswerMode: AnswerModeType;
+  activeLanguageMode: LanguageModeType;
   enableAnswerMode: boolean;
   enableLanguageMode: boolean;
   onAnswerModeChange: () => void;
   onLanguageModeChange: () => void;
+  sourceLanguageCode: string;
+  targetLanguageCode: string;
   disableTools: boolean;
 };
 
 export const Toolbar: React.FC<ToolbarProps> = ({
   title,
   activeAnswerMode,
+  activeLanguageMode,
   enableAnswerMode,
   enableLanguageMode,
   onAnswerModeChange,
   onLanguageModeChange,
+  sourceLanguageCode,
+  targetLanguageCode,
   disableTools,
 }) => {
   const { t } = useTranslation();
@@ -36,6 +43,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   ];
 
   const answerModeAriaLiveText = t('changedAnswerModeAria');
+  const languageModeAria = getLanguageModeAria(activeLanguageMode, sourceLanguageCode, targetLanguageCode);
 
   return (
     <div className="h5p-vocabulary-drill-toolbar">
@@ -60,6 +68,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
               className="h5p-vocabulary-drill-language-mode"
               onClick={onLanguageModeChange}
               disabled={disableTools}
+              aria-label={languageModeAria}
             >
               {t('languageModeLabel')}
             </button>

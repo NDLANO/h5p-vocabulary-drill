@@ -90,6 +90,34 @@
         {
           "label": "Endret svarmodus aria",
           "default": "Endret svarmodus til @option"
+        },
+        {
+          "label": "Aria for språkmodus",
+          "default": "Bytt språk fra @sourceLanguage til @targetLanguage"
+        },
+        {
+          "label": "Engelsk",
+          "default": "Engelsk"
+        },
+        {
+          "label": "Fransk",
+          "default": "Fransk"
+        },
+        {
+          "label": "Tysk",
+          "default": "Tysk"
+        },
+        {
+          "label": "Norsk bokmål",
+          "default": "Norsk bokmål"
+        },
+        {
+          "label": "Norsk nynorsk",
+          "default": "Norsk nynorsk"
+        },
+        {
+          "label": "Spansk",
+          "default": "Spansk"
         }
       ]
     },

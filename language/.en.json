@@ -90,6 +90,34 @@
         {
           "label": "Changed answer mode aria",
           "default": "Changed answer mode to @option"
+        },
+        {
+          "label": "Language mode aria",
+          "default": "Change language from @sourceLanguage to @targetLanguage"
+        },
+        {
+          "label": "English",
+          "default": "English"
+        },
+        {
+          "label": "French",
+          "default": "French"
+        },
+        {
+          "label": "German",
+          "default": "German"
+        },
+        {
+          "label": "Norwegian bokmål",
+          "default": "Norwegian bokmål"
+        },
+        {
+          "label": "Norwegian nynorsk",
+          "default": "Norwegian nynorsk"
+        },
+        {
+          "label": "Spanish",
+          "default": "Spanish"
         }
       ]
     },
