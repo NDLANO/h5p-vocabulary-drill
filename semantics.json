@@ -157,6 +157,12 @@
         "type": "text"
       },
       {
+        "label": "Changed language mode aria",
+        "name": "changedLanguageModeAria",
+        "default": "Swapped language from @sourceLanguage to @targetLanguage",
+        "type": "text"
+      },
+      {
         "label": "English",
         "name": "lang_en",
         "default": "English",

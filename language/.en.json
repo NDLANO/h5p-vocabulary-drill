@@ -96,6 +96,10 @@
           "default": "Swap language from @sourceLanguage to @targetLanguage"
         },
         {
+          "label": "Changed language mode aria",
+          "default": "Swapped language from @sourceLanguage to @targetLanguage"
+        },
+        {
           "label": "English",
           "default": "English"
         },

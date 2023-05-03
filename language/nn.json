@@ -96,6 +96,10 @@
           "default": "Byt språk frå @sourceLanguage til @targetLanguage"
         },
         {
+          "label": "Endret språkmodus aria",
+          "default": "Bytet språk frå @sourceLanguage til @targetLanguage"
+        },
+        {
           "label": "Engelsk",
           "default": "Engelsk"
         },
