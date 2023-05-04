@@ -4,6 +4,7 @@ import type {
   XAPIData,
   XAPIVerb,
 } from 'h5p-types';
+import 'h5p-types-joubel-ui';
 import { H5PResumableContentType, registerContentType } from 'h5p-utils';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';

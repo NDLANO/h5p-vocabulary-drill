@@ -11,7 +11,8 @@ export const ScoreBar: FC<ScoreBarProps> = ({
   score,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const scoreBar = useRef((H5P as any).JoubelUI.createScoreBar(maxScore));
+
+  const scoreBar = useRef(H5P.JoubelUI.createScoreBar(maxScore));
   scoreBar.current.setScore(score);
 
   useEffect(() => {
