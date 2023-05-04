@@ -2,7 +2,7 @@ import React from 'react';
 import he from 'he';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import { useAriaLive } from '../../hooks/useAriaLive/useAriaLive';
-import { AnswerModeType, LanguageModeType } from '../../types/types';
+import { AnswerModeType, LanguageCode, LanguageModeType } from '../../types/types';
 import { Combobox } from '../Combobox/Combobox';
 import { H5P } from 'h5p-utils';
 import { getLanguageModeAria } from '../../utils/language.utils';
@@ -15,8 +15,8 @@ type ToolbarProps = {
   enableLanguageMode: boolean;
   onAnswerModeChange: () => void;
   onLanguageModeChange: () => void;
-  sourceLanguageCode: string;
-  targetLanguageCode: string;
+  sourceLanguageCode: LanguageCode;
+  targetLanguageCode: LanguageCode;
   disableTools: boolean;
 };
 

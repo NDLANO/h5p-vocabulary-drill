@@ -5,7 +5,6 @@ import {
 } from 'h5p-types';
 import { H5PResumableContentType } from 'h5p-utils';
 import semantics from '../../semantics.json';
-import { languages } from '../constants/languages';
 
 export enum AnswerModeType {
   FillIn = 'fillIn',
@@ -17,7 +16,7 @@ export enum LanguageModeType {
   Target = 'target',
 }
 
-export type LanguageCode = (typeof languages)[number];
+export type LanguageCode = Params['sourceLanguage'];
 
 export type Params = InferParamsFromSemantics<ReadonlyDeep<typeof semantics>>;
 export type TranslationKey = keyof Params['l10n'];
