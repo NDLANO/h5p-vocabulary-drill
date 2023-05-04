@@ -135,7 +135,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   onTrigger,
   onPageChange,
 }) => {
-  const { behaviour } = params;
+  const { behaviour, sourceLanguage, targetLanguage } = params;
 
   const {
     answerMode,
@@ -382,10 +382,13 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           <Toolbar
             title={title}
             activeAnswerMode={activeAnswerMode}
+            activeLanguageMode={activeLanguageMode}
             enableAnswerMode={enableSwitchAnswerModeButton}
             enableLanguageMode={enableSwitchWordsButton}
             onAnswerModeChange={handleAnswerModeChange}
             onLanguageModeChange={handleLanguageModeChange}
+            sourceLanguageCode={sourceLanguage}
+            targetLanguageCode={targetLanguage}
             disableTools={disableTools}
           />
           <div ref={wrapperRef} />

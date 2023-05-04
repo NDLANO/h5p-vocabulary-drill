@@ -149,6 +149,54 @@
         "name": "changedAnswerModeAria",
         "default": "Changed answer mode to @option",
         "type": "text"
+      },
+      {
+        "label": "Language mode aria",
+        "name": "languageModeAria",
+        "default": "Swap language from @sourceLanguage to @targetLanguage",
+        "type": "text"
+      },
+      {
+        "label": "Changed language mode aria",
+        "name": "changedLanguageModeAria",
+        "default": "Swapped language from @sourceLanguage to @targetLanguage",
+        "type": "text"
+      },
+      {
+        "label": "English",
+        "name": "lang_en",
+        "default": "English",
+        "type": "text"
+      },
+      {
+        "label": "French",
+        "name": "lang_fr",
+        "default": "French",
+        "type": "text"
+      },
+      {
+        "label": "German",
+        "name": "lang_de",
+        "default": "German",
+        "type": "text"
+      },
+      {
+        "label": "Norwegian bokmål",
+        "name": "lang_nb",
+        "default": "Norwegian bokmål",
+        "type": "text"
+      },
+      {
+        "label": "Norwegian nynorsk",
+        "name": "lang_nn",
+        "default": "Norwegian nynorsk",
+        "type": "text"
+      },
+      {
+        "label": "Spanish",
+        "name": "lang_es",
+        "default": "Spanish",
+        "type": "text"
       }
     ]
   },
