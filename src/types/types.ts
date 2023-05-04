@@ -16,10 +16,9 @@ export enum LanguageModeType {
   Target = 'target',
 }
 
-export type LanguageCode = Params['sourceLanguage'];
-
 export type Params = InferParamsFromSemantics<ReadonlyDeep<typeof semantics>>;
 export type TranslationKey = keyof Params['l10n'];
+export type LanguageCode = Params['sourceLanguage'];
 
 export type State = {
   activeAnswerMode?: AnswerModeType;
