@@ -17,7 +17,7 @@ export const ScorePage: FC<ScorePageProps> = ({
 }) => {
   // TODO: translate 'Restart' and 'Your total score'
   const overallFeedback = (H5P as any).Question.determineOverallFeedback(overallFeedbacks, score / maxScore);
-  const feedback = overallFeedback != '' ? overallFeedback : 'Your total score';
+  const feedback = overallFeedback !== '' ? overallFeedback : 'Your total score';
   return (
     <div className="h5p-vocabulary-drill-score-page">
       <h3>{feedback}</h3>

@@ -422,7 +422,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               onRestart={handleRestart}
             />
           )}
-          {multiplePages && !showResults && (
+          {multiplePages && (
             <StatusBar
               page={page + 1}
               totalPages={totalPages}
