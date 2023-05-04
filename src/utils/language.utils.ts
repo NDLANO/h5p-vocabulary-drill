@@ -4,12 +4,12 @@ import { useTranslation } from '../hooks/useTranslation/useTranslation';
 export const getLanguageModeAria = (
   languageMode: LanguageModeType,
   ariaText: string,
-  sourceLanguageCode: string,
-  targetLanguageCode: string
+  sourceLanguageCode: LanguageCode,
+  targetLanguageCode: LanguageCode,
 ): string => {
   const { t } = useTranslation();
-  const sourceLanguage = t(`lang_${sourceLanguageCode as LanguageCode}`);
-  const targetLanguage = t(`lang_${targetLanguageCode as LanguageCode}`);
+  const sourceLanguage = t(`lang_${sourceLanguageCode}`);
+  const targetLanguage = t(`lang_${targetLanguageCode}`);
 
   switch (languageMode) {
     case LanguageModeType.Source:
