@@ -9,7 +9,7 @@ type StatusBarProps = {
   showNextButton: boolean;
   disableNextButton: boolean;
   onNext: () => void;
-  onSubmit: () => void;
+  onShowResults: () => void;
 };
 
 export const StatusBar: FC<StatusBarProps> = ({
@@ -20,21 +20,24 @@ export const StatusBar: FC<StatusBarProps> = ({
   showNextButton,
   disableNextButton,
   onNext,
-  onSubmit,
+  onShowResults,
 }) => {
-  // TODO: Translate "Next", "Submit", "Score" and "Page"
+  // TODO: Translate "Next", "Finish", "Score" and "Page"
+  const scorePage = page === totalPages;
   return (
     <>
       <ProgressBar page={page} totalPages={totalPages} />
       <div className="h5p-vocabulary-drill-status">
-        {score != null ? <div className="h5p-vocabulary-drill-status-score">
-          <span aria-hidden="true">Score: </span>
-          <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{score}</span>
-          <span className="h5p-vocabulary-drill-status-divider" aria-hidden="true"> / </span>
-          <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{totalScore}</span>
-          <p className="visually-hidden">Score: You got {score} out of {totalScore} points</p>
-        </div> : null}
-        <div>
+        {score != null && !scorePage ? (
+          <div className="h5p-vocabulary-drill-status-score">
+            <span aria-hidden="true">Score: </span>
+            <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{score}</span>
+            <span className="h5p-vocabulary-drill-status-divider" aria-hidden="true"> / </span>
+            <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{totalScore}</span>
+            <p className="visually-hidden">Score: You got {score} out of {totalScore} points</p>
+          </div>
+        ) : null}
+        <div className="h5p-vocabulary-drill-status-pages">
           <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{page}</span>
           <span className="h5p-vocabulary-drill-status-divider" aria-hidden="true"> / </span>
           <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{totalPages}</span>
@@ -50,14 +53,14 @@ export const StatusBar: FC<StatusBarProps> = ({
             Next
           </button>
           : null}
-        {!showNextButton ?
+        {!showNextButton && !scorePage ?
           <button
             type="button"
             className="h5p-vocabulary-drill-next"
-            onClick={onSubmit}
+            onClick={onShowResults}
             disabled={disableNextButton}
           >
-            Sumbit
+            Finish
           </button>
           : null}
       </div>

@@ -4,20 +4,14 @@ import React, { FC, useEffect } from 'react';
 type ScoreBarProps = {
   maxScore: number,
   score: number,
-  label: string,
-  helpText: string,
-  scoreExplanation: string,
 };
 
 export const ScoreBar: FC<ScoreBarProps> = ({
   maxScore,
   score,
-  label,
-  helpText,
-  scoreExplanation,
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
-  const scoreBar = (H5P as any).JoubelUI.createScoreBar(maxScore, label, helpText, scoreExplanation);
+  const scoreBar = (H5P as any).JoubelUI.createScoreBar(maxScore);
   scoreBar.setScore(score);
 
   useEffect(() => {

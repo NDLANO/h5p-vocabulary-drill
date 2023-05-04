@@ -188,8 +188,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       ? behaviour.numberOfWordsToShow
       : totalNumberOfWords;
 
-  const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow);
-  const multiplePages = totalPages > 1;
+  const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow) + 1; // add 1 for score page
+  const multiplePages = (totalPages - 1) > 1; // subtract 1 for score page
   const showNextButton = (page + 1) * numberOfWordsToShow < totalNumberOfWords;
 
   const pickedWords = multiplePages || !randomize ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
@@ -346,6 +346,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     if (!shouldCreateRunnable) {
       return;
     }
+    if (showResults) {
+      return;
+    }
 
     shouldCreateRunnable = false;
     createRunnable();
@@ -372,9 +375,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     }
   };
 
-  const handleSumbit = () => {
-    setShowResults(true);
+  const handleShowResults = () => {
+    const newPage = page + 1;
 
+    setShowResults(true);
+    setPage(newPage);
     setScore(score + (activeContentType.current?.getScore() ?? 0));
     setMaxScore(maxScore + (activeContentType.current?.getMaxScore() ?? 0));
   };
@@ -426,7 +431,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               showNextButton={showNextButton}
               disableNextButton={disableNextButton}
               onNext={handleNext}
-              onSubmit={handleSumbit}
+              onShowResults={handleShowResults}
             />
           )}
         </div>

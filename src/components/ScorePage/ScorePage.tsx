@@ -1,6 +1,6 @@
 import { H5P } from 'h5p-utils';
 import React, { FC } from 'react';
-import { ScoreBar } from "../ScoreBar/ScoreBar";
+import { ScoreBar } from '../ScoreBar/ScoreBar';
 
 type ScorePageProps = {
   score: number;
@@ -15,18 +15,15 @@ export const ScorePage: FC<ScorePageProps> = ({
   overallFeedbacks,
   onRestart,
 }) => {
-  // TODO: fix label, helpText, and scoreExplanation
-  // TODO: translate 'Restart'
-  const overallFeedback = (H5P as any).Question.determineOverallFeedback(overallFeedbacks, score / maxScore) ?? 'Your score is';
+  // TODO: translate 'Restart' and 'Your total score'
+  const overallFeedback = (H5P as any).Question.determineOverallFeedback(overallFeedbacks, score / maxScore);
+  const feedback = overallFeedback != '' ? overallFeedback : 'Your total score';
   return (
     <div className="h5p-vocabulary-drill-score-page">
-      <h2>{overallFeedback}</h2>
+      <h3>{feedback}</h3>
       <ScoreBar
         maxScore={maxScore}
         score={score}
-        label=''
-        helpText=''
-        scoreExplanation=''
       />
       <button
         type="button"
