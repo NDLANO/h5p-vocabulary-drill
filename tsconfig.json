@@ -16,5 +16,5 @@
     "noImplicitAny": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "h5p-extensions.d.ts"]
 }
