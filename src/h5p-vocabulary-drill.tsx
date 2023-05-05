@@ -1,10 +1,11 @@
+///<reference path="../h5p-extensions.d.ts"/>
+
 import type {
   IH5PContentType,
   IH5PQuestionType,
   XAPIData,
   XAPIVerb,
 } from 'h5p-types';
-import '../h5p-extensions';
 import { H5PResumableContentType, registerContentType } from 'h5p-utils';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';

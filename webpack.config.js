@@ -1,12 +1,13 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const mode = process.argv.includes('--mode=production') ?
-  'production' : 'development';
+const mode = process.argv.includes('--mode=production')
+  ? 'production'
+  : 'development';
 const isDev = mode !== 'production';
 
 const config = {
-  mode: mode,
+  mode,
   entry: {
     'h5p-vocabulary-drill': path.join(
       __dirname,
@@ -54,7 +55,7 @@ const config = {
           },
           {
             loader: 'sass-loader',
-          }
+          },
         ],
       },
     ],
