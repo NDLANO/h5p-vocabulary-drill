@@ -292,11 +292,12 @@
 }
 
 .h5p-vocabulary-drill-progressbar {
+  margin-top: 1em;
   position: relative;
 
   .h5p-joubelui-progressbar {
-    box-shadow: none;
     background: #D3DDEE;
+    box-shadow: none;
 
     &-background {
       background-color: #356BBD;
