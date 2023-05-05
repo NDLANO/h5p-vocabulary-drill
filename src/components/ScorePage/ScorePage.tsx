@@ -1,6 +1,7 @@
 import { H5P } from 'h5p-utils';
 import React, { FC } from 'react';
 import { ScoreBar } from '../ScoreBar/ScoreBar';
+import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 
 type ScorePageProps = {
   score: number;
@@ -15,9 +16,12 @@ export const ScorePage: FC<ScorePageProps> = ({
   overallFeedbacks,
   onRestart,
 }) => {
-  // TODO: translate 'Restart' and 'Your total score'
+  const { t } = useTranslation();
+  const feedbackText = t('feedbackText');
+  const restartText = t('restart');
+
   const overallFeedback = (H5P as any).Question.determineOverallFeedback(overallFeedbacks, score / maxScore);
-  const feedback = overallFeedback !== '' ? overallFeedback : 'Your total score';
+  const feedback = overallFeedback !== '' ? overallFeedback : feedbackText;
   return (
     <div className="h5p-vocabulary-drill-score-page">
       <h3>{feedback}</h3>
@@ -30,7 +34,7 @@ export const ScorePage: FC<ScorePageProps> = ({
         className="h5p-joubelui-button h5p-vocabulary-drill-restart"
         onClick={onRestart}
       >
-        Restart
+        {restartText}
       </button>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { ProgressBar } from '../ProgressBar/ProgressBar';
+import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 
 type StatusBarProps = {
   page: number;
@@ -22,7 +23,13 @@ export const StatusBar: FC<StatusBarProps> = ({
   onNext,
   onShowResults,
 }) => {
-  // TODO: Translate "Next", "Finish", "Score" and "Page"
+  const { t } = useTranslation();
+  const scoreLabel = t('scoreLabel');
+  const scoreBarLabel = t('scoreBarLabel').replaceAll('@score', score?.toString() ?? '0').replaceAll('@maxScore', totalScore?.toString() ?? '0');
+  const pageNumberLabel = t('pageNumberLabel').replaceAll('@page', page.toString()).replaceAll('@totalPages', totalPages.toString());
+  const nextText = t('next');
+  const finishText = t('finish');
+
   const scorePage = page === totalPages;
   return (
     <>
@@ -30,18 +37,18 @@ export const StatusBar: FC<StatusBarProps> = ({
       <div className="h5p-vocabulary-drill-status">
         {score != null && !scorePage ? (
           <div className="h5p-vocabulary-drill-status-score">
-            <span aria-hidden="true">Score: </span>
+            <span aria-hidden="true">{scoreLabel}: </span>
             <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{score}</span>
             <span className="h5p-vocabulary-drill-status-divider" aria-hidden="true"> / </span>
             <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{totalScore}</span>
-            <p className="visually-hidden">Score: You got {score} out of {totalScore} points</p>
+            <p className="visually-hidden">{scoreLabel}: {scoreBarLabel}</p>
           </div>
         ) : null}
         <div className="h5p-vocabulary-drill-status-pages">
           <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{page}</span>
           <span className="h5p-vocabulary-drill-status-divider" aria-hidden="true"> / </span>
           <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{totalPages}</span>
-          <p className="visually-hidden">Page {page} of {totalPages}</p>
+          <p className="visually-hidden">{pageNumberLabel}</p>
         </div>
         {showNextButton ?
           <button
@@ -50,7 +57,7 @@ export const StatusBar: FC<StatusBarProps> = ({
             onClick={onNext}
             disabled={disableNextButton}
           >
-            Next
+            {nextText}
           </button>
           : null}
         {!showNextButton && !scorePage ?
@@ -60,7 +67,7 @@ export const StatusBar: FC<StatusBarProps> = ({
             onClick={onShowResults}
             disabled={disableNextButton}
           >
-            Finish
+            {finishText}
           </button>
           : null}
       </div>

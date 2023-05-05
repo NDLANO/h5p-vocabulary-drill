@@ -100,6 +100,34 @@
           "default": "Swapped language from @sourceLanguage to @targetLanguage"
         },
         {
+          "label": "Text for \"Next\" button",
+          "default": "Next"
+        },
+        {
+          "label": "Text for \"Finish\" button",
+          "default": "Finish"
+        },
+        {
+          "label": "Text for \"Restart\" button",
+          "default": "Restart"
+        },
+        {
+          "label": "Score label",
+          "default": "Score"
+        },
+        {
+          "label": "Textual representation of the score bar for those using a readspeaker",
+          "default": "You got @score out of @maxScore points"
+        },
+        {
+          "label": "Textual representation of the page numbers for those using a readspeaker",
+          "default": "Page @page of @totalPages"
+        },
+        {
+          "label": "Feedback text",
+          "default": "Your total score"
+        },
+        {
           "label": "English",
           "default": "English"
         },

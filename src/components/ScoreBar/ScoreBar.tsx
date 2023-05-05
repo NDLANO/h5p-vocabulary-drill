@@ -1,5 +1,6 @@
 import { H5P } from 'h5p-utils';
 import React, { FC, useEffect, useRef } from 'react';
+import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 
 type ScoreBarProps = {
   maxScore: number,
@@ -10,8 +11,11 @@ export const ScoreBar: FC<ScoreBarProps> = ({
   maxScore,
   score,
 }) => {
+  const { t } = useTranslation();
+  const scoreBarLabel = t('scoreBarLabel').replaceAll('@score', score.toString()).replaceAll('@maxScore', maxScore.toString());
+
   const ref = useRef<HTMLDivElement>(null);
-  const scoreBar = useRef((H5P as any).JoubelUI.createScoreBar(maxScore));
+  const scoreBar = useRef((H5P as any).JoubelUI.createScoreBar(maxScore, scoreBarLabel));
   scoreBar.current.setScore(score);
 
   useEffect(() => {
