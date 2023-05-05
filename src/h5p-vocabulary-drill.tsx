@@ -1,5 +1,3 @@
-///<reference path="../h5p-extensions.d.ts"/>
-
 import type {
   IH5PContentType,
   IH5PQuestionType,
