@@ -13,7 +13,7 @@ export const ProgressBar: FC<ProgressBarProps> = ({
 
   // Page progress is also available in StatusBar
   const disableAria = true; 
-  const progressBar = useRef(H5P.JoubelUI.createProgressBar(totalPages, { disableAria }));
+  const progressBar = useRef(H5P.JoubelUI.createProgressbar(totalPages, { disableAria }));
   progressBar.current.setProgress(page);
 
   useEffect(() => {
