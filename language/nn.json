@@ -116,15 +116,15 @@
           "default": "Resultat"
         },
         {
-          "label": "Tekstleg representasjon av resultatlinja for dei som bruker ein høgtalar",
+          "label": "Tekstleg representasjon av resultatlinja for dei som bruker ein skjermlesar",
           "default": "Du fekk @score av @maxScore poeng"
         },
         {
-          "label": "Tekstleg representasjon av sidetal for dei som bruker ein høgtalar",
+          "label": "Tekstleg representasjon av sidetal for dei som bruker ein skjermlesar",
           "default": "Side @page av @totalPages"
         },
         {
-          "label": "Tilbakemelding tekst",
+          "label": "Tilbakemelding-tekst",
           "default": "Ditt resultat"
         },
         {
