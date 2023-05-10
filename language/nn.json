@@ -100,6 +100,34 @@
           "default": "Bytte språk frå @sourceLanguage til @targetLanguage"
         },
         {
+          "label": "Tekst for \"Neste\" knapp",
+          "default": "Neste"
+        },
+        {
+          "label": "Tekst for \"Fullfør\" knapp",
+          "default": "Fullfør"
+        },
+        {
+          "label": "Tekst for \"Start på nytt\" knapp",
+          "default": "Start på nytt"
+        },
+        {
+          "label": "Resultat etikett",
+          "default": "Resultat"
+        },
+        {
+          "label": "Tekstleg representasjon av resultatlinja for dei som bruker ein skjermlesar",
+          "default": "Du fekk @score av @maxScore poeng"
+        },
+        {
+          "label": "Tekstleg representasjon av sidetal for dei som bruker ein skjermlesar",
+          "default": "Side @page av @totalPages"
+        },
+        {
+          "label": "Tilbakemelding-tekst",
+          "default": "Ditt resultat"
+        },
+        {
           "label": "Engelsk",
           "default": "Engelsk"
         },

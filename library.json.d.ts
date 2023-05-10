@@ -3,7 +3,7 @@ declare const json: {
   "machineName": "H5P.VocabularyDrill",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 18,
+  "patchVersion": 19,
   "runnable": 1,
   "license": "MIT",
   "author": "NDLA",
@@ -18,6 +18,16 @@ declare const json: {
       "machineName": "H5P.DragText",
       "majorVersion": 1,
       "minorVersion": 10
+    },
+    {
+      "machineName": "H5P.Question",
+      "majorVersion": 1,
+      "minorVersion": 5
+    },
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 3
     }
   ],
   "editorDependencies": [

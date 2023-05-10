@@ -27,6 +27,20 @@
     white-space: nowrap;
     width: 1px;
   }
+
+  .h5p-vocabulary-drill-score-page {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+
+    button.h5p-vocabulary-drill-restart::before {
+      content: '\F01E';
+      font-family: 'H5PFontAwesome4';
+      padding-right: 0.5em;
+    }
+  }
 }
 
 .h5p-vocabulary-drill-toolbar {
@@ -220,13 +234,13 @@
   gap: 2em;
   justify-content: space-between;
   min-height: 2.7em;
-  padding: 0.5em 0.5em 0.5em 1em;
+  padding: 0.5em 1em;
   position: relative;
 
   button {
     background-color: #f5f7fc;
     border: none;
-    color: #1a73d9;
+    color: #356bbd;
     cursor: pointer;
     display: inline-block;
     font-size: 1em;
@@ -260,6 +274,10 @@
     flex-grow: 1;
   }
 
+  &-pages {
+    margin: 0 0 0 auto;
+  }
+
   &-number {
     color: #356BBD;
     font-size: 1.2em;
@@ -274,15 +292,15 @@
 }
 
 .h5p-vocabulary-drill-progressbar {
-  background-color: #D3DDEE;
-  background-size: cover;
-  height: 0.313em;
   margin-top: 1em;
-  width: 100%;
+  position: relative;
 
-  &-front {
-    background-color: #356BBD;
-    height: 0.313em;
-    transition: 1s;
+  .h5p-joubelui-progressbar {
+    background: #D3DDEE;
+    box-shadow: none;
+
+    &-background {
+      background-color: #356BBD;
+    }
   }
 }

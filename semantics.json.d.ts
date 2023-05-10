@@ -163,6 +163,48 @@ declare const json: [
         "type": "text"
       },
       {
+        "label": "Text for \"Next\" button",
+        "name": "next",
+        "default": "Next",
+        "type": "text"
+      },
+      {
+        "label": "Text for \"Finish\" button",
+        "name": "finish",
+        "default": "Finish",
+        "type": "text"
+      },
+      {
+        "label": "Text for \"Restart\" button",
+        "name": "restart",
+        "default": "Restart",
+        "type": "text"
+      },
+      {
+        "label": "Score label",
+        "name": "scoreLabel",
+        "default": "Score",
+        "type": "text"
+      },
+      {
+        "label": "Textual representation of the score bar for those using a readspeaker",
+        "name": "scoreBarLabel",
+        "default": "You got @score out of @maxScore points",
+        "type": "text"
+      },
+      {
+        "label": "Textual representation of the page numbers for those using a readspeaker",
+        "name": "pageNumberLabel",
+        "default": "Page @page of @totalPages",
+        "type": "text"
+      },
+      {
+        "label": "Feedback text",
+        "name": "feedbackText",
+        "default": "Your total score",
+        "type": "text"
+      },
+      {
         "label": "English",
         "name": "lang_en",
         "default": "English",
