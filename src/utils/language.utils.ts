@@ -1,5 +1,5 @@
-import { LanguageCode, LanguageModeType } from '../types/types';
 import { useTranslation } from '../hooks/useTranslation/useTranslation';
+import { LanguageModeType, type LanguageCode } from '../types/types';
 
 export const getLanguageModeAria = (
   languageMode: LanguageModeType,

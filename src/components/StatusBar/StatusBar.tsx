@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import { ProgressBar } from '../ProgressBar/ProgressBar';
+import React, { type FC } from 'react';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
+import { ProgressBar } from '../ProgressBar/ProgressBar';
 
 type StatusBarProps = {
   page: number;

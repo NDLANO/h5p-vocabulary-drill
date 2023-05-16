@@ -1,5 +1,5 @@
 import { H5P } from 'h5p-utils';
-import React, { FC, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, type FC } from 'react';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 
 type ScoreBarProps = {
