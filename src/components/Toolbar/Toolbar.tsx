@@ -1,11 +1,11 @@
-import React from 'react';
-import he from 'he';
-import { useTranslation } from '../../hooks/useTranslation/useTranslation';
-import { useAriaLive } from '../../hooks/useAriaLive/useAriaLive';
-import { AnswerModeType, LanguageCode, LanguageModeType } from '../../types/types';
-import { Combobox } from '../Combobox/Combobox';
 import { H5P } from 'h5p-utils';
+import { decode } from 'he';
+import React from 'react';
+import { useAriaLive } from '../../hooks/useAriaLive/useAriaLive';
+import { useTranslation } from '../../hooks/useTranslation/useTranslation';
+import { AnswerModeType, LanguageModeType, type LanguageCode } from '../../types/types';
 import { getLanguageModeAria } from '../../utils/language.utils';
+import { Combobox } from '../Combobox/Combobox';
 
 type ToolbarProps = {
   title: string;
@@ -55,7 +55,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 
   return (
     <div className="h5p-vocabulary-drill-toolbar">
-      <p>{he.decode(title)}</p>
+      <p>{decode(title)}</p>
       {enableTools && (
         <div className="h5p-vocabulary-drill-toolbar-tools">
           {enableAnswerMode && (

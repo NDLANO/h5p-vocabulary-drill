@@ -1,7 +1,7 @@
 import { H5P } from 'h5p-utils';
-import React, { FC } from 'react';
-import { ScoreBar } from '../ScoreBar/ScoreBar';
+import React, { type FC } from 'react';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
+import { ScoreBar } from '../ScoreBar/ScoreBar';
 
 type ScorePageProps = {
   score: number;

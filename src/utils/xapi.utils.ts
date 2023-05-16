@@ -1,5 +1,4 @@
-import { H5P } from 'h5p-utils';
-import {
+import type {
   IH5PContentType,
   IH5PQuestionType,
   XAPIDefinition,
@@ -7,6 +6,7 @@ import {
   XAPIInteractionType,
   XAPIVerb,
 } from 'h5p-types';
+import { H5P } from 'h5p-utils';
 
 const DEFAULT_DESCRIPTION = 'Vocabulary Drill';
 

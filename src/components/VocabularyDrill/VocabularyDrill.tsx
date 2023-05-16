@@ -1,23 +1,23 @@
-import { H5PExtrasWithState, H5PLibrary, XAPIEvent, XAPIVerb } from 'h5p-types';
+import type { H5PExtrasWithState, H5PLibrary, XAPIEvent, XAPIVerb } from 'h5p-types';
 import { H5P } from 'h5p-utils';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, type FC } from 'react';
 import { useContentId } from 'use-h5p';
+import { AriaLiveContext } from '../../contexts/AriaLiveContext';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import {
   AnswerModeType,
-  SubContentType,
   LanguageModeType,
-  Params,
-  State,
+  type Params,
+  type State,
+  type SubContentType,
 } from '../../types/types';
 import { findLibraryInfo, libraryToString, sanitizeRecord } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
-import { parseWords, pickWords, parseSourceAndTarget, pickRandomWords } from '../../utils/word.utils';
-import { StatusBar } from '../StatusBar/StatusBar';
-import { Toolbar } from '../Toolbar/Toolbar';
-import { AriaLiveContext } from '../../contexts/AriaLiveContext';
+import { parseSourceAndTarget, parseWords, pickRandomWords, pickWords } from '../../utils/word.utils';
 import { AriaLive } from '../AriaLive/AriaLive';
 import { ScorePage } from '../ScorePage/ScorePage';
+import { StatusBar } from '../StatusBar/StatusBar';
+import { Toolbar } from '../Toolbar/Toolbar';
 
 type VocabularyDrillProps = {
   title: string;
