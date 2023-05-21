@@ -27,6 +27,20 @@
     white-space: nowrap;
     width: 1px;
   }
+
+  .h5p-vocabulary-drill-score-page {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+
+    button.h5p-vocabulary-drill-restart::before {
+      content: '\F01E';
+      font-family: 'H5PFontAwesome4';
+      padding-right: 0.5em;
+    }
+  }
 }
 
 .h5p-vocabulary-drill-toolbar {
@@ -39,7 +53,7 @@
   justify-content: space-between;
   margin-bottom: 1em;
   min-height: 2.7em;
-  padding: 0.5em 0.5em 0.5em 1em;
+  padding: 0.5em 1em;
   position: relative;
 
   p {
@@ -55,17 +69,21 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5em;
+    max-width: 100%;
   }
 
   button {
     background-color: #f5f7fc;
     border: none;
-    color: #1a73d9;
+    color: #356bbd;
     cursor: pointer;
     display: inline-block;
     font-size: 1em;
     font-weight: 700;
     line-height: 1.2;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     padding: 0.75em 1.25em;
     white-space: nowrap;
 
@@ -87,71 +105,123 @@
     }
   }
 
-  select {
-    appearance: none; // Remove default arrow
-    background-color: #f5f7fc;
-    border: none;
-    color: #1a73d9;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: 700;
-    line-height: 1.2;
-    padding: 0.75em 2.75em 0.75em 2.7em;
+  .h5p-vocabulary-drill-combobox {
+    .combo {
+      display: block;
+      max-width: 25rem;
+      position: relative;
 
-    &:hover:not(:disabled),
-    &:focus:not(:disabled) {
-      background-color: #eaeff8;
-    }
-
-    &:disabled {
-      background-color: #f2f2f2;
-      color: grey;
-      cursor: not-allowed;
-      opacity: 1;
-    }
-  }
-
-  &-select {
-    align-items: center;
-    display: flex;
-    gap: 1em;
-    position: relative;
-
-    &::after {
-      color: #1a73d9;
-      content: '\f107';
-      font-family: 'H5PFontAwesome4';
-      font-size: 1.2em;
-      pointer-events: none;
-      position: absolute;
-      right: 1em;
-      top: 50%;
-      transform: translate(0, -50%);
-    }
-
-    &::before {
-      color: #1a73d9;
-      content: '\F040';
-      font-family: 'H5PFontAwesome4';
-      position: absolute;
-      top: 50%;
-      transform: translate(0, -50%);
-      left: 1.25em;
-    }
-
-    &.disabled {
-      &::after, 
-      &::before {
-        color: grey;
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
       }
-    }
 
-    &.h5p-vocabulary-drill-fill-in::before {
-      content: '\F040';
-    }
+      &::after {
+        color: #356bbd;
+        content: '\f107';
+        font-family: 'H5PFontAwesome4';
+        font-size: 1.2em;
+        pointer-events: none;
+        position: absolute;
+        right: 1em;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
 
-    &.h5p-vocabulary-drill-drag-text::before {
-      content: '\F047';
+      &::before {
+        color: #356bbd;
+        content: '\F040';
+        font-family: 'H5PFontAwesome4';
+        position: absolute;
+        pointer-events: none;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 1.25em;
+      }
+
+      &.h5p-vocabulary-drill-fill-in::before {
+        content: '\F040';
+      }
+
+      &.h5p-vocabulary-drill-drag-text::before {
+        content: '\F047';
+      }
+
+      &.disabled {
+        &::after,
+        &::before {
+          color: grey;
+        }
+      }
+
+      &-input {
+        background-color: #f5f7fc;
+        border: none;
+        border-radius: 0;
+        color: #356bbd;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 700;
+        line-height: 1.2;
+        padding: 0.75em 2.75em 0.75em 2.7em;
+      }
+
+      &.disabled {
+        .combo-input {
+          background-color: #f2f2f2;
+          color: grey;
+          cursor: not-allowed;
+          opacity: 1;
+        }
+      }
+
+      &-menu {
+        background-color: #f5f7fc;
+        border: 1px solid rgb(0 0 0 / 25%);
+        border-radius: 0;
+        cursor: pointer;
+        display: none;
+        max-height: 18.75rem;
+        overflow-y: auto;
+        left: 0;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        z-index: 100;
+      }
+
+      &-option {
+        padding: 0.5em 0.75em;
+        position: relative;
+
+        &.option-current {
+          background-color: #356bbd;
+          color: #fff;
+        }
+
+        &[aria-selected="true"] {
+          &::after {
+            border-bottom: 1.5px solid #000;
+            border-right: 1.5px solid #000;
+            content: "";
+            height: 0.8em;
+            position: absolute;
+            right: 1em;
+            top: 46%;
+            transform: translate(0, -54%) rotate(45deg);
+            width: 0.4em;
+          }
+
+          &.option-current::after {
+            border-color: #fff;
+          }
+        }
+      }
+
+      &.open .combo-menu {
+        display: block;
+      }
     }
   }
 }
@@ -164,13 +234,13 @@
   gap: 2em;
   justify-content: space-between;
   min-height: 2.7em;
-  padding: 0.5em 0.5em 0.5em 1em;
+  padding: 0.5em 1em;
   position: relative;
 
   button {
     background-color: #f5f7fc;
     border: none;
-    color: #1a73d9;
+    color: #356bbd;
     cursor: pointer;
     display: inline-block;
     font-size: 1em;
@@ -204,6 +274,10 @@
     flex-grow: 1;
   }
 
+  &-pages {
+    margin: 0 0 0 auto;
+  }
+
   &-number {
     color: #356BBD;
     font-size: 1.2em;
@@ -218,15 +292,15 @@
 }
 
 .h5p-vocabulary-drill-progressbar {
-  background-color: #D3DDEE;
-  background-size: cover;
-  height: 0.313em;
   margin-top: 1em;
-  width: 100%;
+  position: relative;
 
-  &-front {
-    background-color: #356BBD;
-    height: 0.313em;
-    transition: 1s;
+  .h5p-joubelui-progressbar {
+    background: #D3DDEE;
+    box-shadow: none;
+
+    &-background {
+      background-color: #356BBD;
+    }
   }
 }

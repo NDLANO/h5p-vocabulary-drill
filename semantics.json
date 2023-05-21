@@ -92,8 +92,7 @@
               "min": 0,
               "max": 100,
               "default": 100,
-              "unit": "%",
-              "label": ""
+              "unit": "%"
             },
             {
               "name": "feedback",
@@ -136,13 +135,109 @@
       {
         "label": "Answer mode label",
         "name": "answerModeLabel",
-        "default": "Answer mode",
+        "default": "Change answer mode",
         "type": "text"
       },
       {
         "label": "Language mode label",
         "name": "languageModeLabel",
         "default": "Swap languages",
+        "type": "text"
+      },
+      {
+        "label": "Changed answer mode aria",
+        "name": "changedAnswerModeAria",
+        "default": "Changed answer mode to @option",
+        "type": "text"
+      },
+      {
+        "label": "Language mode aria",
+        "name": "languageModeAria",
+        "default": "Swap language from @sourceLanguage to @targetLanguage",
+        "type": "text"
+      },
+      {
+        "label": "Changed language mode aria",
+        "name": "changedLanguageModeAria",
+        "default": "Swapped language from @sourceLanguage to @targetLanguage",
+        "type": "text"
+      },
+      {
+        "label": "Text for \"Next\" button",
+        "name": "next",
+        "default": "Next",
+        "type": "text"
+      },
+      {
+        "label": "Text for \"Finish\" button",
+        "name": "finish",
+        "default": "Finish",
+        "type": "text"
+      },
+      {
+        "label": "Text for \"Restart\" button",
+        "name": "restart",
+        "default": "Restart",
+        "type": "text"
+      },
+      {
+        "label": "Score label",
+        "name": "scoreLabel",
+        "default": "Score",
+        "type": "text"
+      },
+      {
+        "label": "Textual representation of the score bar for those using a readspeaker",
+        "name": "scoreBarLabel",
+        "default": "You got @score out of @maxScore points",
+        "type": "text"
+      },
+      {
+        "label": "Textual representation of the page numbers for those using a readspeaker",
+        "name": "pageNumberLabel",
+        "default": "Page @page of @totalPages",
+        "type": "text"
+      },
+      {
+        "label": "Feedback text",
+        "name": "feedbackText",
+        "default": "Your total score",
+        "type": "text"
+      },
+      {
+        "label": "English",
+        "name": "lang_en",
+        "default": "English",
+        "type": "text"
+      },
+      {
+        "label": "French",
+        "name": "lang_fr",
+        "default": "French",
+        "type": "text"
+      },
+      {
+        "label": "German",
+        "name": "lang_de",
+        "default": "German",
+        "type": "text"
+      },
+      {
+        "label": "Norwegian bokmål",
+        "name": "lang_nb",
+        "default": "Norwegian bokmål",
+        "type": "text"
+      },
+      {
+        "label": "Norwegian nynorsk",
+        "name": "lang_nn",
+        "default": "Norwegian nynorsk",
+        "type": "text"
+      },
+      {
+        "label": "Spanish",
+        "name": "lang_es",
+        "default": "Spanish",
         "type": "text"
       }
     ]
@@ -227,7 +322,7 @@
         "label": "Assistive technology label for input field",
         "name": "inputLabel",
         "type": "text",
-        "description": "Use @num and @total to replace current cloze number and total cloze number",
+        "description": "Use @num and @total to replace current cloze number and total cloze number.",
         "default": "Blank input @num of @total",
         "optional": true
       },
@@ -313,35 +408,35 @@
         "name": "dropZoneIndex",
         "type": "text",
         "default": "Drop Zone @index.",
-        "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+        "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index."
       },
       {
         "label": "Empty Drop Zone label",
         "name": "empty",
         "type": "text",
         "default": "Drop Zone @index is empty.",
-        "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+        "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty."
       },
       {
         "label": "Contains Drop Zone label",
         "name": "contains",
         "type": "text",
         "default": "Drop Zone @index contains draggable @draggable.",
-        "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+        "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable."
       },
       {
         "label": "Draggable elements label",
         "name": "ariaDraggableIndex",
         "type": "text",
         "default": "@index of @count draggables.",
-        "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+        "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count."
       },
       {
         "label": "Label for show tip button",
         "name": "tipLabel",
         "type": "text",
         "default": "Show tip",
-        "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+        "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out."
       },
       {
         "name": "correctText",
@@ -512,7 +607,7 @@
       {
         "label": "Number of words",
         "name": "numberOfWordsToShow",
-        "description": "Defines how many words that will be visible each time. If 0 is set, all words will be shown.",
+        "description": "Defines how many words will be visible each time. If 0 is set, all words will be shown.",
         "type": "number",
         "optional": true
       }

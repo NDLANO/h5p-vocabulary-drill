@@ -1,18 +1,21 @@
-import { H5PExtrasWithState, H5PLibrary, XAPIEvent } from 'h5p-types';
+import type { H5PExtrasWithState, H5PLibrary, XAPIEvent, XAPIVerb } from 'h5p-types';
 import { H5P } from 'h5p-utils';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, type FC } from 'react';
 import { useContentId } from 'use-h5p';
+import { AriaLiveContext } from '../../contexts/AriaLiveContext';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import {
   AnswerModeType,
-  SubContentType,
   LanguageModeType,
-  Params,
-  State,
+  type Params,
+  type State,
+  type SubContentType,
 } from '../../types/types';
-import { findLibraryInfo, libraryToString } from '../../utils/h5p.utils';
+import { findLibraryInfo, libraryToString, sanitizeRecord } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
-import { parseWords, pickWords, parseSourceAndTarget } from '../../utils/word.utils';
+import { parseSourceAndTarget, parseWords, pickRandomWords, pickWords } from '../../utils/word.utils';
+import { AriaLive } from '../AriaLive/AriaLive';
+import { ScorePage } from '../ScorePage/ScorePage';
 import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
 
@@ -26,6 +29,7 @@ type VocabularyDrillProps = {
   ) => void;
   onChangeLanguageMode: (languageMode: LanguageModeType) => void;
   onResize: () => void;
+  onTrigger: (event: XAPIVerb) => void;
   onPageChange: (page: number) => void;
 };
 
@@ -76,7 +80,7 @@ function createDragText(
       ...params.behaviour,
     },
     overallFeedback: params.overallFeedback,
-    ...params.dragtextl10n,
+    ...sanitizeRecord(params.dragtextl10n),
   };
 
   const activeContentType = attachContentType(
@@ -110,7 +114,7 @@ function createFillIn(
     questions: [fillInWords],
     behaviour: params.behaviour,
     overallFeedback: params.overallFeedback,
-    ...params.blanksl10n,
+    ...sanitizeRecord(params.blanksl10n),
   };
 
   return attachContentType(
@@ -129,9 +133,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   onChangeContentType,
   onChangeLanguageMode,
   onResize,
+  onTrigger,
   onPageChange,
 }) => {
-  const { behaviour } = params;
+  const { behaviour, sourceLanguage, targetLanguage, overallFeedback } = params;
 
   const {
     answerMode,
@@ -161,13 +166,16 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [maxScore, setMaxScore] = useState(previousState?.maxScore ?? 0);
   const [disableTools, setDisableTools] = useState(false);
   const [disableNextButton, setDisableNextButton] = useState(true);
+  const [ariaLiveText, setAriaLiveText] = useState('');
+  const [showResults, setShowResults] = useState(false);
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
+  // If previous state set, word must not be randomized to keep previous order
   const words = useRef(
     parseWords(
       params.words,
-      randomize,
+      randomize && !previousState?.[activeAnswerMode],
     ),
   );
 
@@ -180,11 +188,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       ? behaviour.numberOfWordsToShow
       : totalNumberOfWords;
 
-  const pickedWords = pickWords(words.current, page, numberOfWordsToShow);
-
-  const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow);
-  const severalPages = totalPages > 1;
+  const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow) + 1; // add 1 for score page
+  const multiplePages = (totalPages - 1) > 1; // subtract 1 for score page
   const showNextButton = (page + 1) * numberOfWordsToShow < totalNumberOfWords;
+
+  const pickedWords = multiplePages || !randomize ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
   const fillInTheBlanksLibraryInfo = findLibraryInfo('H5P.Blanks');
@@ -278,6 +286,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         }
       }
 
+      // Remove previous state once used to start with clean slate after resets
+      previousState = undefined;
+
       activeContentType.current?.on('resize', () => {
         onResize();
       });
@@ -291,11 +302,20 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             // Wait for the retry button to be added to the DOM
             requestAnimationFrame(() => {
               requestAnimationFrame(() => {
-                const retryButton = wrapper.querySelector('button.h5p-question-try-again');
-                retryButton?.addEventListener('click', handleRetry, { once: true });
+                // The retry button is not always added to the DOM at this point when DragText
+                // is used, so we need to wait for the next animation frame to be sure
+                requestAnimationFrame(() => {
+                  const retryButton = wrapper.querySelector('button.h5p-question-try-again');
+                  retryButton?.addEventListener('click', handleRetry, { once: true });
+                });
               });
             });
           }
+
+          // Give subcontent's statement time to be triggered first
+          window.requestAnimationFrame(() => {
+            onTrigger('completed');
+          });
         }
       });
 
@@ -320,7 +340,17 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     addRunnable();
   };
 
+  // Fighting against React.StrictMode to not re-create runnable on remount
+  let shouldCreateRunnable = true;
   useEffect(() => {
+    if (!shouldCreateRunnable) {
+      return;
+    }
+    if (showResults) {
+      return;
+    }
+
+    shouldCreateRunnable = false;
     createRunnable();
   }, [activeAnswerMode, activeLanguageMode, page]);
 
@@ -336,7 +366,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setDisableNextButton(true);
     setDisableTools(false);
 
-    // TODO: Avoid using 'any' here
     // Make sure the first element on the new page is focused
     if (activeAnswerMode === AnswerModeType.DragText) {
       (activeContentType.current as any).$introduction.parent().focus();
@@ -346,23 +375,70 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     }
   };
 
-  return hasWords ? (
-    <div>
-      <Toolbar
-        title={title}
-        activeAnswerMode={activeAnswerMode}
-        enableAnswerMode={enableSwitchAnswerModeButton}
-        enableLanguageMode={enableSwitchWordsButton}
-        onAnswerModeChange={handleAnswerModeChange}
-        onLanguageModeChange={handleLanguageModeChange}
-        disableTools={disableTools}
-      />
-      <div ref={wrapperRef} />
-      {severalPages && (
-        <StatusBar page={page + 1} totalPages={totalPages} score={score} totalScore={totalNumberOfWords} showNextButton={showNextButton} disableNextButton={disableNextButton} onNext={handleNext} />
+  const handleShowResults = () => {
+    const newPage = page + 1;
+
+    setShowResults(true);
+    setPage(newPage);
+    setScore(score + (activeContentType.current?.getScore() ?? 0));
+    setMaxScore(maxScore + (activeContentType.current?.getMaxScore() ?? 0));
+  };
+
+  const handleRestart = () => {
+    activeContentType.current?.resetTask();
+    setShowResults(false);
+    setPage(0);
+    setScore(0);
+    setMaxScore(0);
+    setDisableNextButton(true);
+    setDisableTools(false);
+  };
+
+  // Resize can be required if !hasWords and plain div is rendered
+  onResize();
+
+  return (
+    <AriaLiveContext.Provider value={{ ariaLiveText, setAriaLiveText }}>
+      {hasWords ? (
+        <div>
+          <Toolbar
+            title={title}
+            activeAnswerMode={activeAnswerMode}
+            activeLanguageMode={activeLanguageMode}
+            enableAnswerMode={enableSwitchAnswerModeButton}
+            enableLanguageMode={enableSwitchWordsButton}
+            onAnswerModeChange={handleAnswerModeChange}
+            onLanguageModeChange={handleLanguageModeChange}
+            sourceLanguageCode={sourceLanguage}
+            targetLanguageCode={targetLanguage}
+            disableTools={disableTools}
+          />
+          {!showResults && <div ref={wrapperRef} />}
+          {showResults && (
+            <ScorePage
+              score={score}
+              maxScore={maxScore}
+              overallFeedbacks={overallFeedback}
+              onRestart={handleRestart}
+            />
+          )}
+          {multiplePages && (
+            <StatusBar
+              page={page + 1}
+              totalPages={totalPages}
+              score={score}
+              totalScore={totalNumberOfWords}
+              showNextButton={showNextButton}
+              disableNextButton={disableNextButton}
+              onNext={handleNext}
+              onShowResults={handleShowResults}
+            />
+          )}
+        </div>
+      ) : (
+        <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
       )}
-    </div>
-  ) : (
-    <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
+      <AriaLive />
+    </AriaLiveContext.Provider>
   );
 };

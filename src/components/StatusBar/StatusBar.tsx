@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { type FC } from 'react';
+import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import { ProgressBar } from '../ProgressBar/ProgressBar';
 
 type StatusBarProps = {
@@ -9,6 +10,7 @@ type StatusBarProps = {
   showNextButton: boolean;
   disableNextButton: boolean;
   onNext: () => void;
+  onShowResults: () => void;
 };
 
 export const StatusBar: FC<StatusBarProps> = ({
@@ -18,25 +20,35 @@ export const StatusBar: FC<StatusBarProps> = ({
   totalScore,
   showNextButton,
   disableNextButton,
-  onNext
+  onNext,
+  onShowResults,
 }) => {
-  // TODO: Translate "Next", "Score" and "Page"
+  const { t } = useTranslation();
+  const scoreLabel = t('scoreLabel');
+  const scoreBarLabel = t('scoreBarLabel').replaceAll('@score', score?.toString() ?? '0').replaceAll('@maxScore', totalScore?.toString() ?? '0');
+  const pageNumberLabel = t('pageNumberLabel').replaceAll('@page', page.toString()).replaceAll('@totalPages', totalPages.toString());
+  const nextText = t('next');
+  const finishText = t('finish');
+
+  const scorePage = page === totalPages;
   return (
     <>
       <ProgressBar page={page} totalPages={totalPages} />
       <div className="h5p-vocabulary-drill-status">
-        {score != null ? <div className="h5p-vocabulary-drill-status-score">
-          <span aria-hidden="true">Score: </span>
-          <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{score}</span>
-          <span className="h5p-vocabulary-drill-status-divider" aria-hidden="true"> / </span>
-          <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{totalScore}</span>
-          <p className="visually-hidden">Score: You got {score} out of {totalScore} points</p>
-        </div> : null}
-        <div>
+        {score != null && !scorePage ? (
+          <div className="h5p-vocabulary-drill-status-score">
+            <span aria-hidden="true">{scoreLabel}: </span>
+            <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{score}</span>
+            <span className="h5p-vocabulary-drill-status-divider" aria-hidden="true"> / </span>
+            <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{totalScore}</span>
+            <p className="visually-hidden">{scoreLabel}: {scoreBarLabel}</p>
+          </div>
+        ) : null}
+        <div className="h5p-vocabulary-drill-status-pages">
           <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{page}</span>
           <span className="h5p-vocabulary-drill-status-divider" aria-hidden="true"> / </span>
           <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{totalPages}</span>
-          <p className="visually-hidden">Page {page} of {totalPages}</p>
+          <p className="visually-hidden">{pageNumberLabel}</p>
         </div>
         {showNextButton ?
           <button
@@ -45,7 +57,17 @@ export const StatusBar: FC<StatusBarProps> = ({
             onClick={onNext}
             disabled={disableNextButton}
           >
-            Next
+            {nextText}
+          </button>
+          : null}
+        {!showNextButton && !scorePage ?
+          <button
+            type="button"
+            className="h5p-vocabulary-drill-next"
+            onClick={onShowResults}
+            disabled={disableNextButton}
+          >
+            {finishText}
           </button>
           : null}
       </div>

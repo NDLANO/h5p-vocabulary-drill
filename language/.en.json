@@ -54,9 +54,7 @@
               {
                 "label": "Score Range"
               },
-              {
-                "label": ""
-              },
+              {},
               {
                 "label": "Feedback for defined score range",
                 "placeholder": "Fill in the feedback"
@@ -83,11 +81,75 @@
         },
         {
           "label": "Answer mode label",
-          "default": "Answer mode"
+          "default": "Change answer mode"
         },
         {
           "label": "Language mode label",
           "default": "Swap languages"
+        },
+        {
+          "label": "Changed answer mode aria",
+          "default": "Changed answer mode to @option"
+        },
+        {
+          "label": "Language mode aria",
+          "default": "Swap language from @sourceLanguage to @targetLanguage"
+        },
+        {
+          "label": "Changed language mode aria",
+          "default": "Swapped language from @sourceLanguage to @targetLanguage"
+        },
+        {
+          "label": "Text for \"Next\" button",
+          "default": "Next"
+        },
+        {
+          "label": "Text for \"Finish\" button",
+          "default": "Finish"
+        },
+        {
+          "label": "Text for \"Restart\" button",
+          "default": "Restart"
+        },
+        {
+          "label": "Score label",
+          "default": "Score"
+        },
+        {
+          "label": "Textual representation of the score bar for those using a readspeaker",
+          "default": "You got @score out of @maxScore points"
+        },
+        {
+          "label": "Textual representation of the page numbers for those using a readspeaker",
+          "default": "Page @page of @totalPages"
+        },
+        {
+          "label": "Feedback text",
+          "default": "Your total score"
+        },
+        {
+          "label": "English",
+          "default": "English"
+        },
+        {
+          "label": "French",
+          "default": "French"
+        },
+        {
+          "label": "German",
+          "default": "German"
+        },
+        {
+          "label": "Norwegian bokmål",
+          "default": "Norwegian bokmål"
+        },
+        {
+          "label": "Norwegian nynorsk",
+          "default": "Norwegian nynorsk"
+        },
+        {
+          "label": "Spanish",
+          "default": "Spanish"
         }
       ]
     },
@@ -136,7 +198,7 @@
         },
         {
           "label": "Assistive technology label for input field",
-          "description": "Use @num and @total to replace current cloze number and total cloze number",
+          "description": "Use @num and @total to replace current cloze number and total cloze number.",
           "default": "Blank input @num of @total"
         },
         {
@@ -191,27 +253,27 @@
         {
           "label": "Numbered Drop zone label",
           "default": "Drop Zone @index.",
-          "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+          "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index."
         },
         {
           "label": "Empty Drop Zone label",
           "default": "Drop Zone @index is empty.",
-          "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+          "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty."
         },
         {
           "label": "Contains Drop Zone label",
           "default": "Drop Zone @index contains draggable @draggable.",
-          "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+          "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable."
         },
         {
           "label": "Draggable elements label",
           "default": "@index of @count draggables.",
-          "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+          "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count."
         },
         {
           "label": "Label for show tip button",
           "default": "Show tip",
-          "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+          "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out."
         },
         {
           "label": "Readspeaker text for correct answer",
@@ -311,7 +373,7 @@
         },
         {
           "label": "Number of words",
-          "description": "Defines how many words that will be visible each time. If 0 is set, all words will be shown."
+          "description": "Defines how many words will be visible each time. If 0 is set, all words will be shown."
         }
       ]
     }
