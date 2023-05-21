@@ -1,0 +1,345 @@
+{
+  "semantics": [
+    {
+      "label": "Aufgabenbeschreibung",
+      "description": "Eine Beschreibung, die die Nutzenden darauf hinweist, wie die Aufgabe zu lösen ist."
+    },
+    {
+      "label": "Ausgangssprache",
+      "description": "Wähle die Sprache der Ausgangswörter.",
+      "options": [
+        {
+          "label": "Englisch"
+        },
+        {
+          "label": "Französisch"
+        },
+        {
+          "label": "Deutsch"
+        },
+        {
+          "label": "Norwegisch (Bokmål)"
+        },
+        {
+          "label": "Norwegisch (Nynorsk)"
+        },
+        {
+          "label": "Spanisch"
+        }
+      ]
+    },
+    {
+      "options": [
+        {
+          "label": "Englisch"
+        },
+        {
+          "label": "Französisch"
+        },
+        {
+          "label": "Deutsch"
+        },
+        {
+          "label": "Norwegisch (Bokmål)"
+        },
+        {
+          "label": "Norwegisch (Nynorsk)"
+        },
+        {
+          "label": "Spanisch"
+        }
+      ],
+      "label": "Zielsprache",
+      "description": "Wähle die Sprache der Zielwörter."
+    },
+    {
+      "label": "Wörter",
+      "description": "Füge Wörter hinzu, indem du eine CSV-Datei hochlädst oder schreibe sie in das Textfeld.",
+      "important": {
+        "description": "<ul><li>Quell- und Zielwörter werden durch ein Komma (,) getrennt.</li><li>Alternative Antworten werden durch einen Schrägstrich (/) getrennt.</li><li>Du kannst einen Hinweistext hinzufügen mit einem Doppelpunkt (:) vor dem Hinweis.</li></ul>",
+        "example": "water/sea:w___r,Wasser/Meer:W____r"
+      }
+    },
+    {
+      "fields": [
+        {
+          "entity": "Bereich",
+          "widgets": [
+            {
+              "label": "Voreinstellung"
+            }
+          ],
+          "label": "Lege Rückmeldungen für einzelne Punktebereiche fest",
+          "description": "Klicke auf den \"Bereich hinzufügen\"-Button, um so viele Bereiche hinzuzufügen, wie du brauchst. Beispiel: 0-20% Schlechte Punktzahl, 21-91% Durchschnittliche Punktzahl, 91-100% Großartige Punktzahl!",
+          "field": {
+            "label": "Gesamtrückmeldung",
+            "fields": [
+              {
+                "label": "Punktebereich"
+              },
+              {},
+              {
+                "label": "Rückmeldung für jeweiligen Punktebereich",
+                "placeholder": "Trage die Rückmeldung ein"
+              }
+            ]
+          }
+        }
+      ],
+      "label": "Gesamtrückmeldung"
+    },
+    {
+      "label": "Bezeichnungen und Beschriftungen",
+      "fields": [
+        {
+          "label": "Keine gültigen Wörter",
+          "default": "Keine gültigen Wörter gefunden. Bitte überprüfe deine Eingabe und versuche es erneut."
+        },
+        {
+          "label": "Beschriftung für den Antwortmodus „Ausfüllen“",
+          "default": "Ausfüllen"
+        },
+        {
+          "label": "Beschriftung für den Antwortmodus \"Wörter ziehen\"",
+          "default": "Wörter ziehen"
+        },
+        {
+          "label": "Beschriftung für den Antwortmodus",
+          "default": "Antwortmodus"
+        },
+        {
+          "label": "Beschriftung für den Sprachenmodus",
+          "default": "Sprachen tauschen"
+        }
+      ]
+    },
+    {
+      "fields": [
+        {
+          "label": "Beschriftung des \"Lösung anzeigen\"-Buttons",
+          "default": "Lösung anzeigen"
+        },
+        {
+          "label": "Beschriftung des \"Wiederholen\"-Buttons",
+          "default": "Wiederholen"
+        },
+        {
+          "label": "Beschriftung des \"Überprüfen\"-Buttons",
+          "default": "Überprüfen"
+        },
+        {
+          "label": "Beschriftung des \"Absenden\"-Buttons",
+          "default": "Absenden"
+        },
+        {
+          "label": "Text der \"Nicht ausgefüllt\"-Nachricht",
+          "default": "Bitte fülle alle Lücken aus, um die Lösung ansehen zu können"
+        },
+        {
+          "label": "Text der \"... ist korrekt\"-Nachricht",
+          "default": "':ans' ist korrekt"
+        },
+        {
+          "label": "Text der \"... ist falsch\"-Nachricht",
+          "default": "':ans' ist falsch"
+        },
+        {
+          "label": "Text der \"Korrekt beantwortet\"-Nachricht",
+          "default": "Korrekt beantwortet"
+        },
+        {
+          "label": "Text der \"Falsch beantwortet\"-Nachricht",
+          "default": "Falsch beantwortet"
+        },
+        {
+          "label": "Beschriftung der Lösung bei Hilfsmitteln zur Barrierefreiheit",
+          "default": "Korrekte Antwort:"
+        },
+        {
+          "label": "Beschriftung des Eingabefelds für Vorlesewerkzeuge (Barrierefreiheit)",
+          "description": "Benutze @num und @total um die aktuelle Nummer der Lücke und die Gesamtzahl der Lücken einzufügen",
+          "default": "Lücke @num von @total"
+        },
+        {
+          "label": "Text für Vorlesewerkzeuge (Barrierefreiheit), der darauf hinweist, dass ein Tipp verfügbar ist",
+          "default": "Tipp verfügbar"
+        },
+        {
+          "default": "Tipp",
+          "label": "Beschriftung des Tipp-Icons"
+        },
+        {
+          "label": "Anzeigetext als Ersatz des Punktebalkens für Vorlesewerkzeuge (Barrierefreiheit)",
+          "default": "Du hast :num von :total Punkten erreicht."
+        },
+        {
+          "label": "Beschreibung des \"Überprüfen\"-Buttons (für Hilfsmittel zur Barrierefreiheit)",
+          "default": "Die Antworten überprüfen. Die Antworten werden als richtig, falsch oder unbeantwortet markiert."
+        },
+        {
+          "label": "Beschreibung des \"Lösung anzeigen\"-Buttons (für Hilfsmittel zur Barrierefreiheit)",
+          "default": "Die Lösung anzeigen. Die richtigen Lösungen werden in der Aufgabe angezeigt."
+        },
+        {
+          "label": "Beschreibung des \"Wiederholen\"-Buttons (für Hilfsmittel zur Barrierefreiheit)",
+          "default": "Die Aufgabe wiederholen. Alle Eingaben werden zurückgesetzt und die Aufgabe wird erneut gestartet."
+        },
+        {
+          "label": "Beschreibung zu Beginn der Aufgabe, nachdem der \"Überprüfen\"-Button geklickt wurde (für Hilfsmittel zur Barrierefreiheit)",
+          "default": "Überprüfen-Modus aktiv"
+        }
+      ],
+      "label": "Bezeichnungen und Beschriftungen für Fill-in the Blanks"
+    },
+    {
+      "fields": [
+        {
+          "label": "Beschriftung des \"Überprüfen\"-Buttons",
+          "default": "Überprüfen"
+        },
+        {
+          "label": "Beschriftung des \"Absenden\"-Buttons",
+          "default": "Absenden"
+        },
+        {
+          "label": "Beschriftung des \"Wiederholen\"-Buttons",
+          "default": "Wiederholen"
+        },
+        {
+          "label": "Beschriftung für den \"Lösung anzeigen\"-Button",
+          "default": "Lösung anzeigen"
+        },
+        {
+          "label": "Beschriftung: Nummer des Ablagefelds",
+          "default": "Ablagefeld @index.",
+          "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest die Nummer des Ablagefeldes vor. Verfügbare Variable: @index"
+        },
+        {
+          "label": "Beschriftung: Leeres Ablagefeld",
+          "default": "Ablagefeld @index ist leer.",
+          "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Vorlesewerkzeug liest vor, dass das Ablagefeld leer ist."
+        },
+        {
+          "label": "Beschriftung: Ablagefeld enthält ziehbaren Text",
+          "default": "Ablagefeld @index enthält ziehbaren Text @draggable.",
+          "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Vorlesewerkzeug liest vor, dass das Ablagefeld ziehbaren Text enthält."
+        },
+        {
+          "label": "Beschriftung: Ziehbarer Text",
+          "default": "@index von @count ziehbaren Texten.",
+          "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass es sich um ziehbaren Text handelt. Verfügbare Variablen: @index, @count"
+        },
+        {
+          "label": "Beschriftung: Tipp anzeigen",
+          "default": "Tipp anzeigen",
+          "description": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Vorlesewerkzeug liest dies vor, bevor der Tip vorgelesen wird."
+        },
+        {
+          "label": "Readspeaker-Text für eine richtige Antwort",
+          "default": "Richtig!"
+        },
+        {
+          "label": "Readspeaker-Text für eine falsche Antwort",
+          "default": "Falsch!"
+        },
+        {
+          "label": "Titel des Bestätigungsdialogs, wenn die Lernenden ziehbaren Text zurücksetzen möchten",
+          "default": "Ablagefelder zurücksetzen"
+        },
+        {
+          "label": "Text im Bestätigungsdialog, wenn die Lernenden ziehbaren Text zurücksetzen möchten",
+          "default": "Bist du sicher, dass du dieses Ablagefeld zurücksetzen möchtest?"
+        },
+        {
+          "default": "Ziehbarer Text wurde aufgenommen.",
+          "label": "Die Beschriftung wird für Barrierefreiheit genutzt. Ziehen-Modus hat begonnen"
+        },
+        {
+          "label": "Die Beschriftung wird für Barrierefreiheit genutzt. Ziehen-Modus abgebrochen",
+          "default": "Ziehen abgebrochen."
+        },
+        {
+          "label": "Die Beschriftung wird für Barrierefreiheit genutzt. Ein Readspeaker liest vor, dass die Antwort richtig war",
+          "default": "Korrekte Antwort:"
+        },
+        {
+          "label": "Überschrift für den Abschnitt, der die Rückmeldungen für richtige/falsche Antworten enthält",
+          "default": "Rückmeldung"
+        },
+        {
+          "label": "Anzeigetext der Punkteleiste für Readspeaker (Barrierefreiheit)",
+          "default": "Du hast :num von :total Punkten erreicht."
+        },
+        {
+          "label": "Beschreibung des \"Überprüfen\"-Buttons (für Hilfsmittel zur Barrierefreiheit)",
+          "default": "Die Antworten überprüfen. Die Eingaben werden als richtig, falsch oder unbeantwortet markiert."
+        },
+        {
+          "label": "Beschreibung des \"Lösung anzeigen\"-Buttons (für Hilfsmittel zur Barrierefreiheit)",
+          "default": "Die Lösung anzeigen. Die richtigen Lösungen werden in der Aufgabe angezeigt."
+        },
+        {
+          "label": "Beschreibung des \"Wiederholen\"-Buttons (für Hilfsmittel zur Barrierefreiheit)",
+          "default": "Die Aufgabe wiederholen. Alle Eingaben werden zurückgesetzt und die Aufgabe wird erneut gestartet."
+        }
+      ],
+      "label": "Bezeichnungen und Beschriftungen für Wörter ziehen"
+    },
+    {
+      "label": "Verhaltenseinstellungen",
+      "description": "Diese Optionen legen fest, wie die Aufgabe auf Eingaben reagiert.",
+      "fields": [
+        {
+          "label": "\"Wiederholen\" zulassen"
+        },
+        {
+          "label": "\"Lösung zeigen\"-Button anzeigen"
+        },
+        {
+          "label": "Antworten nach Eingabe automatisch prüfen"
+        },
+        {
+          "label": "Auf Groß-/Kleinschreibung achten",
+          "description": "Stellt sicher, dass die Lösung exakt der Vorgabe entspricht."
+        },
+        {
+          "label": "Alle Lücken müssen ausgefüllt sein, bevor die Lösung angesehen werden kann.",
+          "description": "Diese Option ist nur gültig, wenn der Antwortmodus \"Ausfüllen\" eingestellt ist."
+        },
+        {
+          "label": "Kleine Rechtschreibfehler akzeptieren",
+          "description": "Wenn diese Option gewählt wird, wird eine Antwort bei kleinen Rechtschreibfehlern noch als richtig gewertet. (3-9 Zeichen: 1 Fehler, mehr als 9 Zeichen: 2 Fehler). Diese Option ist nur gültig, wenn der Antwortmodus \"Ausfüllen\" eingestellt ist."
+        },
+        {
+          "label": "Zufällige Reihenfolge der Antworten"
+        },
+        {
+          "label": "Tipp anzeigen"
+        },
+        {
+          "label": "Antwortmodus",
+          "options": [
+            {
+              "label": "Ausfüllen"
+            },
+            {
+              "label": "Wörter ziehen"
+            }
+          ]
+        },
+        {
+          "label": "Aktiviere den \"Antwortmodus ändern\"-Button",
+          "description": "Erlaube den Lernenden, zwischen den Modi \"Ausfüllen\" und \"Wörter ziehen\" zu wechseln."
+        },
+        {
+          "label": "Aktiviere den \"Sprache ändern\"-Button",
+          "description": "Erlaube den Lernenden zwischen den Ausgangswörtern und den Zielwörtern zu wechseln."
+        },
+        {
+          "label": "Anzahl der Wörter",
+          "description": "Legt fest, wie viele Wörter in jeder Runde sichtbar sind. Falls 0 gewählt wird, werden alle Wörter gezeigt."
+        }
+      ]
+    }
+  ]
+}

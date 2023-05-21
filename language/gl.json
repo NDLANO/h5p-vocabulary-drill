@@ -1,0 +1,345 @@
+{
+  "semantics": [
+    {
+      "label": "Descrición da tarefa",
+      "description": "Unha guía para dicirlle ao usuario como contestar esta tarefa."
+    },
+    {
+      "label": "Lingua de orixe",
+      "description": "Escolle a lingua das palabras fonte.",
+      "options": [
+        {
+          "label": "Inglés"
+        },
+        {
+          "label": "Francés"
+        },
+        {
+          "label": "Alemán"
+        },
+        {
+          "label": "Bokmål noruegués"
+        },
+        {
+          "label": "Nynorsk noruegués"
+        },
+        {
+          "label": "Español"
+        }
+      ]
+    },
+    {
+      "label": "Lingua de destino",
+      "description": "Escolle a lingua das palabras de destino.",
+      "options": [
+        {
+          "label": "Inglés"
+        },
+        {
+          "label": "Francés"
+        },
+        {
+          "label": "Alemán"
+        },
+        {
+          "label": "Bokmål noruegués"
+        },
+        {
+          "label": "Nynorsk noruegués"
+        },
+        {
+          "label": "Español"
+        }
+      ]
+    },
+    {
+      "label": "Palabras",
+      "description": "Engade palabras cargando un ficheiro CSV ou escríbeas no campo de texto.",
+      "important": {
+        "description": "<ul><li>As palabras orixe e destino sepáranse cunha coma (,).</li><li>As respostas alternativas sepáranse cunha barra inclinada (/).</li><li>Podes engadir unha pista textual, usando dous puntos (:) diante da pista.</li></ul>",
+        "example": "auga/mar:a___a,auga/mar:m__a"
+      }
+    },
+    {
+      "label": "Retroalimentación Xeral",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Por defecto"
+            }
+          ],
+          "label": "Define a retroalimentación personalizada para cada rango de puntuación",
+          "description": "Preme o botón \"Engadir rango\" para engadir tantos rangos como precises. Exemplo: 0-20% Puntuación Mala, 21-91% Puntuación Media, 91-100% Puntuación Xenial!",
+          "entity": "rango",
+          "field": {
+            "label": "Retroalimentación Xeral",
+            "fields": [
+              {
+                "label": "Rango de puntuación"
+              },
+              {},
+              {
+                "label": "Retroalimentación para o rango de puntuación definido",
+                "placeholder": "Escribe a túa retroalimentación"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Adaptación local",
+      "fields": [
+        {
+          "label": "Non hai palabras válidas",
+          "default": "Non se atoparon palabras válidas. Comproba as túas palabras e téntao de novo."
+        },
+        {
+          "label": "Etiqueta para o modo de resposta \"Completar\"",
+          "default": "Completar"
+        },
+        {
+          "label": "Etiqueta para o modo de resposta \"Arrastrar texto\"",
+          "default": "Arrastra texto"
+        },
+        {
+          "label": "Etiqueta do modo de resposta",
+          "default": "Modo de resposta"
+        },
+        {
+          "label": "Etiqueta do modo de lingua",
+          "default": "Intercambiar linguas"
+        }
+      ]
+    },
+    {
+      "label": "Adaptación local para espazos en branco",
+      "fields": [
+        {
+          "label": "Texto para o botón \"Amosar solucións\"",
+          "default": "Amosar a solución"
+        },
+        {
+          "label": "Texto para o botón \"Tentar de novo\"",
+          "default": "Tentar de novo"
+        },
+        {
+          "label": "Texto para o botón \"Comprobar\"",
+          "default": "Comprobar"
+        },
+        {
+          "label": "Texto para o botón \"Enviar\"",
+          "default": "Enviar"
+        },
+        {
+          "label": "Texto para a mensaxe \"Non completado\"",
+          "default": "Por favor, completa todos os ocos para ver a solución"
+        },
+        {
+          "label": "Texto para a mensaxe \"':ans' é correcta\"",
+          "default": "':ans' é correcta"
+        },
+        {
+          "label": "Texto para a mensaxe \"':ans' é incorrecta\"",
+          "default": "':ans' é incorrecta"
+        },
+        {
+          "label": "Texto para a mensaxe \"Contestado correctamente\"",
+          "default": "Contestado correctamente"
+        },
+        {
+          "label": "Texto para a mensaxe \"Contestado incorrectamente\"",
+          "default": "Contestado incorrectamente"
+        },
+        {
+          "label": "Etiqueta do o botón \"Tentar de novo\" para as tecnoloxías de asistencia",
+          "default": "Resposta correcta:"
+        },
+        {
+          "label": "Etiqueta das tecnoloxías de asistencia para o campo de entrada",
+          "description": "Usa @num e @total para substituír o número de oco actual e o número total de ocos",
+          "default": "Entrada en branco @número de @total"
+        },
+        {
+          "label": "Etiqueta das tecnoloxías de asistencia para indicar que unha entrada ten un texto de axuda asociado",
+          "default": "Pista dispoñible"
+        },
+        {
+          "label": "Etiqueta para o botón de pista",
+          "default": "Pista"
+        },
+        {
+          "label": "Representación textual ba barra de puntuación cando se usa un lector de pantalla",
+          "default": "Conseguiches :num puntos dun total de :total"
+        },
+        {
+          "label": "Descrición para as tecnoloxías de asistencia do botón \"Comprobar\"",
+          "default": "Comproba as respostas. As respostas marcaranse como correctas, incorrectas ou non contestadas."
+        },
+        {
+          "label": "Descrición do botón \"Amosar solución\" para as tecnoloxías de asistencia",
+          "default": "Amosar a solución. Marcarese a tarefa coa resposta correcta."
+        },
+        {
+          "label": "Descrición para as tecnoloxías de asistencia do botón \"Tentar de novo\"",
+          "default": "Tenta de novo a tarefa. Borra todas as respostas e empeza a tarefa de novo."
+        },
+        {
+          "label": "Descrición para as tecnoloxías de asistencia para empezar a tarefa",
+          "default": "Modo de comprobación"
+        }
+      ]
+    },
+    {
+      "label": "Adaptación local para DragText",
+      "fields": [
+        {
+          "label": "Texto para o botón \"Comprobar\"",
+          "default": "Comprobar"
+        },
+        {
+          "label": "Texto para o botón \"Enviar\"",
+          "default": "Enviar"
+        },
+        {
+          "label": "Texto para o botón \"Tentar de novo\"",
+          "default": "Tentar de novo"
+        },
+        {
+          "label": "Texto para o botón \"Amosar Solución\"",
+          "default": "Amosar a solución"
+        },
+        {
+          "label": "Etiqueta para a zona de solta numerada",
+          "default": "Zona de solta @index.",
+          "description": "Etiqueta usada por accesibilidade, para que o lector de pantalla lea o índice dunha zona de solta. Variable dispoñible: @index"
+        },
+        {
+          "label": "Etiqueta de zona de solta baleira",
+          "default": "A zona de solta @index está baleira.",
+          "description": "Etiqueta usada por accesibilidade. O lector de pantalla dirá que a zona de solta está baleira"
+        },
+        {
+          "label": "Contén etiqueta de Zona de Solta",
+          "default": "A Zona de Solta @index contén o elemento arrastrable @draggable.",
+          "description": "Etiqueta usada por accesibilidade. O lector de pantalla dirá que a zona de solta contén un elemento arrastrable"
+        },
+        {
+          "label": "Etiqueta de elementos arrastrables",
+          "default": "@index de @count elementos arrastrables.",
+          "description": "Etiqueta usada por accesibilidade. O lector dirá que este é un elemento arrastrable. Variables dispoñibles: @index, @count"
+        },
+        {
+          "label": "Etiqueta para o botón amosar pista",
+          "default": "Amosar Pista",
+          "description": "Etiqueta usada por accesibilidade. O lector de pantalla lerá isto antes de ler a pista"
+        },
+        {
+          "label": "Texto do lector de pantalla para resposta correcta",
+          "default": "Correcto!"
+        },
+        {
+          "label": "Texto para resposta incorrecta para o lector de pantalla",
+          "default": "Incorrecto!"
+        },
+        {
+          "label": "Título do cadro de diálogo que aparece cando o usuario quere cambiar un elemento arrastrable",
+          "default": "Desfacer a solta"
+        },
+        {
+          "label": "Descrición do cadro de diálogo que aparece cando o usuario quere cambiar un elemento arrastrable",
+          "default": "Seguro que queres cambiar esta zona de solta?"
+        },
+        {
+          "label": "Etiqueta usada por accesibilidade. O lector de pantalla indicará que se iniciou o arrastre",
+          "default": "Colleuse o elemento arrastrable."
+        },
+        {
+          "label": "Etiqueta usada por accesibilidade. O lector de pantalla dirá que se cancelou o arrastre",
+          "default": "Arrastre cancelado."
+        },
+        {
+          "label": "Etiqueta usada por accesibilidade. O lector de pantalla dirá que un texto é a resposta correcta",
+          "default": "Resposta correcta:"
+        },
+        {
+          "label": "Cabeceira do panel que contén a retroalimentación para respostas correctas/incorrectas",
+          "default": "Retroalimentación"
+        },
+        {
+          "label": "Representación textual da puntuación cando se está a usar un lector de pantalla",
+          "default": "Conseguiches :num puntos dun total de :total"
+        },
+        {
+          "label": "Etiqueta do o botón \"Comprobar\" para as tecnoloxías de asistencia",
+          "default": "Comproba as respostas. As respostas marcaranse como correctas, incorrectas ou non contestadas."
+        },
+        {
+          "label": "Etiqueta de tecnoloxía asistencial para o botón \"Amosar Solución\"",
+          "default": "Amosar a solución. Marcarase a tarefa coas solucións correctas."
+        },
+        {
+          "label": "Etiqueta do o botón \"Tentar de novo\" para as tecnoloxías de asistencia",
+          "default": "Tentar de novo a tarefa. Borra todas as respostas e empeza a tarefa de novo."
+        }
+      ]
+    },
+    {
+      "label": "Configuración do comportamento",
+      "description": "Estas opcións permítenche controlar o comportamento da tarefa.",
+      "fields": [
+        {
+          "label": "Activar \"Tentar de novo\""
+        },
+        {
+          "label": "Activar botón \"Amosar solución\""
+        },
+        {
+          "label": "Comprobar respostas automaticamente mentres se escribe"
+        },
+        {
+          "label": "Diferencia entre maiúsculas e minúsculas",
+          "description": "Fai que a entrada de texto do usuario teña que ser exactamente igual que a resposta."
+        },
+        {
+          "label": "Requirir o completado de todos os campos antes de poder ver a solución",
+          "description": "Esta opción só é válida se o modo de resposta está definido como \"Completar."
+        },
+        {
+          "label": "Aceptar erros ortográficos menores",
+          "description": "Se está activada, unha resposta tamén contará como correcta con pequenos erros de ortografía (3-9 caracteres: 1 erro de ortografía, máis de 9 caracteres: 2 erros de ortografía). Esta opción só é válida se o modo de resposta está definido como \"Completar\"."
+        },
+        {
+          "label": "Aleatorizar"
+        },
+        {
+          "label": "Amosar Pistas"
+        },
+        {
+          "label": "Modo de resposta",
+          "options": [
+            {
+              "label": "Completar"
+            },
+            {
+              "label": "Arrastra texto"
+            }
+          ]
+        },
+        {
+          "label": "Activar o botón \"Cambiar modo de resposta\"",
+          "description": "Permitir que o usuario final cambie entre os modos \"Completar\" e \"Arrastrar texto\"."
+        },
+        {
+          "label": "Activa o botón \"Cambiar o modo de lingua\"",
+          "description": "Permitir que o usuario final cambie entre as palabras orixe e destino."
+        },
+        {
+          "label": "Número de palabras",
+          "description": "Define cantas palabras serán visibles cada vez. Se se establece 0, mostraranse todas as palabras."
+        }
+      ]
+    }
+  ]
+}

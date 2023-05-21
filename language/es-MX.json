@@ -1,0 +1,345 @@
+{
+  "semantics": [
+    {
+      "label": "Descripción de la tarea",
+      "description": "Una guía que le dice al usuario como contestar esta tarea."
+    },
+    {
+      "label": "Idioma de origen",
+      "description": "Elija el idioma de las palabras de origen.",
+      "options": [
+        {
+          "label": "Inglés"
+        },
+        {
+          "label": "Francés"
+        },
+        {
+          "label": "Alemán"
+        },
+        {
+          "label": "Bokmål Noruego"
+        },
+        {
+          "label": "Nynorsk noruego"
+        },
+        {
+          "label": "Español"
+        }
+      ]
+    },
+    {
+      "label": "Idioma de destino",
+      "description": "Elija el idioma de las palabras de destino.",
+      "options": [
+        {
+          "label": "Inglés"
+        },
+        {
+          "label": "Francés"
+        },
+        {
+          "label": "Alemán"
+        },
+        {
+          "label": "Bokmål Noruego"
+        },
+        {
+          "label": "Nynorsk noruego"
+        },
+        {
+          "label": "Español"
+        }
+      ]
+    },
+    {
+      "label": "Palabras",
+      "description": "Agregue palabras cargando un archivo CSV o escríbalas en el campo de texto.",
+      "important": {
+        "description": "<ul><li>Las palabras de origen y de destino se separan con una coma (,).</li><li>Las respuestas alternativas se separan con una barra inclinada (/).</li><li>Puede agregar una pista de texto, usando dos puntos (:) delante de la pista.</li></ul>",
+        "example": "agua/mar:a___a,agua/mar:m__r"
+      }
+    },
+    {
+      "label": "Realimentación general",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Predeterminado"
+            }
+          ],
+          "label": "Definir retroalimentación personalizada para cualquier rango de puntaje",
+          "description": "Haga clic en el botón \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0-20% Mal puntaje, 21-91% Puntaje Promedio, 91-100% ¡Magnífico Puntaje!",
+          "entity": "rango",
+          "field": {
+            "label": "Retroalimentación global",
+            "fields": [
+              {
+                "label": "Rango de Puntaje"
+              },
+              {},
+              {
+                "label": "Comentarios para el rango de puntaje definido",
+                "placeholder": "Escriba la retroalimentación"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Adaptación local",
+      "fields": [
+        {
+          "label": "Sin palabras válidas",
+          "default": "No se encontraron palabras válidas. Por favor revise sus palabras y vuelva a intentarlo."
+        },
+        {
+          "label": "Etiqueta para el modo de respuesta \"Rellenar\"",
+          "default": "Rellenar"
+        },
+        {
+          "label": "Etiqueta para el modo de respuesta \"Arrastrar texto\"",
+          "default": "Arrastra texto"
+        },
+        {
+          "label": "Etiqueta del modo de respuesta",
+          "default": "Modo de respuesta"
+        },
+        {
+          "label": "Etiqueta de modo de idioma",
+          "default": "Cambiar idiomas"
+        }
+      ]
+    },
+    {
+      "label": "Adaptación local para espacios en blanco",
+      "fields": [
+        {
+          "label": "Texto para el botón de \"Mostrar soluciones\"",
+          "default": "Mostrar Solución"
+        },
+        {
+          "label": "Texto para el botón \"Reintentar\"",
+          "default": "Reintentar"
+        },
+        {
+          "label": "Texto para botón \"Comprobar\"",
+          "default": "Comprobar"
+        },
+        {
+          "label": "Texto para el botón \"Enviar\"",
+          "default": "Enviar"
+        },
+        {
+          "label": "Texto para mensaje \"No completado\"",
+          "default": "Por favor, complete todos los huecos para poder ver la solución"
+        },
+        {
+          "label": "Texto para mensaje de \"':ans' es correcto\"",
+          "default": "':ans' es correcto"
+        },
+        {
+          "label": "Texto para mensaje de \"':ans' es incorrecto\"",
+          "default": "':ans' es incorrecto"
+        },
+        {
+          "label": "Texto para mensaje \"Contestado correctamente\"",
+          "default": "Contestado correctamente"
+        },
+        {
+          "label": "Texto para mensaje \"Contestado incorrectamente\"",
+          "default": "Contestado incorrectamente"
+        },
+        {
+          "label": "Etiqueta para las tecnologías de asistencia para la solución",
+          "default": "Respuesta correcta:"
+        },
+        {
+          "label": "Etiqueta para las tecnologías de asistencia para el campo de entrada",
+          "description": "Use @num y @total para remplazar número cloze actual y número cloze total",
+          "default": "Entrada en blanco @num de @total"
+        },
+        {
+          "label": "Etiqueta para las tecnologías de asistencia para indicar que una entrada tiene un texto de ayuda asociada a ella",
+          "default": "Pista disponible"
+        },
+        {
+          "label": "Etiqueta para icono de pista",
+          "default": "Pista"
+        },
+        {
+          "label": "Representación textual de la barra de puntuación cuando se usa un lector de pantalla",
+          "default": "Ha obtenido :num de un total de :total puntos"
+        },
+        {
+          "label": "Descripción para las tecnologías de asistencia del botón \"Comprobar\"",
+          "default": "Compruebe las respuestas. Las respuestas se marcarán como correctas, incorrectas o sin respuesta."
+        },
+        {
+          "label": "Descripción para las tecnologías de asistencia del botón \"Mostrar solución\"",
+          "default": "Mostrar la solución. La tarea se marcará con su solución correcta."
+        },
+        {
+          "label": "Descripción de tecnología asistiva para botón \"Reintentar\"",
+          "default": "Vuelve a intentar la tarea. Borre todas sus respuestas y empiece de nuevo."
+        },
+        {
+          "label": "Descripción de tecnología asistiva para comenzando el trabajo",
+          "default": "Modo de Comprobación"
+        }
+      ]
+    },
+    {
+      "fields": [
+        {
+          "label": "Texto para botón \"Comprobar\"",
+          "default": "Comprobar"
+        },
+        {
+          "label": "Texto para el botón \"Enviar\"",
+          "default": "Enviar"
+        },
+        {
+          "label": "Texto para el botón \"Reintentar\"",
+          "default": "Reintentar"
+        },
+        {
+          "default": "Mostrar Solución",
+          "label": "Texto para el botón \"Mostrar solución\""
+        },
+        {
+          "label": "Etiqueta de zona de colocación numerada",
+          "default": "Zona de colocación @index.",
+          "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá el índice de una zona de colocación. Variable disponible: @index"
+        },
+        {
+          "label": "Etiqueta para zona de colocación vacía",
+          "default": "La zona de colocación @index está vacía.",
+          "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla leerá que la zona de colocación está vacía"
+        },
+        {
+          "label": "Contiene etiqueta de zona de colocación",
+          "default": "La zona de colocación @index contiene elemento arrastrable @draggable.",
+          "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá que la zona de colocación contiene un elemento que se puede colocar"
+        },
+        {
+          "label": "Etiqueta de elementos arrastrables",
+          "default": "@index de @count arrastrables.",
+          "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla lee que se trata de un elemento que se puede colocar. Variable disponible: @index, @count"
+        },
+        {
+          "label": "Etiqueta para mostrar el botón de pista",
+          "default": "Mostrar pista",
+          "description": "Etiqueta utilizada para accesibilidad que el lector de pantalla lee antes de leer la pista"
+        },
+        {
+          "label": "Texto para lector de pantalla para respuesta correcta",
+          "default": "¡Correcto!"
+        },
+        {
+          "label": "Texto de Lector de voz para respuesta incorrecta",
+          "default": "¡Incorrecto!"
+        },
+        {
+          "label": "Título del diálogo de confirmación que el usuario quiere restablecer un arrastrable",
+          "default": "Deshacer colocación"
+        },
+        {
+          "label": "Descripción del diálogo de confirmación cuando el usuario quiere deshacer una colocación",
+          "default": "¿Seguro que quieres restablecer esta zona de colocación?"
+        },
+        {
+          "label": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla indica que se inició el arrastre",
+          "default": "Ha cogido el elemento a arrastrar."
+        },
+        {
+          "label": "Etiqueta utilizada para accesibilidad, donde el Lector de texto en voz alta indica que el arrastre está cancelado",
+          "default": "Arrastre cancelado."
+        },
+        {
+          "label": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla indica que el texto es la respuesta correcta",
+          "default": "Respuesta correcta:"
+        },
+        {
+          "label": "Encabezado para el panel que contiene comentarios para respuestas correctas / incorrectas",
+          "default": "Retroalimentación"
+        },
+        {
+          "label": "Representación textual de la barra de puntuación cuando se usa un lector de pantalla",
+          "default": "Ha obtenido :num de un total de :total puntos"
+        },
+        {
+          "label": "Etiqueta para las tecnologías de asistencia para el botón \"Comprobar\"",
+          "default": "Comprueba las respuestas. Las respuestas se marcarán como correctas, incorrectas o sin respuesta."
+        },
+        {
+          "label": "Descripción para las tecnologías de asistencia del botón \"Mostrar solución\"",
+          "default": "Mostrar la solución. La tarea se calificará con su solución correcta."
+        },
+        {
+          "label": "Descripción para las tecnologías de asistencia del botón \"Intentar de nuevo\"",
+          "default": "Vuelva a intentar la tarea. Borre todas sus respuestas y empiece de nuevo."
+        }
+      ],
+      "label": "Adaptación local para ArrastrarTexto"
+    },
+    {
+      "fields": [
+        {
+          "label": "Habilitar \"Reintentar\""
+        },
+        {
+          "label": "Habilitar el botón \"Mostrar solución\""
+        },
+        {
+          "label": "Revisar las respuestas automáticamente mientras se escribe"
+        },
+        {
+          "label": "MAYÚSCULAS/minúsculas si importan",
+          "description": "Asegurarse que la entrada del usuario sea exactamente la misma que la respuesta."
+        },
+        {
+          "label": "Requerir contestar todos los campos antes de poder ver la solución",
+          "description": "Esta opción solo es válida si el modo de respuesta está configurado como \"Rellenar\"."
+        },
+        {
+          "label": "Aceptar errores ortográficos menores",
+          "description": "Si se activa, una respuesta también contará como correcta si tiene errores ortográficos menores (3-9 caracteres: 1 error ortográfico, más de 9 caracteres: 2 errores ortográficos). Esta opción solo es válida si el modo de respuesta está configurado como \"Rellenar\"."
+        },
+        {
+          "label": "Hacer aleatorio"
+        },
+        {
+          "label": "Mostrar pistas"
+        },
+        {
+          "label": "Modo de respuesta",
+          "options": [
+            {
+              "label": "Rellenar"
+            },
+            {
+              "label": "Arrastrar texto"
+            }
+          ]
+        },
+        {
+          "label": "Habilitar el botón \"Cambiar modo de respuesta\"",
+          "description": "Permite que el usuario final cambie entre los modos \"Rellenar\" y \"Arrastrar texto\"."
+        },
+        {
+          "label": "Habilitar el botón \"Cambiar modo de idioma\"",
+          "description": "Permite que el usuario final cambie entre las palabras de origen y de destino."
+        },
+        {
+          "label": "Número de palabras",
+          "description": "Define cuántas palabras serán visibles cada vez. Si se establece a 0, se mostrarán todas las palabras."
+        }
+      ],
+      "label": "Configuraciones del comportamiento",
+      "description": "Estas opciones le permitirán controlar como se comporta la tarea."
+    }
+  ]
+}

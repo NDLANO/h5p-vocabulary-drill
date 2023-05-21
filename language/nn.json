@@ -351,29 +351,293 @@
           "description": "Viss denne er aktivert vil eit svar også telja som rett med mindre stavefeil (3-9 teikn: 1 stavefeil, meir enn 9 teikn: 2 stavefeil). Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll inn\"."
         },
         {
-          "label": "Vel tilfeldige ord"
+            "label": "Ord",
+            "description": "Legg til ord ved å lasta opp ei CSV-fil eller skriv orda inn i tekstfeltet.",
+            "important": {
+                "description": "<ul><li>Kjelde- og målord er separert med komma (,).</li><li>Alternative svar er separert med ein framoverlent skråstrek (/).</li><li>Du kan leggja til eit teksttips ved å bruka kolon (:) framfor tipset.</li></ul>",
+                "example": "water/sea:w___r,vann/hav:v__n"
+            }
         },
         {
-          "label": "Vis tips"
+            "label": "Tilbakemelding på heile oppgåva",
+            "fields": [
+                {
+                    "widgets": [
+                        {
+                            "label": "Førehandsinnstilling"
+                        }
+                    ],
+                    "label": "Opprett poengområde og legg inn tilbakemeldingar.",
+                    "description": "Klikk på knappen \"Legg til poengområde\" og legg til så mange poengområde du treng. Døme: 0-40 % Svakt resultat, 41-80 % Gjennomsnittleg resultat, 81-100 % Flott resultat!",
+                    "entity": "Område",
+                    "field": {
+                        "label": "Tilbakemelding på hele oppgava",
+                        "fields": [
+                            {
+                                "label": "Poengområde"
+                            },
+                            {},
+                            {
+                                "label": "Tilbakemelding for definert poengområde",
+                                "placeholder": "Skriv inn tilbakemelding."
+                            }
+                        ]
+                    }
+                }
+            ]
         },
         {
-          "label": "Svarmodus",
-          "options": [
-            { "label": "Fyll inn" },
-            { "label": "Dra tekst" }
-          ]
+            "label": "Lokalisering",
+            "fields": [
+                {
+                    "label": "Ingen gyldige ord",
+                    "default": "Ingen gyldige ord funne. Kontroller orda dine og prøv igjen."
+                },
+                {
+                    "label": "Etikett for \"Fyll inn\" svarmodus",
+                    "default": "Fyll inn"
+                },
+                {
+                    "label": "Etikett for \"Dra tekst\" svarmodus",
+                    "default": "Dra tekst"
+                },
+                {
+                    "label": "Etikett for svarmodus",
+                    "default": "Svarmodus"
+                },
+                {
+                    "label": "Etikett for språkmodus",
+                    "default": "Byt språk"
+                }
+            ]
         },
         {
-          "label": "Aktiver \"Bytt svarmodus\"-knapp",
-          "description": "Tillat sluttbrukaren å byta mellom modusane \"Fyll inn\" og \"Dra tekst\"."
+            "label": "Lokalisering for Blanks",
+            "fields": [
+                {
+                    "label": "Tekst for \"Fasit\"-knapp",
+                    "default": "Fasit"
+                },
+                {
+                    "label": "Tekst for \"Prøv igjen\"-knapp",
+                    "default": "Prøv igjen"
+                },
+                {
+                    "label": "Tekst for \"Sjekk\"-knapp",
+                    "default": "Sjekk"
+                },
+                {
+                    "label": "Text for \"Submit\" button",
+                    "default": "Submit"
+                },
+                {
+                    "label": "Text for \"Not filled out\" message",
+                    "default": "Please fill in all blanks to view solution"
+                },
+                {
+                    "label": "Tekst for \"':ans' er korrekt\"-melding",
+                    "default": "':ans' er korrekt"
+                },
+                {
+                    "label": "Tekst for \"':ans' er feil\"-melding",
+                    "default": "':ans' er feil"
+                },
+                {
+                    "label": "Tekst for \"Svar rett\"-melding",
+                    "default": "Svar rett"
+                },
+                {
+                    "label": "Tekst for \"Svar feil\"-melding",
+                    "default": "Svar feil"
+                },
+                {
+                    "label": "Merkelapp for løsning brukt av tekniske hjelpemidler",
+                    "default": "Svar:"
+                },
+                {
+                    "label": "Merkelapp for inntastingsfelt brukt av tekniske hjelpemidler",
+                    "description": "Bruk @num og @total for å bytte ut feltnummer og totalt antall felter",
+                    "default": "Felt @num av @total"
+                },
+                {
+                    "label": "Merkelapp for å fortelle at et inntastingsfelt har et tips knyttet til seg",
+                    "default": "Tips tilgjengeleg"
+                },
+                {
+                    "label": "Merkelapp for tips ikon",
+                    "default": "Tips"
+                },
+                {
+                    "label": "Textual representation of the score bar for those using a readspeaker",
+                    "default": "You got :num out of :total points"
+                },
+                {
+                    "label": "Assistive technology description for \"Check\" button",
+                    "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+                },
+                {
+                    "label": "Assistive technology description for \"Show Solution\" button",
+                    "default": "Show the solution. The task will be marked with its correct solution."
+                },
+                {
+                    "label": "Assistive technology description for \"Retry\" button",
+                    "default": "Retry the task. Reset all responses and start the task over again."
+                },
+                {
+                    "label": "Assistive technology description for starting task",
+                    "default": "Checking mode"
+                }
+            ]
         },
         {
-          "label": "Aktiver \"Bytt språkmodus\"-knapp",
-          "description": "La sluttbrukaren veksla mellom kjelde- og målord."
+            "label": "Lokalisering for DragText",
+            "fields": [
+                {
+                    "label": "Tekst for \"Sjekk\"-knapp",
+                    "default": "Sjekk"
+                },
+                {
+                    "label": "Text for \"Submit\" button",
+                    "default": "Submit"
+                },
+                {
+                    "label": "Text for \"Retry\" button",
+                    "default": "Retry"
+                },
+                {
+                    "label": "Tekst for \"Fasit\" knapp",
+                    "default": "Fasit"
+                },
+                {
+                    "label": "Nummerert slippsone merkelapp",
+                    "default": "Slippsone @index.",
+                    "description": "Label used for accessibility, where the Read speaker will read the index of a drop zone. Variable available: @index"
+                },
+                {
+                    "label": "Tom slippsone merkelapp",
+                    "default": "Slippsone @index er tom.",
+                    "description": "Label used for accessibility, where the Read speaker will read that the drop zone is empty"
+                },
+                {
+                    "label": "Contains Drop Zone label",
+                    "default": "Slippsone @index inneheld dragbar @draggable.",
+                    "description": "Label used for accessibility, where the Read speaker will read that the drop zone contains a draggable"
+                },
+                {
+                    "label": "Nummerert merkelapp for element som kan dras",
+                    "default": "@index av @count dragbare.",
+                    "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
+                },
+                {
+                    "label": "Ingen slippsone valg-merkelapp",
+                    "default": "Vis tips",
+                    "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
+                },
+                {
+                    "label": "Readspeaker tekst for korrekt svar",
+                    "default": "Riktig"
+                },
+                {
+                    "label": "Readspeaker tekst for feil svar",
+                    "default": "Feil"
+                },
+                {
+                    "label": "Bekreftelsesdialogtittel om at brukeren vil nullstille et flyttbart element",
+                    "default": "Nullstill flyttbart element"
+                },
+                {
+                    "label": "Bekreftelsesdialogbeskrivelse om at brukeren vil nullstille et flyttbart element",
+                    "default": "Er du sikker på at du vil nullstille dette elementet?"
+                },
+                {
+                    "label": "Merkelapp for universal utforming, når brukeren indikerer at dragning har startet",
+                    "default": "Dragbar er gripe."
+                },
+                {
+                    "label": "LMerkelapp for universal utforming, når brukeren indikerer at dragnig er avbrutt",
+                    "default": "Dragning avbrutt."
+                },
+                {
+                    "label": "Merkelapp for korrekt svar",
+                    "default": "Svar:"
+                },
+                {
+                    "label": "Merkelapp for feil svar",
+                    "default": "Tilbakemelding"
+                },
+                {
+                    "label": "Textual representation of the score bar for those using a readspeaker",
+                    "default": "Du fekk :num av :total poeng"
+                },
+                {
+                    "label": "Assistive technology label for \"Check\" button",
+                    "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+                },
+                {
+                    "label": "Assistive technology label for \"Show Solution\" button",
+                    "default": "Show the solution. The task will be marked with its correct solution."
+                },
+                {
+                    "label": "Assistive technology label for \"Retry\" button",
+                    "default": "Retry the task. Reset all responses and start the task over again."
+                }
+            ]
         },
         {
-          "label": "Talet på ord",
-          "description": "Definerer kor mange ord som vil vera synlege kvar gong. Viss 0 er sette, vil alle orda visast."
+            "label": "Innstillingar for oppgåve-åtferd",
+            "description": "Desse innstillingane lèt deg bestemma korleis oppgåvetypen skal oppføra seg.",
+            "fields": [
+                {
+                    "label": "Aktiver \"Prøv igjen\"-knapp"
+                },
+                {
+                    "label": "Aktiver \"Fasit\"-knapp"
+                },
+                {
+                    "label": "Gi tilbakemelding med ein gong brukaren har svart"
+                },
+                {
+                    "label": "Skil mellom store og små bokstavar",
+                    "description": "Syrgjer for at svaret til brukaren må være nøyaktig det same som i oppgåva."
+                },
+                {
+                    "label": "Krev at alle felt er besvart før fasit gis",
+                    "description": "Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll inn\"."
+                },
+                {
+                    "label": "Godta mindre stavefeil",
+                    "description": "Viss denne er aktivert vil eit svar også telja som rett med mindre stavefeil (3-9 teikn: 1 stavefeil, meir enn 9 teikn: 2 stavefeil). Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll inn\"."
+                },
+                {
+                    "label": "Vel tilfeldige ord"
+                },
+                {
+                    "label": "Vis tips"
+                },
+                {
+                    "label": "Svarmodus",
+                    "options": [
+                        {
+                            "label": "Fyll inn"
+                        },
+                        {
+                            "label": "Dra tekst"
+                        }
+                    ]
+                },
+                {
+                    "label": "Aktiver \"Bytt svarmodus\"-knapp",
+                    "description": "Tillat sluttbrukaren å byta mellom modusane \"Fyll inn\" og \"Dra tekst\"."
+                },
+                {
+                    "label": "Aktiver \"Bytt språkmodus\"-knapp",
+                    "description": "La sluttbrukaren veksla mellom kjelde- og målord."
+                },
+                {
+                    "label": "Talet på ord",
+                    "description": "Definerer kor mange ord som vil vera synlege kvar gong. Viss 0 er sette, vil alle orda visast."
+                }
+            ]
         }
       ]
     }
