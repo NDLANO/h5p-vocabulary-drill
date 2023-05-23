@@ -105,11 +105,75 @@
         },
         {
           "label": "Etiqueta do modo de resposta",
-          "default": "Modo de resposta"
+          "default": "Cambiar o modo de resposta"
         },
         {
           "label": "Etiqueta do modo de lingua",
           "default": "Intercambiar linguas"
+        },
+        {
+          "default": "Cambiouse o modo de resposta a @option",
+          "label": "Cambiouse o aria do modo de resposta"
+        },
+        {
+          "default": "Cambia o idioma de @sourceLanguage a @targetLanguage",
+          "label": "Modo de lingua aria"
+        },
+        {
+          "label": "Cambiouse o modo de idioma aria",
+          "default": "Cambiouse o idioma de @sourceLanguage a @targetLanguage"
+        },
+        {
+          "label": "Texto para o botón \"Seguinte\"",
+          "default": "Seguinte"
+        },
+        {
+          "label": "Texto para o botón \"Rematar\"",
+          "default": "Rematar"
+        },
+        {
+          "default": "Reiniciar",
+          "label": "Etiqueta para o botón \"Reiniciar\""
+        },
+        {
+          "label": "Etiqueta de puntuación",
+          "default": "Puntuación"
+        },
+        {
+          "default": "Conseguiches @score dun máximo de @total puntos",
+          "label": "Representación textual da puntuación cando se está a usar un lector de pantalla"
+        },
+        {
+          "label": "Representación textual dos números de páxina para os que usan un altofalante",
+          "default": "Páxina @páxina de @totalPages"
+        },
+        {
+          "label": "Texto da retroalimentación",
+          "default": "A túa puntuación total"
+        },
+        {
+          "label": "Inglés",
+          "default": "Inglés"
+        },
+        {
+          "label": "Francés",
+          "default": "Francés"
+        },
+        {
+          "label": "Alemán",
+          "default": "Alemán"
+        },
+        {
+          "label": "Bokmål noruegués",
+          "default": "Bokmål noruegués"
+        },
+        {
+          "label": "Nynorsk noruegués",
+          "default": "Nynorsk noruegués"
+        },
+        {
+          "label": "Español",
+          "default": "Español"
         }
       ]
     },
@@ -158,7 +222,7 @@
         },
         {
           "label": "Etiqueta das tecnoloxías de asistencia para o campo de entrada",
-          "description": "Usa @num e @total para substituír o número de oco actual e o número total de ocos",
+          "description": "Usa @num e @total para substituir o número de oco actual e o número total de ocos.",
           "default": "Entrada en branco @número de @total"
         },
         {
@@ -213,27 +277,27 @@
         {
           "label": "Etiqueta para a zona de solta numerada",
           "default": "Zona de solta @index.",
-          "description": "Etiqueta usada por accesibilidade, para que o lector de pantalla lea o índice dunha zona de solta. Variable dispoñible: @index"
+          "description": "Etiqueta usada por accesibilidade, para que o lector de pantalla lea o índice dunha zona de solta. Variable dispoñible: @index."
         },
         {
           "label": "Etiqueta de zona de solta baleira",
           "default": "A zona de solta @index está baleira.",
-          "description": "Etiqueta usada por accesibilidade. O lector de pantalla dirá que a zona de solta está baleira"
+          "description": "Etiqueta usada por accesibilidade. O lector de pantalla dirá que a zona de solta está baleira."
         },
         {
           "label": "Contén etiqueta de Zona de Solta",
           "default": "A Zona de Solta @index contén o elemento arrastrable @draggable.",
-          "description": "Etiqueta usada por accesibilidade. O lector de pantalla dirá que a zona de solta contén un elemento arrastrable"
+          "description": "Etiqueta usada por accesibilidade. O lector de pantalla dirá que a zona de solta contén un elemento arrastrable."
         },
         {
           "label": "Etiqueta de elementos arrastrables",
           "default": "@index de @count elementos arrastrables.",
-          "description": "Etiqueta usada por accesibilidade. O lector dirá que este é un elemento arrastrable. Variables dispoñibles: @index, @count"
+          "description": "Etiqueta usada por accesibilidade. O lector dirá que este é un elemento arrastrable. Variables dispoñibles: @index, @count."
         },
         {
           "label": "Etiqueta para o botón amosar pista",
           "default": "Amosar Pista",
-          "description": "Etiqueta usada por accesibilidade. O lector de pantalla lerá isto antes de ler a pista"
+          "description": "Etiqueta usada por accesibilidade. O lector de pantalla lerá isto antes de ler a pista."
         },
         {
           "label": "Texto do lector de pantalla para resposta correcta",
