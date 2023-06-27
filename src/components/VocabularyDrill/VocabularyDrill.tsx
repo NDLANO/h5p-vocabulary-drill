@@ -228,9 +228,20 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     onChangeLanguageMode(newLanguageMode);
   };
 
+  const handleAnswered = () => {
+    setDisableTools(true);
+    setDisableNextButton(false);
+
+    setScore(score + (activeContentType.current?.getScore() ?? 0));
+    setMaxScore(maxScore + (activeContentType.current?.getMaxScore() ?? 0));
+  };
+
   const handleRetry = (): void => {
     setDisableTools(false);
     setDisableNextButton(true);
+
+    setScore(score - (activeContentType.current?.getScore() ?? 0));
+    setMaxScore(maxScore - (activeContentType.current?.getMaxScore() ?? 0));
   };
 
   const createRunnable = () => {
@@ -295,8 +306,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
       activeContentType.current.on('xAPI', (event: XAPIEvent) => {
         if (event.getVerb() === 'answered') {
-          setDisableTools(true);
-          setDisableNextButton(false);
+          handleAnswered();
 
           if (enableRetry) {
             // Wait for the retry button to be added to the DOM
@@ -360,9 +370,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setPage(newPage);
     onPageChange(newPage);
 
-    setScore(score + (activeContentType.current?.getScore() ?? 0));
-    setMaxScore(maxScore + (activeContentType.current?.getMaxScore() ?? 0));
-
     setDisableNextButton(true);
     setDisableTools(false);
 
@@ -380,8 +387,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
     setShowResults(true);
     setPage(newPage);
-    setScore(score + (activeContentType.current?.getScore() ?? 0));
-    setMaxScore(maxScore + (activeContentType.current?.getMaxScore() ?? 0));
   };
 
   const handleRestart = () => {
