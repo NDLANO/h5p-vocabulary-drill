@@ -165,6 +165,11 @@
         font-weight: 700;
         line-height: 1.2;
         padding: 0.75em 2.75em 0.75em 2.7em;
+
+        &:hover:not(:disabled),
+        &:focus:not(:disabled) {
+          background-color: #eaeff8;
+        }
       }
 
       &.disabled {
