@@ -21,7 +21,7 @@
           "label": "Noruego (bokmål)"
         },
         {
-          "label": "Noruego Nynorsk"
+          "label": "Noruego (nynorsk)"
         },
         {
           "label": "Español"
@@ -61,7 +61,7 @@
       }
     },
     {
-      "label": "Realimentación general",
+      "label": "Realimentación General",
       "fields": [
         {
           "widgets": [
@@ -69,11 +69,11 @@
               "label": "Por defecto"
             }
           ],
-          "label": "Definir retroalimentación personalizada para cualquier rango de puntuación",
-          "description": "Haz clic en el botón \"Añadir rango\" para añadir los rangos que necesites. Ejemplo: 0-20% Mala puntuación, 21-91% Puntuación media, 91-100% ¡Puntuación estupenda!",
+          "label": "Definir retroalimentación personalizada para cualquier rango de puntaje",
+          "description": "Haga clic en el botón \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0-20% Mal puntaje, 21-91% Puntaje Promedio, 91-100% ¡Magnífico Puntaje!",
           "entity": "rango",
           "field": {
-            "label": "Retroalimentación global",
+            "label": "Retroalimentación Global",
             "fields": [
               {
                 "label": "Rango de Puntuación"
@@ -104,11 +104,75 @@
         },
         {
           "label": "Etiqueta del modo de respuesta",
-          "default": "Modo de respuesta"
+          "default": "Cambiar modo de respuesta"
         },
         {
           "label": "Etiqueta de modo de idioma",
           "default": "Cambiar idiomas"
+        },
+        {
+          "label": "Modo aria respuesta cambiada",
+          "default": "Modo de respuesta cambiado a @option"
+        },
+        {
+          "label": "Modo aria idioma",
+          "default": "Cambiar idioma de @sourceLanguage a @targetLanguage"
+        },
+        {
+          "label": "Modo aria Idioma cambiado",
+          "default": "Idioma cambiado de @sourceLanguage a @targetLanguage"
+        },
+        {
+          "label": "Texto para botón \"Siguiente\"",
+          "default": "Siguiente"
+        },
+        {
+          "label": "Texto para botón \"Terminar\"",
+          "default": "Terminar"
+        },
+        {
+          "label": "Texto para botón \"Reintentar\"",
+          "default": "Reintentar"
+        },
+        {
+          "label": "Etiqueta de puntaje",
+          "default": "Puntaje"
+        },
+        {
+          "default": "Usted tiene @score de un total de @maxScore puntos",
+          "label": "Representación textual de la barra de puntaje para aquellos que usan un lector de texto en voz alta"
+        },
+        {
+          "label": "Representación textual de los números de página para aquellos que usan un lector de pantalla en voz alta",
+          "default": "Página @page de @totalPages"
+        },
+        {
+          "label": "Texto de retroalimentación",
+          "default": "Su puntaje total"
+        },
+        {
+          "label": "Inglés",
+          "default": "Inglés"
+        },
+        {
+          "label": "Francés",
+          "default": "Francés"
+        },
+        {
+          "label": "Alemán",
+          "default": "Alemán"
+        },
+        {
+          "label": "Noruego bokmål",
+          "default": "Noruego bokmål"
+        },
+        {
+          "label": "Noruego nynorsk",
+          "default": "Noruego nynorsk"
+        },
+        {
+          "label": "Español",
+          "default": "Español"
         }
       ],
       "label": "Adaptación local"
@@ -158,7 +222,7 @@
         },
         {
           "label": "Etiqueta para las tecnologías de asistencia para el campo de entrada",
-          "description": "Use @num y @total para remplazar número cloze actual y número cloze total",
+          "description": "Use @num y @total para remplazar número cloze actual y número cloze total.",
           "default": "Entrada en blanco @num de @total"
         },
         {
@@ -192,7 +256,7 @@
       ]
     },
     {
-      "label": "Adaptación local para DragText",
+      "label": "Adaptación local para ArrastrarTexto",
       "fields": [
         {
           "label": "Texto para botón \"Comprobar\"",
@@ -213,27 +277,27 @@
         {
           "label": "Etiqueta de zona de colocación numerada",
           "default": "Zona de colocación @index.",
-          "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá el índice de una zona de colocación. Variable disponible: @index"
+          "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá el índice de una zona de colocación. Variable disponible: @index."
         },
         {
           "label": "Etiqueta para zona de colocación vacía",
           "default": "La zona de colocación @index está vacía.",
-          "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla leerá que la zona de colocación está vacía"
+          "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla leerá que la zona de colocación está vacía."
         },
         {
           "label": "Contiene etiqueta de zona de colocación",
           "default": "La zona de colocación @index contiene elemento arrastrable @draggable.",
-          "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá que la zona de colocación contiene un elemento que se puede colocar"
+          "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá que la zona de colocación contiene un elemento que se puede colocar."
         },
         {
           "label": "Etiqueta de elementos arrastrables",
           "default": "@index de @count arrastrables.",
-          "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla lee que se trata de un elemento que se puede colocar. Variable disponible: @index, @count"
+          "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla lee que se trata de un elemento que se puede colocar. Variable disponible: @index, @count."
         },
         {
           "label": "Etiqueta para mostrar el botón de pista",
           "default": "Mostrar pista",
-          "description": "Etiqueta utilizada para accesibilidad que el lector de pantalla lee antes de leer la pista"
+          "description": "Etiqueta utilizada para accesibilidad que el lector de pantalla lee antes de leer la pista."
         },
         {
           "label": "Texto para lector de pantalla para respuesta correcta",
@@ -249,7 +313,7 @@
         },
         {
           "label": "Descripción del diálogo de confirmación cuando el usuario quiere deshacer una colocación",
-          "default": "¿Seguro que quieres restablecer esta zona de caída?"
+          "default": "¿Seguro que quieres restablecer esta zona de colocación?"
         },
         {
           "label": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla indica que se inició el arrastre",
@@ -338,7 +402,7 @@
           "description": "Define cuántas palabras serán visibles cada vez. Si se establece a 0, se mostrarán todas las palabras."
         }
       ],
-      "label": "Configuración del comportamiento",
+      "label": "Configuraciones del comportamiento",
       "description": "Estas opciones te permitirán controlar como se comporta la tarea."
     }
   ]
