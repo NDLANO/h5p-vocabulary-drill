@@ -1,5 +1,5 @@
 import { H5P } from 'h5p-utils';
-import React, { type FC } from 'react';
+import React, { useEffect, type FC } from 'react';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import { ScoreBar } from '../ScoreBar/ScoreBar';
 
@@ -17,13 +17,22 @@ export const ScorePage: FC<ScorePageProps> = ({
   onRestart,
 }) => {
   const { t } = useTranslation();
+  const focusRef = React.useRef<HTMLDivElement>(null);
   const feedbackText = t('feedbackText');
   const restartText = t('restart');
 
   const overallFeedback = (H5P as any).Question.determineOverallFeedback(overallFeedbacks, score / maxScore);
   const feedback = overallFeedback !== '' ? overallFeedback : feedbackText;
+
+  // Make sure focus is set when page is loaded
+  useEffect(() => {
+    if (focusRef.current) {
+      focusRef.current.focus();
+    }
+  }, [focusRef.current]);
+
   return (
-    <div className="h5p-vocabulary-drill-score-page">
+    <div ref={focusRef} tabIndex={-1} className="h5p-vocabulary-drill-score-page">
       <h3>{feedback}</h3>
       <ScoreBar
         maxScore={maxScore}
