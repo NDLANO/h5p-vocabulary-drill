@@ -4,10 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const mode = process.argv.includes('--mode=production')
   ? 'production'
   : 'development';
-const isDev = mode !== 'production';
 
-const config = {
-  mode,
+module.exports = {
+  mode: mode,
   entry: {
     'h5p-vocabulary-drill': path.join(
       __dirname,
@@ -18,6 +17,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
+    clean: true,
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -77,10 +77,5 @@ const config = {
       },
     },
   },
+  ...(mode !== 'production' && { devtool: 'inline-source-map' })
 };
-
-if (isDev) {
-  config.devtool = 'inline-source-map';
-}
-
-module.exports = config;
