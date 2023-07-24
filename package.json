@@ -1,7 +1,7 @@
 {
   "name": "h5p-vocabulary-drill",
   "version": "1.0.16",
-  "description": "",
+  "description": "An H5P content type specialized for glossary tests",
   "main": "dist/h5p-vocabulary-drill.js",
   "scripts": {
     "start": "npm watch",
@@ -17,8 +17,8 @@
     "url": "git+https://github.com/NDLANO/h5p-vocabulary-drill.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "NDLA",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/NDLANO/h5p-vocabulary-drill/issues"
   },
