@@ -418,7 +418,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             <ScorePage
               score={score}
               maxScore={maxScore}
-              overallFeedbacks={overallFeedback}
+              overallFeedbacks={overallFeedback as {}[]}
               onRestart={handleRestart}
             />
           )}
