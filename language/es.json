@@ -182,7 +182,7 @@
       "fields": [
         {
           "label": "Texto para el botón de \"Mostrar soluciones\"",
-          "default": "Mostrar Solución"
+          "default": "Mostrar solución"
         },
         {
           "label": "Texto para el botón \"Reintentar\"",
@@ -272,7 +272,7 @@
         },
         {
           "label": "Texto para el botón \"Mostrar solución\"",
-          "default": "Mostrar Solución"
+          "default": "Mostrar solución"
         },
         {
           "label": "Etiqueta de zona de colocación numerada",
@@ -304,7 +304,7 @@
           "default": "¡Correcto!"
         },
         {
-          "label": "Texto de Lector de voz para respuesta incorrecta",
+          "label": "Texto de lector de pantalla para respuesta incorrecta",
           "default": "¡Incorrecto!"
         },
         {
