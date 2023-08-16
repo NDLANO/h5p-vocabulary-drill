@@ -52,7 +52,6 @@ export const StatusBar: FC<StatusBarProps> = ({
         </div>
         {showNextButton ?
           <button
-            type="button"
             className="h5p-vocabulary-drill-next"
             onClick={onNext}
             disabled={disableNextButton}
@@ -62,7 +61,6 @@ export const StatusBar: FC<StatusBarProps> = ({
           : null}
         {!showNextButton && !scorePage ?
           <button
-            type="button"
             className="h5p-vocabulary-drill-next"
             onClick={onShowResults}
             disabled={disableNextButton}
