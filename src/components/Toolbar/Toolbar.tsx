@@ -72,7 +72,6 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           )}
           {enableLanguageMode && (
             <button
-              type="button"
               className="h5p-vocabulary-drill-language-mode"
               onClick={handleLanguageModeClick}
               disabled={disableTools}
