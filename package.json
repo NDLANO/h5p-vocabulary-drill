@@ -34,7 +34,7 @@
     "use-h5p": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-env": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
     "@types/he": "^1.2.0",
     "@types/jest": "^29.5.3",
