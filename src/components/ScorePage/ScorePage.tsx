@@ -39,7 +39,6 @@ export const ScorePage: FC<ScorePageProps> = ({
         score={score}
       />
       <button
-        type="button"
         className="h5p-joubelui-button h5p-vocabulary-drill-restart"
         onClick={onRestart}
       >
