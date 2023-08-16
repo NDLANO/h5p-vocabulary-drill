@@ -161,7 +161,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [activeLanguageMode, setActiveLanguageMode] =
     useState(initialLanguageMode);
   const [hasWords, setHasWords] = useState(true);
-  const [page, setPage] = useState(/* previousState?.page ?? */ 0);
+  const [page, setPage] = useState(previousState?.page ?? 0);
   const [score, setScore] = useState(previousState?.score ?? 0);
   const [maxScore, setMaxScore] = useState(previousState?.maxScore ?? 0);
   const [disableTools, setDisableTools] = useState(false);
