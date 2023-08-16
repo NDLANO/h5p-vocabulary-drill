@@ -2,28 +2,28 @@
   "semantics": [
     {
       "label": "Užduoties aprašymas",
-      "description": "A guide telling the user how to answer this task."
+      "description": "Vadovas, nurodantis naudotojui, kaip atsakyti į šią užduotį."
     },
     {
-      "label": "Source language",
+      "label": "Šaltinio kalba",
       "options": [
         {
-          "label": "English"
+          "label": "Anglų"
         },
         {
-          "label": "French"
+          "label": "Prancūzų"
         },
         {
-          "label": "German"
+          "label": "Vokiečių"
         },
         {
-          "label": "Norwegian bokmål"
+          "label": "Norvegų"
         },
         {
           "label": "Norwegian nynorsk"
         },
         {
-          "label": "Spanish"
+          "label": "Ispanų"
         }
       ],
       "description": "Choose the language of the source words."
@@ -31,13 +31,13 @@
     {
       "options": [
         {
-          "label": "English"
+          "label": "Anglų"
         },
         {
-          "label": "French"
+          "label": "Prancūzų"
         },
         {
-          "label": "German"
+          "label": "Vokiečių"
         },
         {
           "label": "Norwegian bokmål"
@@ -46,10 +46,10 @@
           "label": "Norwegian nynorsk"
         },
         {
-          "label": "Spanish"
+          "label": "Ispanų"
         }
       ],
-      "label": "Target language",
+      "label": "Tikslinė kalba",
       "description": "Choose the language of the target words."
     },
     {
@@ -57,16 +57,16 @@
         "description": "<ul><li>Source and target words are separated with a comma (,).</li><li>Alternative answers are separated with a forward slash (/).</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li></ul>",
         "example": "water/sea:w___r,vann/hav:v__n"
       },
-      "label": "Words",
+      "label": "Žodžiai",
       "description": "Add words by uploading a CSV-file or write them in the text field."
     },
     {
-      "label": "Overall Feedback",
+      "label": "Bendras atsiliepimas",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Default"
+              "label": "Numatytasis"
             }
           ],
           "field": {
@@ -76,15 +76,15 @@
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Atsiliepimas apibrėžtam balų diapazonui",
+                "placeholder": "Užpildykite atsiliepimą"
               }
             ],
-            "label": "Overall Feedback"
+            "label": "Bendras atsiliepimas"
           },
           "label": "Define custom feedback for any score range",
           "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range"
+          "entity": "diapazonas"
         }
       ]
     },
@@ -92,7 +92,7 @@
       "fields": [
         {
           "label": "No valid words",
-          "default": "No valid words found. Please check your words and try again."
+          "default": "Nerasta tinkamų žodžių. Patikrinkite savo žodžius ir bandykite dar kartą."
         },
         {
           "label": "Label for \"Fill in\" answer mode",
@@ -132,7 +132,7 @@
         },
         {
           "label": "Text for \"Restart\" button",
-          "default": "Restart"
+          "default": "Perkrauti"
         },
         {
           "default": "Score",
@@ -188,8 +188,8 @@
           "default": "Retry"
         },
         {
-          "label": "Text for \"Check\" button",
-          "default": "Check"
+          "label": "Tekstas mygtukui „Tikrinti“",
+          "default": "Tikrinti"
         },
         {
           "label": "Text for \"Submit\" button",
@@ -263,7 +263,7 @@
           "default": "Check"
         },
         {
-          "default": "Submit",
+          "default": "Pateikti",
           "label": "Text for \"Submit\" button"
         },
         {
