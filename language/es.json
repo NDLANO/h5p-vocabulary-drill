@@ -61,7 +61,7 @@
       }
     },
     {
-      "label": "Realimentación General",
+      "label": "Comentario general",
       "fields": [
         {
           "widgets": [
@@ -69,19 +69,19 @@
               "label": "Por defecto"
             }
           ],
-          "label": "Definir retroalimentación personalizada para cualquier rango de puntaje",
-          "description": "Haga clic en el botón \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0–20% Mal puntaje, 21–91% Puntaje Promedio, 91–100% ¡Magnífico Puntaje!",
+          "label": "Definir comentarios personalizados para cualquier rango de puntaje",
+          "description": "Haga clic en el botón \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0–20 % Puntuación baja, 21–91 % Puntuación media, 91–100 % Puntuación alta",
           "entity": "rango",
           "field": {
-            "label": "Retroalimentación Global",
+            "label": "Comentario global",
             "fields": [
               {
-                "label": "Rango de Puntuación"
+                "label": "Rango de puntuación"
               },
               {},
               {
                 "label": "Comentarios para el rango de puntuación definido",
-                "placeholder": "Escriba la retroalimentación"
+                "placeholder": "Escriba el comentario"
               }
             ]
           }
@@ -91,8 +91,8 @@
     {
       "fields": [
         {
-          "label": "Sin palabras válidas",
-          "default": "No se encontraron palabras válidas. Por favor revise sus palabras y vuelva a intentarlo."
+          "label": "Ninguna palabra válida",
+          "default": "No se encontraron palabras válidas. Por favor, revisa tus palabras y vuelve a intentarlo."
         },
         {
           "default": "Rellenar",
@@ -100,7 +100,7 @@
         },
         {
           "label": "Etiqueta para el modo de respuesta \"Arrastrar texto\"",
-          "default": "Arrastra texto"
+          "default": "Arrastrar texto"
         },
         {
           "label": "Etiqueta del modo de respuesta",
@@ -119,7 +119,7 @@
           "default": "Cambiar idioma de @sourceLanguage a @targetLanguage"
         },
         {
-          "label": "Modo aria Idioma cambiado",
+          "label": "Modo aria idioma cambiado",
           "default": "Idioma cambiado de @sourceLanguage a @targetLanguage"
         },
         {
@@ -131,24 +131,24 @@
           "default": "Terminar"
         },
         {
-          "label": "Texto para botón \"Reintentar\"",
-          "default": "Reintentar"
+          "label": "Texto para botón \"Intentar de nuevo\"",
+          "default": "Intentar de nuevo"
         },
         {
-          "label": "Etiqueta de puntaje",
-          "default": "Puntaje"
+          "label": "Etiqueta de puntuación",
+          "default": "Puntuación"
         },
         {
-          "default": "Usted tiene @score de un total de @maxScore puntos",
-          "label": "Representación textual de la barra de puntaje para aquellos que usan un lector de texto en voz alta"
+          "default": "Tienes @score de un total de @maxScore puntos",
+          "label": "Representación textual de la barra de puntuación para aquellos que usan un lector de pantalla"
         },
         {
-          "label": "Representación textual de los números de página para aquellos que usan un lector de pantalla en voz alta",
+          "label": "Representación textual de los números de página para aquellos que usan un lector de pantalla",
           "default": "Página @page de @totalPages"
         },
         {
-          "label": "Texto de retroalimentación",
-          "default": "Su puntaje total"
+          "label": "Texto de comentario",
+          "default": "Puntuación total"
         },
         {
           "label": "Inglés",
@@ -181,15 +181,15 @@
       "label": "Adaptación local para espacios en blanco",
       "fields": [
         {
-          "label": "Texto para el botón de \"Mostrar soluciones\"",
+          "label": "Texto para el botón de \"Mostrar solución\"",
           "default": "Mostrar solución"
         },
         {
-          "label": "Texto para el botón \"Reintentar\"",
+          "label": "Texto para el botón \"Intentar de nuevo\"",
           "default": "Intentar de nuevo"
         },
         {
-          "label": "Texto para botón \"Comprobar\"",
+          "label": "Texto para el botón \"Comprobar\"",
           "default": "Comprobar"
         },
         {
@@ -197,23 +197,23 @@
           "default": "Enviar"
         },
         {
-          "label": "Texto para mensaje \"No completado\"",
-          "default": "Por favor, completa todos los huecos para poder ver la solución"
+          "label": "Texto para el mensaje de \"No completado\"",
+          "default": "Por favor, completa todos los huecos para poder ver la solución."
         },
         {
-          "label": "Texto para mensaje de \"':ans' es correcto\"",
+          "label": "Texto para el mensaje de \"':ans' es correcto\"",
           "default": "':ans' es correcto"
         },
         {
-          "label": "Texto para mensaje de \"':ans' es incorrecto\"",
+          "label": "Texto para el mensaje de \"':ans' es incorrecto\"",
           "default": "':ans' es incorrecto"
         },
         {
-          "label": "Texto para mensaje \"Contestado correctamente\"",
+          "label": "Texto para el mensaje de \"Contestado correctamente\"",
           "default": "Contestado correctamente"
         },
         {
-          "label": "Texto para mensaje \"Contestado incorrectamente\"",
+          "label": "Texto para el mensaje de \"Contestado incorrectamente\"",
           "default": "Contestado incorrectamente"
         },
         {
@@ -226,11 +226,11 @@
           "default": "Entrada en blanco @num de @total"
         },
         {
-          "label": "Etiqueta para las tecnologías de asistencia para indicar que una entrada tiene un texto de ayuda asociada a ella",
+          "label": "Etiqueta para las tecnologías de asistencia para indicar que una entrada tiene una pista asociada a ella",
           "default": "Pista disponible"
         },
         {
-          "label": "Etiqueta para icono de pista",
+          "label": "Etiqueta para el icono de pista",
           "default": "Pista"
         },
         {
@@ -243,7 +243,7 @@
         },
         {
           "label": "Descripción para las tecnologías de asistencia del botón \"Mostrar solución\"",
-          "default": "Mostrar la solución. La tarea se marcará con su solución correcta."
+          "default": "Muestra la solución. La tarea se marcará con su solución correcta."
         },
         {
           "label": "Descripción para las tecnologías de asistencia del botón \"Intentar de nuevo\"",
@@ -251,7 +251,7 @@
         },
         {
           "label": "Descripción para las tecnologías de asistencia para indicar que se inicia la tarea",
-          "default": "Modo de Comprobación"
+          "default": "Modo de comprobación"
         }
       ]
     },
@@ -259,7 +259,7 @@
       "label": "Adaptación local para ArrastrarTexto",
       "fields": [
         {
-          "label": "Texto para botón \"Comprobar\"",
+          "label": "Texto para el botón \"Comprobar\"",
           "default": "Comprobar"
         },
         {
@@ -277,22 +277,22 @@
         {
           "label": "Etiqueta de zona de colocación numerada",
           "default": "Zona de colocación @index.",
-          "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá el índice de una zona de colocación. Variable disponible: @index."
+          "description": "Etiqueta utilizada para accesibilidad donde el lector de pantalla lee el índice de una zona de colocación. Variable disponible: @index."
         },
         {
           "label": "Etiqueta para zona de colocación vacía",
           "default": "La zona de colocación @index está vacía.",
-          "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla leerá que la zona de colocación está vacía."
+          "description": "Etiqueta utilizada para accesibilidad donde el lector de pantalla lee que la zona de colocación está vacía."
         },
         {
           "label": "Contiene etiqueta de zona de colocación",
           "default": "La zona de colocación @index contiene elemento arrastrable @draggable.",
-          "description": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla leerá que la zona de colocación contiene un elemento que se puede colocar."
+          "description": "Etiqueta utilizada para accesibilidad donde el lector de pantalla lee que la zona de colocación contiene un elemento que se puede colocar."
         },
         {
           "label": "Etiqueta de elementos arrastrables",
           "default": "@index de @count arrastrables.",
-          "description": "Etiqueta utilizada para la accesibilidad, donde el lector de pantalla lee que se trata de un elemento que se puede colocar. Variable disponible: @index, @count."
+          "description": "Etiqueta utilizada para accesibilidad donde el lector de pantalla lee que se trata de un elemento arrastrable. Variable disponible: @index, @count."
         },
         {
           "label": "Etiqueta para mostrar el botón de pista",
@@ -316,15 +316,15 @@
           "default": "¿Seguro que quieres restablecer esta zona de colocación?"
         },
         {
-          "label": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla indica que se inició el arrastre",
+          "label": "Etiqueta utilizada para accesibilidad donde el lector de pantalla indica que se inició el arrastre",
           "default": "Has cogido el elemento a arrastrar."
         },
         {
-          "label": "Etiqueta utilizada para accesibilidad, donde el Lector de texto en voz alta indica que el arrastre está cancelado",
+          "label": "Etiqueta utilizada para accesibilidad donde el Lector de texto en voz alta indica que el arrastre está cancelado",
           "default": "Arrastre cancelado."
         },
         {
-          "label": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla indica que el texto es la respuesta correcta",
+          "label": "Etiqueta utilizada para accesibilidad donde el lector de pantalla indica que el texto es la respuesta correcta",
           "default": "Respuesta correcta:"
         },
         {
