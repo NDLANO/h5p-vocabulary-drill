@@ -178,7 +178,7 @@
       "label": "Adaptación local"
     },
     {
-      "label": "Adaptación local para espacios en blanco",
+      "label": "Adaptación local para \"Fill in the Blanks\"",
       "fields": [
         {
           "label": "Texto para el botón de \"Mostrar solución\"",
