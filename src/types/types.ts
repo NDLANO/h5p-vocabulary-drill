@@ -1,24 +1,20 @@
-import type {
-  IH5PQuestionType,
-  InferParamsFromSemantics,
-  ReadonlyDeep,
-} from 'h5p-types';
-import { H5PResumableContentType } from 'h5p-utils';
-import semantics from '../../semantics.json';
+import type { IH5PQuestionType, InferParamsFromSemantics } from "h5p-types";
+import { H5PResumableContentType } from "h5p-utils";
+import semantics from "../../semantics.json";
 
 export enum AnswerModeType {
-  FillIn = 'fillIn',
-  DragText = 'dragText',
+  FillIn = "fillIn",
+  DragText = "dragText",
 }
 
 export enum LanguageModeType {
-  Source = 'source',
-  Target = 'target',
+  Source = "source",
+  Target = "target",
 }
 
-export type Params = InferParamsFromSemantics<ReadonlyDeep<typeof semantics>>;
-export type TranslationKey = keyof Params['l10n'];
-export type LanguageCode = Params['sourceLanguage'];
+export type Params = InferParamsFromSemantics<typeof semantics>;
+export type TranslationKey = keyof Params["l10n"];
+export type LanguageCode = Params["sourceLanguage"];
 
 export type State = {
   activeAnswerMode?: AnswerModeType;
