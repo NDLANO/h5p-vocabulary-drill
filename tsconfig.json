@@ -15,7 +15,8 @@
     "noImplicitReturns": true,
     "noImplicitAny": true,
     "resolveJsonModule": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "h5p-extensions.d.ts"]
 }
