@@ -107,7 +107,8 @@ function createFillIn(
   >,
   wrapper: HTMLElement,
 ) {
-  const fillInWords = parseSourceAndTarget(words, showTips, AnswerModeType.FillIn, languageMode);
+  const { sourceLanguage, targetLanguage } = params;
+  const fillInWords = parseSourceAndTarget(words, showTips, AnswerModeType.FillIn, languageMode, sourceLanguage, targetLanguage);
 
   const fillInParams = {
     text: params.description,
@@ -244,6 +245,26 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setMaxScore(maxScore - (activeContentType.current?.getMaxScore() ?? 0));
   };
 
+  /**
+   * Handles the interaction event for the DragText content type.
+   * Sets the language attribute of draggable elements based on the active language mode.
+   */
+  const handleInteracted = (): void => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+    if (activeAnswerMode !== AnswerModeType.DragText) {
+      return;
+    }
+
+    const target = activeLanguageMode === LanguageModeType.Target;
+
+    wrapper.querySelectorAll('.h5p-drag-droppable-words .ui-draggable').forEach((element) => {
+      element?.setAttribute('lang', target ? targetLanguage : sourceLanguage);
+    });
+  };
+
   const createRunnable = () => {
     const wrapper = wrapperRef.current;
 
@@ -327,6 +348,12 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             onTrigger('completed');
           });
         }
+        if (event.getVerb() === 'interacted' && activeAnswerMode === AnswerModeType.DragText) {
+          // Wait for the draggable element to be added to the DOM before setting the lang attribute
+          requestAnimationFrame(() => {
+            handleInteracted();
+          });
+        }
       });
 
       onChangeContentType(activeAnswerMode, activeContentType.current);
@@ -401,6 +428,35 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
   // Resize can be required if !hasWords and plain div is rendered
   onResize();
+
+  // Set lang attributes on elements
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+
+    const target = activeLanguageMode === LanguageModeType.Target;
+
+    // Add lang attributes to Blanks
+    if (activeAnswerMode === AnswerModeType.FillIn) {
+      wrapper.querySelectorAll('.h5p-question-content input').forEach((element) => {
+        element.setAttribute('lang', target ? targetLanguage : sourceLanguage);
+      });
+    }
+    else {
+      // Add lang attributes to DragText
+      wrapper.querySelectorAll('.h5p-drag-droppable-words span').forEach((element) => {
+        element.setAttribute('lang', target ? sourceLanguage : targetLanguage);
+      });
+
+      wrapper.querySelectorAll('.h5p-drag-draggables-container .ui-draggable').forEach((element) => {
+        // Only add lang attribute to the first <span>, otherwise the a11y descriptive text
+        // on the second <span> might get the wrong language.
+        (element.firstChild as HTMLSpanElement).setAttribute('lang', target ? targetLanguage : sourceLanguage);
+      });
+    }
+  }, [activeLanguageMode, activeAnswerMode, wrapperRef]);
 
   return (
     <AriaLiveContext.Provider value={{ ariaLiveText, setAriaLiveText }}>
