@@ -1,6 +1,6 @@
 {
   "name": "h5p-vocabulary-drill",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "An H5P content type specialized for glossary tests",
   "main": "dist/h5p-vocabulary-drill.js",
   "scripts": {
