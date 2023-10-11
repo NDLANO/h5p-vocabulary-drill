@@ -27,6 +27,11 @@
     white-space: nowrap;
     width: 1px;
   }
+  
+  .h5p-drag-text [aria-grabbed='true'] {
+    opacity: 1 !important;
+    color: #000 !important;
+  }
 
   .h5p-vocabulary-drill-score-page {
     align-items: center;
