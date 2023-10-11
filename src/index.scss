@@ -6,6 +6,50 @@
 
   .h5p-question {
     background-color: transparent;
+
+    /*
+     * Overrides that can be removed once
+     * https://h5ptechnology.atlassian.net/browse/HFP-3797 has been resolved
+     * pull request at https://github.com/h5p/h5p-drag-text/pull/143
+     */
+    &.h5p-drag-text {
+      // Override cursor state to not kick in when draggable is disabled
+      [aria-grabbed] {
+        cursor: inherit;
+
+        &:not(.ui-draggable-disabled) {
+          cursor: pointer;
+        }
+      }
+
+      /* Override hover of disabled draggables in dropzone */
+      [aria-grabbed].h5p-drag-dropped.ui-draggable-disabled:hover {
+        border: none;
+        color: #255c41;
+        background: transparent;
+      }
+
+      /* Override hover of disabled draggables in original position */
+      [aria-grabbed].ui-draggable-disabled:hover {
+        border: 0.1em solid #c6c6c6;
+        color: initial;
+        background: #ddd;
+      }
+
+      /* Override grabbed state to improve color contrast */
+      [aria-grabbed='true'] {
+        opacity: 1;
+      }
+
+      /* Override dragged state to improve color contrast */
+      [aria-grabbed='true'],
+      [aria-grabbed='true'].h5p-drag-dropped:not(.ui-draggable-disabled):hover,
+      [aria-grabbed='true']:not(.ui-draggable-disabled):hover {
+        border: 0.1em solid rgb(212,190,216);
+        color: #663366;
+        background: #edd6e9;
+      }
+    }
   }
 
   .h5p-question-introduction {
