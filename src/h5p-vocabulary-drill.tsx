@@ -140,6 +140,10 @@ class VocabularyDrillContentType
   }
 
   getCurrentState(): State | undefined {
+    if (!this.getAnswerGiven()) {
+      return;
+    }
+
     const contentTypeState = this.activeContentType?.getCurrentState?.();
     if (
       typeof contentTypeState !== 'object' ||
