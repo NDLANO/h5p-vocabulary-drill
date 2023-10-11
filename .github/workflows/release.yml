@@ -8,14 +8,14 @@ jobs:
     name: Pack and release
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Pack library and dependencies into .h5p file
         uses: boyum/pack-h5p-action@v1.0.1 # https://github.com/boyum/pack-h5p-action
         id: release-h5p
 
       - name: Check if tag exists already # (to avoid replacing releases)
-        uses: mukunku/tag-exists-action@v1.3.0 # https://github.com/mukunku/tag-exists-action
+        uses: mukunku/tag-exists-action@v1.4.0 # https://github.com/mukunku/tag-exists-action
         id: check-tag
         with:
           tag: ${{ steps.release-h5p.outputs.version }}
