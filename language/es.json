@@ -42,10 +42,10 @@
           "label": "Alemán"
         },
         {
-          "label": "Noruego (bokmål)"
+          "label": "Bokmål Noruego"
         },
         {
-          "label": "Noruego (nynorsk)"
+          "label": "Nynorsk noruego"
         },
         {
           "label": "Español"
@@ -304,7 +304,7 @@
           "default": "¡Correcto!"
         },
         {
-          "label": "Texto del lector de pantalla para respuesta incorrecta",
+          "label": "Texto de lector de pantalla para respuesta incorrecta",
           "default": "¡Incorrecto!"
         },
         {
