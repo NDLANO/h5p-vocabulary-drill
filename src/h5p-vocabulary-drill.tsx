@@ -7,7 +7,7 @@ import type {
 import { H5PResumableContentType, registerContentType } from 'h5p-utils';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { ContentIdContext, L10nContext } from 'use-h5p';
+import { ContentIdContext, H5PContext, L10nContext } from 'use-h5p';
 import { VocabularyDrill } from './components/VocabularyDrill/VocabularyDrill';
 import './index.scss';
 import type {
@@ -50,24 +50,25 @@ class VocabularyDrillContentType
     root.render(
       <React.StrictMode>
         <L10nContext.Provider value={sanitizeRecord(params.l10n)}>
-          <ContentIdContext.Provider value={contentId}>
-            <VocabularyDrill
-              title={title}
-              params={params}
-              previousState={this.state}
-              onChangeContentType={(answerMode, contentType) =>
-                this.handleChangeContentType(answerMode, contentType)
-              }
-              onChangeLanguageMode={(languageMode) =>
-                this.handleLanguageModeChange(languageMode)
-              }
-              onResize={() => this.resize()}
-              onTrigger={(verb: XAPIVerb) =>
-                this.xAPIUtils?.triggerXAPIEvent(verb)
-              }
-              onPageChange={(page) => this.handlePageChange(page)}
-            />
-          </ContentIdContext.Provider>
+          <H5PContext.Provider value={this}>
+            <ContentIdContext.Provider value={contentId}>
+              <VocabularyDrill
+                title={title}
+                params={params}
+                previousState={this.state}
+                onChangeContentType={(answerMode, contentType) =>
+                  this.handleChangeContentType(answerMode, contentType)
+                }
+                onChangeLanguageMode={(languageMode) =>
+                  this.handleLanguageModeChange(languageMode)
+                }
+                onTrigger={(verb: XAPIVerb) =>
+                  this.xAPIUtils?.triggerXAPIEvent(verb)
+                }
+                onPageChange={(page) => this.handlePageChange(page)}
+              />
+            </ContentIdContext.Provider>
+          </H5PContext.Provider>
         </L10nContext.Provider>
       </React.StrictMode>,
     );
@@ -139,6 +140,10 @@ class VocabularyDrillContentType
   }
 
   getCurrentState(): State | undefined {
+    if (!this.getAnswerGiven()) {
+      return;
+    }
+
     const contentTypeState = this.activeContentType?.getCurrentState?.();
     if (
       typeof contentTypeState !== 'object' ||

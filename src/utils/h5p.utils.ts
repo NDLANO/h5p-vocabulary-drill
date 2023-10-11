@@ -1,6 +1,11 @@
-import type { H5PLibrary } from 'h5p-types';
+import type { H5PEvent, H5PLibrary } from 'h5p-types';
 import libraryConfig from '../../library.json';
+import { H5PContentType } from 'h5p-utils';
 import { decode } from 'he';
+
+type H5PContentTypeExtended = H5PContentType & {
+  bubblingUpwards?: boolean;
+}
 
 export const findLibraryInfo = (
   libraryName: string,
@@ -35,4 +40,39 @@ export const sanitizeRecord = <TRec extends Record<string, string>>(
   }
 
   return output;
+};
+
+// Bubble H5PEvents up to main H5P instance.
+export const bubbleUp = (
+  origin: H5PContentType,
+  eventName: string,
+  target: H5PContentTypeExtended
+) => {
+  origin.on(eventName, (event: H5PEvent) => {
+    // Prevent target from sending event back down
+    target.bubblingUpwards = true;
+
+    // Trigger event
+    target.trigger(eventName, event);
+
+    // Reset
+    target.bubblingUpwards = false;
+  });
+};
+
+// Bubble H5PEvents down from main H5P instance.
+export const bubbleDown = (
+  origin: H5PContentTypeExtended,
+  eventName: string, targets:
+  Array<H5PContentType>
+) => {
+  origin.on(eventName, (event: H5PEvent) => {
+    if (origin.bubblingUpwards) {
+      return; // Prevent send event back down.
+    }
+
+    targets.forEach((target) => {
+      target.trigger(eventName, event);
+    });
+  });
 };
