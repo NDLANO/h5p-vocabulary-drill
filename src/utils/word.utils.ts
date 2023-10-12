@@ -66,7 +66,7 @@ export const pickRandomWords = (
  * In order to show the word on a seperate line, we wrap the string in a <p> tag.
  */
 const createFillInString = (source: string, target: string): string => {
-  return `<p>${source} *${target}*</p>`;
+  return `<span>${source}</span> *${target}*`;
 };
 
 /**
@@ -75,7 +75,7 @@ const createFillInString = (source: string, target: string): string => {
  * In order to show the word on a seperate line, we add a newline character.
  */
 const createDragTextString = (source: string, target: string): string => {
-  return `${source} *${target}*\n`;
+  return `${source} *${target}*`;
 };
 
 /**
@@ -171,6 +171,10 @@ export const parseSourceAndTarget = (
   });
 
   const parsedWords = newWordsList.join('');
+
+  if (answerModeFillIn) {
+    return `<p>${parsedWords}</p>`;
+  }
 
   return parsedWords;
 };
