@@ -151,9 +151,7 @@
     &.h5p-drag-text,
     &.h5p-blanks {
       /* Make sure the grid content is reachable on mobile */
-      .h5p-question-content {
-        overflow-x: auto;
-      }
+      overflow-x: auto;
     }
   }
 
