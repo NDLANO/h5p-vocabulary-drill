@@ -1,7 +1,7 @@
 import type { H5PExtrasWithState, H5PLibrary, XAPIEvent, XAPIVerb } from 'h5p-types';
-import { H5P } from 'h5p-utils';
+import { H5P, H5PContentType } from 'h5p-utils';
 import React, { useEffect, useRef, useState, type FC } from 'react';
-import { useContentId } from 'use-h5p';
+import { useContentId, useH5PInstance } from 'use-h5p';
 import { AriaLiveContext } from '../../contexts/AriaLiveContext';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import {
@@ -11,7 +11,7 @@ import {
   type State,
   type SubContentType,
 } from '../../types/types';
-import { findLibraryInfo, libraryToString, sanitizeRecord } from '../../utils/h5p.utils';
+import { bubbleUp, bubbleDown, findLibraryInfo, libraryToString, sanitizeRecord } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
 import { parseSourceAndTarget, parseWords, pickRandomWords, pickWords } from '../../utils/word.utils';
 import { AriaLive } from '../AriaLive/AriaLive';
@@ -28,7 +28,6 @@ type VocabularyDrillProps = {
     contentType: SubContentType,
   ) => void;
   onChangeLanguageMode: (languageMode: LanguageModeType) => void;
-  onResize: () => void;
   onTrigger: (event: XAPIVerb) => void;
   onPageChange: (page: number) => void;
 };
@@ -42,6 +41,7 @@ function attachContentType(
   >,
   wrapper: HTMLElement,
   contentTypeParams: Record<string, unknown>,
+  h5pMainInstance: H5PContentType
 ): SubContentType {
   const activeContentType = H5P.newRunnable(
     {
@@ -53,6 +53,12 @@ function attachContentType(
     undefined,
     extras,
   ) as unknown as SubContentType;
+
+  // Forward resize events from main instance to subcontent instance and v. v.
+  if (activeContentType) {
+    bubbleUp(activeContentType, 'resize', h5pMainInstance);
+    bubbleDown(h5pMainInstance, 'resize', [activeContentType]);
+  }
 
   return activeContentType;
 }
@@ -69,6 +75,7 @@ function createDragText(
     'machineName' | 'majorVersion' | 'minorVersion'
   >,
   wrapper: HTMLElement,
+  h5pMainInstance: H5PContentType
 ): SubContentType {
   const dragTextWords = parseSourceAndTarget(words, showTips, AnswerModeType.DragText, languageMode);
 
@@ -89,6 +96,7 @@ function createDragText(
     libraryInfo,
     wrapper,
     dragTextParams,
+    h5pMainInstance
   );
 
   return activeContentType;
@@ -106,6 +114,7 @@ function createFillIn(
     'machineName' | 'majorVersion' | 'minorVersion'
   >,
   wrapper: HTMLElement,
+  h5pMainInstance: H5PContentType
 ) {
   const { sourceLanguage, targetLanguage } = params;
   const fillInWords = parseSourceAndTarget(words, showTips, AnswerModeType.FillIn, languageMode, sourceLanguage, targetLanguage);
@@ -124,6 +133,7 @@ function createFillIn(
     libraryInfo,
     wrapper,
     fillInParams,
+    h5pMainInstance
   );
 }
 
@@ -133,7 +143,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   previousState,
   onChangeContentType,
   onChangeLanguageMode,
-  onResize,
   onTrigger,
   onPageChange,
 }) => {
@@ -155,6 +164,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
   const { t } = useTranslation();
   const contentId = useContentId();
+  const h5pMainInstance = useH5PInstance();
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -293,6 +303,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             extras,
             dragTextLibraryInfo,
             wrapper,
+            h5pMainInstance
           );
           break;
         }
@@ -307,6 +318,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             extras,
             fillInTheBlanksLibraryInfo,
             wrapper,
+            h5pMainInstance
           );
           break;
         }
@@ -320,10 +332,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
       // Remove previous state once used to start with clean slate after resets
       previousState = undefined;
-
-      activeContentType.current?.on('resize', () => {
-        onResize();
-      });
 
       activeContentType.current.on('xAPI', (event: XAPIEvent) => {
         if (event.getVerb() === 'answered') {
@@ -426,8 +434,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setDisableTools(false);
   };
 
-  // Resize can be required if !hasWords and plain div is rendered
-  onResize();
+  h5pMainInstance.trigger('resize');
 
   // Set lang attributes on elements
   useEffect(() => {
