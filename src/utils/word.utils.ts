@@ -173,7 +173,7 @@ export const parseSourceAndTarget = (
 
   const parsedWords = newWordsList.join('');
 
-  if (answerModeFillIn) {
+  if (answerModeFillIn && parsedWords.length > 0) {
     return `<p>${parsedWords}</p>`;
   }
 
