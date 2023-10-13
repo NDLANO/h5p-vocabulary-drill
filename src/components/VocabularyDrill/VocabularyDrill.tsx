@@ -152,6 +152,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     answerMode,
     enableSwitchAnswerModeButton,
     enableSwitchWordsButton,
+    enableSolutionsButton,
     enableRetry,
     randomize,
     showTips,
@@ -255,6 +256,33 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setMaxScore(maxScore - (activeContentType.current?.getMaxScore() ?? 0));
   };
 
+  const handleShowSolution = (): void => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+
+    const target = activeLanguageMode === LanguageModeType.Target;
+
+    if (activeAnswerMode === AnswerModeType.FillIn) {
+      wrapper.querySelectorAll('.h5p-question-content .h5p-correct-answer').forEach((element) => {
+        element.setAttribute('lang', target ? targetLanguage : sourceLanguage);
+        // If we want the solution to be read out loud, we need to remove the aria-hidden attribute
+        element.removeAttribute('aria-hidden');
+      });
+    }
+    else {
+      wrapper.querySelectorAll('.h5p-question-content .h5p-drag-show-solution-container').forEach((element) => {
+        if (element.lastChild) {
+          const span = document.createElement('span');
+          span.textContent = element.lastChild.textContent;
+          span.setAttribute('lang', target ? targetLanguage : sourceLanguage);
+          element.replaceChild(span, element.lastChild);
+        }
+      });
+    }
+  };
+
   /**
    * Handles the interaction event for the DragText content type.
    * Sets the language attribute of draggable elements based on the active language mode.
@@ -346,6 +374,20 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
                 requestAnimationFrame(() => {
                   const retryButton = wrapper.querySelector('button.h5p-question-try-again');
                   retryButton?.addEventListener('click', handleRetry, { once: true });
+                });
+              });
+            });
+          }
+
+          if (enableSolutionsButton) {
+            // Wait for the show solution button to be added to the DOM
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                // The show solution button is not always added to the DOM at this point when DragText
+                // is used, so we need to wait for the next animation frame to be sure
+                requestAnimationFrame(() => {
+                  const showSolutionButton = wrapper.querySelector('button.h5p-question-show-solution');
+                  showSolutionButton?.addEventListener('click', handleShowSolution, { once: true });
                 });
               });
             });
