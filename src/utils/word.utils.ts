@@ -4,7 +4,7 @@ import {
   variantSeparator,
   wordsSeparator,
 } from '../constants/separators';
-import { AnswerModeType, LanguageModeType } from '../types/types';
+import { AnswerModeType, LanguageModeType, type LanguageCode } from '../types/types';
 
 export const filterWord = (wordsAndTip: string): string => {
   const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
@@ -65,8 +65,11 @@ export const pickRandomWords = (
  * H5P.Blanks expects the input as an HTML string on the format `source *target*`.
  * In order to show the word on a seperate line, we wrap the string in a <p> tag.
  */
-const createFillInString = (source: string, target: string): string => {
-  return `<p>${source} *${target}*</p>`;
+const createFillInString = (source: string, target: string, sourceLanguage?: LanguageCode): string => {
+  if (!sourceLanguage) {
+    return `<p>${source} *${target}*</p>`;
+  }
+  return `<p><span lang="${sourceLanguage}">${source}</span> *${target}*</p>`;
 };
 
 /**
@@ -88,6 +91,7 @@ const createSourceAndTargetString = (
   target: string,
   showTips: boolean,
   answerModeFillIn: boolean,
+  sourceLanguage?: LanguageCode,
 ): string => {
   const filteredSource = filterWord(source);
   const filteredTarget = showTips
@@ -96,7 +100,7 @@ const createSourceAndTargetString = (
   const filteredTargetFillIn = showTips ? target : filterOutTip(target);
 
   if (answerModeFillIn) {
-    return createFillInString(filteredSource, filteredTargetFillIn);
+    return createFillInString(filteredSource, filteredTargetFillIn, sourceLanguage);
   }
 
   return createDragTextString(filteredSource, filteredTarget);
@@ -126,6 +130,8 @@ export const parseSourceAndTarget = (
   showTips: boolean,
   answerMode: AnswerModeType,
   languageMode?: LanguageModeType,
+  sourceLanguage?: LanguageCode,
+  targetLanguage?: LanguageCode,
 ): string => {
   const answerModeFillIn = answerMode === AnswerModeType.FillIn;
   const languageModeSource = languageMode === LanguageModeType.Source;
@@ -159,6 +165,7 @@ export const parseSourceAndTarget = (
         source,
         showTips,
         answerModeFillIn,
+        targetLanguage,
       );
     }
 
@@ -167,6 +174,7 @@ export const parseSourceAndTarget = (
       target,
       showTips,
       answerModeFillIn,
+      sourceLanguage,
     );
   });
 
