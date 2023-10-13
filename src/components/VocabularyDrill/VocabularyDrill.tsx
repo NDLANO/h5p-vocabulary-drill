@@ -238,12 +238,27 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     onChangeLanguageMode(newLanguageMode);
   };
 
+  const handleShowResults = () => {
+    const newPage = page + 1;
+
+    setShowResults(true);
+    setPage(newPage);
+  };
+
   const handleAnswered = () => {
     setDisableTools(true);
     setDisableNextButton(false);
 
-    setScore(score + (activeContentType.current?.getScore() ?? 0));
-    setMaxScore(maxScore + (activeContentType.current?.getMaxScore() ?? 0));
+    const newScore = score + (activeContentType.current?.getScore() ?? 0);
+    const newMaxScore = maxScore + (activeContentType.current?.getMaxScore() ?? 0);
+
+    setScore(newScore);
+    setMaxScore(newMaxScore);
+
+    // If all answers are correct, show the score page
+    if (!multiplePages && (newScore === newMaxScore)) {
+      handleShowResults();
+    }
   };
 
   const handleRetry = (): void => {
@@ -388,13 +403,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     else if (activeAnswerMode === AnswerModeType.FillIn) {
       (activeContentType.current as any).a11yHeader.focus();
     }
-  };
-
-  const handleShowResults = () => {
-    const newPage = page + 1;
-
-    setShowResults(true);
-    setPage(newPage);
   };
 
   const handleRestart = () => {
