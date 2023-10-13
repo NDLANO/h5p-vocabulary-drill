@@ -4,7 +4,7 @@ import {
   variantSeparator,
   wordsSeparator,
 } from '../constants/separators';
-import { AnswerModeType, LanguageModeType } from '../types/types';
+import { AnswerModeType, LanguageModeType, type LanguageCode } from '../types/types';
 
 export const filterWord = (wordsAndTip: string): string => {
   const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
@@ -66,8 +66,12 @@ export const pickRandomWords = (
  * A span tag is used to wrap the source word, and add styling to it.
  * In order to show the word on a seperate line, the string can be wrapped in a <p> tag.
  */
-const createFillInString = (source: string, target: string): string => {
-  return `<span>${source}</span> *${target}*`;
+
+const createFillInString = (source: string, target: string, sourceLanguage?: LanguageCode): string => {
+  if (!sourceLanguage) {
+    return `<p>${source} *${target}*</p>`;
+  }
+  return `<p><span lang="${sourceLanguage}">${source}</span> *${target}*</p>`;
 };
 
 /**
@@ -89,6 +93,7 @@ const createSourceAndTargetString = (
   target: string,
   showTips: boolean,
   answerModeFillIn: boolean,
+  sourceLanguage?: LanguageCode,
 ): string => {
   const filteredSource = filterWord(source);
   const filteredTarget = showTips
@@ -97,7 +102,7 @@ const createSourceAndTargetString = (
   const filteredTargetFillIn = showTips ? target : filterOutTip(target);
 
   if (answerModeFillIn) {
-    return createFillInString(filteredSource, filteredTargetFillIn);
+    return createFillInString(filteredSource, filteredTargetFillIn, sourceLanguage);
   }
 
   return createDragTextString(filteredSource, filteredTarget);
@@ -127,6 +132,8 @@ export const parseSourceAndTarget = (
   showTips: boolean,
   answerMode: AnswerModeType,
   languageMode?: LanguageModeType,
+  sourceLanguage?: LanguageCode,
+  targetLanguage?: LanguageCode,
 ): string => {
   const answerModeFillIn = answerMode === AnswerModeType.FillIn;
   const languageModeSource = languageMode === LanguageModeType.Source;
@@ -160,6 +167,7 @@ export const parseSourceAndTarget = (
         source,
         showTips,
         answerModeFillIn,
+        targetLanguage,
       );
     }
 
@@ -168,6 +176,7 @@ export const parseSourceAndTarget = (
       target,
       showTips,
       answerModeFillIn,
+      sourceLanguage,
     );
   });
 
