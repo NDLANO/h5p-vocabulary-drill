@@ -63,22 +63,24 @@ export const pickRandomWords = (
 /**
  * Creates a word string for the H5P.Blanks content type.
  * H5P.Blanks expects the input as an HTML string on the format `source *target*`.
- * In order to show the word on a seperate line, we wrap the string in a <p> tag.
+ * A span tag is used to wrap the source word, and add styling to it.
+ * In order to show the word on a seperate line, the string can be wrapped in a <p> tag.
  */
+
 const createFillInString = (source: string, target: string, sourceLanguage?: LanguageCode): string => {
   if (!sourceLanguage) {
-    return `<p>${source} *${target}*</p>`;
+    return `<span>${source}</span> *${target}*`;
   }
-  return `<p><span lang="${sourceLanguage}">${source}</span> *${target}*</p>`;
+  return `<span lang="${sourceLanguage}">${source}</span> *${target}*`;
 };
 
 /**
  * Creates a word string for the H5P.DragText content type.
  * H5P.DragText expects the input as a string on the format `source *target*`.
- * In order to show the word on a seperate line, we add a newline character.
+ * In order to show the word on a seperate line, a newline character '\n' can be added.
  */
 const createDragTextString = (source: string, target: string): string => {
-  return `${source} *${target}*\n`;
+  return `${source} *${target}*`;
 };
 
 /**
@@ -179,6 +181,10 @@ export const parseSourceAndTarget = (
   });
 
   const parsedWords = newWordsList.join('');
+
+  if (answerModeFillIn && parsedWords.length > 0) {
+    return `<p>${parsedWords}</p>`;
+  }
 
   return parsedWords;
 };
