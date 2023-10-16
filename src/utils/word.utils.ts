@@ -69,9 +69,9 @@ export const pickRandomWords = (
 
 const createFillInString = (source: string, target: string, sourceLanguage?: LanguageCode): string => {
   if (!sourceLanguage) {
-    return `<p>${source} *${target}*</p>`;
+    return `<span>${source}</span> *${target}*`;
   }
-  return `<p><span lang="${sourceLanguage}">${source}</span> *${target}*</p>`;
+  return `<span lang="${sourceLanguage}">${source}</span> *${target}*`;
 };
 
 /**
