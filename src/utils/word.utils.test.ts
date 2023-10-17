@@ -192,7 +192,7 @@ describe('Vocabulary drill utils', () => {
       const words = ['ocean,sjø'];
       const showTips = true;
 
-      const expected = '<p>ocean *sjø*</p>';
+      const expected = '<p><span>ocean</span> *sjø*</p>';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -206,7 +206,7 @@ describe('Vocabulary drill utils', () => {
       const words = ['fire,ild'];
       const showTips = true;
 
-      const expected = 'fire *ild*\n';
+      const expected = 'fire *ild*';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -220,7 +220,7 @@ describe('Vocabulary drill utils', () => {
       const words = ['ocean/sea,sjø/hav'];
       const showTips = true;
 
-      const expected = '<p>ocean *sjø/hav*</p>';
+      const expected = '<p><span>ocean</span> *sjø/hav*</p>';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -234,7 +234,7 @@ describe('Vocabulary drill utils', () => {
       const words = ['fire/heat,ild/brann'];
       const showTips = true;
 
-      const expected = 'fire *ild*\n';
+      const expected = 'fire *ild*';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -248,7 +248,7 @@ describe('Vocabulary drill utils', () => {
       const words = ['ocean/sea:boats go on it,sjø/hav:båter kjører på det'];
       const showTips = true;
 
-      const expected = '<p>ocean *sjø/hav:båter kjører på det*</p>';
+      const expected = '<p><span>ocean</span> *sjø/hav:båter kjører på det*</p>';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -262,7 +262,7 @@ describe('Vocabulary drill utils', () => {
       const words = ['fire/heat:f__e,ild/brann:i_d'];
       const showTips = true;
 
-      const expected = 'fire *ild:i_d*\n';
+      const expected = 'fire *ild:i_d*';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -276,7 +276,7 @@ describe('Vocabulary drill utils', () => {
       const words = ['ocean,sjø', 'fire,ild', 'sky,himmel'];
       const showTips = true;
 
-      const expected = '<p>ocean *sjø*</p><p>fire *ild*</p><p>sky *himmel*</p>';
+      const expected = '<p><span>ocean</span> *sjø*<span>fire</span> *ild*<span>sky</span> *himmel*</p>';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -290,7 +290,7 @@ describe('Vocabulary drill utils', () => {
       const words = ['ocean,sjø', 'fire,ild', 'sky,himmel'];
       const showTips = true;
 
-      const expected = 'ocean *sjø*\nfire *ild*\nsky *himmel*\n';
+      const expected = 'ocean *sjø*fire *ild*sky *himmel*';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -306,7 +306,7 @@ describe('Vocabulary drill utils', () => {
       const showTips = true;
 
       const expected =
-        '<p>ocean *sjø/hav*</p><p>fire *ild/brann*</p><p>sky *himmel/sky*</p>';
+        '<p><span>ocean</span> *sjø/hav*<span>fire</span> *ild/brann*<span>sky</span> *himmel/sky*</p>';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -321,7 +321,7 @@ describe('Vocabulary drill utils', () => {
         ['ocean/sea,sjø/hav', 'fire/heat,ild/brann', 'sky/cloud,himmel/sky'];
       const showTips = true;
 
-      const expected = 'ocean *sjø*\nfire *ild*\nsky *himmel*\n';
+      const expected = 'ocean *sjø*fire *ild*sky *himmel*';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -337,7 +337,7 @@ describe('Vocabulary drill utils', () => {
       const showTips = true;
 
       const expected =
-        '<p>ocean *sjø/hav:båter kjører på det*</p><p>fire *ild/brann:veldig varmt*</p><p>sky *himmel/sky:over oss*</p>';
+        '<p><span>ocean</span> *sjø/hav:båter kjører på det*<span>fire</span> *ild/brann:veldig varmt*<span>sky</span> *himmel/sky:over oss*</p>';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -353,7 +353,7 @@ describe('Vocabulary drill utils', () => {
       const showTips = true;
 
       const expected =
-        'ocean *sjø:båter kjører på det*\nfire *ild:veldig varmt*\nsky *himmel:over oss*\n';
+        'ocean *sjø:båter kjører på det*fire *ild:veldig varmt*sky *himmel:over oss*';
       const actual = parseSourceAndTarget(
         words,
         showTips,

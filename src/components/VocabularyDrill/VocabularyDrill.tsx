@@ -116,7 +116,8 @@ function createFillIn(
   wrapper: HTMLElement,
   h5pMainInstance: H5PContentType
 ) {
-  const fillInWords = parseSourceAndTarget(words, showTips, AnswerModeType.FillIn, languageMode);
+  const { sourceLanguage, targetLanguage } = params;
+  const fillInWords = parseSourceAndTarget(words, showTips, AnswerModeType.FillIn, languageMode, sourceLanguage, targetLanguage);
 
   const fillInParams = {
     text: params.description,
@@ -151,6 +152,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     answerMode,
     enableSwitchAnswerModeButton,
     enableSwitchWordsButton,
+    enableSolutionsButton,
     enableRetry,
     randomize,
     showTips,
@@ -269,6 +271,53 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setMaxScore(maxScore - (activeContentType.current?.getMaxScore() ?? 0));
   };
 
+  const handleShowSolution = (): void => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+
+    const target = activeLanguageMode === LanguageModeType.Target;
+
+    if (activeAnswerMode === AnswerModeType.FillIn) {
+      wrapper.querySelectorAll('.h5p-question-content .h5p-correct-answer').forEach((element) => {
+        element.setAttribute('lang', target ? targetLanguage : sourceLanguage);
+        // If we want the solution to be read out loud, we need to remove the aria-hidden attribute
+        element.removeAttribute('aria-hidden');
+      });
+    }
+    else {
+      wrapper.querySelectorAll('.h5p-question-content .h5p-drag-show-solution-container').forEach((element) => {
+        if (element.lastChild) {
+          const span = document.createElement('span');
+          span.textContent = element.lastChild.textContent;
+          span.setAttribute('lang', target ? targetLanguage : sourceLanguage);
+          element.replaceChild(span, element.lastChild);
+        }
+      });
+    }
+  };
+
+  /**
+   * Handles the interaction event for the DragText content type.
+   * Sets the language attribute of draggable elements based on the active language mode.
+   */
+  const handleInteracted = (): void => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+    if (activeAnswerMode !== AnswerModeType.DragText) {
+      return;
+    }
+
+    const target = activeLanguageMode === LanguageModeType.Target;
+
+    wrapper.querySelectorAll('.h5p-drag-droppable-words .ui-draggable').forEach((element) => {
+      element?.setAttribute('lang', target ? targetLanguage : sourceLanguage);
+    });
+  };
+
   const createRunnable = () => {
     const wrapper = wrapperRef.current;
 
@@ -345,9 +394,29 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             });
           }
 
+          if (enableSolutionsButton) {
+            // Wait for the show solution button to be added to the DOM
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                // The show solution button is not always added to the DOM at this point when DragText
+                // is used, so we need to wait for the next animation frame to be sure
+                requestAnimationFrame(() => {
+                  const showSolutionButton = wrapper.querySelector('button.h5p-question-show-solution');
+                  showSolutionButton?.addEventListener('click', handleShowSolution, { once: true });
+                });
+              });
+            });
+          }
+
           // Give subcontent's statement time to be triggered first
           window.requestAnimationFrame(() => {
             onTrigger('completed');
+          });
+        }
+        if (event.getVerb() === 'interacted' && activeAnswerMode === AnswerModeType.DragText) {
+          // Wait for the draggable element to be added to the DOM before setting the lang attribute
+          requestAnimationFrame(() => {
+            handleInteracted();
           });
         }
       });
@@ -416,6 +485,35 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   };
 
   h5pMainInstance.trigger('resize');
+
+  // Set lang attributes on elements
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+
+    const target = activeLanguageMode === LanguageModeType.Target;
+
+    // Add lang attributes to Blanks
+    if (activeAnswerMode === AnswerModeType.FillIn) {
+      wrapper.querySelectorAll('.h5p-question-content input').forEach((element) => {
+        element.setAttribute('lang', target ? targetLanguage : sourceLanguage);
+      });
+    }
+    else {
+      // Add lang attributes to DragText
+      wrapper.querySelectorAll('.h5p-drag-droppable-words span').forEach((element) => {
+        element.setAttribute('lang', target ? sourceLanguage : targetLanguage);
+      });
+
+      wrapper.querySelectorAll('.h5p-drag-draggables-container .ui-draggable').forEach((element) => {
+        // Only add lang attribute to the first <span>, otherwise the a11y descriptive text
+        // on the second <span> might get the wrong language.
+        (element.firstChild as HTMLSpanElement).setAttribute('lang', target ? targetLanguage : sourceLanguage);
+      });
+    }
+  }, [activeLanguageMode, activeAnswerMode, wrapperRef]);
 
   return (
     <AriaLiveContext.Provider value={{ ariaLiveText, setAriaLiveText }}>
