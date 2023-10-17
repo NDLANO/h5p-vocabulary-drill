@@ -152,6 +152,12 @@
     &.h5p-blanks {
       /* Make sure the grid content is reachable on mobile */
       overflow-x: auto;
+      /* 
+       * Hide vertical scrollbar while content updates.
+       * overflow-y will implicitly be computed as auto if visible is used
+       * https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y
+       */
+      overflow-y: hidden;
     }
   }
 
