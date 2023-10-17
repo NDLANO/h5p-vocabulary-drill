@@ -188,6 +188,11 @@
     gap: 1rem;
     justify-content: center;
 
+    /* Add spacing if no progress bar below */
+    &:last-child {
+      margin-bottom: 1rem;
+    }
+
     button.h5p-vocabulary-drill-restart::before {
       content: '\F01E';
       font-family: 'H5PFontAwesome4';
