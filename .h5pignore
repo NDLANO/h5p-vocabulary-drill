@@ -16,3 +16,4 @@ semantics.json.d.ts
 tsconfig.json
 tsconfig.jest.json
 webpack.config.js
+LICENSE
