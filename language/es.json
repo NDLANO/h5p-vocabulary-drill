@@ -320,7 +320,7 @@
           "default": "Has seleccionado el elemento arrastrable."
         },
         {
-          "label": "Etiqueta utilizada para accesibilidad donde el lector de pantalla indica que el arrastre está cancelado",
+          "label": "Etiqueta utilizada para accesibilidad, donde el lector de pantalla indica que el arrastre está cancelado",
           "default": "Arrastre cancelado."
         },
         {
