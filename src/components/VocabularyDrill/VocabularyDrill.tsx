@@ -513,7 +513,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         (element.firstChild as HTMLSpanElement).setAttribute('lang', target ? targetLanguage : sourceLanguage);
       });
     }
-  }, [activeLanguageMode, activeAnswerMode, wrapperRef]);
+  }, [activeLanguageMode, activeAnswerMode, wrapperRef, page]);
 
   return (
     <AriaLiveContext.Provider value={{ ariaLiveText, setAriaLiveText }}>
