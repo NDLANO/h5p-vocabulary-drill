@@ -252,7 +252,7 @@
 
     &:disabled {
       background-color: #f2f2f2;
-      color: grey;
+      color: #696969;
       cursor: not-allowed;
     }
 
@@ -309,7 +309,7 @@
       &.disabled {
         &::after,
         &::before {
-          color: grey;
+          color: #696969;
         }
       }
 
