@@ -59,13 +59,13 @@
         display: grid;
         grid-template-columns: repeat(2, max-content);
         row-gap: 0.5rem;
-   
+
         /* Add a bottom border to all children, except the last row */
         & > *:nth-last-child(n+3) {
           border-bottom: 1px solid #eee;
           padding-bottom: 0.5rem;
         }
-    
+
         /* Add a right padding to the source element (left) */
         & > span {
           padding-right: 1rem;
@@ -86,27 +86,27 @@
         display: grid;
         grid-template-columns: repeat(3, max-content);
         row-gap: 0.5rem;
-     
+
         /* Add a bottom border to all children, except the last row */
         & > *:nth-last-child(n+4):not(.h5p-correct-answer),
         & > *:nth-last-child(3).h5p-input-wrapper {
           border-bottom: 1px solid #eee;
           padding-bottom: 0.5rem;
         }
-     
+
         /* Place elements in the grid */
         & > span:not(.h5p-input-wrapper, .h5p-correct-answer) {
           grid-column-start: 1;
           padding-right: 1rem;
         }
-     
+
         & > span.h5p-input-wrapper {
           grid-column-start: 2;
         }
-     
+
         & > span.h5p-correct-answer {
           grid-column-start: 3;
-        } 
+        }
 
         /* Make all inputs the same width */
         .h5p-text-input {
@@ -116,15 +116,15 @@
 
         /* Make sure inputs ::after follows input */
         .h5p-input-wrapper {
-          width: fit-content; 
+          width: fit-content;
         }
 
-        /* Create a bottom border to the correct answer */ 
+        /* Create a bottom border to the correct answer */
         .h5p-correct-answer {
           align-self: end;
           line-height: 1.375em;
           width: fit-content;
-          
+
           &:not(:last-child) {
             margin-bottom: 0.5rem;
             position: relative;
@@ -152,7 +152,7 @@
     &.h5p-blanks {
       /* Make sure the grid content is reachable on mobile */
       overflow-x: auto;
-      /* 
+      /*
        * Hide vertical scrollbar while content updates.
        * overflow-y will implicitly be computed as auto if visible is used
        * https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y
@@ -333,7 +333,7 @@
       &.disabled {
         .combo-input {
           background-color: #f2f2f2;
-          color: grey;
+          color: #696969;
           cursor: not-allowed;
           opacity: 1;
         }
@@ -419,7 +419,7 @@
 
     &:disabled {
       background-color: #f2f2f2;
-      color: grey;
+      color: #696969;
       cursor: not-allowed;
     }
 
