@@ -258,7 +258,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setMaxScore(newMaxScore);
 
     // If all answers are correct, show the score page
-    if (!multiplePages && (newScore === newMaxScore)) {
+    const validMaxScore = newMaxScore !== 0;
+    if (!multiplePages && (newScore === newMaxScore) && validMaxScore) {
       handleShowResults();
     }
   };
@@ -267,8 +268,15 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setDisableTools(false);
     setDisableNextButton(true);
 
-    setScore(score - (activeContentType.current?.getScore() ?? 0));
-    setMaxScore(maxScore - (activeContentType.current?.getMaxScore() ?? 0));
+    if (page > 0) {
+      setScore(score - (activeContentType.current?.getScore() ?? 0));
+      setMaxScore(maxScore - (activeContentType.current?.getMaxScore() ?? 0));
+    }
+    else {
+      // Reset the score
+      setScore(0);
+      setMaxScore(0);
+    }
   };
 
   const handleShowSolution = (): void => {
