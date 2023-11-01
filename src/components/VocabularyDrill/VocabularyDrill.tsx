@@ -484,10 +484,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setDisableTools(false);
   };
 
-  h5pMainInstance.trigger('resize');
-
-  // Set lang attributes on elements
-  useEffect(() => {
+  /**
+   * Adds lang attributes to the source and target words.
+   */
+  const addLanguageAttributes = () => {
     const wrapper = wrapperRef.current;
     if (!wrapper) {
       return;
@@ -513,6 +513,51 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         (element.firstChild as HTMLSpanElement).setAttribute('lang', target ? targetLanguage : sourceLanguage);
       });
     }
+  };
+
+  /**
+   * Adds grid titles to the top of the grid.
+   */
+  const addGridTitles = () => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+
+    const targetLabel = t(`lang_${targetLanguage}`);
+    const sourceLabel = t(`lang_${sourceLanguage}`);
+
+    const target = activeLanguageMode === LanguageModeType.Target;
+
+    const targetTitleElement = document.createElement('div');
+    targetTitleElement.className = 'h5p-vocabulary-drill-grid-title';
+    targetTitleElement.textContent = target ? targetLabel : sourceLabel;
+
+    const sourceTitleElement = document.createElement('div');
+    sourceTitleElement.className = 'h5p-vocabulary-drill-grid-title';
+    sourceTitleElement.textContent = target ? sourceLabel : targetLabel;
+
+    let gridContainer: HTMLElement | null = null;
+    if (activeAnswerMode === AnswerModeType.FillIn) {
+      // Get Blanks container
+      gridContainer = wrapper.querySelector('.h5p-question-content p');
+    }
+    else {
+      // Get DragText container
+      gridContainer = wrapper.querySelector('.h5p-drag-droppable-words');
+    }
+
+    if (gridContainer) {
+      gridContainer.prepend(targetTitleElement);
+      gridContainer.prepend(sourceTitleElement);
+    }
+  };
+
+  h5pMainInstance.trigger('resize');
+
+  useEffect(() => {
+    addLanguageAttributes();
+    addGridTitles();
   }, [activeLanguageMode, activeAnswerMode, wrapperRef, page]);
 
   return (

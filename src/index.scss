@@ -181,6 +181,15 @@
     width: 1px;
   }
 
+  .h5p-vocabulary-drill-grid-title {
+    color: #4c4452;
+    font-weight: bold;
+    
+    &:first-child {
+      padding-right: 1.5rem;
+    }
+  }
+
   .h5p-vocabulary-drill-score-page {
     align-items: center;
     display: flex;
