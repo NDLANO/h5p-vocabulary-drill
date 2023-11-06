@@ -180,6 +180,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [disableNextButton, setDisableNextButton] = useState(true);
   const [ariaLiveText, setAriaLiveText] = useState('');
   const [showResults, setShowResults] = useState(false);
+  const [isRetrying, setIsRetrying] = useState(false);
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
@@ -252,10 +253,16 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setDisableNextButton(false);
 
     const newScore = score + (activeContentType.current?.getScore() ?? 0);
-    const newMaxScore = maxScore + (activeContentType.current?.getMaxScore() ?? 0);
-
     setScore(newScore);
-    setMaxScore(newMaxScore);
+
+    // If retrying, the maxScore is already set
+    let newMaxScore = maxScore;
+    if (!isRetrying) {
+      newMaxScore = maxScore + (activeContentType.current?.getMaxScore() ?? 0);
+      setMaxScore(newMaxScore);
+    }
+
+    setIsRetrying(false);
 
     // If all answers are correct, show the score page
     if (!multiplePages && (newScore === newMaxScore)) {
@@ -264,11 +271,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   };
 
   const handleRetry = (): void => {
+    setIsRetrying(true);
     setDisableTools(false);
     setDisableNextButton(true);
 
     setScore(score - (activeContentType.current?.getScore() ?? 0));
-    setMaxScore(maxScore - (activeContentType.current?.getMaxScore() ?? 0));
   };
 
   const handleShowSolution = (): void => {
