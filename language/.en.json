@@ -8,31 +8,35 @@
       "label": "Source language",
       "description": "Choose the language of the source words.",
       "options": [
-        { "label": "English" },
-        { "label": "French" },
-        { "label": "German" },
-        { "label": "Norwegian bokmål" },
-        { "label": "Norwegian nynorsk" },
-        { "label": "Spanish" }
+        { "value": "en", "label": "English" },
+        { "value": "fr", "label": "French" },
+        { "value": "de", "label": "German" },
+        { "value": "sme", "label": "Northern Sámi" },
+        { "value": "nb", "label": "Norwegian bokmål" },
+        { "value": "nn", "label": "Norwegian nynorsk" },
+        { "value": "sma", "label": "Southern Sámi" },
+        { "value": "es", "label": "Spanish" }
       ]
     },
     {
       "label": "Target language",
       "description": "Choose the language of the target words.",
       "options": [
-        { "label": "English" },
-        { "label": "French" },
-        { "label": "German" },
-        { "label": "Norwegian bokmål" },
-        { "label": "Norwegian nynorsk" },
-        { "label": "Spanish" }
+        { "value": "en", "label": "English" },
+        { "value": "fr", "label": "French" },
+        { "value": "de", "label": "German" },
+        { "value": "sme", "label": "Northern Sámi" },
+        { "value": "nb", "label": "Norwegian bokmål" },
+        { "value": "nn", "label": "Norwegian nynorsk" },
+        { "value": "sma", "label": "Southern Sámi" },
+        { "value": "es", "label": "Spanish" }
       ]
     },
     {
       "label": "Words",
       "description": "Add words by uploading a CSV-file or write them in the text field.",
       "important": {
-        "description": "<ul><li>Source and target words are separated with a comma (,).</li><li>Alternative answers are separated with a forward slash (/).</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li></ul>",
+        "description": "<ul><li>Source and target words are separated with a comma (,).</li><li>Alternative answers are separated with a forward slash (/).</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li><li>In CSV you can either have source word and target word, or source word, source hint, target word, and target hint.</li></ul>",
         "example": "water/sea:w___r,vann/hav:v__n"
       }
     },
