@@ -176,12 +176,20 @@
           "default": "Alemán"
         },
         {
+          "label": "Northern Sámi",
+          "default": "Northern Sámi"
+        },
+        {
           "label": "Bokmål noruegués",
           "default": "Bokmål noruegués"
         },
         {
           "label": "Nynorsk noruegués",
           "default": "Nynorsk noruegués"
+        },
+        {
+          "label": "Southern Sámi",
+          "default": "Southern Sámi"
         },
         {
           "label": "Español",

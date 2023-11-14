@@ -8,28 +8,28 @@
       "label": "Source language",
       "description": "Choose the language of the source words.",
       "options": [
-        { "value": "en", "label": "English" },
-        { "value": "fr", "label": "French" },
-        { "value": "de", "label": "German" },
-        { "value": "sme", "label": "Northern Sámi" },
-        { "value": "nb", "label": "Norwegian bokmål" },
-        { "value": "nn", "label": "Norwegian nynorsk" },
-        { "value": "sma", "label": "Southern Sámi" },
-        { "value": "es", "label": "Spanish" }
+        { "label": "English" },
+        { "label": "French" },
+        { "label": "German" },
+        { "label": "Northern Sámi" },
+        { "label": "Norwegian bokmål" },
+        { "label": "Norwegian nynorsk" },
+        { "label": "Southern Sámi" },
+        { "label": "Spanish" }
       ]
     },
     {
       "label": "Target language",
       "description": "Choose the language of the target words.",
       "options": [
-        { "value": "en", "label": "English" },
-        { "value": "fr", "label": "French" },
-        { "value": "de", "label": "German" },
-        { "value": "sme", "label": "Northern Sámi" },
-        { "value": "nb", "label": "Norwegian bokmål" },
-        { "value": "nn", "label": "Norwegian nynorsk" },
-        { "value": "sma", "label": "Southern Sámi" },
-        { "value": "es", "label": "Spanish" }
+        { "label": "English" },
+        { "label": "French" },
+        { "label": "German" },
+        { "label": "Northern Sámi" },
+        { "label": "Norwegian bokmål" },
+        { "label": "Norwegian nynorsk" },
+        { "label": "Southern Sámi" },
+        { "label": "Spanish" }
       ]
     },
     {
@@ -144,12 +144,20 @@
           "default": "German"
         },
         {
+          "label": "Northern Sámi",
+          "default": "Northern Sámi"
+        },
+        {
           "label": "Norwegian bokmål",
           "default": "Norwegian bokmål"
         },
         {
           "label": "Norwegian nynorsk",
           "default": "Norwegian nynorsk"
+        },
+        {
+          "label": "Southern Sámi",
+          "default": "Southern Sámi"
         },
         {
           "label": "Spanish",

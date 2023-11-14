@@ -227,6 +227,12 @@
         "type": "text"
       },
       {
+        "label": "Northern Sámi",
+        "name": "lang_sme",
+        "default": "Northern Sámi",
+        "type": "text"
+      },
+      {
         "label": "Norwegian bokmål",
         "name": "lang_nb",
         "default": "Norwegian bokmål",
@@ -236,6 +242,12 @@
         "label": "Norwegian nynorsk",
         "name": "lang_nn",
         "default": "Norwegian nynorsk",
+        "type": "text"
+      },
+      {
+        "label": "Southern Sámi",
+        "name": "lang_sma",
+        "default": "Southern Sámi",
         "type": "text"
       },
       {

@@ -144,12 +144,20 @@
           "default": "Tysk"
         },
         {
+          "label": "Nordsamisk",
+          "default": "Nordsamisk"
+        },
+        {
           "label": "Norsk (bokmål)",
           "default": "Norsk (bokmål)"
         },
         {
           "label": "Norsk (nynorsk)",
           "default": "Norsk (nynorsk)"
+        },
+        {
+          "label": "Sørsamisk",
+          "default": "Sørsamisk"
         },
         {
           "label": "Spansk",

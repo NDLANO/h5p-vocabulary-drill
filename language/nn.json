@@ -14,8 +14,8 @@
         { "label": "Nordsamisk" },
         { "label": "Norsk (bokmål)" },
         { "label": "Norsk (nynorsk)" },
-        { "label": "Spansk" },
-        { "label": "Sørsamisk" }
+        { "label": "Sørsamisk" },
+        { "label": "Spansk" }
       ]
     },
     {
@@ -28,8 +28,8 @@
         { "label": "Nordsamisk" },
         { "label": "Norsk (bokmål)" },
         { "label": "Norsk (nynorsk)" },
-        { "label": "Spansk" },
-        { "label": "Sørsamisk" }
+        { "label": "Sørsamisk" },
+        { "label": "Spansk" }
       ]
     },
     {
@@ -144,12 +144,20 @@
           "default": "Tysk"
         },
         {
+          "label": "Nordsamisk",
+          "default": "Nordsamisk"
+        },
+        {
           "label": "Norsk (bokmål)",
           "default": "Norsk (bokmål)"
         },
         {
           "label": "Norsk (nynorsk)",
           "default": "Norsk (nynorsk)"
+        },
+        {
+          "label": "Sørsamisk",
+          "default": "Sørsamisk"
         },
         {
           "label": "Spansk",
