@@ -8,28 +8,76 @@
       "label": "Kjeldespråk",
       "description": "Vel språk for kjeldeorda.",
       "options": [
-        { "label": "Engelsk" },
-        { "label": "Fransk" },
-        { "label": "Tysk" },
-        { "label": "Nordsamisk" },
-        { "label": "Norsk (bokmål)" },
-        { "label": "Norsk (nynorsk)" },
-        { "label": "Sørsamisk" },
-        { "label": "Spansk" }
+        {
+          "label": "Engelsk",
+          "value": "en"
+        },
+        {
+          "label": "Fransk",
+          "value": "fr"
+        },
+        {
+          "label": "Tysk",
+          "value": "de"
+        },
+        {
+          "label": "Nordsamisk",
+          "value": "sme"
+        },
+        {
+          "label": "Norsk (bokmål)",
+          "value": "nb"
+        },
+        {
+          "label": "Norsk (nynorsk)",
+          "value": "nn"
+        },
+        {
+          "label": "Spansk",
+          "value": "sma"
+        },
+        {
+          "label": "Sørsamisk",
+          "value": "es"
+        }
       ]
     },
     {
       "label": "Målspråk",
       "description": "Vel språk for målorda.",
       "options": [
-        { "label": "Engelsk" },
-        { "label": "Fransk" },
-        { "label": "Tysk" },
-        { "label": "Nordsamisk" },
-        { "label": "Norsk (bokmål)" },
-        { "label": "Norsk (nynorsk)" },
-        { "label": "Sørsamisk" },
-        { "label": "Spansk" }
+        {
+          "label": "Engelsk",
+          "value": "en"
+        },
+        {
+          "label": "Fransk",
+          "value": "fr"
+        },
+        {
+          "label": "Tysk",
+          "value": "de"
+        },
+        {
+          "label": "Nordsamisk",
+          "value": "sme"
+        },
+        {
+          "label": "Norsk (bokmål)",
+          "value": "nb"
+        },
+        {
+          "label": "Norsk (nynorsk)",
+          "value": "nn"
+        },
+        {
+          "label": "Spansk",
+          "value": "sma"
+        },
+        {
+          "label": "Sørsamisk",
+          "value": "es"
+        }
       ]
     },
     {
@@ -144,20 +192,12 @@
           "default": "Tysk"
         },
         {
-          "label": "Nordsamisk",
-          "default": "Nordsamisk"
-        },
-        {
           "label": "Norsk (bokmål)",
           "default": "Norsk (bokmål)"
         },
         {
           "label": "Norsk (nynorsk)",
           "default": "Norsk (nynorsk)"
-        },
-        {
-          "label": "Sørsamisk",
-          "default": "Sørsamisk"
         },
         {
           "label": "Spansk",
@@ -371,8 +411,12 @@
         {
           "label": "Svarmodus",
           "options": [
-            { "label": "Fyll ut" },
-            { "label": "Dra tekst" }
+            {
+              "label": "Fyll ut"
+            },
+            {
+              "label": "Dra tekst"
+            }
           ]
         },
         {
