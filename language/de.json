@@ -9,56 +9,72 @@
       "description": "Wähle die Sprache der Ausgangswörter.",
       "options": [
         {
-          "label": "Englisch"
+          "label": "Englisch",
+          "value": "en"
         },
         {
-          "label": "Französisch"
+          "label": "Französisch",
+          "value": "fr"
         },
         {
-          "label": "Deutsch"
+          "label": "Deutsch",
+          "value": "de"
         },
         {
-          "label": "Northern Sámi"
+          "label": "Northern Sámi",
+          "value": "sme"
         },
         {
-          "label": "Norwegisch (Bokmål)"
+          "label": "Norwegisch (Bokmål)",
+          "value": "nb"
         },
         {
-          "label": "Norwegisch (Nynorsk)"
+          "label": "Norwegisch (Nynorsk)",
+          "value": "nn"
         },
         {
-          "label": "Southern Sámi"
+          "label": "Southern Sámi",
+          "value": "sma"
         },
         {
-          "label": "Spanisch"
+          "label": "Spanisch",
+          "value": "es"
         }
       ]
     },
     {
       "options": [
         {
-          "label": "Englisch"
+          "label": "Englisch",
+          "value": "en"
         },
         {
-          "label": "Französisch"
+          "label": "Französisch",
+          "value": "fr"
         },
         {
-          "label": "Deutsch"
+          "label": "Deutsch",
+          "value": "de"
         },
         {
-          "label": "Northern Sámi"
+          "label": "Northern Sámi",
+          "value": "sme"
         },
         {
-          "label": "Norwegisch (Bokmål)"
+          "label": "Norwegisch (Bokmål)",
+          "value": "nb"
         },
         {
-          "label": "Norwegisch (Nynorsk)"
+          "label": "Norwegisch (Nynorsk)",
+          "value": "nn"
         },
         {
-          "label": "Southern Sámi"
+          "label": "Southern Sámi",
+          "value": "sma"
         },
         {
-          "label": "Spanisch"
+          "label": "Spanisch",
+          "value": "es"
         }
       ],
       "label": "Zielsprache",
