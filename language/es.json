@@ -9,28 +9,36 @@
       "description": "Elija el idioma de las palabras de origen.",
       "options": [
         {
-          "label": "Inglés"
+          "label": "Inglés",
+          "value": "en"
         },
         {
-          "label": "Francés"
+          "label": "Francés",
+          "value": "fr"
         },
         {
-          "label": "Alemán"
+          "label": "Alemán",
+          "value": "de"
         },
         {
-          "label": "Northern Sámi"
+          "label": "Sami del norte",
+          "value": "sme"
         },
         {
-          "label": "Noruego (bokmål)"
+          "label": "Noruego (bokmål)",
+          "value": "nb"
         },
         {
-          "label": "Noruego (nynorsk)"
+          "label": "Noruego (nynorsk)",
+          "value": "nn"
         },
         {
-          "label": "Southern Sámi"
+          "label": "Sami del Sur",
+          "value": "sma"
         },
         {
-          "label": "Español"
+          "label": "Español",
+          "value": "es"
         }
       ]
     },
@@ -39,28 +47,36 @@
       "description": "Elija el idioma de las palabras de destino.",
       "options": [
         {
-          "label": "Inglés"
+          "label": "Inglés",
+          "value": "en"
         },
         {
-          "label": "Francés"
+          "label": "Francés",
+          "value": "fr"
         },
         {
-          "label": "Alemán"
+          "label": "Alemán",
+          "value": "de"
         },
         {
-          "label": "Northern Sámi"
+          "label": "Sami del norte",
+          "value": "sme"
         },
         {
-          "label": "Noruego (bokmål)"
+          "label": "Noruego (bokmål)",
+          "value": "nb"
         },
         {
-          "label": "Noruego (nynorsk)"
+          "label": "Noruego (nynorsk)",
+          "value": "nn"
         },
         {
-          "label": "Southern Sámi"
+          "label": "Sami del Sur",
+          "value": "sma"
         },
         {
-          "label": "Español"
+          "label": "Español",
+          "value": "es"
         }
       ]
     },
@@ -68,7 +84,7 @@
       "label": "Palabras",
       "description": "Agregue palabras cargando un archivo CSV o escríbalas en el campo de texto.",
       "important": {
-        "description": "<ul><li>Las palabras de origen y de destino se separan con una coma (,).</li><li>Las respuestas alternativas se separan con una barra inclinada (/).</li><li>Puede agregar una pista de texto, usando dos puntos (:) delante de la pista.</li></ul>",
+        "description": "<ul><li>Las palabras de origen y de destino están separadas por una coma (,).</li><li>Las respuestas alternativas están separadas por una barra diagonal (/).</li><li>Puede agregar un consejo textual, usando dos puntos (:) delante de la sugerencia.</li><li>En CSV puede tener la palabra de origen y la palabra de destino, o la palabra de origen, la pista de origen, la palabra de destino y la pista de destino.</li></ul>",
         "example": "agua/mar:a___a,agua/mar:m__r"
       }
     },
@@ -218,7 +234,7 @@
         },
         {
           "label": "Texto para el mensaje de \"No completado\"",
-          "default": "Por favor, completa todos los huecos para poder ver la solución."
+          "default": "Por favor, completa todos los huecos para poder ver la solución"
         },
         {
           "label": "Texto para el mensaje de \"':ans' es correcto\"",

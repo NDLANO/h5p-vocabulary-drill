@@ -9,28 +9,36 @@
       "description": "Escolle a lingua das palabras fonte.",
       "options": [
         {
-          "label": "Inglés"
+          "label": "Inglés",
+          "value": "en"
         },
         {
-          "label": "Francés"
+          "label": "Francés",
+          "value": "fr"
         },
         {
-          "label": "Alemán"
+          "label": "Alemán",
+          "value": "de"
         },
         {
-          "label": "Northern Sámi"
+          "label": "sami do norte",
+          "value": "sme"
         },
         {
-          "label": "Bokmål noruegués"
+          "label": "Bokmål noruegués",
+          "value": "nb"
         },
         {
-          "label": "Nynorsk noruegués"
+          "label": "Nynorsk noruegués",
+          "value": "nn"
         },
         {
-          "label": "Southern Sámi"
+          "label": "Sami do sur",
+          "value": "sma"
         },
         {
-          "label": "Español"
+          "label": "Español",
+          "value": "es"
         }
       ]
     },
@@ -39,28 +47,36 @@
       "description": "Escolle a lingua das palabras de destino.",
       "options": [
         {
-          "label": "Inglés"
+          "label": "Inglés",
+          "value": "en"
         },
         {
-          "label": "Francés"
+          "label": "Francés",
+          "value": "fr"
         },
         {
-          "label": "Alemán"
+          "label": "Alemán",
+          "value": "de"
         },
         {
-          "label": "Northern Sámi"
+          "label": "sami do norte",
+          "value": "sme"
         },
         {
-          "label": "Bokmål noruegués"
+          "label": "Bokmål noruegués",
+          "value": "nb"
         },
         {
-          "label": "Nynorsk noruegués"
+          "label": "Nynorsk noruegués",
+          "value": "nn"
         },
         {
-          "label": "Southern Sámi"
+          "label": "Sami do sur",
+          "value": "sma"
         },
         {
-          "label": "Español"
+          "label": "Español",
+          "value": "es"
         }
       ]
     },
@@ -68,7 +84,7 @@
       "label": "Palabras",
       "description": "Engade palabras cargando un ficheiro CSV ou escríbeas no campo de texto.",
       "important": {
-        "description": "<ul><li>As palabras orixe e destino sepáranse cunha coma (,).</li><li>As respostas alternativas sepáranse cunha barra inclinada (/).</li><li>Podes engadir unha pista textual, usando dous puntos (:) diante da pista.</li></ul>",
+        "description": "<ul><li>As palabras orixe e destino sepáranse cunha coma (,).</li><li>As respostas alternativas sepáranse cunha barra inclinada (/).</li><li>Podes engadir unha suxestión textual, usando dous puntos (:) diante da punta.</li><li>En CSV podes ter a palabra orixe e a palabra de destino, ou a palabra orixe, a suxestión de orixe, a palabra de destino e a indicación de destino.</li></ul>",
         "example": "auga/mar:a___a,auga/mar:m__a"
       }
     },

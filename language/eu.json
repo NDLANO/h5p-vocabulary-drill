@@ -9,28 +9,36 @@
       "description": "Aukeratu jatorrizko hitzen hizkuntza.",
       "options": [
         {
-          "label": "Ingelesa"
+          "label": "Ingelesa",
+          "value": "en"
         },
         {
-          "label": "Frantsesa"
+          "label": "Frantsesa",
+          "value": "fr"
         },
         {
-          "label": "Alemana"
+          "label": "Alemana",
+          "value": "de"
         },
         {
-          "label": "Northern Sámi"
+          "label": "Northern Sámi",
+          "value": "sme"
         },
         {
-          "label": "Norvegiako bokmål"
+          "label": "Norvegiako bokmål",
+          "value": "nb"
         },
         {
-          "label": "Norvegiako nynorsk"
+          "label": "Norvegiako nynorsk",
+          "value": "nn"
         },
         {
-          "label": "Southern Sámi"
+          "label": "Southern Sámi",
+          "value": "sma"
         },
         {
-          "label": "Gaztelania"
+          "label": "Gaztelania",
+          "value": "es"
         }
       ]
     },
@@ -39,28 +47,36 @@
       "label": "Helburu-hizkuntza",
       "options": [
         {
-          "label": "Ingelesa"
+          "label": "Ingelesa",
+          "value": "en"
         },
         {
-          "label": "Frantsesa"
+          "label": "Frantsesa",
+          "value": "fr"
         },
         {
-          "label": "Alemana"
+          "label": "Alemana",
+          "value": "de"
         },
         {
-          "label": "Northern Sámi"
+          "label": "Northern Sámi",
+          "value": "sme"
         },
         {
-          "label": "Norvegiako bokmål"
+          "label": "Norvegiako bokmål",
+          "value": "nb"
         },
         {
-          "label": "Norvegiako nynorsk"
+          "label": "Norvegiako nynorsk",
+          "value": "nn"
         },
         {
-          "label": "Southern Sámi"
+          "label": "Southern Sámi",
+          "value": "sma"
         },
         {
-          "label": "Gaztelania"
+          "label": "Gaztelania",
+          "value": "es"
         }
       ]
     },
