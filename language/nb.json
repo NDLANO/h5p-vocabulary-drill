@@ -11,8 +11,10 @@
         { "label": "Engelsk" },
         { "label": "Fransk" },
         { "label": "Tysk" },
+        { "label": "Nordsamisk" },
         { "label": "Norsk (bokmål)" },
         { "label": "Norsk (nynorsk)" },
+        { "label": "Sørsamisk" },
         { "label": "Spansk" }
       ]
     },
@@ -23,8 +25,10 @@
         { "label": "Engelsk" },
         { "label": "Fransk" },
         { "label": "Tysk" },
+        { "label": "Nordsamisk" },
         { "label": "Norsk (bokmål)" },
         { "label": "Norsk (nynorsk)" },
+        { "label": "Sørsamisk" },
         { "label": "Spansk" }
       ]
     },
@@ -32,7 +36,7 @@
       "label": "Ord",
       "description": "Legg til ord ved å laste opp ei CSV-fil, eller skriv orda inn i tekstfeltet.",
       "important": {
-        "description": "<ul><li>Kilde- og målord er atskilt med komma (,).</li><li>Alternative svar er atskilt med en framoverlent skråstrek (/).</li><li>Du kan legge til et teksttips ved å bruke kolon (:) foran tipset.</li></ul>",
+        "description": "<ul><li>Kilde- og målord er atskilt med komma (,).</li><li>Alternative svar er atskilt med en framoverlent skråstrek (/).</li><li>Du kan legge til et teksttips ved å bruke kolon (:) foran tipset.</li><li>I CSV-fila kan det enten være kun kilde- og målord eller kildeord, hint, målord, og hint.</li></ul>",
         "example": "water/sea:w___r,vann/hav:v__n"
       }
     },
@@ -140,12 +144,20 @@
           "default": "Tysk"
         },
         {
+          "label": "Nordsamisk",
+          "default": "Nordsamisk"
+        },
+        {
           "label": "Norsk (bokmål)",
           "default": "Norsk (bokmål)"
         },
         {
           "label": "Norsk (nynorsk)",
           "default": "Norsk (nynorsk)"
+        },
+        {
+          "label": "Sørsamisk",
+          "default": "Sørsamisk"
         },
         {
           "label": "Spansk",
