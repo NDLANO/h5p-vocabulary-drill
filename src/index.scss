@@ -11,6 +11,7 @@
      * Overrides that can be removed once
      * https://h5ptechnology.atlassian.net/browse/HFP-3797 has been resolved
      * pull request at https://github.com/h5p/h5p-drag-text/pull/143
+     * and once https://h5ptechnology.atlassian.net/browse/HFP-3830 is handled
      */
     &.h5p-drag-text {
       // Override cursor state to not kick in when draggable is disabled
@@ -19,6 +20,11 @@
 
         &:not(.ui-draggable-disabled) {
           cursor: pointer;
+        }
+
+        // HFP-3830
+        &:not(.h5p-drag-dropped) {
+          border-color: #949494;
         }
       }
 
@@ -48,6 +54,11 @@
         border: 0.1em solid rgb(212,190,216);
         color: #663366;
         background: #edd6e9;
+      }
+
+      // HFP-3830
+      [aria-dropeffect] {
+        border: 0.1em solid #5c98da;
       }
     }
 
@@ -185,7 +196,7 @@
   .h5p-vocabulary-drill-grid-title {
     color: #4c4452;
     font-weight: bold;
-    
+
     &:first-child {
       padding-right: 1.5rem;
     }
