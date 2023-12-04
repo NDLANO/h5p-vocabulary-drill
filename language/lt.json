@@ -17,10 +17,16 @@
           "label": "Vokiečių"
         },
         {
+          "label": "Northern Sámi"
+        },
+        {
           "label": "Norvegų"
         },
         {
           "label": "Norwegian nynorsk"
+        },
+        {
+          "label": "Southern Sámi"
         },
         {
           "label": "Ispanų"
@@ -40,10 +46,16 @@
           "label": "Vokiečių"
         },
         {
-          "label": "Norwegian bokmål"
+          "label": "Northern Sámi"
+        },
+        {
+          "label": "Norvegų"
         },
         {
           "label": "Norwegian nynorsk"
+        },
+        {
+          "label": "Southern Sámi"
         },
         {
           "label": "Ispanų"
@@ -163,12 +175,20 @@
           "default": "German"
         },
         {
+          "label": "Northern Sámi",
+          "default": "Northern Sámi"
+        },
+        {
           "label": "Norwegian bokmål",
           "default": "Norwegian bokmål"
         },
         {
           "label": "Norwegian nynorsk",
           "default": "Norwegian nynorsk"
+        },
+        {
+          "label": "Southern Sámi",
+          "default": "Southern Sámi"
         },
         {
           "default": "Spanish",

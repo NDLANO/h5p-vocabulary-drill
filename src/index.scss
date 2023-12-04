@@ -89,7 +89,8 @@
 
         /* Add a bottom border to all children, except the last row */
         & > *:nth-last-child(n+4):not(.h5p-correct-answer),
-        & > *:nth-last-child(3).h5p-input-wrapper {
+        & > *:nth-last-child(3).h5p-input-wrapper,
+        & > *:nth-last-child(3).h5p-vocabulary-drill-grid-title {
           border-bottom: 1px solid #eee;
           padding-bottom: 0.5rem;
         }

@@ -18,10 +18,16 @@
           "label": "Deutsch"
         },
         {
+          "label": "Northern Sámi"
+        },
+        {
           "label": "Norwegisch (Bokmål)"
         },
         {
           "label": "Norwegisch (Nynorsk)"
+        },
+        {
+          "label": "Southern Sámi"
         },
         {
           "label": "Spanisch"
@@ -40,10 +46,16 @@
           "label": "Deutsch"
         },
         {
+          "label": "Northern Sámi"
+        },
+        {
           "label": "Norwegisch (Bokmål)"
         },
         {
           "label": "Norwegisch (Nynorsk)"
+        },
+        {
+          "label": "Southern Sámi"
         },
         {
           "label": "Spanisch"
@@ -164,12 +176,20 @@
           "default": "Deutsch"
         },
         {
+          "label": "Northern Sámi",
+          "default": "Northern Sámi"
+        },
+        {
           "label": "Norwegisch (Bokmål)",
           "default": "Norwegisch (Bokmål)"
         },
         {
           "label": "Norwegisch (Nynorsk)",
           "default": "Norwegisch (Nynorsk)"
+        },
+        {
+          "label": "Southern Sámi",
+          "default": "Southern Sámi"
         },
         {
           "label": "Spanisch",
