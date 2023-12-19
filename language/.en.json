@@ -8,28 +8,60 @@
       "label": "Source language",
       "description": "Choose the language of the source words.",
       "options": [
-        { "label": "English" },
-        { "label": "French" },
-        { "label": "German" },
-        { "label": "Northern Sámi" },
-        { "label": "Norwegian bokmål" },
-        { "label": "Norwegian nynorsk" },
-        { "label": "Southern Sámi" },
-        { "label": "Spanish" }
+        {
+          "label": "English"
+        },
+        {
+          "label": "French"
+        },
+        {
+          "label": "German"
+        },
+        {
+          "label": "Northern Sámi"
+        },
+        {
+          "label": "Norwegian bokmål"
+        },
+        {
+          "label": "Norwegian nynorsk"
+        },
+        {
+          "label": "Southern Sámi"
+        },
+        {
+          "label": "Spanish"
+        }
       ]
     },
     {
       "label": "Target language",
       "description": "Choose the language of the target words.",
       "options": [
-        { "label": "English" },
-        { "label": "French" },
-        { "label": "German" },
-        { "label": "Northern Sámi" },
-        { "label": "Norwegian bokmål" },
-        { "label": "Norwegian nynorsk" },
-        { "label": "Southern Sámi" },
-        { "label": "Spanish" }
+        {
+          "label": "English"
+        },
+        {
+          "label": "French"
+        },
+        {
+          "label": "German"
+        },
+        {
+          "label": "Northern Sámi"
+        },
+        {
+          "label": "Norwegian bokmål"
+        },
+        {
+          "label": "Norwegian nynorsk"
+        },
+        {
+          "label": "Southern Sámi"
+        },
+        {
+          "label": "Spanish"
+        }
       ]
     },
     {
@@ -371,8 +403,12 @@
         {
           "label": "Answer mode",
           "options": [
-            { "label": "Fill in" },
-            { "label": "Drag text" }
+            {
+              "label": "Fill in"
+            },
+            {
+              "label": "Drag text"
+            }
           ]
         },
         {

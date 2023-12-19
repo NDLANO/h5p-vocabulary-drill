@@ -9,36 +9,28 @@
       "description": "Vel språk for kjeldeorda.",
       "options": [
         {
-          "label": "Engelsk",
-          "value": "en"
+          "label": "Engelsk"
         },
         {
-          "label": "Fransk",
-          "value": "fr"
+          "label": "Fransk"
         },
         {
-          "label": "Tysk",
-          "value": "de"
+          "label": "Tysk"
         },
         {
-          "label": "Nordsamisk",
-          "value": "sme"
+          "label": "Nordsamisk"
         },
         {
-          "label": "Norsk (bokmål)",
-          "value": "nb"
+          "label": "Norsk (bokmål)"
         },
         {
-          "label": "Norsk (nynorsk)",
-          "value": "nn"
+          "label": "Norsk (nynorsk)"
         },
         {
-          "label": "Spansk",
-          "value": "sma"
+          "label": "Spansk"
         },
         {
-          "label": "Sørsamisk",
-          "value": "es"
+          "label": "Sørsamisk"
         }
       ]
     },
@@ -47,36 +39,28 @@
       "description": "Vel språk for målorda.",
       "options": [
         {
-          "label": "Engelsk",
-          "value": "en"
+          "label": "Engelsk"
         },
         {
-          "label": "Fransk",
-          "value": "fr"
+          "label": "Fransk"
         },
         {
-          "label": "Tysk",
-          "value": "de"
+          "label": "Tysk"
         },
         {
-          "label": "Nordsamisk",
-          "value": "sme"
+          "label": "Nordsamisk"
         },
         {
-          "label": "Norsk (bokmål)",
-          "value": "nb"
+          "label": "Norsk (bokmål)"
         },
         {
-          "label": "Norsk (nynorsk)",
-          "value": "nn"
+          "label": "Norsk (nynorsk)"
         },
         {
-          "label": "Spansk",
-          "value": "sma"
+          "label": "Spansk"
         },
         {
-          "label": "Sørsamisk",
-          "value": "es"
+          "label": "Sørsamisk"
         }
       ]
     },

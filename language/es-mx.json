@@ -9,36 +9,28 @@
       "description": "Elija el idioma de las palabras de origen.",
       "options": [
         {
-          "label": "Inglés",
-          "value": "en"
+          "label": "Inglés"
         },
         {
-          "label": "Francés",
-          "value": "fr"
+          "label": "Francés"
         },
         {
-          "label": "Alemán",
-          "value": "de"
+          "label": "Alemán"
         },
         {
-          "label": "Sami del norte",
-          "value": "sme"
+          "label": "Sami del norte"
         },
         {
-          "label": "Noruego (bokmål)",
-          "value": "nb"
+          "label": "Noruego (bokmål)"
         },
         {
-          "label": "Noruego (nynorsk)",
-          "value": "nn"
+          "label": "Noruego (nynorsk)"
         },
         {
-          "label": "Sami del Sur",
-          "value": "sma"
+          "label": "Sami del Sur"
         },
         {
-          "label": "Español",
-          "value": "es"
+          "label": "Español"
         }
       ]
     },
@@ -47,35 +39,27 @@
       "description": "Elija el idioma de las palabras de destino.",
       "options": [
         {
-          "label": "Inglés",
-          "value": "en"
+          "label": "Inglés"
         },
         {
-          "label": "Francés",
-          "value": "fr"
+          "label": "Francés"
         },
         {
-          "label": "Alemán",
-          "value": "de"
+          "label": "Alemán"
         },
         {
-          "label": "Sami del norte",
-          "value": "sme"
+          "label": "Sami del norte"
         },
         {
-          "label": "Noruego (bokmål)",
-          "value": "nb"
+          "label": "Noruego (bokmål)"
         },
         {
-          "label": "Noruego (nynorsk)",
-          "value": "nn"
+          "label": "Noruego (nynorsk)"
         },
         {
-          "label": "Sami del Sur",
-          "value": "sma"
+          "label": "Sami del Sur"
         },
         {
-          "value": "es",
           "label": "Español"
         }
       ]
@@ -140,8 +124,8 @@
           "default": "Cambiar idiomas"
         },
         {
-          "default": "Modo de respuesta cambiado a @option",
-          "label": "Modo aria respuesta cambiada"
+          "label": "Modo aria respuesta cambiada",
+          "default": "Modo de respuesta cambiado a @option"
         },
         {
           "label": "Modo aria idioma",
@@ -172,20 +156,20 @@
           "default": "Usted tiene @score de un total de @maxScore puntos"
         },
         {
-          "default": "Página @page de @totalPages",
-          "label": "Representación textual de los números de página para aquellos que usan un lector de pantalla en voz alta"
+          "label": "Representación textual de los números de página para aquellos que usan un lector de pantalla en voz alta",
+          "default": "Página @page de @totalPages"
         },
         {
-          "default": "Su puntaje total",
-          "label": "Texto de retroalimentación"
+          "label": "Texto de retroalimentación",
+          "default": "Su puntaje total"
         },
         {
           "label": "Inglés",
           "default": "Inglés"
         },
         {
-          "default": "Francés",
-          "label": "Francés"
+          "label": "Francés",
+          "default": "Francés"
         },
         {
           "label": "Alemán",
@@ -202,6 +186,14 @@
         {
           "label": "Español",
           "default": "Español"
+        },
+        {
+          "label": "Southern Sámi",
+          "default": "Southern Sámi"
+        },
+        {
+          "label": "Spanish",
+          "default": "Spanish"
         }
       ]
     },
@@ -284,6 +276,7 @@
       ]
     },
     {
+      "label": "Adaptación local para ArrastrarTexto",
       "fields": [
         {
           "label": "Texto para botón \"Comprobar\"",
@@ -298,8 +291,8 @@
           "default": "Reintentar"
         },
         {
-          "default": "Mostrar Solución",
-          "label": "Texto para el botón \"Mostrar solución\""
+          "label": "Texto para el botón \"Mostrar solución\"",
+          "default": "Mostrar Solución"
         },
         {
           "label": "Etiqueta de zona de colocación numerada",
@@ -374,10 +367,11 @@
           "label": "Descripción para las tecnologías de asistencia del botón \"Intentar de nuevo\"",
           "default": "Vuelva a intentar la tarea. Borre todas sus respuestas y empiece de nuevo."
         }
-      ],
-      "label": "Adaptación local para ArrastrarTexto"
+      ]
     },
     {
+      "label": "Configuraciones del comportamiento",
+      "description": "Estas opciones le permitirán controlar como se comporta la tarea.",
       "fields": [
         {
           "label": "Habilitar \"Reintentar\""
@@ -429,9 +423,7 @@
           "label": "Número de palabras",
           "description": "Define cuántas palabras serán visibles cada vez. Si se establece a 0, se mostrarán todas las palabras."
         }
-      ],
-      "label": "Configuraciones del comportamiento",
-      "description": "Estas opciones le permitirán controlar como se comporta la tarea."
+      ]
     }
   ]
 }

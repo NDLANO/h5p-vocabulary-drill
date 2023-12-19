@@ -12,14 +12,38 @@
     "description": "Choose the language of the source words.",
     "type": "select",
     "options": [
-      { "value": "en", "label": "English" },
-      { "value": "fr", "label": "French" },
-      { "value": "de", "label": "German" },
-      { "value": "sme", "label": "Northern Sámi" },
-      { "value": "nb", "label": "Norwegian bokmål" },
-      { "value": "nn", "label": "Norwegian nynorsk" },
-      { "value": "sma", "label": "Southern Sámi" },
-      { "value": "es", "label": "Spanish" }
+      {
+        "value": "en",
+        "label": "English"
+      },
+      {
+        "value": "fr",
+        "label": "French"
+      },
+      {
+        "value": "de",
+        "label": "German"
+      },
+      {
+        "value": "sme",
+        "label": "Northern Sámi"
+      },
+      {
+        "value": "nb",
+        "label": "Norwegian bokmål"
+      },
+      {
+        "value": "nn",
+        "label": "Norwegian nynorsk"
+      },
+      {
+        "value": "sma",
+        "label": "Southern Sámi"
+      },
+      {
+        "value": "es",
+        "label": "Spanish"
+      }
     ],
     "default": "en"
   },
@@ -29,14 +53,38 @@
     "description": "Choose the language of the target words.",
     "type": "select",
     "options": [
-      { "value": "en", "label": "English" },
-      { "value": "fr", "label": "French" },
-      { "value": "de", "label": "German" },
-      { "value": "sme", "label": "Northern Sámi" },
-      { "value": "nb", "label": "Norwegian bokmål" },
-      { "value": "nn", "label": "Norwegian nynorsk" },
-      { "value": "sma", "label": "Southern Sámi" },
-      { "value": "es", "label": "Spanish" }
+      {
+        "value": "en",
+        "label": "English"
+      },
+      {
+        "value": "fr",
+        "label": "French"
+      },
+      {
+        "value": "de",
+        "label": "German"
+      },
+      {
+        "value": "sme",
+        "label": "Northern Sámi"
+      },
+      {
+        "value": "nb",
+        "label": "Norwegian bokmål"
+      },
+      {
+        "value": "nn",
+        "label": "Norwegian nynorsk"
+      },
+      {
+        "value": "sma",
+        "label": "Southern Sámi"
+      },
+      {
+        "value": "es",
+        "label": "Spanish"
+      }
     ],
     "default": "nb"
   },
@@ -599,8 +647,14 @@
         "widget": "radioGroup",
         "alignment": "horizontal",
         "options": [
-          { "label": "Fill in", "value": "fillIn" },
-          { "label": "Drag text", "value": "dragText" }
+          {
+            "label": "Fill in",
+            "value": "fillIn"
+          },
+          {
+            "label": "Drag text",
+            "value": "dragText"
+          }
         ],
         "default": "fillIn"
       },
