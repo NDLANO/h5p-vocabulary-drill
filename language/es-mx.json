@@ -108,6 +108,11 @@
           "default": "No se encontraron palabras válidas. Por favor revise sus palabras y vuelva a intentarlo."
         },
         {
+          "label": "Override for Drag the Words dopzone aria label",
+          "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
+          "default": "Drop the translation of @sourceWord here."
+        },
+        {
           "label": "Etiqueta para el modo de respuesta \"Rellenar\"",
           "default": "Rellenar"
         },
