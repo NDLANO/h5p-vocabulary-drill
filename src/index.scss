@@ -488,3 +488,17 @@
     }
   }
 }
+
+/*
+     * Overrides that can be removed once
+     * https://h5ptechnology.atlassian.net/browse/HFP-3846 has been resolved
+     */
+.h5p-confirmation-dialog-background {
+  .h5p-core-button:hover {
+    background: #1356a3;
+  }
+  .h5p-core-button:focus-visible {
+    outline: -webkit-focus-ring-color auto 1px;
+    outline: revert;
+  }
+}
