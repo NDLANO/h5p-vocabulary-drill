@@ -19,13 +19,27 @@ import { ScorePage } from '../ScorePage/ScorePage';
 import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
 
+/*
+ * Missing in IH5PContentType in h5p-types. FixedSubContentType can be replaced
+ * by SubContentType once the type definitions are updated in h5p-types.
+ */
+type FixedSubContentType = SubContentType & {
+  libraryInfo: {
+    machineName: string,
+    majorVersion: string,
+    minorVersion: string,
+    versionedName: string,
+    versionedNameNoSpaces: string,
+  };
+}
+
 type VocabularyDrillProps = {
   title: string;
   params: Params;
   previousState: State | undefined;
   onChangeContentType: (
     type: AnswerModeType,
-    contentType: SubContentType,
+    contentType: FixedSubContentType,
   ) => void;
   onChangeLanguageMode: (languageMode: LanguageModeType) => void;
   onTrigger: (event: XAPIVerb) => void;
@@ -42,7 +56,7 @@ function attachContentType(
   wrapper: HTMLElement,
   contentTypeParams: Record<string, unknown>,
   h5pMainInstance: H5PContentType
-): SubContentType {
+): FixedSubContentType {
   const activeContentType = H5P.newRunnable(
     {
       library: libraryToString(libraryInfo),
@@ -52,7 +66,7 @@ function attachContentType(
     H5P.jQuery(wrapper),
     undefined,
     extras,
-  ) as unknown as SubContentType;
+  ) as unknown as FixedSubContentType;
 
   // Forward resize events from main instance to subcontent instance and v. v.
   if (activeContentType) {
@@ -76,7 +90,7 @@ function createDragText(
   >,
   wrapper: HTMLElement,
   h5pMainInstance: H5PContentType
-): SubContentType {
+): FixedSubContentType {
   const dragTextWords = parseSourceAndTarget(words, showTips, AnswerModeType.DragText, languageMode);
 
   const dragTextParams = {
@@ -182,7 +196,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [showResults, setShowResults] = useState(false);
   const [isRetrying, setIsRetrying] = useState(false);
 
-  const activeContentType = useRef<SubContentType | undefined>(undefined);
+  const activeContentType = useRef<FixedSubContentType | undefined>(undefined);
 
   // If previous state set, word must not be randomized to keep previous order
   const words = useRef(
@@ -560,11 +574,61 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     }
   };
 
+  const overrideDraggableHandling = () => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+
+    if (activeContentType.current?.libraryInfo?.machineName !== 'H5P.DragText') {
+      return;
+    }
+
+    const instance = activeContentType.current;
+
+    /*
+     * Ignoring TypeScript errors here for not having to go down the rabbit hole
+     * of extending the type definitions for content types (which would change)
+     * frequently and of also having to extend the type definitions for jQuery
+     * regarding jQueryUI.
+     */
+    wrapper.querySelectorAll('.h5p-drag-droppable-words .ui-droppable')
+      .forEach((element) => {
+        // @ts-ignore
+        H5P.jQuery(element).droppable({
+          tolerance: 'touch',
+          over: (event: Event) => {
+            // @ts-ignore
+            instance.droppables?.forEach((droppable) => {
+              if (droppable.getElement() !== event.target) {
+                droppable.$dropzone.droppable({ disabled: true });
+              }
+            });
+          },
+          out: () => {
+            // @ts-ignore
+            instance.droppables?.forEach((droppable) => {
+              droppable.$dropzone.droppable({ disabled: false });
+            });
+          }
+        });
+
+        H5P.jQuery(element).on('drop', () => {
+          // @ts-ignore
+          instance.droppables?.forEach((droppable) => {
+            droppable.$dropzone.droppable({ disabled: false });
+          });
+        });
+      });
+  };
+
   h5pMainInstance.trigger('resize');
 
   useEffect(() => {
     addLanguageAttributes();
     addGridTitles();
+    // Obsolete once https://h5ptechnology.atlassian.net/browse/HFP-3847 is done and released
+    overrideDraggableHandling();
   }, [activeLanguageMode, activeAnswerMode, wrapperRef, page]);
 
   return (
