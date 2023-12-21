@@ -19,27 +19,13 @@ import { ScorePage } from '../ScorePage/ScorePage';
 import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
 
-/*
- * Missing in IH5PContentType in h5p-types. FixedSubContentType can be replaced
- * by SubContentType once the type definitions are updated in h5p-types.
- */
-type FixedSubContentType = SubContentType & {
-  libraryInfo: {
-    machineName: string,
-    majorVersion: string,
-    minorVersion: string,
-    versionedName: string,
-    versionedNameNoSpaces: string,
-  };
-}
-
 type VocabularyDrillProps = {
   title: string;
   params: Params;
   previousState: State | undefined;
   onChangeContentType: (
     type: AnswerModeType,
-    contentType: FixedSubContentType,
+    contentType: SubContentType,
   ) => void;
   onChangeLanguageMode: (languageMode: LanguageModeType) => void;
   onTrigger: (event: XAPIVerb) => void;
@@ -56,7 +42,7 @@ function attachContentType(
   wrapper: HTMLElement,
   contentTypeParams: Record<string, unknown>,
   h5pMainInstance: H5PContentType
-): FixedSubContentType {
+): SubContentType {
   const activeContentType = H5P.newRunnable(
     {
       library: libraryToString(libraryInfo),
@@ -66,7 +52,7 @@ function attachContentType(
     H5P.jQuery(wrapper),
     undefined,
     extras,
-  ) as unknown as FixedSubContentType;
+  ) as unknown as SubContentType;
 
   // Forward resize events from main instance to subcontent instance and v. v.
   if (activeContentType) {
@@ -90,7 +76,7 @@ function createDragText(
   >,
   wrapper: HTMLElement,
   h5pMainInstance: H5PContentType
-): FixedSubContentType {
+): SubContentType {
   const dragTextWords = parseSourceAndTarget(words, showTips, AnswerModeType.DragText, languageMode);
 
   const dragTextParams = {
@@ -196,7 +182,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [showResults, setShowResults] = useState(false);
   const [isRetrying, setIsRetrying] = useState(false);
 
-  const activeContentType = useRef<FixedSubContentType | undefined>(undefined);
+  const activeContentType = useRef<SubContentType | undefined>(undefined);
 
   // If previous state set, word must not be randomized to keep previous order
   const words = useRef(

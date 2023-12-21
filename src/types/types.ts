@@ -1,4 +1,4 @@
-import type { IH5PQuestionType, InferParamsFromSemantics } from 'h5p-types';
+import type { H5PLibraryInfo, IH5PQuestionType, InferParamsFromSemantics } from 'h5p-types';
 import { H5PResumableContentType } from 'h5p-utils';
 import semantics from '../../semantics.json';
 
@@ -27,4 +27,5 @@ export type State = {
   [AnswerModeType.FillIn]?: unknown;
 };
 
-export type SubContentType = IH5PQuestionType & H5PResumableContentType;
+export type SubContentType = IH5PQuestionType & H5PResumableContentType &
+  { libraryInfo: H5PLibraryInfo };
