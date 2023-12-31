@@ -40,7 +40,7 @@
           "value": "es"
         }
       ],
-      "description": "Choose the language of the source words."
+      "description": "Pasirinkite pirminių žodžių kalbą."
     },
     {
       "options": [
@@ -100,7 +100,7 @@
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Balų intervalas"
               },
               {},
               {
@@ -110,7 +110,7 @@
             ],
             "label": "Bendras atsiliepimas"
           },
-          "label": "Define custom feedback for any score range",
+          "label": "Nustatyti tinkintus atsiliepimus bet kokiam balų intervalui",
           "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
           "entity": "diapazonas"
         }
@@ -211,7 +211,7 @@
           "label": "Spanish"
         }
       ],
-      "label": "Localization"
+      "label": "Lokalizacija"
     },
     {
       "fields": [
