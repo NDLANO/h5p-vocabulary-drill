@@ -21,7 +21,7 @@
           "value": "de"
         },
         {
-          "label": "Northern Sámi",
+          "label": "Nordsamisch",
           "value": "sme"
         },
         {
@@ -33,7 +33,7 @@
           "value": "nn"
         },
         {
-          "label": "Southern Sámi",
+          "label": "Südsamisch",
           "value": "sma"
         },
         {
@@ -57,7 +57,7 @@
           "value": "de"
         },
         {
-          "label": "Northern Sámi",
+          "label": "Nordsamisch",
           "value": "sme"
         },
         {
@@ -69,7 +69,7 @@
           "value": "nn"
         },
         {
-          "label": "Southern Sámi",
+          "label": "Südsamisch",
           "value": "sma"
         },
         {
@@ -84,7 +84,7 @@
       "label": "Wörter",
       "description": "Füge Wörter hinzu, indem du eine CSV-Datei hochlädst oder schreibe sie in das Textfeld.",
       "important": {
-        "description": "<ul><li>Quell- und Zielwörter werden durch ein Komma (,) getrennt.</li><li>Alternative Antworten werden durch einen Schrägstrich (/) getrennt.</li><li>Du kannst einen Hinweistext hinzufügen mit einem Doppelpunkt (:) vor dem Hinweis.</li></ul>",
+        "description": "<ul><li>Quell- und Zielwörter werden durch ein Komma (,) getrennt.</li><li>Alternative Antworten werden durch einen Schrägstrich (/) getrennt.</li><li>Du kannst einen Hinweistext hinzufügen mit einem Doppelpunkt (:) vor dem Hinweis.</li><li>In der CSV-Datei kannst du entweder ein Quellwort und ein Zielwort haben, oder Quellwort, Quellhinweis, Zielwort und Zielhinweis.</li></ul>",
         "example": "water/sea:w___r,Wasser/Meer:W____r"
       }
     },
@@ -192,8 +192,8 @@
           "default": "Deutsch"
         },
         {
-          "label": "Northern Sámi",
-          "default": "Northern Sámi"
+          "label": "Nordsamisch",
+          "default": "Nordsamisch"
         },
         {
           "label": "Norwegisch (Bokmål)",
@@ -204,8 +204,8 @@
           "default": "Norwegisch (Nynorsk)"
         },
         {
-          "label": "Southern Sámi",
-          "default": "Southern Sámi"
+          "label": "Südsamisch",
+          "default": "Südsamisch"
         },
         {
           "label": "Spanisch",
