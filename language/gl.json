@@ -9,36 +9,28 @@
       "description": "Escolle a lingua das palabras fonte.",
       "options": [
         {
-          "label": "Inglés",
-          "value": "en"
+          "label": "Inglés"
         },
         {
-          "label": "Francés",
-          "value": "fr"
+          "label": "Francés"
         },
         {
-          "label": "Alemán",
-          "value": "de"
+          "label": "Alemán"
         },
         {
-          "label": "sami do norte",
-          "value": "sme"
+          "label": "sami do norte"
         },
         {
-          "label": "Bokmål noruegués",
-          "value": "nb"
+          "label": "Bokmål noruegués"
         },
         {
-          "label": "Nynorsk noruegués",
-          "value": "nn"
+          "label": "Nynorsk noruegués"
         },
         {
-          "label": "Sami do sur",
-          "value": "sma"
+          "label": "Sami do sur"
         },
         {
-          "label": "Español",
-          "value": "es"
+          "label": "Español"
         }
       ]
     },
@@ -47,36 +39,28 @@
       "description": "Escolle a lingua das palabras de destino.",
       "options": [
         {
-          "label": "Inglés",
-          "value": "en"
+          "label": "Inglés"
         },
         {
-          "label": "Francés",
-          "value": "fr"
+          "label": "Francés"
         },
         {
-          "label": "Alemán",
-          "value": "de"
+          "label": "Alemán"
         },
         {
-          "label": "sami do norte",
-          "value": "sme"
+          "label": "sami do norte"
         },
         {
-          "label": "Bokmål noruegués",
-          "value": "nb"
+          "label": "Bokmål noruegués"
         },
         {
-          "label": "Nynorsk noruegués",
-          "value": "nn"
+          "label": "Nynorsk noruegués"
         },
         {
-          "label": "Sami do sur",
-          "value": "sma"
+          "label": "Sami do sur"
         },
         {
-          "label": "Español",
-          "value": "es"
+          "label": "Español"
         }
       ]
     },
@@ -124,6 +108,11 @@
           "default": "Non se atoparon palabras válidas. Comproba as túas palabras e téntao de novo."
         },
         {
+          "label": "Override for Drag the Words dopzone aria label",
+          "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
+          "default": "Drop the translation of @sourceWord here."
+        },
+        {
           "label": "Etiqueta para o modo de resposta \"Completar\"",
           "default": "Completar"
         },
@@ -140,12 +129,12 @@
           "default": "Intercambiar linguas"
         },
         {
-          "default": "Cambiouse o modo de resposta a @option",
-          "label": "Cambiouse o aria do modo de resposta"
+          "label": "Cambiouse o aria do modo de resposta",
+          "default": "Cambiouse o modo de resposta a @option"
         },
         {
-          "default": "Cambia o idioma de @sourceLanguage a @targetLanguage",
-          "label": "Modo de lingua aria"
+          "label": "Modo de lingua aria",
+          "default": "Cambia o idioma de @sourceLanguage a @targetLanguage"
         },
         {
           "label": "Cambiouse o modo de idioma aria",
@@ -160,16 +149,16 @@
           "default": "Rematar"
         },
         {
-          "default": "Reiniciar",
-          "label": "Etiqueta para o botón \"Reiniciar\""
+          "label": "Etiqueta para o botón \"Reiniciar\"",
+          "default": "Reiniciar"
         },
         {
           "label": "Etiqueta de puntuación",
           "default": "Puntuación"
         },
         {
-          "default": "Conseguiches @score dun máximo de @total puntos",
-          "label": "Representación textual da puntuación cando se está a usar un lector de pantalla"
+          "label": "Representación textual da puntuación cando se está a usar un lector de pantalla",
+          "default": "Conseguiches @score dun máximo de @total puntos"
         },
         {
           "label": "Representación textual dos números de páxina para os que usan un altofalante",

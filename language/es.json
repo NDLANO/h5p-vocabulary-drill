@@ -9,36 +9,28 @@
       "description": "Elija el idioma de las palabras de origen.",
       "options": [
         {
-          "label": "Inglés",
-          "value": "en"
+          "label": "Inglés"
         },
         {
-          "label": "Francés",
-          "value": "fr"
+          "label": "Francés"
         },
         {
-          "label": "Alemán",
-          "value": "de"
+          "label": "Alemán"
         },
         {
-          "label": "Sami del norte",
-          "value": "sme"
+          "label": "Sami del norte"
         },
         {
-          "label": "Noruego (bokmål)",
-          "value": "nb"
+          "label": "Noruego (bokmål)"
         },
         {
-          "label": "Noruego (nynorsk)",
-          "value": "nn"
+          "label": "Noruego (nynorsk)"
         },
         {
-          "label": "Sami del Sur",
-          "value": "sma"
+          "label": "Sami del Sur"
         },
         {
-          "label": "Español",
-          "value": "es"
+          "label": "Español"
         }
       ]
     },
@@ -47,36 +39,28 @@
       "description": "Elija el idioma de las palabras de destino.",
       "options": [
         {
-          "label": "Inglés",
-          "value": "en"
+          "label": "Inglés"
         },
         {
-          "label": "Francés",
-          "value": "fr"
+          "label": "Francés"
         },
         {
-          "label": "Alemán",
-          "value": "de"
+          "label": "Alemán"
         },
         {
-          "label": "Sami del norte",
-          "value": "sme"
+          "label": "Sami del norte"
         },
         {
-          "label": "Noruego (bokmål)",
-          "value": "nb"
+          "label": "Noruego (bokmål)"
         },
         {
-          "label": "Noruego (nynorsk)",
-          "value": "nn"
+          "label": "Noruego (nynorsk)"
         },
         {
-          "label": "Sami del Sur",
-          "value": "sma"
+          "label": "Sami del Sur"
         },
         {
-          "label": "Español",
-          "value": "es"
+          "label": "Español"
         }
       ]
     },
@@ -117,14 +101,20 @@
       ]
     },
     {
+      "label": "Adaptación local",
       "fields": [
         {
           "label": "Ninguna palabra válida",
           "default": "No se encontraron palabras válidas. Por favor, revisa tus palabras y vuelve a intentarlo."
         },
         {
-          "default": "Rellenar",
-          "label": "Etiqueta para el modo de respuesta \"Rellenar\""
+          "label": "Override for Drag the Words dopzone aria label",
+          "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
+          "default": "Drop the translation of @sourceWord here."
+        },
+        {
+          "label": "Etiqueta para el modo de respuesta \"Rellenar\"",
+          "default": "Rellenar"
         },
         {
           "label": "Etiqueta para el modo de respuesta \"Arrastrar texto\"",
@@ -167,8 +157,8 @@
           "default": "Puntuación"
         },
         {
-          "default": "Tienes @score de un total de @maxScore puntos",
-          "label": "Representación textual de la barra de puntuación para aquellos que usan un lector de pantalla"
+          "label": "Representación textual de la barra de puntuación para aquellos que usan un lector de pantalla",
+          "default": "Tienes @score de un total de @maxScore puntos"
         },
         {
           "label": "Representación textual de los números de página para aquellos que usan un lector de pantalla",
@@ -210,8 +200,7 @@
           "label": "Español",
           "default": "Español"
         }
-      ],
-      "label": "Adaptación local"
+      ]
     },
     {
       "label": "Adaptación local para \"Fill in the Blanks\"",
@@ -386,6 +375,8 @@
       ]
     },
     {
+      "label": "Configuraciones",
+      "description": "Estas opciones te permitirán controlar cómo funciona la tarea.",
       "fields": [
         {
           "label": "Habilitar el botón \"Intentar de nuevo\""
@@ -437,9 +428,7 @@
           "label": "Número de palabras",
           "description": "Define cuántas palabras serán visibles cada vez. Si se establece a 0, se mostrarán todas las palabras."
         }
-      ],
-      "label": "Configuraciones",
-      "description": "Estas opciones te permitirán controlar cómo funciona la tarea."
+      ]
     }
   ]
 }

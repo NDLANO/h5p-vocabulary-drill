@@ -9,36 +9,28 @@
       "description": "Velg språk for kildeorda.",
       "options": [
         {
-          "label": "Engelsk",
-          "value": "en"
+          "label": "Engelsk"
         },
         {
-          "label": "Fransk",
-          "value": "fr"
+          "label": "Fransk"
         },
         {
-          "label": "Tysk",
-          "value": "de"
+          "label": "Tysk"
         },
         {
-          "label": "Nordsamisk",
-          "value": "sme"
+          "label": "Nordsamisk"
         },
         {
-          "label": "Norsk (bokmål)",
-          "value": "nb"
+          "label": "Norsk (bokmål)"
         },
         {
-          "label": "Norsk (nynorsk)",
-          "value": "nn"
+          "label": "Norsk (nynorsk)"
         },
         {
-          "label": "Sørsamisk",
-          "value": "sma"
+          "label": "Sørsamisk"
         },
         {
-          "label": "Spansk",
-          "value": "es"
+          "label": "Spansk"
         }
       ]
     },
@@ -47,36 +39,28 @@
       "description": "Velg språk for målorda.",
       "options": [
         {
-          "label": "Engelsk",
-          "value": "en"
+          "label": "Engelsk"
         },
         {
-          "label": "Fransk",
-          "value": "fr"
+          "label": "Fransk"
         },
         {
-          "label": "Tysk",
-          "value": "de"
+          "label": "Tysk"
         },
         {
-          "label": "Nordsamisk",
-          "value": "sme"
+          "label": "Nordsamisk"
         },
         {
-          "label": "Norsk (bokmål)",
-          "value": "nb"
+          "label": "Norsk (bokmål)"
         },
         {
-          "label": "Norsk (nynorsk)",
-          "value": "nn"
+          "label": "Norsk (nynorsk)"
         },
         {
-          "label": "Sørsamisk",
-          "value": "sma"
+          "label": "Sørsamisk"
         },
         {
-          "label": "Spansk",
-          "value": "es"
+          "label": "Spansk"
         }
       ]
     },
@@ -122,6 +106,11 @@
         {
           "label": "Ingen gyldige ord",
           "default": "Ingen gyldige ord funnet. Kontroller orda dine og prøv igjen."
+        },
+        {
+          "label": "Override for Drag the Words dopzone aria label",
+          "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
+          "default": "Drop the translation of @sourceWord here."
         },
         {
           "label": "Navn på svarmodus \"Fyll inn\"",
