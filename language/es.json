@@ -109,7 +109,7 @@
         },
         {
           "label": "Override for Drag the Words dopzone aria label",
-          "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
+          "description": "@sourceWord es un reemplazable y será reemplazado con el valor respectivo.",
           "default": "Drop the translation of @sourceWord here."
         },
         {
