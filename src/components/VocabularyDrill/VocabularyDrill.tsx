@@ -575,11 +575,61 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     }
   };
 
+  const overrideDraggableHandling = () => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) {
+      return;
+    }
+
+    if (activeContentType.current?.libraryInfo?.machineName !== 'H5P.DragText') {
+      return;
+    }
+
+    const instance = activeContentType.current;
+
+    /*
+     * Ignoring TypeScript errors here for not having to go down the rabbit hole
+     * of extending the type definitions for content types (which would change)
+     * frequently and of also having to extend the type definitions for jQuery
+     * regarding jQueryUI.
+     */
+    wrapper.querySelectorAll('.h5p-drag-droppable-words .ui-droppable')
+      .forEach((element) => {
+        // @ts-ignore
+        H5P.jQuery(element).droppable({
+          tolerance: 'touch',
+          over: (event: Event) => {
+            // @ts-ignore
+            instance.droppables?.forEach((droppable) => {
+              if (droppable.getElement() !== event.target) {
+                droppable.$dropzone.droppable({ disabled: true });
+              }
+            });
+          },
+          out: () => {
+            // @ts-ignore
+            instance.droppables?.forEach((droppable) => {
+              droppable.$dropzone.droppable({ disabled: false });
+            });
+          }
+        });
+
+        H5P.jQuery(element).on('drop', () => {
+          // @ts-ignore
+          instance.droppables?.forEach((droppable) => {
+            droppable.$dropzone.droppable({ disabled: false });
+          });
+        });
+      });
+  };
+
   h5pMainInstance.trigger('resize');
 
   useEffect(() => {
     overrideAttributes();
     addGridTitles();
+    // Obsolete once https://h5ptechnology.atlassian.net/browse/HFP-3847 is done and released
+    overrideDraggableHandling();
   }, [activeLanguageMode, activeAnswerMode, wrapperRef, page]);
 
   return (
