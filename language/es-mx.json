@@ -108,9 +108,9 @@
           "default": "No se encontraron palabras válidas. Por favor revise sus palabras y vuelva a intentarlo."
         },
         {
-          "label": "Override for Drag the Words dopzone aria label",
-          "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
-          "default": "Drop the translation of @sourceWord here."
+          "label": "Etiqueta aria de anulación para zona de caída de Arrastrar las Palabras",
+          "description": "@sourceWord es un reemplazable y será reemplazado con el valor respectivo.",
+          "default": "Dejar caer la traducción de @sourceWord aquí."
         },
         {
           "label": "Etiqueta para el modo de respuesta \"Rellenar\"",
@@ -118,15 +118,15 @@
         },
         {
           "label": "Etiqueta para el modo de respuesta \"Arrastrar texto\"",
-          "default": "Arrastra texto"
+          "default": "Arrastrar texto"
         },
         {
-          "label": "Etiqueta del modo de respuesta",
+          "label": "Etiqueta para el modo de respuesta",
           "default": "Cambiar modo de respuesta"
         },
         {
-          "label": "Etiqueta de modo de idioma",
-          "default": "Cambiar idiomas"
+          "label": "Etiqueta para el modo de idioma",
+          "default": "Cambiar de idioma"
         },
         {
           "label": "Modo aria respuesta cambiada",
@@ -181,24 +181,24 @@
           "default": "Alemán"
         },
         {
+          "label": "Sámi del norte",
+          "default": "Sámi del norte"
+        },
+        {
           "label": "Noruego bokmål",
-          "default": "Norwuego bokmål"
+          "default": "Noruego bokmål"
         },
         {
           "label": "Noruego nynorsk",
           "default": "Noruego nynorsk"
         },
         {
+          "label": "Sami del sur",
+          "default": "Sami del sur"
+        },
+        {
           "label": "Español",
           "default": "Español"
-        },
-        {
-          "label": "Southern Sámi",
-          "default": "Southern Sámi"
-        },
-        {
-          "label": "Spanish",
-          "default": "Spanish"
         }
       ]
     },
