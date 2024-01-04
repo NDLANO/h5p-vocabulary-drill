@@ -494,7 +494,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   /**
    * Adds lang attributes to the source and target words.
    */
-  const addLanguageAttributes = () => {
+  const overrideAttributes = () => {
     const wrapper = wrapperRef.current;
     if (!wrapper) {
       return;
@@ -509,6 +509,21 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       });
     }
     else {
+      wrapper.querySelectorAll('.h5p-drag-droppable-words .ui-droppable')
+        .forEach((element, index) => {
+          const sourceWord = pickedWords[index].split(',')[target ? 0 : 1];
+
+          const ariaLabelAmendmend = t('dragTextDropzoneAria')
+            .replace(/@sourceWord/g, sourceWord);
+
+          const ariaLabel = [
+            element.getAttribute('aria-label'),
+            ariaLabelAmendmend
+          ].filter((part) => part && part !== '').join(' ');
+
+          element.setAttribute('aria-label', ariaLabel);
+        });
+
       // Add lang attributes to DragText
       wrapper.querySelectorAll('.h5p-drag-droppable-words span').forEach((element) => {
         element.setAttribute('lang', target ? sourceLanguage : targetLanguage);
@@ -611,7 +626,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   h5pMainInstance.trigger('resize');
 
   useEffect(() => {
-    addLanguageAttributes();
+    overrideAttributes();
     addGridTitles();
     // Obsolete once https://h5ptechnology.atlassian.net/browse/HFP-3847 is done and released
     overrideDraggableHandling();

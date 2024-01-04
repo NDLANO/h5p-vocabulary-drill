@@ -9,89 +9,73 @@
       "description": "Wähle die Sprache der Ausgangswörter.",
       "options": [
         {
-          "label": "Englisch",
-          "value": "en"
+          "label": "Englisch"
         },
         {
-          "label": "Französisch",
-          "value": "fr"
+          "label": "Französisch"
         },
         {
-          "label": "Deutsch",
-          "value": "de"
+          "label": "Deutsch"
         },
         {
-          "label": "Northern Sámi",
-          "value": "sme"
+          "label": "Northern Sámi"
         },
         {
-          "label": "Norwegisch (Bokmål)",
-          "value": "nb"
+          "label": "Norwegisch (Bokmål)"
         },
         {
-          "label": "Norwegisch (Nynorsk)",
-          "value": "nn"
+          "label": "Norwegisch (Nynorsk)"
         },
         {
-          "label": "Southern Sámi",
-          "value": "sma"
+          "label": "Southern Sámi"
         },
         {
-          "label": "Spanisch",
-          "value": "es"
+          "label": "Spanisch"
         }
       ]
     },
     {
+      "label": "Zielsprache",
+      "description": "Wähle die Sprache der Zielwörter.",
       "options": [
         {
-          "label": "Englisch",
-          "value": "en"
+          "label": "Englisch"
         },
         {
-          "label": "Französisch",
-          "value": "fr"
+          "label": "Französisch"
         },
         {
-          "label": "Deutsch",
-          "value": "de"
+          "label": "Deutsch"
         },
         {
-          "label": "Northern Sámi",
-          "value": "sme"
+          "label": "Northern Sámi"
         },
         {
-          "label": "Norwegisch (Bokmål)",
-          "value": "nb"
+          "label": "Norwegisch (Bokmål)"
         },
         {
-          "label": "Norwegisch (Nynorsk)",
-          "value": "nn"
+          "label": "Norwegisch (Nynorsk)"
         },
         {
-          "label": "Southern Sámi",
-          "value": "sma"
+          "label": "Southern Sámi"
         },
         {
-          "label": "Spanisch",
-          "value": "es"
+          "label": "Spanisch"
         }
-      ],
-      "label": "Zielsprache",
-      "description": "Wähle die Sprache der Zielwörter."
+      ]
     },
     {
       "label": "Wörter",
       "description": "Füge Wörter hinzu, indem du eine CSV-Datei hochlädst oder schreibe sie in das Textfeld.",
       "important": {
-        "description": "<ul><li>Quell- und Zielwörter werden durch ein Komma (,) getrennt.</li><li>Alternative Antworten werden durch einen Schrägstrich (/) getrennt.</li><li>Du kannst einen Hinweistext hinzufügen mit einem Doppelpunkt (:) vor dem Hinweis.</li></ul>",
+        "description": "<ul><li>Quell- und Zielwörter werden durch ein Komma (,) getrennt.</li><li>Alternative Antworten werden durch einen Schrägstrich (/) getrennt.</li><li>Du kannst einen Hinweistext hinzufügen mit einem Doppelpunkt (:) vor dem Hinweis.</li><li>In der CSV-Datei kannst du entweder ein Quellwort und ein Zielwort haben, oder Quellwort, Quellhinweis, Zielwort und Zielhinweis.</li></ul>",
         "example": "water/sea:w___r,Wasser/Meer:W____r"
       }
     },
     {
+      "label": "Gesamtrückmeldung",
       "fields": [
         {
-          "entity": "Bereich",
           "widgets": [
             {
               "label": "Voreinstellung"
@@ -99,6 +83,7 @@
           ],
           "label": "Lege Rückmeldungen für einzelne Punktebereiche fest",
           "description": "Klicke auf den \"Bereich hinzufügen\"-Button, um so viele Bereiche hinzuzufügen, wie du brauchst. Beispiel: 0-20% Schlechte Punktzahl, 21-91% Durchschnittliche Punktzahl, 91-100% Großartige Punktzahl!",
+          "entity": "Bereich",
           "field": {
             "label": "Gesamtrückmeldung",
             "fields": [
@@ -113,8 +98,7 @@
             ]
           }
         }
-      ],
-      "label": "Gesamtrückmeldung"
+      ]
     },
     {
       "label": "Bezeichnungen und Beschriftungen",
@@ -122,6 +106,11 @@
         {
           "label": "Keine gültigen Wörter",
           "default": "Keine gültigen Wörter gefunden. Bitte überprüfe deine Eingabe und versuche es erneut."
+        },
+        {
+          "label": "Override for Drag the Words dopzone aria label",
+          "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
+          "default": "Drop the translation of @sourceWord here."
         },
         {
           "label": "Beschriftung für den Antwortmodus „Ausfüllen“",
@@ -148,8 +137,8 @@
           "default": "Ändere Sprache von @sourceLanguage zu @targetLanguage"
         },
         {
-          "default": "Sprache geändert von @sourceLanguage zu @targetLanguage",
-          "label": "Sprache geändert"
+          "label": "Sprache geändert",
+          "default": "Sprache geändert von @sourceLanguage zu @targetLanguage"
         },
         {
           "label": "Text des \"Weiter\"-Buttons",
@@ -192,8 +181,8 @@
           "default": "Deutsch"
         },
         {
-          "label": "Northern Sámi",
-          "default": "Northern Sámi"
+          "label": "Nordsamisch",
+          "default": "Nordsamisch"
         },
         {
           "label": "Norwegisch (Bokmål)",
@@ -204,8 +193,8 @@
           "default": "Norwegisch (Nynorsk)"
         },
         {
-          "label": "Southern Sámi",
-          "default": "Southern Sámi"
+          "label": "Südsamisch",
+          "default": "Südsamisch"
         },
         {
           "label": "Spanisch",
@@ -214,6 +203,7 @@
       ]
     },
     {
+      "label": "Bezeichnungen und Beschriftungen für Fill-in the Blanks",
       "fields": [
         {
           "label": "Beschriftung des \"Lösung anzeigen\"-Buttons",
@@ -265,8 +255,8 @@
           "default": "Tipp verfügbar"
         },
         {
-          "default": "Tipp",
-          "label": "Beschriftung des Tipp-Icons"
+          "label": "Beschriftung des Tipp-Icons",
+          "default": "Tipp"
         },
         {
           "label": "Anzeigetext als Ersatz des Punktebalkens für Vorlesewerkzeuge (Barrierefreiheit)",
@@ -288,10 +278,10 @@
           "label": "Beschreibung zu Beginn der Aufgabe, nachdem der \"Überprüfen\"-Button geklickt wurde (für Hilfsmittel zur Barrierefreiheit)",
           "default": "Überprüfen-Modus aktiv"
         }
-      ],
-      "label": "Bezeichnungen und Beschriftungen für Fill-in the Blanks"
+      ]
     },
     {
+      "label": "Bezeichnungen und Beschriftungen für Wörter ziehen",
       "fields": [
         {
           "label": "Beschriftung des \"Überprüfen\"-Buttons",
@@ -351,8 +341,8 @@
           "default": "Bist du sicher, dass du dieses Ablagefeld zurücksetzen möchtest?"
         },
         {
-          "default": "Ziehbarer Text wurde aufgenommen.",
-          "label": "Die Beschriftung wird für Barrierefreiheit genutzt. Ziehen-Modus hat begonnen"
+          "label": "Die Beschriftung wird für Barrierefreiheit genutzt. Ziehen-Modus hat begonnen",
+          "default": "Ziehbarer Text wurde aufgenommen."
         },
         {
           "label": "Die Beschriftung wird für Barrierefreiheit genutzt. Ziehen-Modus abgebrochen",
@@ -382,8 +372,7 @@
           "label": "Beschreibung des \"Wiederholen\"-Buttons (für Hilfsmittel zur Barrierefreiheit)",
           "default": "Die Aufgabe wiederholen. Alle Eingaben werden zurückgesetzt und die Aufgabe wird erneut gestartet."
         }
-      ],
-      "label": "Bezeichnungen und Beschriftungen für Wörter ziehen"
+      ]
     },
     {
       "label": "Verhaltenseinstellungen",

@@ -12,14 +12,38 @@ declare const json: [
     "description": "Choose the language of the source words.",
     "type": "select",
     "options": [
-      { "value": "en", "label": "English" },
-      { "value": "fr", "label": "French" },
-      { "value": "de", "label": "German" },
-      { "value": "sme", "label": "Northern Sámi" },
-      { "value": "nb", "label": "Norwegian bokmål" },
-      { "value": "nn", "label": "Norwegian nynorsk" },
-      { "value": "sma", "label": "Southern Sámi" },
-      { "value": "es", "label": "Spanish" }
+      {
+        "value": "en",
+        "label": "English"
+      },
+      {
+        "value": "fr",
+        "label": "French"
+      },
+      {
+        "value": "de",
+        "label": "German"
+      },
+      {
+        "value": "sme",
+        "label": "Northern Sámi"
+      },
+      {
+        "value": "nb",
+        "label": "Norwegian bokmål"
+      },
+      {
+        "value": "nn",
+        "label": "Norwegian nynorsk"
+      },
+      {
+        "value": "sma",
+        "label": "Southern Sámi"
+      },
+      {
+        "value": "es",
+        "label": "Spanish"
+      }
     ],
     "default": "en"
   },
@@ -29,14 +53,38 @@ declare const json: [
     "description": "Choose the language of the target words.",
     "type": "select",
     "options": [
-      { "value": "en", "label": "English" },
-      { "value": "fr", "label": "French" },
-      { "value": "de", "label": "German" },
-      { "value": "sme", "label": "Northern Sámi" },
-      { "value": "nb", "label": "Norwegian bokmål" },
-      { "value": "nn", "label": "Norwegian nynorsk" },
-      { "value": "sma", "label": "Southern Sámi" },
-      { "value": "es", "label": "Spanish" }
+      {
+        "value": "en",
+        "label": "English"
+      },
+      {
+        "value": "fr",
+        "label": "French"
+      },
+      {
+        "value": "de",
+        "label": "German"
+      },
+      {
+        "value": "sme",
+        "label": "Northern Sámi"
+      },
+      {
+        "value": "nb",
+        "label": "Norwegian bokmål"
+      },
+      {
+        "value": "nn",
+        "label": "Norwegian nynorsk"
+      },
+      {
+        "value": "sma",
+        "label": "Southern Sámi"
+      },
+      {
+        "value": "es",
+        "label": "Spanish"
+      }
     ],
     "default": "nb"
   },
@@ -122,6 +170,13 @@ declare const json: [
         "label": "No valid words",
         "name": "noValidWords",
         "default": "No valid words found. Please check your words and try again.",
+        "type": "text"
+      },
+      {
+        "name": "dragTextDropzoneAria",
+        "label": "Override for Drag the Words dopzone aria label",
+        "description": "@sourceWord and @targetLang are placeholders and will be replaced with the respective value.",
+        "default": "Drop the translation of @sourceWord here.",
         "type": "text"
       },
       {
@@ -599,8 +654,14 @@ declare const json: [
         "widget": "radioGroup",
         "alignment": "horizontal",
         "options": [
-          { "label": "Fill in", "value": "fillIn" },
-          { "label": "Drag text", "value": "dragText" }
+          {
+            "label": "Fill in",
+            "value": "fillIn"
+          },
+          {
+            "label": "Drag text",
+            "value": "dragText"
+          }
         ],
         "default": "fillIn"
       },

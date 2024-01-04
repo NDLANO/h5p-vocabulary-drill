@@ -6,87 +6,71 @@
     },
     {
       "label": "Šaltinio kalba",
+      "description": "Pasirinkite pirminių žodžių kalbą.",
       "options": [
         {
-          "label": "Anglų",
-          "value": "en"
+          "label": "Anglų"
         },
         {
-          "label": "Prancūzų",
-          "value": "fr"
+          "label": "Prancūzų"
         },
         {
-          "label": "Vokiečių",
-          "value": "de"
+          "label": "Vokiečių"
         },
         {
-          "label": "Northern Sámi",
-          "value": "sme"
+          "label": "Northern Sámi"
         },
         {
-          "label": "Norvegų",
-          "value": "nb"
+          "label": "Norvegų"
         },
         {
-          "label": "Norwegian nynorsk",
-          "value": "nn"
+          "label": "Norwegian nynorsk"
         },
         {
-          "label": "Southern Sámi",
-          "value": "sma"
+          "label": "Southern Sámi"
         },
         {
-          "label": "Ispanų",
-          "value": "es"
+          "label": "Ispanų"
         }
-      ],
-      "description": "Choose the language of the source words."
+      ]
     },
     {
-      "options": [
-        {
-          "label": "Anglų",
-          "value": "en"
-        },
-        {
-          "label": "Prancūzų",
-          "value": "fr"
-        },
-        {
-          "label": "Vokiečių",
-          "value": "de"
-        },
-        {
-          "label": "Northern Sámi",
-          "value": "sme"
-        },
-        {
-          "label": "Norvegų",
-          "value": "nb"
-        },
-        {
-          "label": "Norwegian nynorsk",
-          "value": "nn"
-        },
-        {
-          "label": "Southern Sámi",
-          "value": "sma"
-        },
-        {
-          "label": "Ispanų",
-          "value": "es"
-        }
-      ],
       "label": "Tikslinė kalba",
-      "description": "Choose the language of the target words."
+      "description": "Choose the language of the target words.",
+      "options": [
+        {
+          "label": "Anglų"
+        },
+        {
+          "label": "Prancūzų"
+        },
+        {
+          "label": "Vokiečių"
+        },
+        {
+          "label": "Northern Sámi"
+        },
+        {
+          "label": "Norvegų"
+        },
+        {
+          "label": "Norwegian nynorsk"
+        },
+        {
+          "label": "Southern Sámi"
+        },
+        {
+          "label": "Ispanų"
+        }
+      ]
     },
     {
+      "label": "Žodžiai",
+      "description": "Add words by uploading a CSV-file or write them in the text field.",
       "important": {
         "description": "<ul><li>Source and target words are separated with a comma (,).</li><li>Alternative answers are separated with a forward slash (/).</li><li>You may add a textual tip, using a colon (:) in front of the tip.</li></ul>",
         "example": "water/sea:w___r,vann/hav:v__n"
-      },
-      "label": "Žodžiai",
-      "description": "Add words by uploading a CSV-file or write them in the text field."
+      }
     },
     {
       "label": "Bendras atsiliepimas",
@@ -97,30 +81,36 @@
               "label": "Numatytasis"
             }
           ],
+          "label": "Nustatyti tinkintus atsiliepimus bet kokiam balų intervalui",
+          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity": "diapazonas",
           "field": {
+            "label": "Bendras atsiliepimas",
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Balų intervalas"
               },
               {},
               {
                 "label": "Atsiliepimas apibrėžtam balų diapazonui",
                 "placeholder": "Užpildykite atsiliepimą"
               }
-            ],
-            "label": "Bendras atsiliepimas"
-          },
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "diapazonas"
+            ]
+          }
         }
       ]
     },
     {
+      "label": "Lokalizacija",
       "fields": [
         {
           "label": "No valid words",
           "default": "Nerasta tinkamų žodžių. Patikrinkite savo žodžius ir bandykite dar kartą."
+        },
+        {
+          "label": "Override for Drag the Words dopzone aria label",
+          "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
+          "default": "Drop the translation of @sourceWord here."
         },
         {
           "label": "Label for \"Fill in\" answer mode",
@@ -147,8 +137,8 @@
           "default": "Swap language from @sourceLanguage to @targetLanguage"
         },
         {
-          "default": "Swapped language from @sourceLanguage to @targetLanguage",
-          "label": "Changed language mode aria"
+          "label": "Changed language mode aria",
+          "default": "Swapped language from @sourceLanguage to @targetLanguage"
         },
         {
           "label": "Text for \"Next\" button",
@@ -163,16 +153,16 @@
           "default": "Perkrauti"
         },
         {
-          "default": "Score",
-          "label": "Score label"
+          "label": "Score label",
+          "default": "Score"
         },
         {
           "label": "Textual representation of the score bar for those using a readspeaker",
           "default": "You got @score out of @maxScore points"
         },
         {
-          "default": "Page @page of @totalPages",
-          "label": "Textual representation of the page numbers for those using a readspeaker"
+          "label": "Textual representation of the page numbers for those using a readspeaker",
+          "default": "Page @page of @totalPages"
         },
         {
           "label": "Feedback text",
@@ -183,8 +173,8 @@
           "default": "English"
         },
         {
-          "default": "French",
-          "label": "French"
+          "label": "French",
+          "default": "French"
         },
         {
           "label": "German",
@@ -207,13 +197,13 @@
           "default": "Southern Sámi"
         },
         {
-          "default": "Spanish",
-          "label": "Spanish"
+          "label": "Spanish",
+          "default": "Spanish"
         }
-      ],
-      "label": "Localization"
+      ]
     },
     {
+      "label": "Localization for Blanks",
       "fields": [
         {
           "label": "Text for \"Show solutions\" button",
@@ -257,8 +247,8 @@
         },
         {
           "label": "Assistive technology label for input field",
-          "default": "Blank input @num of @total",
-          "description": "Use @num and @total to replace current cloze number and total cloze number"
+          "description": "Use @num and @total to replace current cloze number and total cloze number",
+          "default": "Blank input @num of @total"
         },
         {
           "label": "Assistive technology label for saying an input has a tip tied to it",
@@ -277,8 +267,8 @@
           "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
         },
         {
-          "default": "Show the solution. The task will be marked with its correct solution.",
-          "label": "Assistive technology description for \"Show Solution\" button"
+          "label": "Assistive technology description for \"Show Solution\" button",
+          "default": "Show the solution. The task will be marked with its correct solution."
         },
         {
           "label": "Assistive technology description for \"Retry\" button",
@@ -288,8 +278,7 @@
           "label": "Assistive technology description for starting task",
           "default": "Checking mode"
         }
-      ],
-      "label": "Localization for Blanks"
+      ]
     },
     {
       "label": "Localization for DragText",
@@ -299,8 +288,8 @@
           "default": "Check"
         },
         {
-          "default": "Pateikti",
-          "label": "Text for \"Submit\" button"
+          "label": "Text for \"Submit\" button",
+          "default": "Pateikti"
         },
         {
           "label": "Text for \"Retry\" button",
@@ -331,9 +320,9 @@
           "description": "Label used for accessibility, where the Read speaker reads that this is a draggable element. Variable available: @index, @count"
         },
         {
-          "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out",
           "label": "Label for show tip button",
-          "default": "Show tip"
+          "default": "Show tip",
+          "description": "Label used for accessibility, where the Read speaker reads it before the tip is read out"
         },
         {
           "label": "Readspeaker text for correct answer",
@@ -386,6 +375,8 @@
       ]
     },
     {
+      "label": "Behavioural settings",
+      "description": "These options will let you control how the task behaves.",
       "fields": [
         {
           "label": "Enable \"Retry\""
@@ -437,9 +428,7 @@
           "label": "Number of words",
           "description": "Defines how many words that will be visible each time. If 0 is set, all words will be shown."
         }
-      ],
-      "label": "Behavioural settings",
-      "description": "These options will let you control how the task behaves."
+      ]
     }
   ]
 }
