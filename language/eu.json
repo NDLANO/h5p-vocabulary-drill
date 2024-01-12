@@ -27,7 +27,7 @@
           "label": "Norvegiako nynorsk"
         },
         {
-          "label": "Southern Sámi"
+          "label": "Hegoaldeko Sami"
         },
         {
           "label": "Gaztelania"
@@ -48,7 +48,7 @@
           "label": "Alemana"
         },
         {
-          "label": "Northern Sámi"
+          "label": "Iparraldeko Sami"
         },
         {
           "label": "Norvegiako bokmål"
@@ -73,7 +73,7 @@
       }
     },
     {
-      "label": "Overall Feedback",
+      "label": "Iritzi orokorra",
       "fields": [
         {
           "widgets": [
@@ -81,7 +81,7 @@
               "label": "Lehenetsia"
             }
           ],
-          "label": "Define custom feedback for any score range",
+          "label": "Definitu iritzi pertsonalizatua edozein puntuazio tarterako",
           "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
           "entity": "range",
           "field": {
