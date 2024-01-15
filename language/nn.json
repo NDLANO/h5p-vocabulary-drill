@@ -30,7 +30,7 @@
           "label": "Spansk"
         },
         {
-          "label": "Spansk"
+          "label": "Sørsamisk"
         }
       ]
     },
@@ -57,10 +57,10 @@
           "label": "Norsk (nynorsk)"
         },
         {
-          "label": "Sørsamisk"
+          "label": "Spansk"
         },
         {
-          "label": "Spansk"
+          "label": "Sørsamisk"
         }
       ]
     },
@@ -108,7 +108,7 @@
           "default": "Ingen gyldige ord funne. Kontroller orda dine og prøv igjen."
         },
         {
-          "label": "Overstyring for Drag the Words aria droppsone-etikett",
+          "label": "Overstyring for Drag the Words aria-merkelapp for droppsone",
           "description": "@sourceWord er ein variabel og vil bli erstatta av den respektive verdien.",
           "default": "Slipp oversettelsen av @sourceWord her."
         },
