@@ -30,7 +30,7 @@
           "label": "Spansk"
         },
         {
-          "label": "Sørsamisk"
+          "label": "Spansk"
         }
       ]
     },
@@ -57,10 +57,10 @@
           "label": "Norsk (nynorsk)"
         },
         {
-          "label": "Spansk"
+          "label": "Sørsamisk"
         },
         {
-          "label": "Sørsamisk"
+          "label": "Spansk"
         }
       ]
     },
@@ -108,9 +108,9 @@
           "default": "Ingen gyldige ord funne. Kontroller orda dine og prøv igjen."
         },
         {
-          "label": "Override for Drag the Words dopzone aria label",
-          "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
-          "default": "Drop the translation of @sourceWord here."
+          "label": "Overstyring for Drag the Words aria droppsone-etikett",
+          "description": "@sourceWord er ein variabel og vil bli erstatta av den respektive verdien.",
+          "default": "Slipp oversettelsen av @sourceWord her."
         },
         {
           "label": "Namn på svarmodus \"Fyll inn\"",
@@ -182,6 +182,10 @@
         },
         {
           "label": "Norsk (bokmål)",
+          "default": "Nordsamisk"
+        },
+        {
+          "label": "Norsk (bokmål)",
           "default": "Norsk (bokmål)"
         },
         {
@@ -189,16 +193,12 @@
           "default": "Norsk (nynorsk)"
         },
         {
+          "label": "Sørsamisk",
+          "default": "Sørsamisk"
+        },
+        {
           "label": "Spansk",
           "default": "Spansk"
-        },
-        {
-          "label": "Southern Sámi",
-          "default": "Southern Sámi"
-        },
-        {
-          "label": "Spanish",
-          "default": "Spanish"
         }
       ]
     },
@@ -396,8 +396,8 @@
           "description": "Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll ut\"."
         },
         {
-          "label": "Godta mindre stavefeil",
-          "description": "Viss denne er aktivert, vil eit svar telje som rett sjølv om det inneheld mindre stavefeil (3–9 teikn: 1 stavefeil, fleire enn 9 teikn: 2 stavefeil). Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll ut\"."
+          "label": "Godta mindre skrivefeil",
+          "description": "Viss denne er aktivert, vil eit svar telje som rett sjølv om det inneheld mindre skrivefeil (ord på 3–9 teikn: 1 skrivefeil er godteke; ord på fleire enn 9 teikn: 2 skrivefeil er godtekne). Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll ut\"."
         },
         {
           "label": "Vel tilfeldig rekkefølge"
