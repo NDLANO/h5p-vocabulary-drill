@@ -108,7 +108,7 @@
           "default": "Non se atoparon palabras válidas. Comproba as túas palabras e téntao de novo."
         },
         {
-          "label": "Override for Drag the Words dopzone aria label",
+          "label": "Anular para Arrastrar a etiqueta aria da zona de caída de palabras",
           "description": "@sourceWord é un marcador de posición e substituirase polo valor respectivo.",
           "default": "Drop the translation of @sourceWord here."
         },
