@@ -511,7 +511,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     else {
       wrapper.querySelectorAll('.h5p-drag-droppable-words .ui-droppable')
         .forEach((element, index) => {
-          const sourceWord = pickedWords[index].split(',')[target ? 0 : 1];
+          const sourceWord = pickedWords[index].split(',')[target ? 0 : 1].split('/')[0];
 
           const ariaLabelAmendmend = t('dragTextDropzoneAria')
             .replace(/@sourceWord/g, sourceWord);
