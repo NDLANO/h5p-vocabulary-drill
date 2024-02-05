@@ -15,7 +15,7 @@ jobs:
         id: release-h5p
 
       - name: Check if tag exists already # (to avoid replacing releases)
-        uses: mukunku/tag-exists-action@v1.5.0 # https://github.com/mukunku/tag-exists-action
+        uses: mukunku/tag-exists-action@v1.6.0 # https://github.com/mukunku/tag-exists-action
         id: check-tag
         with:
           tag: ${{ steps.release-h5p.outputs.version }}
