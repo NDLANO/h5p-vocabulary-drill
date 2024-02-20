@@ -202,7 +202,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       : totalNumberOfWords;
 
   const totalPages = Math.ceil(totalNumberOfWords / numberOfWordsToShow) + 1; // add 1 for score page
-  const multiplePages = (totalPages - 1) > 1; // subtract 1 for score page
+  const multiplePages = (totalPages - 1) >= 1; // subtract 1 for score page
   const showNextButton = (page + 1) * numberOfWordsToShow < totalNumberOfWords;
 
   const pickedWords = multiplePages || !randomize ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
