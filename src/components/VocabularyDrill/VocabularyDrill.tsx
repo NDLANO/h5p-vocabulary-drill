@@ -32,6 +32,7 @@ type VocabularyDrillProps = {
   onTrigger: (event: XAPIVerb) => void;
   onPageChange: (page: number) => void;
   onInitalized: (params: InstanceConnector) => void;
+  onResetTask: () => void;
 };
 
 function attachContentType(
@@ -147,7 +148,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   onChangeLanguageMode,
   onTrigger,
   onPageChange,
-  onInitalized
+  onInitalized,
+  onResetTask,
 }) => {
   const { behaviour, sourceLanguage, targetLanguage, overallFeedback } = params;
 
@@ -656,7 +658,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
               score={score}
               maxScore={maxScore}
               overallFeedbacks={overallFeedback as {}[]}
-              onRestart={handleRestart}
+              onRestart={onResetTask}
             />
           )}
           {multiplePages && (
