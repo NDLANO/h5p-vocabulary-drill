@@ -73,6 +73,7 @@ class VocabularyDrillContentType
                 onTrigger={(verb: XAPIVerb) =>
                   this.xAPIUtils?.triggerXAPIEvent(verb)
                 }
+                onResetTask={() => this.resetTask()}
                 onPageChange={(page) => this.handlePageChange(page)}
               />
             </ContentIdContext.Provider>
