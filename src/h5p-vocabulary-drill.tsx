@@ -28,6 +28,7 @@ class VocabularyDrillContentType
   private activeContentType: SubContentType | undefined;
   private xAPIUtils: XAPIUtils | undefined;
   private wasAnswerGiven: boolean = this.extras?.previousState ? true : false;
+  private wasReset: boolean = false;
   private resetVocabularyDrill : () => void = (() => {});
 
   attach($container: JQuery<HTMLElement>) {
@@ -127,10 +128,11 @@ class VocabularyDrillContentType
       return;
     }
 
-    this.setState({});
-    this.wasAnswerGiven = false;
-
     this.resetVocabularyDrill();
+    this.setState({});
+
+    this.wasReset = true;
+    this.wasAnswerGiven = false;
   }
 
   getXAPIData(): XAPIData {
@@ -151,6 +153,10 @@ class VocabularyDrillContentType
 
   getCurrentState(): State | undefined {
     if (!this.getAnswerGiven()) {
+      if (this.wasReset) {
+        return {}; // Required to delete the previous state on the H5P integration
+      }
+
       return;
     }
 
