@@ -12,6 +12,7 @@ import { VocabularyDrill } from './components/VocabularyDrill/VocabularyDrill';
 import './index.scss';
 import type {
   AnswerModeType,
+  InstanceConnector,
   LanguageModeType,
   Params,
   State,
@@ -27,6 +28,7 @@ class VocabularyDrillContentType
   private activeContentType: SubContentType | undefined;
   private xAPIUtils: XAPIUtils | undefined;
   private wasAnswerGiven: boolean = this.extras?.previousState ? true : false;
+  private resetVocabularyDrill : () => void = (() => {});
 
   attach($container: JQuery<HTMLElement>) {
     const containerElement = $container.get(0);
@@ -57,6 +59,11 @@ class VocabularyDrillContentType
                 title={title}
                 params={params}
                 previousState={this.state}
+                onInitalized={(params: InstanceConnector) => {
+                  if (params.resetVocabularyDrill) {
+                    this.resetVocabularyDrill = params.resetVocabularyDrill;
+                  }
+                }}
                 onChangeContentType={(answerMode, contentType) =>
                   this.handleChangeContentType(answerMode, contentType)
                 }
@@ -122,7 +129,7 @@ class VocabularyDrillContentType
     this.setState({});
     this.wasAnswerGiven = false;
 
-    this.activeContentType.resetTask();
+    this.resetVocabularyDrill();
   }
 
   getXAPIData(): XAPIData {
