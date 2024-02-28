@@ -7,6 +7,7 @@ import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import {
   AnswerModeType,
   LanguageModeType,
+  type InstanceConnector,
   type Params,
   type State,
   type SubContentType,
@@ -30,6 +31,7 @@ type VocabularyDrillProps = {
   onChangeLanguageMode: (languageMode: LanguageModeType) => void;
   onTrigger: (event: XAPIVerb) => void;
   onPageChange: (page: number) => void;
+  onInitalized: (params: InstanceConnector) => void;
 };
 
 function attachContentType(
@@ -145,6 +147,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   onChangeLanguageMode,
   onTrigger,
   onPageChange,
+  onInitalized
 }) => {
   const { behaviour, sourceLanguage, targetLanguage, overallFeedback } = params;
 
@@ -485,6 +488,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setDisableNextButton(true);
     setDisableTools(false);
   };
+
+  onInitalized({
+    resetVocabularyDrill: handleRestart,
+  });
 
   /**
    * Adds lang attributes to the source and target words.
