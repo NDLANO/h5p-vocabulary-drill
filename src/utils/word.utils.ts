@@ -201,7 +201,10 @@ export const parseWords = (
     return [];
   }
 
-  let wordsList = words.split(wordsSeparator).filter((word) => !!word.trim());
+  let wordsList = words.split(wordsSeparator)
+    .filter((word) => !!word.trim())
+    // Remove empty hints
+    .map((word) => word.replace(/:,/g, ',').replace(/:$/g, ''));
 
   if (randomize) {
     wordsList = getRandomWords(wordsList);

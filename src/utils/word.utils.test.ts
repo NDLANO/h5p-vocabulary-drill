@@ -4,6 +4,7 @@ import {
   filterWord,
   parseSourceAndTarget,
   pickWords,
+  parseWords,
 } from './word.utils';
 
 describe('Vocabulary drill utils', () => {
@@ -394,6 +395,17 @@ describe('Vocabulary drill utils', () => {
 
       const expected: Array<string> = [];
       const actual = pickWords(words, page, pageSize);
+
+      expect(actual).toEqual(expected);
+    });
+  });
+
+  describe(parseWords.name, () => {
+    it('should remove empty hints from words', () => {
+      const words = 'ocean/sea:,sjø/hav:båter kjører på det\nfire/heat:very varm,ild/brann:';
+
+      const expected = ['ocean/sea,sjø/hav:båter kjører på det', 'fire/heat:very varm,ild/brann'];
+      const actual = parseWords(words, false);
 
       expect(actual).toEqual(expected);
     });
