@@ -26,6 +26,7 @@ class VocabularyDrillContentType
   implements IH5PContentType<Params>, IH5PQuestionType {
   private activeContentType: SubContentType | undefined;
   private xAPIUtils: XAPIUtils | undefined;
+  private wasAnswerGiven: boolean = this.extras?.previousState ? true : false;
 
   attach($container: JQuery<HTMLElement>) {
     const containerElement = $container.get(0);
@@ -86,7 +87,7 @@ class VocabularyDrillContentType
       return false;
     }
 
-    return this.activeContentType.getAnswerGiven();
+    return this.wasAnswerGiven || this.activeContentType.getAnswerGiven();
   }
 
   getScore(): number {
@@ -118,7 +119,8 @@ class VocabularyDrillContentType
       return;
     }
 
-    this.state = {};
+    this.setState({});
+    this.wasAnswerGiven = false;
 
     this.activeContentType.resetTask();
   }
@@ -192,14 +194,18 @@ class VocabularyDrillContentType
   }
 
   private handlePageChange(page: number): void {
-    this.setState({
+    const newState: State = {
       page,
       score:
         (this.state?.score ?? 0) + (this.activeContentType?.getScore() ?? 0),
       maxScore:
         (this.state?.maxScore ?? 0) +
         (this.activeContentType?.getMaxScore() ?? 0),
-    });
+    };
+
+    newState['activeAnswerMode'] = undefined;
+
+    this.setState(newState);
   }
 }
 
