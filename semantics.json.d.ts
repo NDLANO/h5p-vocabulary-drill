@@ -175,7 +175,7 @@ declare const json: [
       {
         "name": "dragTextDropzoneAria",
         "label": "Override for Drag the Words dopzone aria label",
-        "description": "@sourceWord and @targetLang are placeholders and will be replaced with the respective value.",
+        "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
         "default": "Drop the translation of @sourceWord here.",
         "type": "text"
       },

@@ -263,11 +263,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     }
 
     setIsRetrying(false);
-
-    // If all answers are correct, show the score page
-    if (!multiplePages && (newScore === newMaxScore)) {
-      handleShowResults();
-    }
   };
 
   const handleRetry = (): void => {
