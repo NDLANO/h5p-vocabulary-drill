@@ -269,8 +269,6 @@ class VocabularyDrillContentType
 
     Object.values(AnswerModeType).forEach((answerMode) => {
       newState[answerMode] = undefined;
-      // TODO: Check which of these is the correct one
-      newState['activeAnswerMode'] = undefined;
     });
 
     this.setState(newState);
