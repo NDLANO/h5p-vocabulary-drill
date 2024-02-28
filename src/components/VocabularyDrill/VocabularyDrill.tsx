@@ -263,7 +263,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     }
 
     setIsRetrying(false);
-
   };
 
   const handleRetry = (): void => {
