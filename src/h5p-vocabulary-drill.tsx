@@ -108,11 +108,7 @@ class VocabularyDrillContentType
   }
 
   showSolutions(): void {
-    if (!this.activeContentType) {
-      return;
-    }
-
-    this.activeContentType.showSolutions();
+    console.warn('showSolutions not implemented');
   }
 
   resetTask(): void {
