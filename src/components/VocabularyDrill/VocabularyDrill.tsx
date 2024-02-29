@@ -180,12 +180,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [hasWords, setHasWords] = useState(true);
   const [page, setPage] = useState(previousState?.page ?? 0);
   const [score, setScore] = useState(previousState?.score ?? 0);
-  const [maxScore, setMaxScore] = useState(previousState?.maxScore ?? 0);
   const [disableTools, setDisableTools] = useState(false);
   const [disableNextButton, setDisableNextButton] = useState(true);
   const [ariaLiveText, setAriaLiveText] = useState('');
   const [showResults, setShowResults] = useState(false);
-  const [isRetrying, setIsRetrying] = useState(false);
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
@@ -259,19 +257,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
     const newScore = score + (activeContentType.current?.getScore() ?? 0);
     setScore(newScore);
-
-    // If retrying, the maxScore is already set
-    let newMaxScore = maxScore;
-    if (!isRetrying) {
-      newMaxScore = maxScore + (activeContentType.current?.getMaxScore() ?? 0);
-      setMaxScore(newMaxScore);
-    }
-
-    setIsRetrying(false);
   };
 
   const handleRetry = (): void => {
-    setIsRetrying(true);
     setDisableTools(false);
     setDisableNextButton(true);
 
@@ -486,13 +474,14 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setShowResults(false);
     setPage(0);
     setScore(0);
-    setMaxScore(0);
     setDisableNextButton(true);
     setDisableTools(false);
   };
 
   onInitalized({
-    resetVocabularyDrill: handleRestart,
+    resetInstance: handleRestart,
+    getScoreInstance: () => score,
+    getMaxScoreInstance: () => words.current.length,
   });
 
   /**
@@ -656,7 +645,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           {showResults && (
             <ScorePage
               score={score}
-              maxScore={maxScore}
+              maxScore={words.current.length}
               overallFeedbacks={overallFeedback as {}[]}
               onRestart={onResetTask}
             />

@@ -29,7 +29,9 @@ class VocabularyDrillContentType
   private xAPIUtils: XAPIUtils | undefined;
   private wasAnswerGiven: boolean = this.extras?.previousState ? true : false;
   private wasReset: boolean = false;
-  private resetVocabularyDrill : () => void = (() => {});
+  private resetInstance : () => void = (() => {});
+  private getScoreInstance : () => number = (() => 0);
+  private getMaxScoreInstance : () => number = (() => 0);
 
   attach($container: JQuery<HTMLElement>) {
     const containerElement = $container.get(0);
@@ -61,9 +63,7 @@ class VocabularyDrillContentType
                 params={params}
                 previousState={this.state}
                 onInitalized={(params: InstanceConnector) => {
-                  if (params.resetVocabularyDrill) {
-                    this.resetVocabularyDrill = params.resetVocabularyDrill;
-                  }
+                  this.handleInitialized(params);
                 }}
                 onChangeContentType={(answerMode, contentType) =>
                   this.handleChangeContentType(answerMode, contentType)
@@ -100,19 +100,11 @@ class VocabularyDrillContentType
   }
 
   getScore(): number {
-    if (!this.activeContentType) {
-      return 0;
-    }
-
-    return this.state?.score ?? this.activeContentType.getScore();
+    return this.getScoreInstance();
   }
 
   getMaxScore(): number {
-    if (!this.activeContentType) {
-      return 0;
-    }
-
-    return this.state?.maxScore ?? this.activeContentType.getMaxScore();
+    return this.getMaxScoreInstance();
   }
 
   showSolutions(): void {
@@ -128,7 +120,7 @@ class VocabularyDrillContentType
       return;
     }
 
-    this.resetVocabularyDrill();
+    this.resetInstance();
     this.setState({});
 
     this.wasReset = true;
@@ -187,6 +179,13 @@ class VocabularyDrillContentType
       ...this.state,
       ...state,
     };
+  }
+
+  private handleInitialized(params: InstanceConnector): void {
+    // Workaround to using React to allow calling the child component's methods
+    this.resetInstance = params.resetInstance;
+    this.getScoreInstance = params.getScoreInstance;
+    this.getMaxScoreInstance = params.getMaxScoreInstance;
   }
 
   private handleChangeContentType(
