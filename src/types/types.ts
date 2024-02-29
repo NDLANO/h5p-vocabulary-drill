@@ -21,7 +21,7 @@ export type State = {
   activeLanguageMode?: LanguageModeType;
   page?: number;
   score?: number;
-  maxScore?: number;
+  wordsOrder?: Array<number>;
 
   [AnswerModeType.DragText]?: unknown;
   [AnswerModeType.FillIn]?: unknown;
