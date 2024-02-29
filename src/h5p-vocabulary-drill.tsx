@@ -141,11 +141,8 @@ class VocabularyDrillContentType
 
   getCurrentState(): State | undefined {
     if (!this.getAnswerGiven()) {
-      if (this.wasReset) {
-        return {}; // Required to delete the previous state on the H5P integration
-      }
-
-      return;
+      // Requires {} to delete the previous state on the H5P integration
+      return this.wasReset ? {} : undefined;
     }
 
     const contentTypeState = this.activeContentType?.getCurrentState?.();
@@ -171,6 +168,11 @@ class VocabularyDrillContentType
   }
 
   private setState(state: Partial<State>) {
+    if (typeof state === 'object' && !Object.keys(state).length) {
+      this.state = {};
+      return;
+    }
+
     this.state = {
       ...this.state,
       ...state,
