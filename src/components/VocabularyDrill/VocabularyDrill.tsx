@@ -14,7 +14,7 @@ import {
 } from '../../types/types';
 import { bubbleUp, bubbleDown, findLibraryInfo, libraryToString, sanitizeRecord } from '../../utils/h5p.utils';
 import { isNil } from '../../utils/type.utils';
-import { parseSourceAndTarget, parseWords, pickRandomWords, pickWords } from '../../utils/word.utils';
+import { parseSourceAndTarget, pickWords } from '../../utils/word.utils';
 import { AriaLive } from '../AriaLive/AriaLive';
 import { ScorePage } from '../ScorePage/ScorePage';
 import { StatusBar } from '../StatusBar/StatusBar';
@@ -23,6 +23,7 @@ import { Toolbar } from '../Toolbar/Toolbar';
 type VocabularyDrillProps = {
   title: string;
   params: Params;
+  words: string[];
   previousState: State | undefined;
   onChangeContentType: (
     type: AnswerModeType,
@@ -33,6 +34,7 @@ type VocabularyDrillProps = {
   onPageChange: (page: number) => void;
   onInitalized: (params: InstanceConnector) => void;
   onResetTask: () => void;
+  getCurrentState: () => State|undefined;
 };
 
 function attachContentType(
@@ -143,6 +145,7 @@ function createFillIn(
 export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   title,
   params,
+  words,
   previousState,
   onChangeContentType,
   onChangeLanguageMode,
@@ -150,6 +153,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   onPageChange,
   onInitalized,
   onResetTask,
+  getCurrentState,
 }) => {
   const { behaviour, sourceLanguage, targetLanguage, overallFeedback } = params;
 
@@ -159,7 +163,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     enableSwitchWordsButton,
     enableSolutionsButton,
     enableRetry,
-    randomize,
     showTips,
   } = behaviour;
 
@@ -187,15 +190,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
 
-  // If previous state set, word must not be randomized to keep previous order
-  const words = useRef(
-    parseWords(
-      params.words,
-      randomize && !previousState?.[activeAnswerMode],
-    ),
-  );
-
-  const totalNumberOfWords = words.current.length;
+  const totalNumberOfWords = words.length;
 
   const numberOfWordsToShow =
     behaviour.numberOfWordsToShow &&
@@ -208,7 +203,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const multiplePages = (totalPages - 1) > 1; // subtract 1 for score page
   const showNextButton = (page + 1) * numberOfWordsToShow < totalNumberOfWords;
 
-  const pickedWords = multiplePages || !randomize ? pickWords(words.current, page, numberOfWordsToShow) : pickRandomWords(words.current, numberOfWordsToShow);
+  const pickedWords = pickWords(
+    words, multiplePages ? page : 1, numberOfWordsToShow
+  );
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
   const fillInTheBlanksLibraryInfo = findLibraryInfo('H5P.Blanks');
@@ -327,7 +324,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       }
 
       const extras = {
-        previousState: previousState?.[activeAnswerMode],
+        previousState: getCurrentState()?.[activeAnswerMode],
       } as H5PExtrasWithState<unknown>;
 
       switch (activeAnswerMode) {
@@ -453,6 +450,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
   const handleNext = () => {
     const newPage = page + 1;
+    previousState = undefined;
 
     setPage(newPage);
     onPageChange(newPage);
@@ -470,6 +468,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   };
 
   const handleRestart = () => {
+    previousState = undefined;
     activeContentType.current?.resetTask();
     setShowResults(false);
     setPage(0);
@@ -481,7 +480,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   onInitalized({
     resetInstance: handleRestart,
     getScoreInstance: () => score,
-    getMaxScoreInstance: () => words.current.length,
+    getMaxScoreInstance: () => words.length
   });
 
   /**
@@ -645,7 +644,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           {showResults && (
             <ScorePage
               score={score}
-              maxScore={words.current.length}
+              maxScore={words.length}
               overallFeedbacks={overallFeedback as {}[]}
               onRestart={onResetTask}
             />
