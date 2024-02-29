@@ -204,7 +204,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const showNextButton = (page + 1) * numberOfWordsToShow < totalNumberOfWords;
 
   const pickedWords = pickWords(
-    words, multiplePages ? page : 1, numberOfWordsToShow
+    words, multiplePages ? page : 0, numberOfWordsToShow
   );
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
