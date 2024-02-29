@@ -31,5 +31,7 @@ export type SubContentType = IH5PQuestionType & H5PResumableContentType &
   { libraryInfo: H5PLibraryInfo };
 
 export type InstanceConnector = {
-  resetVocabularyDrill: () => void;
+  resetInstance: () => void;
+  getScoreInstance: () => number;
+  getMaxScoreInstance: () => number;
 };
