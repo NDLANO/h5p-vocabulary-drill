@@ -80,7 +80,7 @@ function createDragText(
   const dragTextWords = parseSourceAndTarget(words, showTips, AnswerModeType.DragText, languageMode);
 
   const dragTextParams = {
-    taskDescription: params.description,
+    taskDescription: params.description ?? '',
     textField: dragTextWords,
     behaviour: {
       instantFeedback: params.behaviour.autoCheck,
@@ -120,7 +120,7 @@ function createFillIn(
   const fillInWords = parseSourceAndTarget(words, showTips, AnswerModeType.FillIn, languageMode, sourceLanguage, targetLanguage);
 
   const fillInParams = {
-    text: params.description,
+    text: params.description ?? '',
     questions: [fillInWords],
     behaviour: params.behaviour,
     overallFeedback: params.overallFeedback,
@@ -320,6 +320,30 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     });
   };
 
+  const hasNoInnerText = (element: Element|null): boolean => {
+    if (!element) {
+      return true;
+    }
+
+    return Array.from(element.childNodes).every((node) => {
+      if (
+        node.nodeType === Node.TEXT_NODE &&
+        node.textContent && node.textContent.trim() !== ''
+      ) {
+        return false;
+      }
+
+      else if (
+        node.nodeType === Node.ELEMENT_NODE &&
+        !hasNoInnerText(node as HTMLElement)
+      ) {
+        return false;
+      }
+
+      return true;
+    });
+  };
+
   const createRunnable = () => {
     const wrapper = wrapperRef.current;
 
@@ -373,6 +397,13 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             `H5P.VocabularyDrill: Invalid answer mode '${activeAnswerMode}'`,
           );
         }
+      }
+
+      const introductionDOM = wrapper.querySelector('.h5p-question-introduction');
+      if (introductionDOM) {
+        introductionDOM.classList.toggle(
+          'display-none', hasNoInnerText(introductionDOM)
+        );
       }
 
       // Remove previous state once used to start with clean slate after resets
