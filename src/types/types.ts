@@ -21,7 +21,7 @@ export type State = {
   activeLanguageMode?: LanguageModeType;
   page?: number;
   score?: number;
-  maxScore?: number;
+  wordsOrder?: Array<number>;
 
   [AnswerModeType.DragText]?: unknown;
   [AnswerModeType.FillIn]?: unknown;
@@ -29,3 +29,9 @@ export type State = {
 
 export type SubContentType = IH5PQuestionType & H5PResumableContentType &
   { libraryInfo: H5PLibraryInfo };
+
+export type InstanceConnector = {
+  resetInstance: () => void;
+  getScoreInstance: () => number;
+  getMaxScoreInstance: () => number;
+};
