@@ -204,7 +204,18 @@ export const parseWords = (
   let wordsList = words.split(wordsSeparator)
     .filter((word) => !!word.trim())
     // Remove empty hints
-    .map((word) => word.replace(/:,/g, ',').replace(/:$/g, ''));
+    .map((word) => word.replace(/:,/g, ',').replace(/:$/g, ''))
+    // Filter out all invalid words
+    .filter((word) => {
+      const text = '[^\\/,:]+'; // Any character except / and , and :
+      const alternatives = `(\\/${text})*`; // Zero or more / followed by text
+      const tips = `(:${text})?`; // Optional : followed by text
+      const sourceOrTarget = `${text}${alternatives}${tips}`;
+
+      const regex = new RegExp(`^${sourceOrTarget},${sourceOrTarget}$`);
+
+      return regex.test(word);
+    });
 
   if (randomize) {
     wordsList = getRandomWords(wordsList);

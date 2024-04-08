@@ -108,7 +108,7 @@
           "default": "Ingen gyldige ord funne. Kontroller orda dine og prøv igjen."
         },
         {
-          "label": "Overstyring for Drag the Words aria-merkelapp for droppsone",
+          "label": "Overstyrer skjermlesartekst for droppsone i \"Drag the Words\"",
           "description": "@sourceWord er ein variabel og vil bli erstatta av den respektive verdien.",
           "default": "Slipp oversettelsen av @sourceWord her."
         },

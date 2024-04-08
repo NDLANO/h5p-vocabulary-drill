@@ -110,7 +110,7 @@
         {
           "label": "Anular para Arrastrar a etiqueta aria da zona de caída de palabras",
           "description": "@sourceWord é un marcador de posición e substituirase polo valor respectivo.",
-          "default": "Drop the translation of @sourceWord here."
+          "default": "Deixa aquí a tradución de @sourceWord."
         },
         {
           "label": "Etiqueta para o modo de resposta \"Completar\"",
@@ -181,8 +181,8 @@
           "default": "Alemán"
         },
         {
-          "label": "Northern Sámi",
-          "default": "Northern Sámi"
+          "label": "Sami do norte",
+          "default": "Sami do norte"
         },
         {
           "label": "Bokmål noruegués",
