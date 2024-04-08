@@ -108,7 +108,7 @@
           "default": "No se encontraron palabras válidas. Por favor revise sus palabras y vuelva a intentarlo."
         },
         {
-          "label": "Etiqueta aria de anulación para zona de caída de Arrastrar las Palabras",
+          "label": "Anulación para etiqueta aria de Arrastrar las Palabras",
           "description": "@sourceWord es un reemplazable y será reemplazado con el valor respectivo.",
           "default": "Dejar caer la traducción de @sourceWord aquí."
         },
