@@ -409,5 +409,14 @@ describe('Vocabulary drill utils', () => {
 
       expect(actual).toEqual(expected);
     });
+
+    it('should remove words not matching the pattern, e.g. missing source or target', () => {
+      const words = 'ocean/sea\n,ild/brann';
+
+      const expected: string[] = [];
+      const actual = parseWords(words, false);
+
+      expect(actual).toEqual(expected);
+    });
   });
 });
