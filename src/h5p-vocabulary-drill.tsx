@@ -10,22 +10,38 @@ import { createRoot } from 'react-dom/client';
 import { ContentIdContext, H5PContext, L10nContext } from 'use-h5p';
 import { VocabularyDrill } from './components/VocabularyDrill/VocabularyDrill';
 import './index.scss';
-import type {
+import {
   AnswerModeType,
-  LanguageModeType,
-  Params,
-  State,
-  SubContentType,
+  type InstanceConnector,
+  type LanguageModeType,
+  type Params,
+  type State,
+  type SubContentType,
 } from './types/types';
 import { sanitizeRecord } from './utils/h5p.utils';
 import { isNil } from './utils/type.utils';
 import XAPIUtils from './utils/xapi.utils';
+import { parseWords } from './utils/word.utils';
+import { shuffleArray } from './utils/utils';
 
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
   implements IH5PContentType<Params>, IH5PQuestionType {
   private activeContentType: SubContentType | undefined;
   private xAPIUtils: XAPIUtils | undefined;
+  private wasAnswerGiven: boolean = this.extras?.previousState ? true : false;
+  private wasReset: boolean = false;
+  private resetInstance : () => void = (() => {});
+  private getScoreInstance : () => number = (() => 0);
+  private getMaxScoreInstance : () => number = (() => 0);
+  private words: string[] = [];
+  private wordsOrder: number[] = [];
+
+  constructor(params: Params, contentId: string, extras?: any) {
+    super(params, contentId, extras);
+
+    this.prepareWords();
+  }
 
   attach($container: JQuery<HTMLElement>) {
     const containerElement = $container.get(0);
@@ -47,6 +63,7 @@ class VocabularyDrillContentType
     const title = extras?.metadata.title ?? '';
 
     const root = createRoot(containerElement);
+
     root.render(
       <React.StrictMode>
         <L10nContext.Provider value={sanitizeRecord(params.l10n)}>
@@ -55,7 +72,11 @@ class VocabularyDrillContentType
               <VocabularyDrill
                 title={title}
                 params={params}
+                words={this.words}
                 previousState={this.state}
+                onInitalized={(params: InstanceConnector) => {
+                  this.handleInitialized(params);
+                }}
                 onChangeContentType={(answerMode, contentType) =>
                   this.handleChangeContentType(answerMode, contentType)
                 }
@@ -65,7 +86,11 @@ class VocabularyDrillContentType
                 onTrigger={(verb: XAPIVerb) =>
                   this.xAPIUtils?.triggerXAPIEvent(verb)
                 }
+                onResetTask={() => this.resetTask()}
                 onPageChange={(page) => this.handlePageChange(page)}
+                getCurrentState={() => {
+                  return this.state;
+                }}
               />
             </ContentIdContext.Provider>
           </H5PContext.Provider>
@@ -86,31 +111,23 @@ class VocabularyDrillContentType
       return false;
     }
 
-    return this.activeContentType.getAnswerGiven();
+    // Needs to remain true until explicitly reset
+    this.wasAnswerGiven = this.wasAnswerGiven ||
+      this.activeContentType.getAnswerGiven();
+
+    return this.wasAnswerGiven;
   }
 
   getScore(): number {
-    if (!this.activeContentType) {
-      return 0;
-    }
-
-    return this.state?.score ?? this.activeContentType.getScore();
+    return this.getScoreInstance();
   }
 
   getMaxScore(): number {
-    if (!this.activeContentType) {
-      return 0;
-    }
-
-    return this.state?.maxScore ?? this.activeContentType.getMaxScore();
+    return this.getMaxScoreInstance();
   }
 
   showSolutions(): void {
-    if (!this.activeContentType) {
-      return;
-    }
-
-    this.activeContentType.showSolutions();
+    console.warn('showSolutions not implemented');
   }
 
   resetTask(): void {
@@ -118,9 +135,17 @@ class VocabularyDrillContentType
       return;
     }
 
-    this.state = {};
+    this.prepareWords();
+    if (this.state?.activeAnswerMode) {
+      this.setState({
+        [this.state.activeAnswerMode]: undefined
+      });
+    }
 
-    this.activeContentType.resetTask();
+    this.resetInstance();
+
+    this.wasReset = true;
+    this.wasAnswerGiven = false;
   }
 
   getXAPIData(): XAPIData {
@@ -141,22 +166,43 @@ class VocabularyDrillContentType
 
   getCurrentState(): State | undefined {
     if (!this.getAnswerGiven()) {
-      return;
+      // Requires {} to delete the previous state on the H5P integration
+      return this.wasReset ? {} : undefined;
     }
+
+    const currentState = {
+      ...this.state,
+      wordsOrder: this.wordsOrder,
+    };
 
     const contentTypeState = this.activeContentType?.getCurrentState?.();
     if (
-      typeof contentTypeState !== 'object' ||
-      contentTypeState == null ||
-      !this.state?.activeAnswerMode
+      typeof contentTypeState === 'object' &&
+      contentTypeState !== null &&
+      this.state?.activeAnswerMode
     ) {
-      return this.state;
+      currentState[this.state.activeAnswerMode] = contentTypeState;
     }
 
-    return {
-      ...this.state,
-      [this.state.activeAnswerMode]: contentTypeState,
-    };
+    return currentState;
+  }
+
+  private prepareWords() {
+    this.words = parseWords(this.params.words, false);
+
+    if (this.extras?.previousState?.wordsOrder) {
+      this.wordsOrder = this.extras.previousState.wordsOrder;
+    }
+    else {
+      this.wordsOrder = [...Array(this.words.length).keys()];
+      if (this.params.behaviour.randomize) {
+        this.wordsOrder = shuffleArray(this.wordsOrder);
+      }
+    }
+
+    this.words = this.wordsOrder.map((orderItem) => {
+      return this.words[orderItem];
+    });
   }
 
   /**
@@ -167,10 +213,33 @@ class VocabularyDrillContentType
   }
 
   private setState(state: Partial<State>) {
+    if (typeof state === 'object' && !Object.keys(state).length) {
+      this.state = {};
+      return;
+    }
+
     this.state = {
       ...this.state,
       ...state,
     };
+
+    if (!this.state) {
+      return;
+    }
+
+    Object.keys(this.state).forEach((key) => {
+      const value = this.state?.[key as keyof State];
+      if (value === undefined) {
+        delete this.state?.[key as keyof State];
+      }
+    });
+  }
+
+  private handleInitialized(params: InstanceConnector): void {
+    // Workaround to using React to allow calling the child component's methods
+    this.resetInstance = params.resetInstance;
+    this.getScoreInstance = params.getScoreInstance;
+    this.getMaxScoreInstance = params.getMaxScoreInstance;
   }
 
   private handleChangeContentType(
@@ -192,14 +261,17 @@ class VocabularyDrillContentType
   }
 
   private handlePageChange(page: number): void {
-    this.setState({
+    const newState: State = {
       page,
       score:
         (this.state?.score ?? 0) + (this.activeContentType?.getScore() ?? 0),
-      maxScore:
-        (this.state?.maxScore ?? 0) +
-        (this.activeContentType?.getMaxScore() ?? 0),
+    };
+
+    Object.values(AnswerModeType).forEach((answerMode) => {
+      newState[answerMode] = undefined;
     });
+
+    this.setState(newState);
   }
 }
 
