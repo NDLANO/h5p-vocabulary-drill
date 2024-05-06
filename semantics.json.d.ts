@@ -682,9 +682,9 @@ declare const json: [
         "default": false
       },
       {
-        "label": "Number of words",
+        "label": "Number of words per page",
         "name": "numberOfWordsToShow",
-        "description": "Defines how many words will be visible each time. If 0 is set, all words will be shown.",
+        "description": "Defines how many words will be visible per page. If 0 is set, all words will be shown.",
         "type": "number",
         "optional": true
       }

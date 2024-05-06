@@ -425,8 +425,8 @@
           "description": "Tillat bruker å bytte mellom kildeord og målord."
         },
         {
-          "label": "Antall ord",
-          "description": "Bestemmer hvor mange ord som er synlige i hver runde. Hvis 0 er valgt, er alle orda synlige."
+          "label": "Antall ord per side",
+          "description": "Bestemmer hvor mange ord som er synlige per side. Hvis 0 er valgt, er alle orda synlige."
         }
       ]
     }

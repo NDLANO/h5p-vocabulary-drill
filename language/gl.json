@@ -425,8 +425,8 @@
           "description": "Permitir que o usuario final cambie entre as palabras orixe e destino."
         },
         {
-          "label": "Número de palabras",
-          "description": "Define cantas palabras serán visibles cada vez. Se se establece 0, mostraranse todas as palabras."
+          "label": "Número de palabras por páxina",
+          "description": "Define cantas palabras serán visibles por páxina. Se se establece 0, mostraranse todas as palabras."
         }
       ]
     }
