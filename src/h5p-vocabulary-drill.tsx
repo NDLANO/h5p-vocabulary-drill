@@ -195,7 +195,11 @@ class VocabularyDrillContentType
     }
     else {
       this.wordsOrder = [...Array(this.words.length).keys()];
-      if (this.params.behaviour.randomize) {
+      if ((this.params.behaviour.poolSize ?? 0) > 0) {
+        this.wordsOrder = shuffleArray(this.wordsOrder)
+          .slice(0, this.params.behaviour.poolSize ?? Infinity);
+      }
+      else if (this.params.behaviour.randomize) {
         this.wordsOrder = shuffleArray(this.wordsOrder);
       }
     }
