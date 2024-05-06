@@ -7,6 +7,10 @@
   .h5p-question {
     background-color: transparent;
 
+    .h5p-question-introduction.display-none {
+      display: none;
+    }
+
     /*
      * Overrides that can be removed once
      * https://h5ptechnology.atlassian.net/browse/HFP-3797 has been resolved
