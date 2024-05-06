@@ -425,6 +425,10 @@
           "description": "Tillat brukar å byte mellom kjeldeord og målord."
         },
         {
+          "label": "Number of words in total",
+          "description": "Create a randomized batch of words from all available ones."
+        },
+        {
           "label": "Antal ord per side",
           "description": "Bestemmer kor mange ord som er synlege per side. Viss 0 er sett, er alle orda synlege."
         }

@@ -425,6 +425,10 @@
           "description": "Erlaube den Lernenden zwischen den Ausgangswörtern und den Zielwörtern zu wechseln."
         },
         {
+          "label": "Anzahl der Wörter insgesamt",
+          "description": "Nutze eine zufällige Teilmenge der Wörter."
+        },
+        {
           "label": "Anzahl der Wörter pro Seite",
           "description": "Legt fest, wie viele Wörter auf jeder Seite sichtbar sind. Falls 0 gewählt wird, werden alle Wörter gezeigt."
         }

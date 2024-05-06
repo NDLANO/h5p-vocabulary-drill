@@ -425,6 +425,10 @@
           "description": "Allow the end user to switch between source and target words."
         },
         {
+          "label": "Number of words in total",
+          "description": "Create a randomized batch of words from all available ones."
+        },
+        {
           "label": "Number of words per page",
           "description": "Defines how many words that will be visible per page. If 0 is set, all words will be shown."
         }
