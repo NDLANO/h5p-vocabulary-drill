@@ -23,6 +23,7 @@ import { isNil } from './utils/type.utils';
 import XAPIUtils from './utils/xapi.utils';
 import { parseWords } from './utils/word.utils';
 import { shuffleArray } from './utils/utils';
+import { defaultTranslations } from './constants/defaultTranslations';
 
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
@@ -31,9 +32,9 @@ class VocabularyDrillContentType
   private xAPIUtils: XAPIUtils | undefined;
   private wasAnswerGiven: boolean = this.extras?.previousState ? true : false;
   private wasReset: boolean = false;
-  private resetInstance : () => void = (() => {});
-  private getScoreInstance : () => number = (() => 0);
-  private getMaxScoreInstance : () => number = (() => 0);
+  private resetInstance: () => void = (() => { });
+  private getScoreInstance: () => number = (() => 0);
+  private getMaxScoreInstance: () => number = (() => 0);
   private words: string[] = [];
   private wordsOrder: number[] = [];
 
@@ -60,13 +61,15 @@ class VocabularyDrillContentType
       title: extras?.metadata.title,
     });
 
+    const l10n = sanitizeRecord({ ...defaultTranslations, ...params.l10n });
+
     const title = extras?.metadata.title ?? '';
 
     const root = createRoot(containerElement);
 
     root.render(
       <React.StrictMode>
-        <L10nContext.Provider value={sanitizeRecord(params.l10n)}>
+        <L10nContext.Provider value={l10n}>
           <H5PContext.Provider value={this}>
             <ContentIdContext.Provider value={contentId}>
               <VocabularyDrill

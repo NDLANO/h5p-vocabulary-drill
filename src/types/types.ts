@@ -15,6 +15,7 @@ export enum LanguageModeType {
 export type Params = InferParamsFromSemantics<typeof semantics>;
 export type TranslationKey = keyof Params['l10n'];
 export type LanguageCode = Params['sourceLanguage'];
+export type Translations = Record<TranslationKey, string>;
 
 export type State = {
   activeAnswerMode?: AnswerModeType;
