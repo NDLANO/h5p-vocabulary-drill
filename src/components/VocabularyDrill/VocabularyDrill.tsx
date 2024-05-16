@@ -13,6 +13,7 @@ import {
   type SubContentType,
 } from '../../types/types';
 import { bubbleUp, bubbleDown, findLibraryInfo, libraryToString, sanitizeRecord } from '../../utils/h5p.utils';
+import { blanksDefaultTranslations, dragTextDefaultTranslations } from '../../constants/defaultTranslations';
 import { isNil } from '../../utils/type.utils';
 import { parseSourceAndTarget, pickWords } from '../../utils/word.utils';
 import { AriaLive } from '../AriaLive/AriaLive';
@@ -34,7 +35,7 @@ type VocabularyDrillProps = {
   onPageChange: (page: number) => void;
   onInitalized: (params: InstanceConnector) => void;
   onResetTask: () => void;
-  getCurrentState: () => State|undefined;
+  getCurrentState: () => State | undefined;
 };
 
 function attachContentType(
@@ -92,7 +93,7 @@ function createDragText(
       ...params.behaviour,
     },
     overallFeedback: params.overallFeedback,
-    ...sanitizeRecord(params.dragtextl10n),
+    ...sanitizeRecord({ ...dragTextDefaultTranslations, ...params.dragtextl10n }),
   };
 
   const activeContentType = attachContentType(
@@ -129,7 +130,7 @@ function createFillIn(
     questions: [fillInWords],
     behaviour: params.behaviour,
     overallFeedback: params.overallFeedback,
-    ...sanitizeRecord(params.blanksl10n),
+    ...sanitizeRecord({ ...blanksDefaultTranslations, ...params.blanksl10n }),
   };
 
   return attachContentType(
@@ -310,7 +311,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     });
   };
 
-  const hasNoInnerText = (element: Element|null): boolean => {
+  const hasNoInnerText = (element: Element | null): boolean => {
     if (!element) {
       return true;
     }

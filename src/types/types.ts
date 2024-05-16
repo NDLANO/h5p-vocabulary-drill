@@ -17,6 +17,12 @@ export type TranslationKey = keyof Params['l10n'];
 export type LanguageCode = Params['sourceLanguage'];
 export type Translations = Record<TranslationKey, string>;
 
+export type BlanksTranslationKey = keyof Params['blanksl10n'];
+export type BlanksTranslations = Record<BlanksTranslationKey, string>;
+
+export type DragTextTranslationKey = keyof Params['dragtextl10n'];
+export type DragTextTranslations = Record<DragTextTranslationKey, string>;
+
 export type State = {
   activeAnswerMode?: AnswerModeType;
   activeLanguageMode?: LanguageModeType;
