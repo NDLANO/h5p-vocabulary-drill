@@ -425,8 +425,8 @@
           "description": "Permitir que o usuario final cambie entre as palabras orixe e destino."
         },
         {
-          "label": "Number of words in total",
-          "description": "Create a randomized batch of words from all available ones."
+          "label": "Número de palabras en total",
+          "description": "Crea un lote aleatorio de palabras entre todas as dispoñibles."
         },
         {
           "label": "Número de palabras por páxina",
