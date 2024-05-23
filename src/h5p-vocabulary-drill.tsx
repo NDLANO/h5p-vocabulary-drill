@@ -18,12 +18,11 @@ import {
   type State,
   type SubContentType,
 } from './types/types';
-import { sanitizeRecord } from './utils/h5p.utils';
 import { isNil } from './utils/type.utils';
 import XAPIUtils from './utils/xapi.utils';
 import { parseWords } from './utils/word.utils';
 import { shuffleArray } from './utils/utils';
-import { defaultTranslations } from './constants/defaultTranslations';
+import { getDefaultParams } from './utils/semantics.utils';
 
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
@@ -55,13 +54,13 @@ class VocabularyDrillContentType
 
     const { contentId, extras, params } = this;
 
+    const sanitizedParams = { ...getDefaultParams(), ...params };
+
     this.xAPIUtils = new XAPIUtils({
       context: this,
-      description: params.description,
+      description: sanitizedParams.description,
       title: extras?.metadata.title,
     });
-
-    const l10n = sanitizeRecord({ ...defaultTranslations, ...params.l10n });
 
     const title = extras?.metadata.title ?? '';
 
@@ -69,12 +68,12 @@ class VocabularyDrillContentType
 
     root.render(
       <React.StrictMode>
-        <L10nContext.Provider value={l10n}>
+        <L10nContext.Provider value={sanitizedParams.l10n}>
           <H5PContext.Provider value={this}>
             <ContentIdContext.Provider value={contentId}>
               <VocabularyDrill
                 title={title}
-                params={params}
+                params={sanitizedParams}
                 words={this.words}
                 previousState={this.state}
                 onInitalized={(params: InstanceConnector) => {

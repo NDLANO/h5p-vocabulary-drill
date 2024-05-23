@@ -6,7 +6,8 @@ export const getDefaultParams = (): Required<Params> => {
     description: undefined,
     sourceLanguage: 'en',
     targetLanguage: 'nb',
-    overallFeedback: [{ from: 0, to: 100 }] as never, // TODO fix overallFeedback type
+    // @ts-expect-error - overallFeedback type is incorrect
+    overallFeedback: [{ from: 0, to: 100 }],
     words: undefined,
     l10n: defaultTranslations,
     blanksl10n: blanksDefaultTranslations,
