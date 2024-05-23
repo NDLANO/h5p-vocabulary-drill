@@ -190,18 +190,19 @@ class VocabularyDrillContentType
   }
 
   private prepareWords() {
-    this.words = parseWords(this.params.words, false);
+    const sanitizedParams = { ...getDefaultParams(), ...this.params };
+    this.words = parseWords(sanitizedParams.words, false);
 
     if (this.extras?.previousState?.wordsOrder) {
       this.wordsOrder = this.extras.previousState.wordsOrder;
     }
     else {
       this.wordsOrder = [...Array(this.words.length).keys()];
-      if ((this.params.behaviour.poolSize ?? 0) > 0) {
+      if ((sanitizedParams.behaviour.poolSize ?? 0) > 0) {
         this.wordsOrder = shuffleArray(this.wordsOrder)
-          .slice(0, this.params.behaviour.poolSize ?? Infinity);
+          .slice(0, sanitizedParams.behaviour.poolSize ?? Infinity);
       }
-      else if (this.params.behaviour.randomize) {
+      else if (sanitizedParams.behaviour.randomize) {
         this.wordsOrder = shuffleArray(this.wordsOrder);
       }
     }
