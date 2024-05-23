@@ -1,4 +1,4 @@
-import type { BlanksTranslations, DragTextTranslations, Translations } from "../types/types";
+import type { BlanksTranslations, DragTextTranslations, Translations } from '../types/types';
 
 /**
  * Default translations for the Vocabulary Drill.
@@ -39,8 +39,8 @@ export const blanksDefaultTranslations: BlanksTranslations = {
   checkAnswer: 'Check',
   submitAnswer: 'Submit',
   notFilledOut: 'Please fill in all blanks to view solution',
-  answerIsCorrect: "':ans' is correct",
-  answerIsWrong: "':ans' is wrong",
+  answerIsCorrect: '\':ans\' is correct',
+  answerIsWrong: '\':ans\' is wrong',
   answeredCorrectly: 'Answered correctly',
   answeredIncorrectly: 'Answered incorrectly',
   solutionLabel: 'Correct answer',

@@ -1,5 +1,5 @@
-import { blanksDefaultTranslations, defaultTranslations, dragTextDefaultTranslations } from "../constants/defaultTranslations";
-import { AnswerModeType, type Params } from "../types/types";
+import { blanksDefaultTranslations, defaultTranslations, dragTextDefaultTranslations } from '../constants/defaultTranslations';
+import { AnswerModeType, type Params } from '../types/types';
 
 export const getDefaultParams = (): Required<Params> => {
   return {
