@@ -34,7 +34,7 @@ type VocabularyDrillProps = {
   onPageChange: (page: number) => void;
   onInitalized: (params: InstanceConnector) => void;
   onResetTask: () => void;
-  getCurrentState: () => State|undefined;
+  getCurrentState: () => State | undefined;
 };
 
 function attachContentType(
@@ -310,7 +310,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     });
   };
 
-  const hasNoInnerText = (element: Element|null): boolean => {
+  const hasNoInnerText = (element: Element | null): boolean => {
     if (!element) {
       return true;
     }
@@ -566,6 +566,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const addGridTitles = () => {
     const wrapper = wrapperRef.current;
     if (!wrapper) {
+      return;
+    }
+
+    if (wrapper.querySelector('.h5p-vocabulary-drill-grid-title')) {
       return;
     }
 
