@@ -13,6 +13,7 @@ import {
   type SubContentType,
 } from '../../types/types';
 import { bubbleUp, bubbleDown, findLibraryInfo, libraryToString, sanitizeRecord } from '../../utils/h5p.utils';
+import { blanksDefaultTranslations, dragTextDefaultTranslations } from '../../constants/defaultTranslations';
 import { isNil } from '../../utils/type.utils';
 import { parseSourceAndTarget, pickWords } from '../../utils/word.utils';
 import { AriaLive } from '../AriaLive/AriaLive';
@@ -92,7 +93,7 @@ function createDragText(
       ...params.behaviour,
     },
     overallFeedback: params.overallFeedback,
-    ...sanitizeRecord(params.dragtextl10n),
+    ...sanitizeRecord({ ...dragTextDefaultTranslations, ...params.dragtextl10n }),
   };
 
   const activeContentType = attachContentType(
@@ -129,7 +130,7 @@ function createFillIn(
     questions: [fillInWords],
     behaviour: params.behaviour,
     overallFeedback: params.overallFeedback,
-    ...sanitizeRecord(params.blanksl10n),
+    ...sanitizeRecord({ ...blanksDefaultTranslations, ...params.blanksl10n }),
   };
 
   return attachContentType(
