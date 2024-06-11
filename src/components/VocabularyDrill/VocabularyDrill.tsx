@@ -570,6 +570,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       return;
     }
 
+    if (wrapper.querySelector('.h5p-vocabulary-drill-grid-title')) {
+      return;
+    }
+
     const targetLabel = t(`lang_${targetLanguage}`);
     const sourceLabel = t(`lang_${sourceLanguage}`);
 
