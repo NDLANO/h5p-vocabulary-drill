@@ -2,6 +2,10 @@ import { blanksDefaultTranslations, defaultTranslations, dragTextDefaultTranslat
 import { AnswerModeType, type Params } from '../types/types';
 
 export const getDefaultParams = (): Required<Params> => {
+  /*
+   * Setting optional parameters to `undefined` is a workaround to h5p-types in
+   * version 5.2.0 that expects all parameters to be defined.
+   */
   return {
     description: undefined,
     sourceLanguage: 'en',
