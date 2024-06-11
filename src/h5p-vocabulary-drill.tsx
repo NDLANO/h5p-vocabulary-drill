@@ -18,11 +18,11 @@ import {
   type State,
   type SubContentType,
 } from './types/types';
-import { sanitizeRecord } from './utils/h5p.utils';
 import { isNil } from './utils/type.utils';
 import XAPIUtils from './utils/xapi.utils';
 import { parseWords } from './utils/word.utils';
 import { shuffleArray } from './utils/utils';
+import { getDefaultParams } from './utils/semantics.utils';
 
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
@@ -31,9 +31,9 @@ class VocabularyDrillContentType
   private xAPIUtils: XAPIUtils | undefined;
   private wasAnswerGiven: boolean = this.extras?.previousState ? true : false;
   private wasReset: boolean = false;
-  private resetInstance : () => void = (() => {});
-  private getScoreInstance : () => number = (() => 0);
-  private getMaxScoreInstance : () => number = (() => 0);
+  private resetInstance: () => void = (() => { });
+  private getScoreInstance: () => number = (() => 0);
+  private getMaxScoreInstance: () => number = (() => 0);
   private words: string[] = [];
   private wordsOrder: number[] = [];
 
@@ -54,9 +54,11 @@ class VocabularyDrillContentType
 
     const { contentId, extras, params } = this;
 
+    const sanitizedParams = { ...getDefaultParams(), ...params };
+
     this.xAPIUtils = new XAPIUtils({
       context: this,
-      description: params.description,
+      description: sanitizedParams.description,
       title: extras?.metadata.title,
     });
 
@@ -66,12 +68,12 @@ class VocabularyDrillContentType
 
     root.render(
       <React.StrictMode>
-        <L10nContext.Provider value={sanitizeRecord(params.l10n)}>
+        <L10nContext.Provider value={sanitizedParams.l10n}>
           <H5PContext.Provider value={this}>
             <ContentIdContext.Provider value={contentId}>
               <VocabularyDrill
                 title={title}
-                params={params}
+                params={sanitizedParams}
                 words={this.words}
                 previousState={this.state}
                 onInitalized={(params: InstanceConnector) => {
@@ -188,18 +190,19 @@ class VocabularyDrillContentType
   }
 
   private prepareWords() {
-    this.words = parseWords(this.params.words, false);
+    const sanitizedParams = { ...getDefaultParams(), ...this.params };
+    this.words = parseWords(sanitizedParams.words, false);
 
     if (this.extras?.previousState?.wordsOrder) {
       this.wordsOrder = this.extras.previousState.wordsOrder;
     }
     else {
       this.wordsOrder = [...Array(this.words.length).keys()];
-      if ((this.params.behaviour.poolSize ?? 0) > 0) {
+      if ((sanitizedParams.behaviour.poolSize ?? 0) > 0) {
         this.wordsOrder = shuffleArray(this.wordsOrder)
-          .slice(0, this.params.behaviour.poolSize ?? Infinity);
+          .slice(0, sanitizedParams.behaviour.poolSize ?? Infinity);
       }
-      else if (this.params.behaviour.randomize) {
+      else if (sanitizedParams.behaviour.randomize) {
         this.wordsOrder = shuffleArray(this.wordsOrder);
       }
     }
