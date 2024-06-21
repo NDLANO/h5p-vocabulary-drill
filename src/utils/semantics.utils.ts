@@ -5,7 +5,6 @@ export const getDefaultParams = (): Params => {
   return {
     sourceLanguage: 'en',
     targetLanguage: 'nb',
-    overallFeedback: undefined,
     l10n: defaultTranslations,
     blanksl10n: blanksDefaultTranslations,
     dragtextl10n: dragTextDefaultTranslations,
