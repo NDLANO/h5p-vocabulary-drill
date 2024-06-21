@@ -20,8 +20,6 @@ export const getDefaultParams = (): Params => {
       answerMode: AnswerModeType.FillIn,
       enableSwitchAnswerModeButton: false,
       enableSwitchWordsButton: false,
-      poolSize: undefined,
-      numberOfWordsToShow: undefined,
     },
   };
 };
