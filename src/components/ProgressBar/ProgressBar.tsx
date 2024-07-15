@@ -1,5 +1,5 @@
 import { H5P } from 'h5p-utils';
-import React, { useEffect, useRef, type FC } from 'react';
+import { useEffect, useRef, type FC } from 'react';
 
 type ProgressBarProps = {
   page: number;
@@ -12,7 +12,7 @@ export const ProgressBar: FC<ProgressBarProps> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   // Page progress is also available in StatusBar
-  const disableAria = true; 
+  const disableAria = true;
   const progressBar = useRef(H5P.JoubelUI.createProgressbar(totalPages, { disableAria }));
   progressBar.current.setProgress(page);
 
