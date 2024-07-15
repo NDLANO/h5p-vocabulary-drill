@@ -1,5 +1,5 @@
 import { H5P } from 'h5p-utils';
-import { useEffect, useRef, type FC } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 
 type ScoreBarProps = {
@@ -7,7 +7,7 @@ type ScoreBarProps = {
   score: number,
 };
 
-export const ScoreBar: FC<ScoreBarProps> = ({
+export const ScoreBar: React.FC<ScoreBarProps> = ({
   maxScore,
   score,
 }) => {

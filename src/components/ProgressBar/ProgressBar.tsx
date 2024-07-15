@@ -1,12 +1,12 @@
 import { H5P } from 'h5p-utils';
-import { useEffect, useRef, type FC } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 type ProgressBarProps = {
   page: number;
   totalPages: number;
 };
 
-export const ProgressBar: FC<ProgressBarProps> = ({
+export const ProgressBar: React.FC<ProgressBarProps> = ({
   page, totalPages
 }) => {
   const ref = useRef<HTMLDivElement>(null);
