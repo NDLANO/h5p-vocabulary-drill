@@ -68,7 +68,7 @@
       "label": "Ord",
       "description": "Legg til ord ved å laste opp ei CSV-fil, eller skriv orda inn i tekstfeltet.",
       "important": {
-        "description": "<ul><li>Kjelde- og målord er åtskilde med komma (,).</li><li>Alternative svar er åtskilde med skråstrek (/).</li><li>Du kan legge til eit teksttips ved å bruke kolon (:) framfor tipset.</li><li>I CSV-fila kan det anten vere kun kilde- og målord eller kildeord, hint, målord, og hint.</li></ul>",
+        "description": "<ul><li>Kjelde- og målord er åtskilde med komma (,).</li><li>Alternative svar er åtskilde med skråstrek (/).</li><li>Du kan legge til eit teksttips ved å bruke kolon (:) framfor tipset.</li><li>CSV-fila kan innehalde berre kjeldeord og målord, eller ho kan innehalde kjeldeord, hint om kjeldeord, målord og hint om målord.</li></ul>",
         "example": "water/sea:w___r,vatn/hav:v__n"
       }
     },
@@ -101,36 +101,36 @@
       ]
     },
     {
-      "label": "Namn på knappar",
+      "label": "Omsettingar",
       "fields": [
         {
           "label": "Ingen gyldige ord",
           "default": "Ingen gyldige ord funne. Kontroller orda dine og prøv igjen."
         },
         {
-          "label": "Overstyrer skjermlesartekst for droppsone i \"Drag the Words\"",
-          "description": "@sourceWord er ein variabel og vil bli erstatta av den respektive verdien.",
-          "default": "Slipp oversettelsen av @sourceWord her."
+          "label": "Erstatning for ARIA-label for droppsone i \"Drag the Words\"",
+          "description": "@sourceWord er ein variabel som vil bli erstatta med ein verdi.",
+          "default": "Slepp omsetjinga av @sourceWord her."
         },
         {
-          "label": "Namn på svarmodus \"Fyll inn\"",
+          "label": "Tekst for svarmodus \"Fyll inn\"",
           "default": "Fyll inn"
         },
         {
-          "label": "Namn på svarmodus \"Dra tekst\"",
+          "label": "Tekst for svarmodus \"Dra tekst\"",
           "default": "Dra tekst"
         },
         {
-          "label": "Namn på svarmodus",
+          "label": "Tekst for svarmodus",
           "default": "Endre svarmodus"
         },
         {
-          "label": "Namn på språkmodus",
+          "label": "Tekst for språkmodus",
           "default": "Byt språk"
         },
         {
           "label": "Aria for endra svarmodus",
-          "default": "Endra svarmodus til @option"
+          "default": "Svarmodus endra til @option"
         },
         {
           "label": "Aria for språkmodus",
@@ -138,34 +138,34 @@
         },
         {
           "label": "Aria for endra språkmodus",
-          "default": "Språk bytt frå @sourceLanguage til @targetLanguage"
+          "default": "Språket er endra frå @sourceLanguage til @targetLanguage"
         },
         {
-          "label": "Namn på \"Neste\"-knapp",
+          "label": "Tekst på \"Neste\"-knapp",
           "default": "Neste"
         },
         {
-          "label": "Namn på \"Fullfør\"-knapp",
+          "label": "Tekst på \"Fullfør\"-knapp",
           "default": "Fullfør"
         },
         {
-          "label": "Namn på \"Start på nytt\"-knapp",
+          "label": "Tekst på \"Start på nytt\"-knapp",
           "default": "Start på nytt"
         },
         {
-          "label": "Merkelapp for resultat",
+          "label": "Tekst for resultat",
           "default": "Resultat"
         },
         {
-          "label": "Tekstalternativ til resultatlinja, for skjermlesarbrukarar",
+          "label": "Tekstalternativ til resultatlinja (for skjermlesarbrukarar)",
           "default": "Du fekk @score av @maxScore poeng"
         },
         {
-          "label": "Tekstalternativ til sidetal, for skjermlesarbrukarar",
+          "label": "Tekstalternativ til sidetal (for skjermlesarbrukarar)",
           "default": "Side @page av @totalPages"
         },
         {
-          "label": "Tekst for tilbakemelding",
+          "label": "Tilbakemeldingstekst",
           "default": "Resultatet ditt"
         },
         {
@@ -203,22 +203,22 @@
       ]
     },
     {
-      "label": "Namn på knappar og leietekstar for \"Fill in the Blanks\"",
+      "label": "Tekst på knappar og i leietekstar for \"Fill in the Blanks\"",
       "fields": [
         {
-          "label": "Namn på \"Vis svar\"-knapp",
+          "label": "Tekst på \"Vis svar\"-knapp",
           "default": "Vis svar"
         },
         {
-          "label": "Namn på \"Prøv igjen\"-knapp",
+          "label": "Tekst på \"Prøv igjen\"-knapp",
           "default": "Prøv igjen"
         },
         {
-          "label": "Namn på \"Sjekk\"-knapp",
+          "label": "Tekst på \"Sjekk\"-knapp",
           "default": "Sjekk"
         },
         {
-          "label": "Namn på \"Send inn\"-knapp",
+          "label": "Tekst på \"Send inn\"-knapp",
           "default": "Send inn"
         },
         {
@@ -242,61 +242,61 @@
           "default": "Feil svar"
         },
         {
-          "label": "Merkelapp for svar ved bruk av assisterande teknologi",
+          "label": "Tekst for svar (ved bruk av assisterande teknologi)",
           "default": "Rett svar:"
         },
         {
-          "label": "Merkelapp for inntastingsfelt ved bruk av assisterande teknologi",
+          "label": "Tekst for inntastingsfelt (ved bruk av assisterande teknologi)",
           "description": "Bruk @num og @total for å sette inn feltnummer og totalt tal på felt.",
           "default": "Felt @num av @total"
         },
         {
-          "label": "Merkelapp brukt av assisterande teknologi for å seie at det finst eit tips",
+          "label": "Tekst som informerer om at det finst eit tips (ved bruk av skjermlesar)",
           "default": "Tips tilgjengeleg"
         },
         {
-          "label": "Namn på tipsknapp",
+          "label": "Tekst på tipsknapp",
           "default": "Tips"
         },
         {
-          "label": "Tekstalternativ til poenglinja for skjermlesarbrukarar",
+          "label": "Tekstalternativ til poenglinja (for skjermlesarbrukarar)",
           "default": "Du fekk :num av :total poeng."
         },
         {
-          "label": "Beskriving av \"Sjekk\"-knappen for assisterande teknologi",
+          "label": "Beskriving av \"Sjekk\"-knappen (for assisterande teknologi)",
           "default": "Sjekk svara. Svara blir merkte som rette, feil eller utan svar."
         },
         {
-          "label": "Beskriving av \"Vis svar\"-knappen for assisterande teknologi",
+          "label": "Beskriving av \"Vis svar\"-knappen (for assisterande teknologi)",
           "default": "Vis svar. Oppgåva blir merkt med rette svar."
         },
         {
-          "label": "Beskriving av \"Prøv igjen\"-knappen for assisterande teknologi",
+          "label": "Beskriving av \"Prøv igjen\"-knappen (for assisterande teknologi)",
           "default": "Prøv igjen. Alle svara blir nullstilte, og oppgåva startar på nytt."
         },
         {
-          "label": "Beskriving som blir lesen opp av assisterande teknologi etter at \"Sjekk\"-knapp er vald",
+          "label": "Beskriving i starten av oppgåva etter at \"Sjekk\"-knapp er vald (for assisterande teknologi)",
           "default": "Sjekk-modus aktivert"
         }
       ]
     },
     {
-      "label": "Omsettingar for dra-og-slepp-oppgåver",
+      "label": "Omsettingar for dra-og-slepp-ord-oppgåver",
       "fields": [
         {
-          "label": "Namn på \"Sjekk\"-knapp",
+          "label": "Tekst på \"Sjekk\"-knapp",
           "default": "Sjekk"
         },
         {
-          "label": "Namn på \"Send inn\"-knapp",
+          "label": "Tekst på \"Send inn\"-knapp",
           "default": "Send inn"
         },
         {
-          "label": "Namn på \"Prøv igjen\"-knapp",
+          "label": "Tekst på \"Prøv igjen\"-knapp",
           "default": "Prøv igjen"
         },
         {
-          "label": "Namn på \"Vis svar\"-knapp",
+          "label": "Tekst på \"Vis svar\"-knapp",
           "default": "Vis svar"
         },
         {
@@ -315,12 +315,12 @@
           "description": "Merking for tilgjengelegheit. Skjermlesar les at sleppsona inneheld eit flyttbart element."
         },
         {
-          "label": "Nummerert merkelapp for flyttbart element",
+          "label": "Merkelapp for flyttbart element",
           "default": "@index av @count flyttbare element",
-          "description": "Merking for tilgjengelegheit. Skjermlesar les at dette er eit flyttbart element. Tilgjengelege variablar: @index (nummer i rekka), @count (totalt tal på element)."
+          "description": "Merking for tilgjengelegheit. Skjermlesar les at dette er eit flyttbart element. Tilgjengelege variablar: @index (nummer i rekka), @count (totalt antal element)."
         },
         {
-          "label": "Merkelapp for tipsknapp",
+          "label": "Tekst for tipsknapp",
           "default": "Vis tips",
           "description": "Merking for tilgjengelegheit. Skjermlesar les denne teksten før tipset blir lese opp."
         },
@@ -330,7 +330,7 @@
         },
         {
           "label": "Skjermlesartekst ved feil svar",
-          "default": "Feil"
+          "default": "Feil."
         },
         {
           "label": "Tittel på bekreftingsdialog når brukaren vil nullstille eit flyttbart element",
@@ -357,19 +357,19 @@
           "default": "Tilbakemelding"
         },
         {
-          "label": "Tekstalternativ til resultatlinja for skjermlesarbrukarar",
+          "label": "Tekstalternativ til resultatlinja (for skjermlesarbrukarar)",
           "default": "Du fekk :num av :total poeng."
         },
         {
-          "label": "Merkelapp for \"Sjekk\"-knapp for assisterande teknologi",
+          "label": "Beskriving av \"Sjekk\"-knapp for assisterande teknologi",
           "default": "Sjekk svara. Svara blir merkte som rette, feil eller utan svar."
         },
         {
-          "label": "Merkelapp for \"Vis svar\"-knapp for assisterande teknologi",
+          "label": "Beskriving av \"Vis svar\"-knapp for assisterande teknologi",
           "default": "Vis svar. Oppgåva blir merkt med rette svar."
         },
         {
-          "label": "Merkelapp for \"Prøv igjen\"-knapp for assisterande teknologi",
+          "label": "Beskriving av \"Prøv igjen\"-knapp for assisterande teknologi",
           "default": "Prøv igjen. Alle svara blir nullstilte, og oppgåva startar på nytt."
         }
       ]
@@ -396,8 +396,8 @@
           "description": "Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll ut\"."
         },
         {
-          "label": "Godta mindre skrivefeil",
-          "description": "Viss denne er aktivert, vil eit svar telje som rett sjølv om det inneheld mindre skrivefeil (ord på 3–9 teikn: 1 skrivefeil er godteke; ord på fleire enn 9 teikn: 2 skrivefeil er godtekne). Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll ut\"."
+          "label": "Godta mindre stavefeil",
+          "description": "Viss denne er aktivert, vil eit svar telje som rett sjølv om det inneheld mindre stavefeil (ord på 3–9 teikn: maks 1 feil; ord på fleire enn 9 teikn: maks 2 feil). Dette alternativet er berre gyldig viss svarmodus er sett til \"Fyll ut\"."
         },
         {
           "label": "Vel tilfeldig rekkefølge"
@@ -425,12 +425,12 @@
           "description": "Tillat brukar å byte mellom kjeldeord og målord."
         },
         {
-          "label": "Number of words in total",
-          "description": "Create a randomized batch of words from all available ones."
+          "label": "Totalt antal ord",
+          "description": "Bruk eit tilfeldig utval av orda som er lagde inn."
         },
         {
           "label": "Antal ord per side",
-          "description": "Bestemmer kor mange ord som er synlege per side. Viss 0 er sett, er alle orda synlege."
+          "description": "Bestemmer kor mange ord som blir viste per side. Viss 0 er valt, er alle orda synlege."
         }
       ]
     }
