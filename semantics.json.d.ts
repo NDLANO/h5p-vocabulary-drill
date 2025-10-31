@@ -25,7 +25,7 @@ declare const json: [
     "type": "text",
     "label": "Name of source language",
     "optional": true,
-    "state": "new"
+    "widget": "none"
   },
   {
     "name": "targetLanguage",
@@ -46,8 +46,7 @@ declare const json: [
     "type": "text",
     "label": "Name of target language",
     "optional": true,
-    "widget": "none",
-    "state": "new"
+    "widget": "none"
   },
   {
     "label": "Words",
