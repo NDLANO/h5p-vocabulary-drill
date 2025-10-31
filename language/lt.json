@@ -6,63 +6,17 @@
     },
     {
       "label": "Šaltinio kalba",
-      "description": "Pasirinkite pirminių žodžių kalbą.",
-      "options": [
-        {
-          "label": "Anglų"
-        },
-        {
-          "label": "Prancūzų"
-        },
-        {
-          "label": "Vokiečių"
-        },
-        {
-          "label": "Northern Sámi"
-        },
-        {
-          "label": "Norvegų"
-        },
-        {
-          "label": "Norwegian nynorsk"
-        },
-        {
-          "label": "Southern Sámi"
-        },
-        {
-          "label": "Ispanų"
-        }
-      ]
+      "description": "Pasirinkite pirminių žodžių kalbą."
+    },
+    {
+      "label": "Šaltinio kalbos pavadinimas"
     },
     {
       "label": "Tikslinė kalba",
-      "description": "Choose the language of the target words.",
-      "options": [
-        {
-          "label": "Anglų"
-        },
-        {
-          "label": "Prancūzų"
-        },
-        {
-          "label": "Vokiečių"
-        },
-        {
-          "label": "Northern Sámi"
-        },
-        {
-          "label": "Norvegų"
-        },
-        {
-          "label": "Norwegian nynorsk"
-        },
-        {
-          "label": "Southern Sámi"
-        },
-        {
-          "label": "Ispanų"
-        }
-      ]
+      "description": "Pasirinkite vertimo kalbą."
+    },
+    {
+      "label": "Tikslinės kalbos pavadinimas"
     },
     {
       "label": "Žodžiai",
@@ -167,38 +121,6 @@
         {
           "label": "Feedback text",
           "default": "Your total score"
-        },
-        {
-          "label": "English",
-          "default": "English"
-        },
-        {
-          "label": "French",
-          "default": "French"
-        },
-        {
-          "label": "German",
-          "default": "German"
-        },
-        {
-          "label": "Northern Sámi",
-          "default": "Northern Sámi"
-        },
-        {
-          "label": "Norwegian bokmål",
-          "default": "Norwegian bokmål"
-        },
-        {
-          "label": "Norwegian nynorsk",
-          "default": "Norwegian nynorsk"
-        },
-        {
-          "label": "Southern Sámi",
-          "default": "Southern Sámi"
-        },
-        {
-          "label": "Spanish",
-          "default": "Spanish"
         }
       ]
     },

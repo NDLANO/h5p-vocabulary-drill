@@ -574,8 +574,8 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       return;
     }
 
-    const targetLabel = t(`lang_${targetLanguage}`);
-    const sourceLabel = t(`lang_${sourceLanguage}`);
+    const targetLabel = params.targetLanguageName ?? null;
+    const sourceLabel = params.sourceLanguageName ?? null;
 
     const target = activeLanguageMode === LanguageModeType.Target;
 

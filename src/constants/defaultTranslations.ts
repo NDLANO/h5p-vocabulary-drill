@@ -19,15 +19,7 @@ export const defaultTranslations: Translations = {
   scoreLabel: 'Score',
   scoreBarLabel: 'You got @score out of @maxScore points',
   pageNumberLabel: 'Page @page of @totalPages',
-  feedbackText: 'Your total score',
-  lang_en: 'English',
-  lang_fr: 'French',
-  lang_de: 'German',
-  lang_sme: 'Northern Sámi',
-  lang_nb: 'Norwegian bokmål',
-  lang_nn: 'Norwegian nynorsk',
-  lang_sma: 'Southern Sámi',
-  lang_es: 'Spanish',
+  feedbackText: 'Your total score'
 };
 
 /**
