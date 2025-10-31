@@ -7,86 +7,46 @@
     "optional": true
   },
   {
-    "label": "Source language",
     "name": "sourceLanguage",
+    "type": "text",
+    "label": "Source language",
     "description": "Choose the language of the source words.",
-    "type": "select",
-    "options": [
-      {
-        "value": "en",
-        "label": "English"
+    "widget": "localeSelector",
+    "localeSelector": {
+      "requestedBCP47s": ["de", "en", "es", "fr", "nb", "nn", "sma", "sme"],
+      "targetFieldMap": {
+        "languageNameTranslatedContent": "sourceLanguageName"
       },
-      {
-        "value": "fr",
-        "label": "French"
-      },
-      {
-        "value": "de",
-        "label": "German"
-      },
-      {
-        "value": "sme",
-        "label": "Northern Sámi"
-      },
-      {
-        "value": "nb",
-        "label": "Norwegian bokmål"
-      },
-      {
-        "value": "nn",
-        "label": "Norwegian nynorsk"
-      },
-      {
-        "value": "sma",
-        "label": "Southern Sámi"
-      },
-      {
-        "value": "es",
-        "label": "Spanish"
-      }
-    ],
-    "default": "en"
+      "default": "en"
+    }
   },
   {
-    "label": "Target language",
+    "name": "sourceLanguageName",
+    "type": "text",
+    "label": "Name of source language",
+    "optional": true,
+    "widget": "none"
+  },
+  {
     "name": "targetLanguage",
+    "type": "text",
+    "label": "Target language",
     "description": "Choose the language of the target words.",
-    "type": "select",
-    "options": [
-      {
-        "value": "en",
-        "label": "English"
+    "widget": "localeSelector",
+    "localeSelector": {
+      "requestedBCP47s": ["de", "en", "es", "fr", "nb", "nn", "sma", "sme"],
+      "targetFieldMap": {
+        "languageNameTranslatedContent": "targetLanguageName"
       },
-      {
-        "value": "fr",
-        "label": "French"
-      },
-      {
-        "value": "de",
-        "label": "German"
-      },
-      {
-        "value": "sme",
-        "label": "Northern Sámi"
-      },
-      {
-        "value": "nb",
-        "label": "Norwegian bokmål"
-      },
-      {
-        "value": "nn",
-        "label": "Norwegian nynorsk"
-      },
-      {
-        "value": "sma",
-        "label": "Southern Sámi"
-      },
-      {
-        "value": "es",
-        "label": "Spanish"
-      }
-    ],
-    "default": "nb"
+      "default": "nb"
+    }
+  },
+  {
+    "name": "targetLanguageName",
+    "type": "text",
+    "label": "Name of target language",
+    "optional": true,
+    "widget": "none"
   },
   {
     "label": "Words",
@@ -261,54 +221,6 @@
         "label": "Feedback text",
         "name": "feedbackText",
         "default": "Your total score",
-        "type": "text"
-      },
-      {
-        "label": "English",
-        "name": "lang_en",
-        "default": "English",
-        "type": "text"
-      },
-      {
-        "label": "French",
-        "name": "lang_fr",
-        "default": "French",
-        "type": "text"
-      },
-      {
-        "label": "German",
-        "name": "lang_de",
-        "default": "German",
-        "type": "text"
-      },
-      {
-        "label": "Northern Sámi",
-        "name": "lang_sme",
-        "default": "Northern Sámi",
-        "type": "text"
-      },
-      {
-        "label": "Norwegian bokmål",
-        "name": "lang_nb",
-        "default": "Norwegian bokmål",
-        "type": "text"
-      },
-      {
-        "label": "Norwegian nynorsk",
-        "name": "lang_nn",
-        "default": "Norwegian nynorsk",
-        "type": "text"
-      },
-      {
-        "label": "Southern Sámi",
-        "name": "lang_sma",
-        "default": "Southern Sámi",
-        "type": "text"
-      },
-      {
-        "label": "Spanish",
-        "name": "lang_es",
-        "default": "Spanish",
         "type": "text"
       }
     ]

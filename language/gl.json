@@ -6,63 +6,17 @@
     },
     {
       "label": "Lingua de orixe",
-      "description": "Escolle a lingua das palabras fonte.",
-      "options": [
-        {
-          "label": "Inglés"
-        },
-        {
-          "label": "Francés"
-        },
-        {
-          "label": "Alemán"
-        },
-        {
-          "label": "sami do norte"
-        },
-        {
-          "label": "Bokmål noruegués"
-        },
-        {
-          "label": "Nynorsk noruegués"
-        },
-        {
-          "label": "Sami do sur"
-        },
-        {
-          "label": "Español"
-        }
-      ]
+      "description": "Escolle a lingua das palabras fonte."
+    },
+    {
+      "label": "Nome da lingua de orixe"
     },
     {
       "label": "Lingua de destino",
-      "description": "Escolle a lingua das palabras de destino.",
-      "options": [
-        {
-          "label": "Inglés"
-        },
-        {
-          "label": "Francés"
-        },
-        {
-          "label": "Alemán"
-        },
-        {
-          "label": "sami do norte"
-        },
-        {
-          "label": "Bokmål noruegués"
-        },
-        {
-          "label": "Nynorsk noruegués"
-        },
-        {
-          "label": "Sami do sur"
-        },
-        {
-          "label": "Español"
-        }
-      ]
+      "description": "Escolle a lingua das palabras de destino."
+    },
+    {
+      "label": "Nome da lingua de destino"
     },
     {
       "label": "Palabras",
@@ -167,38 +121,6 @@
         {
           "label": "Texto da retroalimentación",
           "default": "A túa puntuación total"
-        },
-        {
-          "label": "Inglés",
-          "default": "Inglés"
-        },
-        {
-          "label": "Francés",
-          "default": "Francés"
-        },
-        {
-          "label": "Alemán",
-          "default": "Alemán"
-        },
-        {
-          "label": "Sami do norte",
-          "default": "Sami do norte"
-        },
-        {
-          "label": "Bokmål noruegués",
-          "default": "Bokmål noruegués"
-        },
-        {
-          "label": "Nynorsk noruegués",
-          "default": "Nynorsk noruegués"
-        },
-        {
-          "label": "Sami do sur",
-          "default": "Sami do sur"
-        },
-        {
-          "label": "Español",
-          "default": "Español"
         }
       ]
     },
