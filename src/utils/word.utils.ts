@@ -7,14 +7,14 @@ import {
 import { AnswerModeType, LanguageModeType, type LanguageCode } from '../types/types';
 
 export const filterWord = (wordsAndTip: string): string => {
-  const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
-  const [word, _variant] = wordAndVariant.split(variantSeparator);
+  const [wordAndVariant] = wordsAndTip.split(tipSeparator);
+  const [word] = wordAndVariant.split(variantSeparator);
 
   return word;
 };
 
 const filterOutTip = (wordsAndTip: string): string => {
-  const [wordAndVariant, _tip] = wordsAndTip.split(tipSeparator);
+  const [wordAndVariant] = wordsAndTip.split(tipSeparator);
 
   return wordAndVariant;
 };
