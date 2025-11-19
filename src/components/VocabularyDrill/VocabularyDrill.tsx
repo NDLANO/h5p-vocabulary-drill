@@ -492,9 +492,13 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
     // Make sure the first element on the new page is focused
     if (activeAnswerMode === AnswerModeType.DragText) {
+      // TODO: Why was this not properly typed to begin with?
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (activeContentType.current as any).$introduction.parent().focus();
     }
     else if (activeAnswerMode === AnswerModeType.FillIn) {
+      // TODO: Why was this not properly typed to begin with?
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (activeContentType.current as any).a11yHeader.focus();
     }
   };
@@ -623,11 +627,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
      */
     wrapper.querySelectorAll('.h5p-drag-droppable-words .ui-droppable')
       .forEach((element) => {
-        // @ts-ignore
+        // @ts-expect-error No jQueryUI types available
         H5P.jQuery(element).droppable({
           tolerance: 'touch',
           over: (event: Event) => {
-            // @ts-ignore
+            // @ts-expect-error No jQueryUI types available
             instance.droppables?.forEach((droppable) => {
               if (droppable.getElement() !== event.target) {
                 droppable.$dropzone.droppable({ disabled: true });
@@ -635,7 +639,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             });
           },
           out: () => {
-            // @ts-ignore
+            // @ts-expect-error No jQueryUI types available
             instance.droppables?.forEach((droppable) => {
               droppable.$dropzone.droppable({ disabled: false });
             });
@@ -643,7 +647,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
         });
 
         H5P.jQuery(element).on('drop', () => {
-          // @ts-ignore
+          // @ts-expect-error No jQueryUI types available
           instance.droppables?.forEach((droppable) => {
             droppable.$dropzone.droppable({ disabled: false });
           });
@@ -681,7 +685,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             <ScorePage
               score={score}
               maxScore={words.length}
-              overallFeedbacks={overallFeedback as {}[]}
+              overallFeedbacks={overallFeedback as object[]}
               onRestart={onResetTask}
             />
           )}

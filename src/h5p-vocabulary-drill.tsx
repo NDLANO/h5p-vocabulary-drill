@@ -1,4 +1,5 @@
 import type {
+  H5PExtrasWithState,
   IH5PContentType,
   IH5PQuestionType,
   XAPIData,
@@ -37,7 +38,7 @@ class VocabularyDrillContentType
   private words: string[] = [];
   private wordsOrder: number[] = [];
 
-  constructor(params: Params, contentId: string, extras?: any) {
+  constructor(params: Params, contentId: string, extras?: H5PExtrasWithState<State>) {
     super(params, contentId, extras);
 
     this.prepareWords();

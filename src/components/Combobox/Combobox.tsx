@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { type Key } from 'react';
 import { useAriaLive } from '../../hooks/useAriaLive/useAriaLive';
 
 type ComboboxOption = {
   index?: number;
-  value: any;
+  value: Key | null | undefined;
   label: string;
   className: string;
 };
@@ -12,7 +12,7 @@ type ComboboxProps = {
   id: string;
   className: string;
   label: string;
-  active: any;
+  active: Key | null | undefined;
   options: ComboboxOption[];
   onChange: () => void;
   disabled: boolean;
@@ -154,17 +154,18 @@ export const Combobox: React.FC<ComboboxProps> = ({
       case SelectActions.Next:
       case SelectActions.Previous:
       case SelectActions.PageDown:
-      case SelectActions.PageUp:
+      case SelectActions.PageUp: {
         event.preventDefault();
         const newIndex = getUpdatedIndex(action, selectedOption.index ?? 0, options.length - 1);
         const newOption = options[newIndex];
         return handleSelectedOption(newOption);
+      }
       default:
         return;
     }
   };
 
-  const handleBlur = (event: { relatedTarget: any; }) => {
+  const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (openMenu) {
       // Blur events are fired before click events, so we need to check if the click was inside the listbox
       const clickedObject = event.relatedTarget;

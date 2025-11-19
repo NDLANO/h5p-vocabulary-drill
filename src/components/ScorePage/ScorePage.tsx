@@ -6,7 +6,7 @@ import { ScoreBar } from '../ScoreBar/ScoreBar';
 type ScorePageProps = {
   score: number;
   maxScore: number;
-  overallFeedbacks: {}[] | undefined;
+  overallFeedbacks: object[] | undefined;
   onRestart: () => void;
 };
 
@@ -21,6 +21,8 @@ export const ScorePage: FC<ScorePageProps> = ({
   const feedbackText = t('feedbackText');
   const restartText = t('restart');
 
+  // TODO: Why was this not properly typed to begin with?
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const overallFeedback = (H5P as any).Question.determineOverallFeedback(overallFeedbacks, score / maxScore);
   const feedback = overallFeedback !== '' ? overallFeedback : feedbackText;
 

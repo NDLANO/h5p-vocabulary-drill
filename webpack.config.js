@@ -1,11 +1,17 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import process from 'node:process';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import unpluginJsonDts from 'unplugin-json-dts/webpack';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const mode = process.argv.includes('--mode=production')
   ? 'production'
   : 'development';
 
-module.exports = {
+export default {
   mode: mode,
   entry: {
     'h5p-vocabulary-drill': path.join(
@@ -23,7 +29,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
-    require('unplugin-json-dts/webpack')(),
+    unpluginJsonDts(),
   ],
   resolve: {
     modules: [path.resolve('./src'), path.resolve('./node_modules')],
