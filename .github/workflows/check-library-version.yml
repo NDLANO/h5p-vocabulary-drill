@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check library version
-        uses: boyum/comment-h5p-library-version-action@v2 # https://github.com/boyum/comment-h5p-library-version-action
+        uses: boyum/comment-h5p-library-version-action@v2.4 # https://github.com/boyum/comment-h5p-library-version-action
         with:
           working-directory: ${{env.working-directory}}
           project-id: ${{env.project-id}}
