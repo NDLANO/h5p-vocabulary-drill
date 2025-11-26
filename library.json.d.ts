@@ -2,8 +2,8 @@ declare const json: {
   "title": "Vocabulary Drill",
   "machineName": "H5P.VocabularyDrill",
   "majorVersion": 1,
-  "minorVersion": 0,
-  "patchVersion": 33,
+  "minorVersion": 1,
+  "patchVersion": 0,
   "runnable": 1,
   "license": "MIT",
   "author": "NDLA",
@@ -40,6 +40,11 @@ declare const json: {
       "machineName": "H5PEditor.RadioGroup",
       "majorVersion": 1,
       "minorVersion": 1
+    },
+    {
+      "machineName": "H5PEditor.LocaleSelector",
+      "majorVersion": 1,
+      "minorVersion": 0
     }
   ],
   "preloadedJs": [

@@ -6,63 +6,17 @@
     },
     {
       "label": "Ausgangssprache",
-      "description": "Wähle die Sprache der Ausgangswörter.",
-      "options": [
-        {
-          "label": "Englisch"
-        },
-        {
-          "label": "Französisch"
-        },
-        {
-          "label": "Deutsch"
-        },
-        {
-          "label": "Nordsamisch"
-        },
-        {
-          "label": "Norwegisch (Bokmål)"
-        },
-        {
-          "label": "Norwegisch (Nynorsk)"
-        },
-        {
-          "label": "Südsamisch"
-        },
-        {
-          "label": "Spanisch"
-        }
-      ]
+      "description": "Wähle die Sprache der Ausgangswörter."
+    },
+    {
+      "label": "Name der Ausgangssprache"
     },
     {
       "label": "Zielsprache",
-      "description": "Wähle die Sprache der Zielwörter.",
-      "options": [
-        {
-          "label": "Englisch"
-        },
-        {
-          "label": "Französisch"
-        },
-        {
-          "label": "Deutsch"
-        },
-        {
-          "label": "Nordsamisch"
-        },
-        {
-          "label": "Norwegisch (Bokmål)"
-        },
-        {
-          "label": "Norwegisch (Nynorsk)"
-        },
-        {
-          "label": "Südsamisch"
-        },
-        {
-          "label": "Spanisch"
-        }
-      ]
+      "description": "Wähle die Sprache der Zielwörter."
+    },
+    {
+      "label": "Name der Zielsprache"
     },
     {
       "label": "Wörter",
@@ -167,38 +121,6 @@
         {
           "label": "Rückmeldungstext",
           "default": "Deine Gesamtpunktzahl"
-        },
-        {
-          "label": "Englisch",
-          "default": "Englisch"
-        },
-        {
-          "label": "Französisch",
-          "default": "Französisch"
-        },
-        {
-          "label": "Deutsch",
-          "default": "Deutsch"
-        },
-        {
-          "label": "Nordsamisch",
-          "default": "Nordsamisch"
-        },
-        {
-          "label": "Norwegisch (Bokmål)",
-          "default": "Norwegisch (Bokmål)"
-        },
-        {
-          "label": "Norwegisch (Nynorsk)",
-          "default": "Norwegisch (Nynorsk)"
-        },
-        {
-          "label": "Südsamisch",
-          "default": "Südsamisch"
-        },
-        {
-          "label": "Spanisch",
-          "default": "Spanisch"
         }
       ]
     },

@@ -6,63 +6,17 @@
     },
     {
       "label": "Source language",
-      "description": "Choose the language of the source words.",
-      "options": [
-        {
-          "label": "English"
-        },
-        {
-          "label": "French"
-        },
-        {
-          "label": "German"
-        },
-        {
-          "label": "Northern Sámi"
-        },
-        {
-          "label": "Norwegian bokmål"
-        },
-        {
-          "label": "Norwegian nynorsk"
-        },
-        {
-          "label": "Southern Sámi"
-        },
-        {
-          "label": "Spanish"
-        }
-      ]
+      "description": "Choose the language of the source words."
+    },
+    {
+      "label": "Name of source language"
     },
     {
       "label": "Target language",
-      "description": "Choose the language of the target words.",
-      "options": [
-        {
-          "label": "English"
-        },
-        {
-          "label": "French"
-        },
-        {
-          "label": "German"
-        },
-        {
-          "label": "Northern Sámi"
-        },
-        {
-          "label": "Norwegian bokmål"
-        },
-        {
-          "label": "Norwegian nynorsk"
-        },
-        {
-          "label": "Southern Sámi"
-        },
-        {
-          "label": "Spanish"
-        }
-      ]
+      "description": "Choose the language of the target words."
+    },
+    {
+      "label": "Name of target language"
     },
     {
       "label": "Words",
@@ -108,7 +62,7 @@
           "default": "No valid words found. Please check your words and try again."
         },
         {
-          "label": "Override for Drag the Words dropzone aria label",
+          "label": "Override for Drag the Words dopzone aria label",
           "description": "@sourceWord is a placeholder and will be replaced with the respective value.",
           "default": "Drop the translation of @sourceWord here."
         },
@@ -167,38 +121,6 @@
         {
           "label": "Feedback text",
           "default": "Your total score"
-        },
-        {
-          "label": "English",
-          "default": "English"
-        },
-        {
-          "label": "French",
-          "default": "French"
-        },
-        {
-          "label": "German",
-          "default": "German"
-        },
-        {
-          "label": "Northern Sámi",
-          "default": "Northern Sámi"
-        },
-        {
-          "label": "Norwegian bokmål",
-          "default": "Norwegian bokmål"
-        },
-        {
-          "label": "Norwegian nynorsk",
-          "default": "Norwegian nynorsk"
-        },
-        {
-          "label": "Southern Sámi",
-          "default": "Southern Sámi"
-        },
-        {
-          "label": "Spanish",
-          "default": "Spanish"
         }
       ]
     },

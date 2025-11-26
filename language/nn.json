@@ -6,63 +6,17 @@
     },
     {
       "label": "Kjeldespråk",
-      "description": "Vel språk for kjeldeorda.",
-      "options": [
-        {
-          "label": "Engelsk"
-        },
-        {
-          "label": "Fransk"
-        },
-        {
-          "label": "Tysk"
-        },
-        {
-          "label": "Nordsamisk"
-        },
-        {
-          "label": "Norsk (bokmål)"
-        },
-        {
-          "label": "Norsk (nynorsk)"
-        },
-        {
-          "label": "Sørsamisk"
-        },
-        {
-          "label": "Spansk"
-        }
-      ]
+      "description": "Vel språk for kjeldeorda."
+    },
+    {
+      "label": "Navn på kjeldespråk"
     },
     {
       "label": "Målspråk",
-      "description": "Vel språk for målorda.",
-      "options": [
-        {
-          "label": "Engelsk"
-        },
-        {
-          "label": "Fransk"
-        },
-        {
-          "label": "Tysk"
-        },
-        {
-          "label": "Nordsamisk"
-        },
-        {
-          "label": "Norsk (bokmål)"
-        },
-        {
-          "label": "Norsk (nynorsk)"
-        },
-        {
-          "label": "Sørsamisk"
-        },
-        {
-          "label": "Spansk"
-        }
-      ]
+      "description": "Vel språk for målorda."
+    },
+    {
+      "label": "Navn på målspråk"
     },
     {
       "label": "Ord",
@@ -167,38 +121,6 @@
         {
           "label": "Tilbakemeldingstekst",
           "default": "Resultatet ditt"
-        },
-        {
-          "label": "Engelsk",
-          "default": "Engelsk"
-        },
-        {
-          "label": "Fransk",
-          "default": "Fransk"
-        },
-        {
-          "label": "Tysk",
-          "default": "Tysk"
-        },
-        {
-          "label": "Norsk (bokmål)",
-          "default": "Nordsamisk"
-        },
-        {
-          "label": "Norsk (bokmål)",
-          "default": "Norsk (bokmål)"
-        },
-        {
-          "label": "Norsk (nynorsk)",
-          "default": "Norsk (nynorsk)"
-        },
-        {
-          "label": "Sørsamisk",
-          "default": "Sørsamisk"
-        },
-        {
-          "label": "Spansk",
-          "default": "Spansk"
         }
       ]
     },
