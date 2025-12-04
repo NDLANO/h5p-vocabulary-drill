@@ -3,7 +3,7 @@ declare const json: {
   "machineName": "H5P.VocabularyDrill",
   "majorVersion": 1,
   "minorVersion": 1,
-  "patchVersion": 0,
+  "patchVersion": 1,
   "runnable": 1,
   "license": "MIT",
   "author": "NDLA",
