@@ -17,6 +17,7 @@
       "targetFieldMap": {
         "languageNameTranslatedContent": "sourceLanguageName"
       },
+      "noFlag": true,
       "default": "en"
     }
   },
@@ -38,6 +39,7 @@
       "targetFieldMap": {
         "languageNameTranslatedContent": "targetLanguageName"
       },
+      "noFlag": true,
       "default": "nb"
     }
   },

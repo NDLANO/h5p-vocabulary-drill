@@ -17,6 +17,7 @@ declare const json: [
       "targetFieldMap": {
         "languageNameTranslatedContent": "sourceLanguageName"
       },
+      "noFlag": true,
       "default": "en"
     }
   },
@@ -38,6 +39,7 @@ declare const json: [
       "targetFieldMap": {
         "languageNameTranslatedContent": "targetLanguageName"
       },
+      "noFlag": true,
       "default": "nb"
     }
   },
