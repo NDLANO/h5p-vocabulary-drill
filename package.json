@@ -29,8 +29,8 @@
   "dependencies": {
     "h5p-utils": "^4.0.0",
     "he": "^1.2.0",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "use-h5p": "^2.1.0"
   },
   "type": "module",
@@ -40,7 +40,7 @@
     "@eslint/js": "^9.39.1",
     "@types/he": "^1.2.3",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.0.0",
+    "@types/node": "^25.0.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "babel-loader": "^10.0.0",
