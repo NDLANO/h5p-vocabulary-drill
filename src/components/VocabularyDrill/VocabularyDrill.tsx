@@ -591,15 +591,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     sourceTitleElement.className = 'h5p-vocabulary-drill-grid-title';
     sourceTitleElement.textContent = target ? sourceLabel : targetLabel;
 
-    let gridContainer: HTMLElement | null = null;
-    if (activeAnswerMode === AnswerModeType.FillIn) {
-      // Get Blanks container
-      gridContainer = wrapper.querySelector('.h5p-question-content p');
-    }
-    else {
-      // Get DragText container
-      gridContainer = wrapper.querySelector('.h5p-drag-droppable-words');
-    }
+    const gridContainer: HTMLElement | null = activeAnswerMode === AnswerModeType.FillIn ?
+      wrapper.querySelector('.h5p-question-content p') :
+      wrapper.querySelector('.h5p-drag-droppable-words');
 
     if (gridContainer) {
       gridContainer.prepend(targetTitleElement);
