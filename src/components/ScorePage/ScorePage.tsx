@@ -35,7 +35,7 @@ export const ScorePage: FC<ScorePageProps> = ({
 
   return (
     <div ref={focusRef} tabIndex={-1} className="h5p-vocabulary-drill-score-page">
-      <h3>{feedback}</h3>
+      <span className="headline">{feedback}</span>
       <ScoreBar
         maxScore={maxScore}
         score={score}

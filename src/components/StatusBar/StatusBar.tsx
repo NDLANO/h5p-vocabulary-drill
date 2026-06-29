@@ -37,7 +37,7 @@ export const StatusBar: FC<StatusBarProps> = ({
       <div className="h5p-vocabulary-drill-status">
         {score != null && !scorePage ? (
           <div className="h5p-vocabulary-drill-status-score">
-            <span aria-hidden="true">{scoreLabel}: </span>
+            <span className="h5p-vocabulary-drill-status-label" aria-hidden="true">{scoreLabel}: </span>
             <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{score}</span>
             <span className="h5p-vocabulary-drill-status-divider" aria-hidden="true"> / </span>
             <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{totalScore}</span>

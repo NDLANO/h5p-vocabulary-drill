@@ -283,6 +283,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       wrapper.querySelectorAll('.h5p-question-content .h5p-drag-show-solution-container').forEach((element) => {
         if (element.lastChild) {
           const span = document.createElement('span');
+          span.className = 'h5p-vocabulary-drill-solution-text';
           span.textContent = element.lastChild.textContent;
           span.setAttribute('lang', target ? targetLanguage : sourceLanguage);
           element.replaceChild(span, element.lastChild);
@@ -661,7 +662,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   return (
     <AriaLiveContext.Provider value={{ ariaLiveText, setAriaLiveText }}>
       {hasWords ? (
-        <div>
+        <div className="h5p-vocabulary-drill-outer-wrapper">
           <Toolbar
             title={title}
             activeAnswerMode={activeAnswerMode}
@@ -674,7 +675,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             targetLanguageCode={targetLanguage}
             disableTools={disableTools}
           />
-          {!showResults && <div ref={wrapperRef} />}
+          {!showResults && <div ref={wrapperRef} className="h5p-vocabulary-drill-content-wrapper" />}
           {showResults && (
             <ScorePage
               score={score}
