@@ -19,7 +19,8 @@ declare const json: [
       },
       "noFlag": true,
       "default": "en"
-    }
+    },
+    "default": "en"
   },
   {
     "name": "sourceLanguageName",
@@ -41,7 +42,8 @@ declare const json: [
       },
       "noFlag": true,
       "default": "nb"
-    }
+    },
+    "default": "nb"
   },
   {
     "name": "targetLanguageName",

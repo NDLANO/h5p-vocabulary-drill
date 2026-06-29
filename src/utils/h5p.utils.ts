@@ -2,10 +2,52 @@ import type { H5PEvent, H5PLibrary } from 'h5p-types';
 import libraryConfig from '../../library.json';
 import { H5PContentType } from 'h5p-utils';
 import { decode } from 'he';
+import semantics from '../../semantics.json';
 
 type H5PContentTypeExtended = H5PContentType & {
   bubblingUpwards?: boolean;
 }
+
+type SemanticsEntry = {
+  name?: unknown;
+  default?: unknown;
+  type?: unknown;
+  fields?: SemanticsEntry[];
+};
+
+/**
+ * Get default values from semantics fields.
+ * @param {SemanticsEntry[]} start Start semantics field.
+ * @returns {Record<string, unknown>} Default values from semantics.
+ */
+export const getSemanticsDefaults = (start: SemanticsEntry[] = semantics as SemanticsEntry[]): Record<string, unknown> => {
+  const defaults: Record<string, unknown> = {};
+
+  if (!Array.isArray(start)) {
+    return defaults; // Must be array, root or list
+  }
+
+  start.forEach((entry) => {
+    if (typeof entry.name !== 'string') {
+      return;
+    }
+
+    if (typeof entry.default !== 'undefined') {
+      defaults[entry.name] = entry.default;
+    }
+    if (entry.type === 'list') {
+      defaults[entry.name] = []; // Does not set defaults within list items!
+    }
+    else if (entry.type === 'group' && entry.fields) {
+      const groupDefaults = getSemanticsDefaults(entry.fields);
+      if (Object.keys(groupDefaults).length) {
+        defaults[entry.name] = groupDefaults;
+      }
+    }
+  });
+
+  return defaults;
+};
 
 export const findLibraryInfo = (
   libraryName: string,

@@ -19,7 +19,8 @@
       },
       "noFlag": true,
       "default": "en"
-    }
+    },
+    "default": "en"
   },
   {
     "name": "sourceLanguageName",
@@ -41,7 +42,8 @@
       },
       "noFlag": true,
       "default": "nb"
-    }
+    },
+    "default": "nb"
   },
   {
     "name": "targetLanguageName",

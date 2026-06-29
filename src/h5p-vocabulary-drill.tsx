@@ -20,6 +20,7 @@ import {
   type SubContentType,
 } from './types/types';
 import { isNil } from './utils/type.utils';
+import { getSemanticsDefaults } from './utils/h5p.utils';
 import XAPIUtils from './utils/xapi.utils';
 import { parseWords } from './utils/word.utils';
 import { shuffleArray } from './utils/utils';
@@ -39,7 +40,10 @@ class VocabularyDrillContentType
   private wordsOrder: number[] = [];
 
   constructor(params: Params, contentId: string, extras?: H5PExtrasWithState<State>) {
-    super(params, contentId, extras);
+    const defaults = getSemanticsDefaults();
+    const sanitizedParams = {...defaults, ...params};
+
+    super(sanitizedParams, contentId, extras);
 
     this.prepareWords();
   }
