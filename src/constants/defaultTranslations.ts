@@ -19,7 +19,8 @@ export const defaultTranslations: Translations = {
   scoreLabel: 'Score',
   scoreBarLabel: 'You got @score out of @maxScore points',
   pageNumberLabel: 'Page @page of @totalPages',
-  feedbackText: 'Your total score'
+  feedbackText: 'Your total score',
+  scoreTemplate: '@score/@total'
 };
 
 /**

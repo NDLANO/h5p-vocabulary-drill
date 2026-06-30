@@ -7,6 +7,10 @@ declare const json: {
   "runnable": 1,
   "license": "MIT",
   "author": "NDLA",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 28
+  },
   "embedTypes": ["iframe"],
   "preloadedDependencies": [
     {
@@ -23,6 +27,11 @@ declare const json: {
       "machineName": "H5P.Question",
       "majorVersion": 1,
       "minorVersion": 5
+    },
+    {
+      "machineName": "H5P.Components",
+      "majorVersion": 1,
+      "minorVersion": 0
     },
     {
       "machineName": "H5P.JoubelUI",

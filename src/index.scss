@@ -144,26 +144,19 @@
   }
 
   .h5p-vocabulary-drill-score-page {
-    align-items: center;
     display: flex;
     flex-direction: column;
     gap: var(--h5p-theme-spacing-s);
-    justify-content: center;
 
-    .headline {
+    .h5p-vocabulary-drill-score-page-feedback-text {
+      color: var(--h5p-theme-text-primary);
       font-size: var(--h5p-theme-font-size-l);
-      font-weight: bold;
+      padding-inline: var(--h5p-theme-spacing-s);
+      text-align: center;
     }
 
-    /* Add spacing if no progress bar below */
-    &:last-child {
-      margin-bottom: var(--h5p-theme-spacing-s);
-    }
-
-    button.h5p-vocabulary-drill-restart::before {
-      content: var(--icon-font-awesome-arrow-rotate-right);
-      font-family: 'H5PFontAwesome4';
-      padding-right: var(--h5p-theme-spacing-xxs);
+    button.h5p-theme-retry {
+      margin-inline-start: auto;
     }
   }
 }

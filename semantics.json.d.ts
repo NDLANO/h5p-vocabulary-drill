@@ -226,6 +226,13 @@ declare const json: [
         "name": "feedbackText",
         "default": "Your total score",
         "type": "text"
+      },
+      {
+        "label": "Score template",
+        "name": "scoreTemplate",
+        "description": "@score and @total are placeholders that will be replaced with the respective values.",
+        "default": "@score/@total",
+        "type": "text"
       }
     ]
   },

@@ -59,7 +59,12 @@ class VocabularyDrillContentType
 
     const { contentId, extras, params } = this;
 
-    const sanitizedParams = { ...getDefaultParams(), ...params };
+    const defaults = getDefaultParams();
+    const sanitizedParams = {
+      ...defaults,
+      ...params,
+      l10n: { ...defaults.l10n, ...(params.l10n ?? {}) },
+    };
 
     this.xAPIUtils = new XAPIUtils({
       context: this,
@@ -110,7 +115,7 @@ class VocabularyDrillContentType
       this.resize();
     });
 
-    containerElement.classList.add('h5p-vocabulary-drill');
+    containerElement.classList.add('h5p-vocabulary-drill', 'h5p-theme');
   }
 
   getAnswerGiven(): boolean {
