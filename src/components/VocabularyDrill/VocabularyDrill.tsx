@@ -412,7 +412,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
                 // The retry button is not always added to the DOM at this point when DragText
                 // is used, so we need to wait for the next animation frame to be sure
                 requestAnimationFrame(() => {
-                  const retryButton = wrapper.querySelector('button.h5p-question-try-again');
+                  const retryButton =
+                    wrapper.querySelector('button.h5p-theme-button.h5p-theme-retry') ??
+                    wrapper.querySelector('button.h5p-question-try-again');
                   retryButton?.addEventListener('click', handleRetry, { once: true });
                 });
               });
