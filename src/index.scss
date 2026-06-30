@@ -1,117 +1,65 @@
 .h5p-vocabulary-drill {
-  background-color: #fff;
-  font-family: sans-serif;
+  --icon-font-awesome-angle-down: "\f107";
+  --icon-font-awesome-arrow-rotate-right: "\f01e";
+  --icon-font-awesome-arrows-rotate: "\f021";
+  --icon-font-awesome-arrows-up-down-left-right: "\f047";
+  --icon-font-awesome-check: "\f00c";
+  --icon-font-awesome-pen: "\f040";
+
+  background-color: var(--h5p-theme-ui-base);
 
   .h5p-question {
-    background-color: transparent;
-
     .h5p-question-introduction.display-none {
       display: none;
     }
 
-    /*
-     * Overrides that can be removed once
-     * https://h5ptechnology.atlassian.net/browse/HFP-3797 has been resolved
-     * pull request at https://github.com/h5p/h5p-drag-text/pull/143
-     * and once https://h5ptechnology.atlassian.net/browse/HFP-3830 is handled
-     */
-    &.h5p-drag-text {
-      // Override cursor state to not kick in when draggable is disabled
-      [aria-grabbed] {
-        cursor: inherit;
-
-        &:not(.ui-draggable-disabled) {
-          cursor: pointer;
-        }
-
-        // HFP-3830
-        &:not(.h5p-drag-dropped) {
-          border-color: #949494;
-        }
-      }
-
-      /* Override hover of disabled draggables in dropzone */
-      [aria-grabbed].h5p-drag-dropped.ui-draggable-disabled:hover {
-        border: none;
-        color: #255c41;
-        background: transparent;
-      }
-
-      /* Override hover of disabled draggables in original position */
-      [aria-grabbed].ui-draggable-disabled:hover {
-        border: 0.1em solid #c6c6c6;
-        color: initial;
-        background: #ddd;
-      }
-
-      /* Override grabbed state to improve color contrast */
-      [aria-grabbed='true'] {
-        opacity: 1;
-      }
-
-      /* Override dragged state to improve color contrast */
-      [aria-grabbed='true'],
-      [aria-grabbed='true'].h5p-drag-dropped:not(.ui-draggable-disabled):hover,
-      [aria-grabbed='true']:not(.ui-draggable-disabled):hover {
-        border: 0.1em solid rgb(212,190,216);
-        color: #663366;
-        background: #edd6e9;
-      }
-
-      // HFP-3830
-      [aria-dropeffect] {
-        border: 0.1em solid #5c98da;
-      }
+    &.h5p-drag-text,
+    &.h5p-blanks {
+      padding: var(--h5p-theme-spacing-s);
     }
 
-    /*
-     * Overrides to create a grid structure in H5P.DragText
-     */
+    /* Overrides to create a grid structure in H5P.DragText */
     &.h5p-drag-text {
       .h5p-drag-droppable-words {
+        align-items: center;
+        column-gap: var(--h5p-theme-spacing-s);
         display: grid;
-        grid-template-columns: repeat(2, max-content);
-        row-gap: 0.5rem;
+        grid-template-columns: repeat(3, max-content);
+        row-gap: var(--h5p-theme-spacing-xxs);
 
-        /* Add a bottom border to all children, except the last row */
-        & > *:nth-last-child(n+3) {
-          border-bottom: 1px solid #eee;
-          padding-bottom: 0.5rem;
-        }
-
-        /* Add a right padding to the source element (left) */
         & > span {
-          padding-right: 1rem;
+          grid-column-start: 1;
         }
 
-        /* Make sure tip follows the input */
-        .h5p-drag-dropzone-container {
-          width: fit-content;
+        & > .h5p-dropzone {
+          grid-column-start: 2;
+
+          .ui-droppable {
+            width: calc(10 * var(--h5p-theme-font-size-m)) !important; // JS sets width
+          }
+        }
+
+        & > .h5p-drag-show-solution-container {
+          height: fit-content;
         }
       }
     }
 
-    /*
-     * Overrides to create a grid structure in H5P.Blanks
-     */
+    /* Overrides to create a grid structure in H5P.Blanks */
     &.h5p-blanks {
-      .h5p-question-content p {
+      .h5p-question-content .hidden-but-read ~ p {
+        align-items: center;
+        column-gap: var(--h5p-theme-spacing-s);
         display: grid;
         grid-template-columns: repeat(3, max-content);
-        row-gap: 0.5rem;
+        row-gap: var(--h5p-theme-spacing-xxs);
 
-        /* Add a bottom border to all children, except the last row */
-        & > *:nth-last-child(n+4):not(.h5p-correct-answer),
-        & > *:nth-last-child(3).h5p-input-wrapper,
-        & > *:nth-last-child(3).h5p-vocabulary-drill-grid-title {
-          border-bottom: 1px solid #eee;
-          padding-bottom: 0.5rem;
+        .h5p-vocabulary-drill-grid-title {
+          line-height: var(--h5p-theme-spacing-xl);
         }
 
-        /* Place elements in the grid */
         & > span:not(.h5p-input-wrapper, .h5p-correct-answer) {
           grid-column-start: 1;
-          padding-right: 1rem;
         }
 
         & > span.h5p-input-wrapper {
@@ -125,7 +73,7 @@
         /* Make all inputs the same width */
         .h5p-text-input {
           box-sizing: border-box;
-          width: 10rem !important;
+          width: calc(10 * var(--h5p-theme-font-size-m)) !important; /* width is set in JavaScript by h5p-blanks */
         }
 
         /* Make sure inputs ::after follows input */
@@ -136,20 +84,20 @@
         /* Create a bottom border to the correct answer */
         .h5p-correct-answer {
           align-self: end;
-          line-height: 1.375em;
+          line-height: 1.375;
           width: fit-content;
 
           &:not(:last-child) {
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--h5p-theme-spacing-xxs);
             position: relative;
 
             &::after {
-              border-bottom: 1px solid #eee;
+              border-bottom: 1px solid var(--h5p-theme-alternative-base);
               content: '';
               display: inline-block;
               height: 100%;
-              left: -0.75rem;
-              padding: 0 0.5rem 0.5rem;
+              left: calc(-0.75 * ar(--h5p-theme-spacing-s));
+              padding: 0 var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-xxs);
               position: absolute;
               top: 0;
               width: 100%;
@@ -175,13 +123,8 @@
     }
   }
 
-  .h5p-question-introduction {
-    margin: 0;
-    padding: 1em 1em 0.5em;
-  }
-
   .h5p-vd-empty-state {
-    padding: 2rem 1rem;
+    padding: var(--h5p-theme-spacing-l) var(--h5p-theme-spacing-s);
     text-align: center;
   }
 
@@ -196,105 +139,109 @@
   }
 
   .h5p-vocabulary-drill-grid-title {
-    color: #4c4452;
+    color: var(--h5p-theme-text-primary);
     font-weight: bold;
-
-    &:first-child {
-      padding-right: 1.5rem;
-    }
   }
 
   .h5p-vocabulary-drill-score-page {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--h5p-theme-spacing-s);
     justify-content: center;
 
     .headline {
-      font-size: 1.25rem;
+      font-size: var(--h5p-theme-font-size-l);
       font-weight: bold;
     }
 
     /* Add spacing if no progress bar below */
     &:last-child {
-      margin-bottom: 1rem;
+      margin-bottom: var(--h5p-theme-spacing-s);
     }
 
     button.h5p-vocabulary-drill-restart::before {
-      content: '\F01E';
+      content: var(--icon-font-awesome-arrow-rotate-right);
       font-family: 'H5PFontAwesome4';
-      padding-right: 0.5em;
+      padding-right: var(--h5p-theme-spacing-xxs);
     }
   }
 }
 
 .h5p-vocabulary-drill-toolbar {
   align-items: center;
-  background-color: #fff;
-  box-shadow: 10px 10px 30px rgb(166 166 166 / 20%);
+  background-color: var(--h5p-theme-ui-base);
+  box-shadow: var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-l) rgb(166 166 166 / 20%);
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: var(--h5p-theme-spacing-s);
   justify-content: space-between;
-  margin-bottom: 1em;
-  min-height: 2.7em;
-  padding: 0.5em 1em;
+  margin-bottom: var(--h5p-theme-spacing-s);
+  min-height: calc(2.5 * var(--h5p-theme-spacing-s));
+  padding: var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-s);
   position: relative;
 
   p {
-    color: #4c4452;
-    font-family: sans-serif;
-    font-size: 1.15em;
-    font-weight: 700;
-    line-height: 1.2em;
+    color: var(--h5p-theme-text-primary);
+    font-size: var(--h5p-theme-font-size-xl);
+    font-weight: 600;
+    line-height: 1.2;
     margin: 0;
   }
 
-  &-tools {
+  .h5p-vocabulary-drill-toolbar-tools {
+    --combo-after-width: 10px; /* From rendered icon */
+    --combo-before-width: 13.72px; /* From rendered icon */
+    --tools-padding: var(--h5p-theme-spacing-xs);
+
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5em;
+    gap: var(--h5p-theme-spacing-xxs);
     max-width: 100%;
   }
 
-  button {
-    background-color: #f5f7fc;
+  button.h5p-vocabulary-drill-language-mode {
+    background-color: var(--h5p-theme-contrast-cta-light);
     border: none;
-    color: #356bbd;
+    border-radius: var(--h5p-theme-border-radius-medium);
+    color: var(--h5p-theme-contrast-cta-white);
     cursor: pointer;
     display: inline-block;
-    font-size: 1em;
+    font-size: var(--h5p-theme-font-size-m);
     font-weight: 700;
     line-height: 1.2;
     max-width: 100%;
     overflow: hidden;
+    padding: var(--tools-padding);
     text-overflow: ellipsis;
-    padding: 0.75em 1.25em;
     white-space: nowrap;
 
     &:hover:not(:disabled),
     &:focus:not(:disabled) {
-      background-color: #eaeff8;
+      background-color: color-mix(in srgb, var(--h5p-theme-contrast-cta-light), transparent 60%);
+    }
+
+    &:focus-visible:not(:disabled) {
+      outline: 2px ridge var(--h5p-theme-main-cta-base);
+      outline-offset: 2px;
     }
 
     &:disabled {
-      background-color: #f2f2f2;
-      color: #696969;
       cursor: not-allowed;
+      filter: grayscale(100%);
     }
 
     &.h5p-vocabulary-drill-language-mode:before {
-      content: '\F021';
+      content: var(--icon-font-awesome-arrows-rotate);
       font-family: 'H5PFontAwesome4';
-      padding-right: 0.5em;
+      padding-right: var(--h5p-theme-spacing-xxs);
     }
   }
 
   .h5p-vocabulary-drill-combobox {
     .combo {
       display: block;
-      max-width: 25rem;
+      max-width: 25ch;
       position: relative;
 
       *,
@@ -303,79 +250,87 @@
         box-sizing: border-box;
       }
 
-      &::after {
-        color: #356bbd;
-        content: '\f107';
+      &::before {
+        color: var(--h5p-theme-contrast-cta-white);
         font-family: 'H5PFontAwesome4';
-        font-size: 1.2em;
+        left: var(--tools-padding);
         pointer-events: none;
         position: absolute;
-        right: 1em;
         top: 50%;
         transform: translate(0, -50%);
       }
 
-      &::before {
-        color: #356bbd;
-        content: '\F040';
+      &::after {
+        color: var(--h5p-theme-contrast-cta-white);
+        content: var(--icon-font-awesome-angle-down);
         font-family: 'H5PFontAwesome4';
-        position: absolute;
+        font-size: var(--h5p-theme-font-size-m);
+        font-weight: 700;
         pointer-events: none;
+        position: absolute;
+        right: var(--tools-padding);
         top: 50%;
         transform: translate(0, -50%);
-        left: 1.25em;
+        width: var(--combo-after-width);
       }
 
       &.h5p-vocabulary-drill-fill-in::before {
-        content: '\F040';
+        content: var(--icon-font-awesome-pen);
       }
 
       &.h5p-vocabulary-drill-drag-text::before {
-        content: '\F047';
+        content: var(--icon-font-awesome-arrows-up-down-left-right);
       }
 
       &.disabled {
         &::after,
         &::before {
-          color: #696969;
+          filter: grayscale(100%);
         }
       }
 
       &-input {
-        background-color: #f5f7fc;
+        background-color: var(--h5p-theme-contrast-cta-light);
         border: none;
-        border-radius: 0;
-        color: #356bbd;
+        border-radius: var(--h5p-theme-border-radius-medium);
+        color: var(--h5p-theme-contrast-cta-white);
         cursor: pointer;
-        font-size: 1em;
+        font-size: var(--h5p-theme-font-size-m);
         font-weight: 700;
         line-height: 1.2;
-        padding: 0.75em 2.75em 0.75em 2.7em;
+        padding-block: var(--tools-padding);
+        padding-inline:
+          calc(var(--tools-padding) + var(--combo-after-width) + var(--tools-padding))
+          calc(var(--tools-padding) + var(--combo-before-width) + var(--tools-padding));
 
         &:hover:not(:disabled),
         &:focus:not(:disabled) {
-          background-color: #eaeff8;
+          background-color: color-mix(in srgb, var(--h5p-theme-contrast-cta-light), transparent 60%);
+        }
+
+        &:focus-visible:not(:disabled) {
+          outline: 2px ridge var(--h5p-theme-main-cta-base);
+          outline-offset: 2px;
         }
       }
 
       &.disabled {
         .combo-input {
-          background-color: #f2f2f2;
-          color: #696969;
           cursor: not-allowed;
+          filter: grayscale(100%);
           opacity: 1;
         }
       }
 
       &-menu {
-        background-color: #f5f7fc;
-        border: 1px solid rgb(0 0 0 / 25%);
+        background-color: var(--h5p-theme-alternative-light);
+        border: 1px solid var(--h5p-theme-alternative-darker);
         border-radius: 0;
         cursor: pointer;
         display: none;
-        max-height: 18.75rem;
-        overflow-y: auto;
         left: 0;
+        max-height: calc(18.75 * var(--h5p-font-size-m));
+        overflow-y: auto;
         position: absolute;
         top: 100%;
         width: 100%;
@@ -383,29 +338,27 @@
       }
 
       &-option {
-        padding: 0.5em 0.75em;
+        color: var(--theme-text-secondary);
+        padding: var(--tools-padding);
         position: relative;
 
         &.option-current {
-          background-color: #356bbd;
-          color: #fff;
+          background-color: var(--h5p-theme-main-cta-base);
+          color: var(--h5p-theme-contrast-cta);
         }
 
         &[aria-selected="true"] {
           &::after {
-            border-bottom: 1.5px solid #000;
-            border-right: 1.5px solid #000;
-            content: "";
-            height: 0.8em;
+            content: var(--icon-font-awesome-check);
+            font-family: 'H5PFontAwesome4';
             position: absolute;
-            right: 1em;
-            top: 46%;
-            transform: translate(0, -54%) rotate(45deg);
-            width: 0.4em;
+            right: var(--h5p-theme-spacing-xxs);
+            top: 50%;
+            transform: translateY(-50%);
           }
 
           &.option-current::after {
-            border-color: #fff;
+            border-color: var(--h5p-theme-contrast-cta);
           }
         }
       }
@@ -419,50 +372,49 @@
 
 .h5p-vocabulary-drill-status {
   align-items: center;
-  background-color: #fff;
+  background-color: var(--h5p-theme-ui-base);
   display: flex;
   flex-wrap: wrap;
-  gap: 2em;
+  gap: var(--h5p-theme-spacing-l);
   justify-content: space-between;
-  min-height: 2.7em;
-  padding: 0.5em 1em;
+  min-height: calc(2.5 * var(--h5p-theme-spacing-s));
+  padding: var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-xxs);
   position: relative;
 
   button {
-    background-color: #f5f7fc;
+    background-color: var(--h5p-theme-secondary-cta-base);
     border: none;
-    color: #356bbd;
+    border-radius: var(--h5p-theme-border-radius-medium);
+    color: var(--h5p-theme-secondary-contrast-cta);
     cursor: pointer;
     display: inline-block;
-    font-size: 1em;
+    font-size: var(--h5p-theme-font-size-s);
     font-weight: 700;
-    line-height: 1.2;
-    padding: 0.75em 1.25em;
+    padding: var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-s);
     white-space: nowrap;
 
     &:hover:not(:disabled),
     &:focus:not(:disabled) {
-      background-color: #eaeff8;
+      background-color: var(--h5p-theme-secondary-cta-light);
     }
 
     &:disabled {
-      background-color: #f2f2f2;
-      color: #696969;
       cursor: not-allowed;
+      filter: grayscale(100%);
     }
 
     &.h5p-vocabulary-drill-next::after {
-      content: '\F105';
+      content: var(--icon-font-awesome-arrow-angle-right);
       font-family: 'H5PFontAwesome4';
-      padding-left: 0.5em;
+      padding-left: var(--h5p-theme-spacing-xxs);
     }
   }
 
-  &-score {
-    color: #4c4452;
-    font-size: 1em;
-    font-weight: 700;
+  .h5p-vocabulary-drill-status-score {
+    color: var(--h5p-theme-text-secondary);
     flex-grow: 1;
+    font-size: var(--h5p-theme-font-size-m);
+    font-weight: 700;
   }
 
   &-pages {
@@ -470,42 +422,28 @@
   }
 
   &-number {
-    color: #356BBD;
-    font-size: 1.2em;
+    color: var(--h5p-theme-main-cta-base);
+    font-size: var(--h5p-theme-font-size-l);
     font-weight: 700;
   }
 
   &-divider {
-    color: #4c4452;
-    font-size: 1.2em;
+    color: var(--h5p-theme-text-secondary);
+    font-size: var(--h5p-theme-font-size-l);
     font-weight: 700;
   }
 }
 
 .h5p-vocabulary-drill-progressbar {
-  margin-top: 1em;
+  margin-top: var(--h5p-theme-spacing-xxs);
   position: relative;
 
   .h5p-joubelui-progressbar {
-    background: #D3DDEE;
+    background: var(--h5p-theme-contrast-cta-light);
     box-shadow: none;
 
     &-background {
-      background-color: #356BBD;
+      background-color: var(--h5p-theme-main-cta-base);
     }
-  }
-}
-
-/*
-     * Overrides that can be removed once
-     * https://h5ptechnology.atlassian.net/browse/HFP-3846 has been resolved
-     */
-.h5p-confirmation-dialog-background {
-  .h5p-core-button:hover {
-    background: #1356a3;
-  }
-  .h5p-core-button:focus-visible {
-    outline: -webkit-focus-ring-color auto 1px;
-    outline: revert;
   }
 }
