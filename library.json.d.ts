@@ -32,11 +32,6 @@ declare const json: {
       "machineName": "H5P.Components",
       "majorVersion": 1,
       "minorVersion": 0
-    },
-    {
-      "machineName": "H5P.JoubelUI",
-      "majorVersion": 1,
-      "minorVersion": 3
     }
   ],
   "editorDependencies": [
