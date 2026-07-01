@@ -20,6 +20,7 @@ import { AriaLive } from '../AriaLive/AriaLive';
 import { ScorePage } from '../ScorePage/ScorePage';
 import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
+import './VocabularyDrill.scss';
 
 type VocabularyDrillProps = {
   title: string;
@@ -700,7 +701,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           )}
         </div>
       ) : (
-        <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
+        <div className="h5p-vocabulary-drill-empty-state">{t('noValidWords')}</div>
       )}
       <AriaLive />
     </AriaLiveContext.Provider>

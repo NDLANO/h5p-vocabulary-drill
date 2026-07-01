@@ -1,5 +1,6 @@
 import { H5P } from 'h5p-utils';
 import React, { useEffect, useRef } from 'react';
+import './ProgressBar.scss';
 
 type ProgressBarProps = {
   page: number;

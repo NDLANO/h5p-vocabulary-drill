@@ -1,5 +1,7 @@
 import React, { type Key } from 'react';
 import { useAriaLive } from '../../hooks/useAriaLive/useAriaLive';
+import '../../styles/utilities.scss';
+import './Combobox.scss';
 
 type ComboboxOption = {
   index?: number;

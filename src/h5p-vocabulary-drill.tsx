@@ -10,7 +10,6 @@ import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ContentIdContext, H5PContext, L10nContext } from 'use-h5p';
 import { VocabularyDrill } from './components/VocabularyDrill/VocabularyDrill';
-import './index.scss';
 import {
   AnswerModeType,
   type InstanceConnector,

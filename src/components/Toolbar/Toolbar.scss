@@ -1,0 +1,70 @@
+.h5p-vocabulary-drill-toolbar {
+  align-items: center;
+  background-color: var(--h5p-theme-ui-base);
+  box-shadow: var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-l) rgb(166 166 166 / 20%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--h5p-theme-spacing-s);
+  justify-content: space-between;
+  margin-bottom: var(--h5p-theme-spacing-s);
+  min-height: calc(2.5 * var(--h5p-theme-spacing-s));
+  padding: var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-s);
+  position: relative;
+
+  p {
+    color: var(--h5p-theme-text-primary);
+    font-size: var(--h5p-theme-font-size-xl);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .h5p-vocabulary-drill-toolbar-tools {
+    --combo-after-width: 10px; /* From rendered icon */
+    --combo-before-width: 13.72px; /* From rendered icon */
+    --tools-padding: var(--h5p-theme-spacing-xs);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--h5p-theme-spacing-xxs);
+    max-width: 100%;
+
+    button.h5p-vocabulary-drill-language-mode {
+      background-color: var(--h5p-theme-contrast-cta-light);
+      border: none;
+      border-radius: var(--h5p-theme-border-radius-medium);
+      color: var(--h5p-theme-contrast-cta-white);
+      cursor: pointer;
+      display: inline-block;
+      font-size: var(--h5p-theme-font-size-m);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 100%;
+      overflow: hidden;
+      padding: var(--tools-padding);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &:hover:not(:disabled),
+      &:focus:not(:disabled) {
+        background-color: color-mix(in srgb, var(--h5p-theme-contrast-cta-light), transparent 60%);
+      }
+
+      &:focus-visible:not(:disabled) {
+        outline: 2px ridge var(--h5p-theme-main-cta-base);
+        outline-offset: 2px;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        filter: grayscale(100%);
+      }
+
+      &.h5p-vocabulary-drill-language-mode:before {
+        content: var(--icon-font-awesome-arrows-rotate);
+        font-family: 'H5PFontAwesome4';
+        padding-right: var(--h5p-theme-spacing-xxs);
+      }
+    }
+  }
+}

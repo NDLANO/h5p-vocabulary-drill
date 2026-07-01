@@ -1,0 +1,18 @@
+.h5p-vocabulary-drill {
+  .h5p-vocabulary-drill-score-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--h5p-theme-spacing-s);
+
+    .h5p-vocabulary-drill-score-page-feedback-text {
+      color: var(--h5p-theme-text-primary);
+      font-size: var(--h5p-theme-font-size-l);
+      padding-inline: var(--h5p-theme-spacing-s);
+      text-align: center;
+    }
+
+    button.h5p-theme-retry {
+      margin-inline-start: auto;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import { AnswerModeType, LanguageModeType, type LanguageCode } from '../../types/types';
 import { getLanguageModeAria } from '../../utils/language.utils';
 import { Combobox } from '../Combobox/Combobox';
+import './Toolbar.scss';
 
 type ToolbarProps = {
   title: string;

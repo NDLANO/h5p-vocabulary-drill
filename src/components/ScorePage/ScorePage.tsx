@@ -1,6 +1,7 @@
 import { H5P } from 'h5p-utils';
 import React, { useEffect, useRef, type FC } from 'react';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
+import './ScorePage.scss';
 
 type ScorePageProps = {
   score: number;

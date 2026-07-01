@@ -1,0 +1,130 @@
+.h5p-vocabulary-drill-toolbar {
+  .h5p-vocabulary-drill-combobox {
+    .combo {
+      display: block;
+      max-width: 25ch;
+      position: relative;
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      &::before {
+        color: var(--h5p-theme-contrast-cta-white);
+        font-family: 'H5PFontAwesome4';
+        left: var(--tools-padding);
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+
+      &::after {
+        color: var(--h5p-theme-contrast-cta-white);
+        content: var(--icon-font-awesome-angle-down);
+        font-family: 'H5PFontAwesome4';
+        font-size: var(--h5p-theme-font-size-m);
+        font-weight: 700;
+        pointer-events: none;
+        position: absolute;
+        right: var(--tools-padding);
+        top: 50%;
+        transform: translate(0, -50%);
+        width: var(--combo-after-width);
+      }
+
+      &.h5p-vocabulary-drill-fill-in::before {
+        content: var(--icon-font-awesome-pen);
+      }
+
+      &.h5p-vocabulary-drill-drag-text::before {
+        content: var(--icon-font-awesome-arrows-up-down-left-right);
+      }
+
+      &.disabled {
+        &::after,
+        &::before {
+          filter: grayscale(100%);
+        }
+
+        .combo-input {
+          cursor: not-allowed;
+          filter: grayscale(100%);
+          opacity: 1;
+        }
+      }
+
+      &.open .combo-menu {
+        display: block;
+      }
+
+      .combo-input {
+        background-color: var(--h5p-theme-contrast-cta-light);
+        border: none;
+        border-radius: var(--h5p-theme-border-radius-medium);
+        color: var(--h5p-theme-contrast-cta-white);
+        cursor: pointer;
+        font-size: var(--h5p-theme-font-size-m);
+        font-weight: 700;
+        line-height: 1.2;
+        padding-block: var(--tools-padding);
+        padding-inline:
+          calc(var(--tools-padding) + var(--combo-after-width) + var(--tools-padding))
+          calc(var(--tools-padding) + var(--combo-before-width) + var(--tools-padding));
+
+        &:hover:not(:disabled),
+        &:focus:not(:disabled) {
+          background-color: color-mix(in srgb, var(--h5p-theme-contrast-cta-light), transparent 60%);
+        }
+
+        &:focus-visible:not(:disabled) {
+          outline: 2px ridge var(--h5p-theme-main-cta-base);
+          outline-offset: 2px;
+        }
+      }
+
+      .combo-menu {
+        background-color: var(--h5p-theme-alternative-light);
+        border: 1px solid var(--h5p-theme-alternative-darker);
+        border-radius: 0;
+        cursor: pointer;
+        display: none;
+        left: 0;
+        max-height: calc(18.75 * var(--h5p-font-size-m));
+        overflow-y: auto;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        z-index: 100;
+
+        .combo-option {
+          color: var(--theme-text-secondary);
+          padding: var(--tools-padding);
+          position: relative;
+
+          &.option-current {
+            background-color: var(--h5p-theme-main-cta-base);
+            color: var(--h5p-theme-contrast-cta);
+          }
+
+          &[aria-selected="true"] {
+            &::after {
+              content: var(--icon-font-awesome-check);
+              font-family: 'H5PFontAwesome4';
+              position: absolute;
+              right: var(--h5p-theme-spacing-xxs);
+              top: 50%;
+              transform: translateY(-50%);
+            }
+
+            &.option-current::after {
+              border-color: var(--h5p-theme-contrast-cta);
+            }
+          }
+        }
+      }
+    }
+  }
+}
