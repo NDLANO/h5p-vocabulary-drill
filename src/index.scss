@@ -374,35 +374,6 @@
   padding: var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-xxs);
   position: relative;
 
-  button {
-    background-color: var(--h5p-theme-secondary-cta-base);
-    border: none;
-    border-radius: var(--h5p-theme-border-radius-medium);
-    color: var(--h5p-theme-secondary-contrast-cta);
-    cursor: pointer;
-    display: inline-block;
-    font-size: var(--h5p-theme-font-size-s);
-    font-weight: 700;
-    padding: var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-s);
-    white-space: nowrap;
-
-    &:hover:not(:disabled),
-    &:focus:not(:disabled) {
-      background-color: var(--h5p-theme-secondary-cta-light);
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      filter: grayscale(100%);
-    }
-
-    &.h5p-vocabulary-drill-next::after {
-      content: var(--icon-font-awesome-arrow-angle-right);
-      font-family: 'H5PFontAwesome4';
-      padding-left: var(--h5p-theme-spacing-xxs);
-    }
-  }
-
   .h5p-vocabulary-drill-status-score {
     color: var(--h5p-theme-text-secondary);
     flex-grow: 1;
@@ -424,6 +395,10 @@
     color: var(--h5p-theme-text-secondary);
     font-size: var(--h5p-theme-font-size-l);
     font-weight: 700;
+  }
+
+  button.display-none {
+    display: none;
   }
 }
 

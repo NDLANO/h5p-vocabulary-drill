@@ -1,4 +1,5 @@
-import React, { type FC } from 'react';
+import { H5P } from 'h5p-utils';
+import React, { useEffect, useRef, type FC } from 'react';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
 import { ProgressBar } from '../ProgressBar/ProgressBar';
 
@@ -29,8 +30,42 @@ export const StatusBar: FC<StatusBarProps> = ({
   const pageNumberLabel = t('pageNumberLabel').replaceAll('@page', page.toString()).replaceAll('@totalPages', totalPages.toString());
   const nextText = t('next');
   const finishText = t('finish');
-
   const scorePage = page === totalPages;
+
+  const nextClassList = 'h5p-theme-next';
+  const buttonNextRef = useRef<HTMLDivElement>(null);
+  const finishClassList = 'h5p-theme-finish';
+  const buttonFinishRef = useRef<HTMLDivElement>(null);
+  const showFinishButton = !showNextButton && !scorePage;
+
+  // @ts-expect-error h5p-types does not support H5P.Components (yet?)
+  const buttonNext = H5P.Components.Button({
+    styleType: 'nav',
+    label: nextText,
+    icon: 'next',
+    classes: disableNextButton ? `${nextClassList}` : `${nextClassList} h5p-disabled`,
+    disabled: disableNextButton,
+    onClick: onNext,
+  });
+
+  // @ts-expect-error h5p-types does not support H5P.Components (yet?)
+  const buttonFinish = H5P.Components.Button({
+    styleType: 'nav',
+    label: finishText,
+    icon: 'show-results',
+    classes: showFinishButton ? `${finishClassList}` : `${finishClassList} display-none`,
+    disabled: disableNextButton,
+    onClick: onShowResults,
+  });
+
+  useEffect(() => {
+    buttonNextRef.current?.replaceChildren(buttonNext);
+  }, [buttonNext]);
+
+  useEffect(() => {
+    buttonFinishRef.current?.replaceChildren(buttonFinish);
+  }, [buttonFinish]);
+
   return (
     <>
       <ProgressBar page={page} totalPages={totalPages} />
@@ -50,24 +85,8 @@ export const StatusBar: FC<StatusBarProps> = ({
           <span className="h5p-vocabulary-drill-status-number" aria-hidden="true">{totalPages}</span>
           <p className="visually-hidden">{pageNumberLabel}</p>
         </div>
-        {showNextButton ?
-          <button
-            className="h5p-vocabulary-drill-next"
-            onClick={onNext}
-            disabled={disableNextButton}
-          >
-            {nextText}
-          </button>
-          : null}
-        {!showNextButton && !scorePage ?
-          <button
-            className="h5p-vocabulary-drill-next"
-            onClick={onShowResults}
-            disabled={disableNextButton}
-          >
-            {finishText}
-          </button>
-          : null}
+        {showNextButton && <div ref={buttonNextRef} /> }
+        {showFinishButton && <div ref={buttonFinishRef} /> }
       </div>
     </>
   );
