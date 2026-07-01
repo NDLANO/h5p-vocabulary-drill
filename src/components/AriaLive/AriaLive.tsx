@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAriaLive } from '../../hooks/useAriaLive/useAriaLive';
+import '../../styles/utilities.scss';
 
 export const AriaLive: React.FC = () => {
   const { ariaLiveText } = useAriaLive();

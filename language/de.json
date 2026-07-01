@@ -121,6 +121,11 @@
         {
           "label": "Rückmeldungstext",
           "default": "Deine Gesamtpunktzahl"
+        },
+        {
+          "label": "Platzhalter für Punkte",
+          "description": "@score und @total sind Platzhalter und werden durch die entsprechenden Werte ersetzt.",
+          "default": "@score/@total"
         }
       ]
     },

@@ -1,0 +1,132 @@
+.h5p-vocabulary-drill {
+  --icon-font-awesome-angle-down: "\f107";
+  --icon-font-awesome-arrows-rotate: "\f021";
+  --icon-font-awesome-arrows-up-down-left-right: "\f047";
+  --icon-font-awesome-check: "\f00c";
+  --icon-font-awesome-pen: "\f040";
+
+  background-color: var(--h5p-theme-ui-base);
+
+  .h5p-question {
+    .h5p-question-introduction.display-none {
+      display: none;
+    }
+
+    .h5p-vocabulary-drill-grid-title {
+      color: var(--h5p-theme-text-primary);
+      font-weight: bold;
+    }
+
+    /* Overrides to create a grid structure in H5P.DragText */
+    &.h5p-drag-text {
+      overflow-x: auto; /* Make sure the grid content is reachable on mobile */
+      /*
+       * Hide vertical scrollbar while content updates.
+       * overflow-y will implicitly be computed as auto if visible is used
+       * https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y
+       */
+      overflow-y: hidden;
+      padding: var(--h5p-theme-spacing-s);
+
+      .h5p-drag-droppable-words {
+        align-items: center;
+        column-gap: var(--h5p-theme-spacing-s);
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        row-gap: var(--h5p-theme-spacing-xxs);
+
+        & > span {
+          grid-column-start: 1;
+        }
+
+        & > .h5p-dropzone {
+          grid-column-start: 2;
+
+          .ui-droppable {
+            width: calc(10 * var(--h5p-theme-font-size-m)) !important; /* JS sets width */
+          }
+        }
+
+        & > .h5p-drag-show-solution-container {
+          height: fit-content;
+        }
+      }
+    }
+
+    /* Overrides to create a grid structure in H5P.Blanks */
+    &.h5p-blanks {
+      overflow-x: auto; /* Make sure the grid content is reachable on mobile */
+      /*
+       * Hide vertical scrollbar while content updates.
+       * overflow-y will implicitly be computed as auto if visible is used
+       * https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y
+       */
+      overflow-y: hidden;
+      padding: var(--h5p-theme-spacing-s);
+
+      .h5p-question-content .hidden-but-read ~ p {
+        align-items: center;
+        column-gap: var(--h5p-theme-spacing-s);
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        row-gap: var(--h5p-theme-spacing-xxs);
+
+        .h5p-vocabulary-drill-grid-title {
+          line-height: var(--h5p-theme-spacing-xl);
+        }
+
+        & > span:not(.h5p-input-wrapper, .h5p-correct-answer) {
+          grid-column-start: 1;
+        }
+
+        & > span.h5p-input-wrapper {
+          grid-column-start: 2;
+        }
+
+        & > span.h5p-correct-answer {
+          grid-column-start: 3;
+        }
+
+        /* Make all inputs the same width */
+        .h5p-text-input {
+          box-sizing: border-box;
+          width: calc(10 * var(--h5p-theme-font-size-m)) !important; /* width is set in JavaScript by h5p-blanks */
+        }
+
+        /* Make sure inputs ::after follows input */
+        .h5p-input-wrapper {
+          width: fit-content;
+        }
+
+        /* Create a bottom border to the correct answer */
+        .h5p-correct-answer {
+          align-self: end;
+          line-height: 1.375;
+          width: fit-content;
+
+          &:not(:last-child) {
+            margin-bottom: var(--h5p-theme-spacing-xxs);
+            position: relative;
+
+            &::after {
+              border-bottom: 1px solid var(--h5p-theme-alternative-base);
+              content: '';
+              display: inline-block;
+              height: 100%;
+              left: calc(-0.75 * ar(--h5p-theme-spacing-s));
+              padding: 0 var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-xxs);
+              position: absolute;
+              top: 0;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .h5p-vocabulary-drill-empty-state {
+    padding: var(--h5p-theme-spacing-l) var(--h5p-theme-spacing-s);
+    text-align: center;
+  }
+}

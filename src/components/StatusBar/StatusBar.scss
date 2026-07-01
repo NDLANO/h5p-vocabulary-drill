@@ -1,0 +1,38 @@
+.h5p-vocabulary-drill-status {
+  align-items: center;
+  background-color: var(--h5p-theme-ui-base);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--h5p-theme-spacing-l);
+  justify-content: space-between;
+  min-height: calc(2.5 * var(--h5p-theme-spacing-s));
+  padding: var(--h5p-theme-spacing-xxs) var(--h5p-theme-spacing-xxs);
+  position: relative;
+
+  .h5p-vocabulary-drill-status-score {
+    color: var(--h5p-theme-text-secondary);
+    flex-grow: 1;
+    font-size: var(--h5p-theme-font-size-m);
+    font-weight: 700;
+  }
+
+  .h5p-vocabulary-drill-status-pages {
+    margin: 0 0 0 auto;
+  }
+
+  .h5p-vocabulary-drill-status-number {
+    color: var(--h5p-theme-main-cta-base);
+    font-size: var(--h5p-theme-font-size-l);
+    font-weight: 700;
+  }
+
+  .h5p-vocabulary-drill-status-divider {
+    color: var(--h5p-theme-text-secondary);
+    font-size: var(--h5p-theme-font-size-l);
+    font-weight: 700;
+  }
+
+  button.display-none {
+    display: none;
+  }
+}

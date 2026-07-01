@@ -20,6 +20,7 @@ import { AriaLive } from '../AriaLive/AriaLive';
 import { ScorePage } from '../ScorePage/ScorePage';
 import { StatusBar } from '../StatusBar/StatusBar';
 import { Toolbar } from '../Toolbar/Toolbar';
+import './VocabularyDrill.scss';
 
 type VocabularyDrillProps = {
   title: string;
@@ -412,7 +413,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
                 // The retry button is not always added to the DOM at this point when DragText
                 // is used, so we need to wait for the next animation frame to be sure
                 requestAnimationFrame(() => {
-                  const retryButton = wrapper.querySelector('button.h5p-question-try-again');
+                  const retryButton =
+                    wrapper.querySelector('button.h5p-theme-button.h5p-theme-retry') ??
+                    wrapper.querySelector('button.h5p-question-try-again');
                   retryButton?.addEventListener('click', handleRetry, { once: true });
                 });
               });
@@ -698,7 +701,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
           )}
         </div>
       ) : (
-        <div className="h5p-vd-empty-state">{t('noValidWords')}</div>
+        <div className="h5p-vocabulary-drill-empty-state">{t('noValidWords')}</div>
       )}
       <AriaLive />
     </AriaLiveContext.Provider>

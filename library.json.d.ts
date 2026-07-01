@@ -2,11 +2,15 @@ declare const json: {
   "title": "Vocabulary Drill",
   "machineName": "H5P.VocabularyDrill",
   "majorVersion": 1,
-  "minorVersion": 1,
-  "patchVersion": 1,
+  "minorVersion": 2,
+  "patchVersion": 0,
   "runnable": 1,
   "license": "MIT",
   "author": "NDLA",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 28
+  },
   "embedTypes": ["iframe"],
   "preloadedDependencies": [
     {
@@ -25,9 +29,9 @@ declare const json: {
       "minorVersion": 5
     },
     {
-      "machineName": "H5P.JoubelUI",
+      "machineName": "H5P.Components",
       "majorVersion": 1,
-      "minorVersion": 3
+      "minorVersion": 0
     }
   ],
   "editorDependencies": [

@@ -1,0 +1,15 @@
+.h5p-vocabulary-drill-progressbar {
+  margin-top: var(--h5p-theme-spacing-xxs);
+  position: relative;
+
+  > .h5p-visual-progress {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
+
+    .h5p-visual-progress-inner {
+      border-radius: 0;
+    }
+  }
+}

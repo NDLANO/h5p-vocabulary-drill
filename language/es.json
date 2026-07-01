@@ -121,6 +121,11 @@
         {
           "label": "Texto del comentario",
           "default": "Puntuación total"
+        },
+        {
+          "label": "Score template",
+          "description": "@score and @total are placeholders that will be replaced with the respective values.",
+          "default": "@score/@total"
         }
       ]
     },

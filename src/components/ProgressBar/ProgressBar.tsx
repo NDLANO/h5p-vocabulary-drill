@@ -1,5 +1,6 @@
 import { H5P } from 'h5p-utils';
 import React, { useEffect, useRef } from 'react';
+import './ProgressBar.scss';
 
 type ProgressBarProps = {
   page: number;
@@ -11,16 +12,15 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  // Page progress is also available in StatusBar
-  const disableAria = true;
-  const progressBar = useRef(H5P.JoubelUI.createProgressbar(totalPages, { disableAria }));
-  progressBar.current.setProgress(page);
+  // @ts-expect-error h5p-types does not support H5P.Components (yet?)
+  const progressBar = H5P.Components.ProgressBar({
+    progressLength: totalPages
+  });
+  progressBar.updateProgressBar(page - 1);
 
   useEffect(() => {
-    if (ref.current && !ref.current.firstChild) {
-      progressBar.current.appendTo(ref.current);
-    }
-  }, [ref.current]);
+    ref.current?.replaceChildren(progressBar);
+  }, [progressBar]);
 
   return (
     <div ref={ref} className="h5p-vocabulary-drill-progressbar" />

@@ -13,7 +13,16 @@
     "description": "Choose the language of the source words.",
     "widget": "localeSelector",
     "localeSelector": {
-      "requestedBCP47s": ["de", "en", "es", "fr", "nb", "nn", "sma", "sme"],
+      "requestedBCP47s": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "nb",
+        "nn",
+        "sma",
+        "sme"
+      ],
       "targetFieldMap": {
         "languageNameTranslatedContent": "sourceLanguageName"
       },
@@ -36,7 +45,16 @@
     "description": "Choose the language of the target words.",
     "widget": "localeSelector",
     "localeSelector": {
-      "requestedBCP47s": ["de", "en", "es", "fr", "nb", "nn", "sma", "sme"],
+      "requestedBCP47s": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "nb",
+        "nn",
+        "sma",
+        "sme"
+      ],
       "targetFieldMap": {
         "languageNameTranslatedContent": "targetLanguageName"
       },
@@ -225,6 +243,13 @@
         "label": "Feedback text",
         "name": "feedbackText",
         "default": "Your total score",
+        "type": "text"
+      },
+      {
+        "label": "Score template",
+        "name": "scoreTemplate",
+        "description": "@score and @total are placeholders that will be replaced with the respective values.",
+        "default": "@score/@total",
         "type": "text"
       }
     ]

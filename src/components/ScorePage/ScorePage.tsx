@@ -1,7 +1,7 @@
 import { H5P } from 'h5p-utils';
-import React, { useEffect, type FC } from 'react';
+import React, { useEffect, useRef, type FC } from 'react';
 import { useTranslation } from '../../hooks/useTranslation/useTranslation';
-import { ScoreBar } from '../ScoreBar/ScoreBar';
+import './ScorePage.scss';
 
 type ScorePageProps = {
   score: number;
@@ -17,35 +17,53 @@ export const ScorePage: FC<ScorePageProps> = ({
   onRestart,
 }) => {
   const { t } = useTranslation();
-  const focusRef = React.useRef<HTMLDivElement>(null);
-  const feedbackText = t('feedbackText');
+  const focusRef = useRef<HTMLDivElement>(null);
+  const resultScreenRef = useRef<HTMLDivElement>(null);
+  const restartButtonRef = useRef<HTMLDivElement>(null);
   const restartText = t('restart');
+  const feedbackText = t('feedbackText');
+  const scoreTemplate = t('scoreTemplate');
 
-  // TODO: Why was this not properly typed to begin with?
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const overallFeedback = (H5P as any).Question.determineOverallFeedback(overallFeedbacks, score / maxScore);
-  const feedback = overallFeedback !== '' ? overallFeedback : feedbackText;
+  // @ts-expect-error h5p-types does not support H5P.Components (yet?)
+  const resultScreenDOM = H5P.Components.ResultScreen({
+    header: feedbackText,
+    scoreHeader: scoreTemplate.replace('@score', score.toString()).replace('@total', maxScore.toString()),
+    questionGroups: [],
+  });
+
+  // @ts-expect-error h5p-types does not support H5P.Components (yet?)
+  const restartButtonDOM = H5P.Components.Button({
+    class: 'h5p-vocabulary-drill-restart',
+    icon: 'retry',
+    styleType: 'secondary',
+    label: restartText,
+    onClick: onRestart,
+  });
 
   // Make sure focus is set when page is loaded
   useEffect(() => {
-    if (focusRef.current) {
-      focusRef.current.focus();
-    }
-  }, [focusRef.current]);
+    focusRef.current?.focus();
+  }, []);
 
+  useEffect(() => {
+    if (resultScreenRef.current) {
+      resultScreenRef.current.replaceChildren(resultScreenDOM);
+    }
+  }, [resultScreenDOM]);
+
+  useEffect(() => {
+    if (restartButtonRef.current) {
+      restartButtonRef.current.replaceChildren(restartButtonDOM);
+    }
+  }, [restartButtonDOM]);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const overallFeedback = (H5P as any).Question.determineOverallFeedback(overallFeedbacks, score / maxScore);
   return (
     <div ref={focusRef} tabIndex={-1} className="h5p-vocabulary-drill-score-page">
-      <span className="headline">{feedback}</span>
-      <ScoreBar
-        maxScore={maxScore}
-        score={score}
-      />
-      <button
-        className="h5p-joubelui-button h5p-vocabulary-drill-restart"
-        onClick={onRestart}
-      >
-        {restartText}
-      </button>
+      <div ref={resultScreenRef} />
+      {overallFeedback && <div className="h5p-vocabulary-drill-score-page-feedback-text">{overallFeedback}</div>}
+      <div ref={restartButtonRef} />
     </div>
   );
 };

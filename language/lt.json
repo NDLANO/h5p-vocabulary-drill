@@ -121,6 +121,11 @@
         {
           "label": "Feedback text",
           "default": "Your total score"
+        },
+        {
+          "label": "Score template",
+          "description": "@score and @total are placeholders that will be replaced with the respective values.",
+          "default": "@score/@total"
         }
       ]
     },
