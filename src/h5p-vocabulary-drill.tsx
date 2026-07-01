@@ -26,9 +26,6 @@ import { parseWords } from './utils/word.utils';
 import { shuffleArray } from './utils/utils';
 import { getDefaultParams } from './utils/semantics.utils';
 
-// TODO: Angle right icon for next button
-// TODO: Use H5P.Components.ProgressBar and fix progress bar gone when checking answer
-
 class VocabularyDrillContentType
   extends H5PResumableContentType<Params, State>
   implements IH5PContentType<Params>, IH5PQuestionType {

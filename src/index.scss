@@ -406,12 +406,14 @@
   margin-top: var(--h5p-theme-spacing-xxs);
   position: relative;
 
-  .h5p-joubelui-progressbar {
-    background: var(--h5p-theme-contrast-cta-light);
-    box-shadow: none;
+  > .h5p-visual-progress {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
 
-    &-background {
-      background-color: var(--h5p-theme-main-cta-base);
+    .h5p-visual-progress-inner {
+      border-radius: 0;
     }
   }
 }
