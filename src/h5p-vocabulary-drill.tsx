@@ -33,8 +33,9 @@ class VocabularyDrillContentType
   private wasAnswerGiven: boolean = this.extras?.previousState ? true : false;
   private wasReset: boolean = false;
   private resetInstance: () => void = (() => { });
-  private getScoreInstance: () => number = (() => 0);
-  private getMaxScoreInstance: () => number = (() => 0);
+  private getScoreInstance: () => number = () => this.extras?.previousState?.score ?? 0;
+  private getMaxScoreInstance: () => number = () => this.words.length;
+  private wasLastInteractionCorrectAnswer: () => boolean | null = () => null;
   private words: string[] = [];
   private wordsOrder: number[] = [];
 
@@ -99,6 +100,9 @@ class VocabularyDrillContentType
                 }
                 onResetTask={() => this.resetTask()}
                 onPageChange={(page) => this.handlePageChange(page)}
+                onCompletedPagesChange={(pages) =>
+                  this.handleCompletedPagesChange(pages)
+                }
                 getCurrentState={() => {
                   return this.state;
                 }}
@@ -135,6 +139,14 @@ class VocabularyDrillContentType
 
   getMaxScore(): number {
     return this.getMaxScoreInstance();
+  }
+
+  /**
+   * Check whether the last interaction was correct.
+   * @returns {boolean | null} True/false if known, null if not autochecking or nothing has been interacted with yet.
+   */
+  getLastInteractionCorrect(): boolean | null {
+    return this.wasLastInteractionCorrectAnswer();
   }
 
   showSolutions(): void {
@@ -256,6 +268,7 @@ class VocabularyDrillContentType
     this.resetInstance = params.resetInstance;
     this.getScoreInstance = params.getScoreInstance;
     this.getMaxScoreInstance = params.getMaxScoreInstance;
+    this.wasLastInteractionCorrectAnswer = params.wasLastInteractionCorrectAnswer;
   }
 
   private handleChangeContentType(
@@ -288,6 +301,10 @@ class VocabularyDrillContentType
     });
 
     this.setState(newState);
+  }
+
+  private handleCompletedPagesChange(pages: number[]): void {
+    this.setState({ completedPages: pages });
   }
 }
 

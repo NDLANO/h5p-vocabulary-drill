@@ -34,6 +34,7 @@ type VocabularyDrillProps = {
   onChangeLanguageMode: (languageMode: LanguageModeType) => void;
   onTrigger: (event: XAPIVerb) => void;
   onPageChange: (page: number) => void;
+  onCompletedPagesChange: (pages: number[]) => void;
   onInitalized: (params: InstanceConnector) => void;
   onResetTask: () => void;
   getCurrentState: () => State | undefined;
@@ -153,6 +154,7 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   onChangeLanguageMode,
   onTrigger,
   onPageChange,
+  onCompletedPagesChange,
   onInitalized,
   onResetTask,
   getCurrentState,
@@ -185,12 +187,27 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const [hasWords, setHasWords] = useState(true);
   const [page, setPage] = useState(previousState?.page ?? 0);
   const [score, setScore] = useState(previousState?.score ?? 0);
-  const [disableTools, setDisableTools] = useState(false);
-  const [disableNextButton, setDisableNextButton] = useState(true);
   const [ariaLiveText, setAriaLiveText] = useState('');
   const [showResults, setShowResults] = useState(false);
+  const [completedPages, setCompletedPages] = useState<Set<number>>(
+    new Set(
+      previousState?.completedPages ??
+      Array.from({ length: previousState?.page ?? 0 }, (_, index) => index)
+    )
+  );
+  const [disableNextButton, setDisableNextButton] =
+    useState(!completedPages.has(page));
+  const [disableTools, setDisableTools] = useState(completedPages.has(page));
+
+  useEffect(() => {
+    onCompletedPagesChange([...completedPages]);
+  }, [completedPages]);
 
   const activeContentType = useRef<SubContentType | undefined>(undefined);
+  // Per-item answers, diffed on 'interacted' since neither content type's event identifies the changed item.
+  const interactionSnapshot = useRef<Array<string | null>>([]);
+  const lastInteractionCorrect = useRef<boolean | null>(null);
+  const pageMaxScores = useRef<Record<number, number>>({});
 
   const totalNumberOfWords = words.length;
 
@@ -208,6 +225,24 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   const pickedWords = pickWords(
     words, multiplePages ? page : 0, numberOfWordsToShow
   );
+
+  const totalContentPages = totalPages - 1; // subtract 1 for score page
+
+  // Skip initial mount so resuming into already-completed exercise doesn't re-trigger 'completed'.
+  const hasMounted = useRef(false);
+  useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      return;
+    }
+
+    if (completedPages.size === totalContentPages) {
+      // Give the subcontent's own statement time to be triggered first
+      window.requestAnimationFrame(() => {
+        onTrigger('completed');
+      });
+    }
+  }, [completedPages, totalContentPages]);
 
   const dragTextLibraryInfo = findLibraryInfo('H5P.DragText');
   const fillInTheBlanksLibraryInfo = findLibraryInfo('H5P.Blanks');
@@ -256,6 +291,11 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
 
     const newScore = score + (activeContentType.current?.getScore() ?? 0);
     setScore(newScore);
+    setCompletedPages((previous) => new Set(previous).add(page));
+  };
+
+  const handleInteracted = (): void => {
+    onTrigger('interacted');
   };
 
   const handleRetry = (): void => {
@@ -263,6 +303,15 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setDisableNextButton(true);
 
     setScore(score - (activeContentType.current?.getScore() ?? 0));
+
+    setCompletedPages((previous) => {
+      const next = new Set(previous);
+      next.delete(page);
+      return next;
+    });
+
+    interactionSnapshot.current = getInteractionSnapshot();
+    lastInteractionCorrect.current = null;
   };
 
   const handleShowSolution = (): void => {
@@ -294,10 +343,9 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
   };
 
   /**
-   * Handles the interaction event for the DragText content type.
-   * Sets the language attribute of draggable elements based on the active language mode.
+   * Set language attribute of draggable elements based on active language mode.
    */
-  const handleInteracted = (): void => {
+  const setDraggableLanguageAttribute = (): void => {
     const wrapper = wrapperRef.current;
     if (!wrapper) {
       return;
@@ -311,6 +359,39 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     wrapper.querySelectorAll('.h5p-drag-droppable-words .ui-draggable').forEach((element) => {
       element?.setAttribute('lang', target ? targetLanguage : sourceLanguage);
     });
+  };
+
+  /**
+   * Get snapshot of every droppable's/cloze's current answer, to diff and detect which one changed.
+   * @returns {Array<string | null>} Current answer per item, `null` for an empty DragText droppable.
+   */
+  const getInteractionSnapshot = (): Array<string | null> => {
+    if (activeAnswerMode === AnswerModeType.FillIn) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const clozes = (activeContentType.current as any)?.clozes ?? [];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return clozes.map((cloze: any) => cloze.getUserAnswer());
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const droppables = (activeContentType.current as any)?.droppables ?? [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return droppables.map((droppable: any) => droppable.containedDraggable?.getAnswerText() ?? null);
+  };
+
+  /**
+   * Check whether specific droppable (DragText) or cloze (FillIn) currently holds correct answer.
+   * @param {number} index Index of item to check within its content type's own collection.
+   * @returns {boolean} True if item at given index is correct.
+   */
+  const isInteractionCorrect = (index: number): boolean => {
+    if (activeAnswerMode === AnswerModeType.FillIn) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return !!(activeContentType.current as any)?.clozes?.[index]?.correct();
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return !!(activeContentType.current as any)?.droppables?.[index]?.isCorrect();
   };
 
   const hasNoInnerText = (element: Element | null): boolean => {
@@ -402,6 +483,10 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
       // Remove previous state once used to start with clean slate after resets
       previousState = undefined;
 
+      interactionSnapshot.current = getInteractionSnapshot();
+      lastInteractionCorrect.current = null;
+      pageMaxScores.current[page] = activeContentType.current.getMaxScore();
+
       activeContentType.current.on('xAPI', (event: XAPIEvent) => {
         if (event.getVerb() === 'answered') {
           handleAnswered();
@@ -436,21 +521,33 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
             });
           }
 
-          // Give subcontent's statement time to be triggered first
-          window.requestAnimationFrame(() => {
-            onTrigger('completed');
-          });
         }
-        if (event.getVerb() === 'interacted' && activeAnswerMode === AnswerModeType.DragText) {
-          // Wait for the draggable element to be added to the DOM before setting the lang attribute
-          requestAnimationFrame(() => {
-            handleInteracted();
-          });
+        else if (event.getVerb() === 'interacted') {
+          if (params.behaviour.autoCheck) {
+            const currentSnapshot = getInteractionSnapshot();
+            const changedIndices = currentSnapshot
+              .map((answer, index) => ({ answer, index }))
+              .filter(({ answer, index }) => answer !== interactionSnapshot.current[index]);
+            interactionSnapshot.current = currentSnapshot;
+
+            const interacted = changedIndices.find(({ answer }) => answer !== null) ?? changedIndices[0];
+            if (interacted) {
+              lastInteractionCorrect.current = isInteractionCorrect(interacted.index);
+            }
+          }
+
+          if (activeAnswerMode === AnswerModeType.DragText) {
+            // Wait for the draggable element to be added to the DOM before setting the lang attribute
+            requestAnimationFrame(() => {
+              setDraggableLanguageAttribute();
+            });
+          }
+
+          handleInteracted();
         }
       });
 
       onChangeContentType(activeAnswerMode, activeContentType.current);
-
     };
 
     const removeRunnable = (): void => {
@@ -515,12 +612,31 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     setScore(0);
     setDisableNextButton(true);
     setDisableTools(false);
+    setCompletedPages(new Set());
+
+    // Don't rely solely on addRunnable: unchanged page 0 won't rerun effect, recreate content type.
+    interactionSnapshot.current = getInteractionSnapshot();
+    lastInteractionCorrect.current = null;
+  };
+
+  const getLastInteractionCorrect = (): boolean | null => lastInteractionCorrect.current;
+
+  const getMaxScore = (): number => {
+    let total = 0;
+
+    for (let contentPage = 0; contentPage < totalContentPages; contentPage++) {
+      total += pageMaxScores.current[contentPage] ??
+        pickWords(words, contentPage, numberOfWordsToShow).length;
+    }
+
+    return total;
   };
 
   onInitalized({
     resetInstance: handleRestart,
     getScoreInstance: () => score,
-    getMaxScoreInstance: () => words.length
+    getMaxScoreInstance: getMaxScore,
+    wasLastInteractionCorrectAnswer: getLastInteractionCorrect,
   });
 
   /**
