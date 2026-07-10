@@ -38,14 +38,12 @@ class VocabularyDrillContentType
   private wasLastInteractionCorrectAnswer: () => boolean | null = () => null;
   private words: string[] = [];
   private wordsOrder: number[] = [];
-  private extras?:H5PExtrasWithState<State>;
 
   constructor(params: Params, contentId: string, extras?: H5PExtrasWithState<State>) {
     const defaults = getSemanticsDefaults();
     const sanitizedParams = {...defaults, ...params};
 
     super(sanitizedParams, contentId, extras);
-    this.extras = extras;
 
     this.prepareWords();
   }
