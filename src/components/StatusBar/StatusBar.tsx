@@ -40,12 +40,24 @@ export const StatusBar: FC<StatusBarProps> = ({
   const buttonFinishRef = useRef<HTMLDivElement>(null);
   const showFinishButton = !showNextButton && !scorePage;
 
+  const nextButtonClasses = [nextClassList, disableNextButton && 'h5p-disabled']
+    .filter(Boolean)
+    .join(' ');
+
+  const finishButtonClasses = [
+    finishClassList,
+    !showFinishButton && 'display-none',
+    disableNextButton && 'h5p-disabled',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   // @ts-expect-error h5p-types does not support H5P.Components (yet?)
   const buttonNext = H5P.Components.Button({
     styleType: 'nav',
     label: nextText,
     icon: 'next',
-    classes: disableNextButton ? `${nextClassList}` : `${nextClassList} h5p-disabled`,
+    classes: nextButtonClasses,
     disabled: disableNextButton,
     onClick: onNext,
   });
@@ -55,7 +67,7 @@ export const StatusBar: FC<StatusBarProps> = ({
     styleType: 'nav',
     label: finishText,
     icon: 'show-results',
-    classes: showFinishButton ? `${finishClassList}` : `${finishClassList} display-none`,
+    classes: finishButtonClasses,
     disabled: disableNextButton,
     onClick: onShowResults,
   });

@@ -29,6 +29,7 @@ export type State = {
   page?: number;
   score?: number;
   wordsOrder?: Array<number>;
+  completedPages?: Array<number>;
 
   [AnswerModeType.DragText]?: unknown;
   [AnswerModeType.FillIn]?: unknown;
@@ -41,4 +42,5 @@ export type InstanceConnector = {
   resetInstance: () => void;
   getScoreInstance: () => number;
   getMaxScoreInstance: () => number;
+  wasLastInteractionCorrectAnswer: () => boolean | null;
 };
