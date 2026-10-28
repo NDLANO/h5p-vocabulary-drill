@@ -28,8 +28,10 @@ export const StatusBar: FC<StatusBarProps> = ({
 }) => {
   const { t } = useTranslation();
   const scoreLabel = t('scoreLabel');
-  const scoreBarLabel = t('scoreBarLabel').replaceAll('@score', score?.toString() ?? '0').replaceAll('@maxScore', totalScore?.toString() ?? '0');
-  const pageNumberLabel = t('pageNumberLabel').replaceAll('@page', page.toString()).replaceAll('@totalPages', totalPages.toString());
+  const scoreBarLabel = t('scoreBarLabel')
+    .replaceAll('@score', score?.toString() ?? '0').replaceAll('@maxScore', totalScore?.toString() ?? '0');
+  const pageNumberLabel = t('pageNumberLabel')
+    .replaceAll('@page', page.toString()).replaceAll('@totalPages', totalPages.toString());
   const nextText = t('next');
   const finishText = t('finish');
   const scorePage = page === totalPages;

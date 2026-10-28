@@ -333,12 +333,14 @@ describe('Vocabulary drill utils', () => {
     });
 
     it('should parse several words correct with variants and tips (fillIn)', () => {
-      const words =
-        ['ocean/sea:boats go on it,sjø/hav:båter kjører på det', 'fire/heat:very varm,ild/brann:veldig varmt', 'sky/cloud:above us,himmel/sky:over oss'];
+      const words = [
+        'ocean/sea:boats go on it,sjø/hav:båter kjører på det',
+        'fire/heat:very varm,ild/brann:veldig varmt', 'sky/cloud:above us,himmel/sky:over oss'
+      ];
       const showTips = true;
 
-      const expected =
-        '<p><span>ocean</span> *sjø/hav:båter kjører på det*<span>fire</span> *ild/brann:veldig varmt*<span>sky</span> *himmel/sky:over oss*</p>';
+      // eslint-disable-next-line @stylistic/ts/max-len
+      const expected = '<p><span>ocean</span> *sjø/hav:båter kjører på det*<span>fire</span> *ild/brann:veldig varmt*<span>sky</span> *himmel/sky:over oss*</p>';
       const actual = parseSourceAndTarget(
         words,
         showTips,
@@ -349,8 +351,10 @@ describe('Vocabulary drill utils', () => {
     });
 
     it('should parse several words correct with variants and tips (dragText)', () => {
-      const words =
-        ['ocean/sea:boats go on it,sjø/hav:båter kjører på det', 'fire/heat:very varm,ild/brann:veldig varmt', 'sky/cloud:above us,himmel/sky:over oss'];
+      const words = [
+        'ocean/sea:boats go on it,sjø/hav:båter kjører på det',
+        'fire/heat:very varm,ild/brann:veldig varmt', 'sky/cloud:above us,himmel/sky:over oss'
+      ];
       const showTips = true;
 
       const expected =

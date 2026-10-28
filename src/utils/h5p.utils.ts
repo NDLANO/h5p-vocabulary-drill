@@ -6,7 +6,7 @@ import semantics from '../../semantics.json';
 
 type H5PContentTypeExtended = H5PContentType & {
   bubblingUpwards?: boolean;
-}
+};
 
 type SemanticsEntry = {
   name?: unknown;
@@ -20,7 +20,9 @@ type SemanticsEntry = {
  * @param {SemanticsEntry[]} start Start semantics field.
  * @returns {Record<string, unknown>} Default values from semantics.
  */
-export const getSemanticsDefaults = (start: SemanticsEntry[] = semantics as SemanticsEntry[]): Record<string, unknown> => {
+export const getSemanticsDefaults = (
+  start: SemanticsEntry[] = semantics as SemanticsEntry[]
+): Record<string, unknown> => {
   const defaults: Record<string, unknown> = {};
 
   if (!Array.isArray(start)) {

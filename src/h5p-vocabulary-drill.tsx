@@ -41,7 +41,7 @@ class VocabularyDrillContentType
 
   constructor(params: Params, contentId: string, extras?: H5PExtrasWithState<State>) {
     const defaults = getSemanticsDefaults();
-    const sanitizedParams = {...defaults, ...params};
+    const sanitizedParams = { ...defaults, ...params };
 
     super(sanitizedParams, contentId, extras);
 

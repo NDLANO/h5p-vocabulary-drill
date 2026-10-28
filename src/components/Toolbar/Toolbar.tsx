@@ -46,8 +46,15 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   ];
 
   const answerModeAriaLiveText = t('changedAnswerModeAria');
-  const languageModeAriaLiveText = getLanguageModeAria(activeLanguageMode, t('changedLanguageModeAria'), sourceLanguageCode, targetLanguageCode);
-  const languageModeAria = getLanguageModeAria(activeLanguageMode, t('languageModeAria'), sourceLanguageCode, targetLanguageCode);
+  const languageModeAriaLiveText = getLanguageModeAria(
+    activeLanguageMode, t('changedLanguageModeAria'), sourceLanguageCode, targetLanguageCode
+  );
+  const languageModeAria = getLanguageModeAria(
+    activeLanguageMode,
+    t('languageModeAria'),
+    sourceLanguageCode,
+    targetLanguageCode
+  );
 
   const handleLanguageModeClick = () => {
     onLanguageModeChange();

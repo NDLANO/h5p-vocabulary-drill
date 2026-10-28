@@ -1,4 +1,9 @@
-import { blanksDefaultTranslations, defaultTranslations, dragTextDefaultTranslations } from '../constants/defaultTranslations';
+import {
+  blanksDefaultTranslations,
+  defaultTranslations,
+  dragTextDefaultTranslations
+}
+  from '../constants/defaultTranslations';
 import { AnswerModeType, type Params } from '../types/types';
 
 export const getDefaultParams = (): Params => {

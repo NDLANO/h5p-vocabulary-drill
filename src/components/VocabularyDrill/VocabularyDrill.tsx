@@ -125,7 +125,9 @@ function createFillIn(
   h5pMainInstance: H5PContentType
 ) {
   const { sourceLanguage, targetLanguage } = params;
-  const fillInWords = parseSourceAndTarget(words, showTips, AnswerModeType.FillIn, languageMode, sourceLanguage, targetLanguage);
+  const fillInWords = parseSourceAndTarget(
+    words, showTips, AnswerModeType.FillIn, languageMode, sourceLanguage, targetLanguage
+  );
 
   const fillInParams = {
     text: params.description ?? '',
@@ -298,6 +300,24 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     onTrigger('interacted');
   };
 
+  /**
+   * Get snapshot of every droppable's/cloze's current answer, to diff and detect which one changed.
+   * @returns {Array<string | null>} Current answer per item, `null` for an empty DragText droppable.
+   */
+  const getInteractionSnapshot = (): Array<string | null> => {
+    if (activeAnswerMode === AnswerModeType.FillIn) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const clozes = (activeContentType.current as any)?.clozes ?? [];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return clozes.map((cloze: any) => cloze.getUserAnswer());
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const droppables = (activeContentType.current as any)?.droppables ?? [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return droppables.map((droppable: any) => droppable.containedDraggable?.getAnswerText() ?? null);
+  };
+
   const handleRetry = (): void => {
     setDisableTools(false);
     setDisableNextButton(true);
@@ -359,24 +379,6 @@ export const VocabularyDrill: FC<VocabularyDrillProps> = ({
     wrapper.querySelectorAll('.h5p-drag-droppable-words .ui-draggable').forEach((element) => {
       element?.setAttribute('lang', target ? targetLanguage : sourceLanguage);
     });
-  };
-
-  /**
-   * Get snapshot of every droppable's/cloze's current answer, to diff and detect which one changed.
-   * @returns {Array<string | null>} Current answer per item, `null` for an empty DragText droppable.
-   */
-  const getInteractionSnapshot = (): Array<string | null> => {
-    if (activeAnswerMode === AnswerModeType.FillIn) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const clozes = (activeContentType.current as any)?.clozes ?? [];
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return clozes.map((cloze: any) => cloze.getUserAnswer());
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const droppables = (activeContentType.current as any)?.droppables ?? [];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return droppables.map((droppable: any) => droppable.containedDraggable?.getAnswerText() ?? null);
   };
 
   /**

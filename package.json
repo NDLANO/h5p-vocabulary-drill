@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "h5p-utils": "^4.0.0",
-    "he": "^1.2.0",
+    "he": "^2.0.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "type-fest": "^5.10.0",
